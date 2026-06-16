@@ -190,34 +190,91 @@
     .dragon {
       position: absolute;
       left: 50%;
-      top: 182px;
-      width: 560px;
-      height: 360px;
+      top: 118px;
+      width: 720px;
+      height: 500px;
       transform: translateX(-50%);
       z-index: 5;
-      opacity: 0.35;
+      opacity: 0.62;
       pointer-events: none;
       filter:
-        drop-shadow(0 0 18px rgba(142,232,255,0.13))
-        drop-shadow(0 0 36px rgba(0,0,0,0.55));
+        drop-shadow(0 0 16px rgba(142,232,255,0.12))
+        drop-shadow(0 0 44px rgba(0,0,0,0.76));
     }
+
     .dragon svg {
       width: 100%;
       height: 100%;
-      fill: rgba(7, 24, 29, 0.88);
-      stroke: rgba(142,232,255,0.16);
-      stroke-width: 1.1;
+      overflow: visible;
     }
+
+    .dragon-shadow {
+      fill: rgba(2, 10, 13, 0.92);
+      stroke: rgba(142,232,255,0.105);
+      stroke-width: 0.9;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .dragon-inner {
+      fill: rgba(6, 21, 26, 0.82);
+      stroke: rgba(142,232,255,0.075);
+      stroke-width: 0.75;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .dragon-cut {
+      fill: none;
+      stroke: rgba(142,232,255,0.075);
+      stroke-width: 1.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .dragon-haze {
+      position: absolute;
+      left: 50%;
+      top: 42%;
+      width: 580px;
+      height: 250px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at center, rgba(10, 30, 35, 0.50), transparent 63%),
+        radial-gradient(ellipse at 38% 42%, rgba(142,232,255,0.055), transparent 42%);
+      filter: blur(18px);
+      opacity: 0.75;
+      mix-blend-mode: screen;
+    }
+
     .dragon-eye {
       position: absolute;
-      left: 169px;
-      top: 127px;
-      width: 18px;
-      height: 18px;
+      left: 235px;
+      top: 178px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,1), rgba(142,232,255,0.90) 30%, transparent 68%);
-      filter: drop-shadow(0 0 9px rgba(142,232,255,1));
+      background:
+        radial-gradient(circle, rgba(255,255,255,1) 0 10%, rgba(168,244,255,0.95) 22%, rgba(72,210,255,0.70) 40%, transparent 70%);
+      filter:
+        drop-shadow(0 0 7px rgba(255,255,255,0.85))
+        drop-shadow(0 0 16px rgba(142,232,255,0.95))
+        drop-shadow(0 0 30px rgba(142,232,255,0.38));
       animation: eyePulse 2.2s ease-in-out infinite;
+    }
+
+    .dragon-eye::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 58px;
+      height: 1px;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(90deg, transparent, rgba(168,244,255,0.38), transparent);
+      filter: drop-shadow(0 0 8px rgba(142,232,255,0.46));
+      opacity: 0.45;
+      animation: eyeSlash 3.4s ease-in-out infinite;
     }
 
     .spine {
@@ -519,6 +576,12 @@
       animation: debrisFloat 12s ease-in-out infinite;
     }
 
+    @keyframes eyeSlash {
+      0%, 100% { opacity: 0.18; transform: translate(-50%, -50%) scaleX(0.72); }
+      48% { opacity: 0.55; transform: translate(-50%, -50%) scaleX(1.14); }
+      52% { opacity: 0.85; transform: translate(-50%, -50%) scaleX(1.28); }
+    }
+
     @keyframes starDrift { from { background-position: 0 0, 33px 26px; } to { background-position: 0 640px, 33px 980px; } }
     @keyframes nebulaBreathe { 0%,100% { opacity: .30; transform: scale(1); } 50% { opacity: .54; transform: scale(1.035); } }
     @keyframes slowMist { 0%, 58% { transform: translateX(-120%); opacity: 0; } 70% { opacity: .23; } 100% { transform: translateX(120%); opacity: 0; } }
@@ -636,11 +699,111 @@
         </div>
 
         <div class="dragon" aria-hidden="true">
-          <svg viewBox="0 0 560 360">
-            <path d="M444 62c-67 9-112 38-143 81-47-12-94 4-132 36 42-5 73 1 93 19-45 4-82 24-109 57 48-21 91-20 129 0-45 15-79 45-101 88 49-38 106-54 167-47 43 5 86-8 126-35-40 7-71 0-92-20 50-1 91-18 123-52-46 14-81 10-107-10 54-17 96-48 124-94-36 20-68 26-96 17 35-25 59-50 73-77-15 3-33 2-55-7Z"/>
-            <path d="M192 172c-61-2-106 15-134 51 40-8 76-4 106 10"/>
-            <path d="M305 145c-16-55-5-99 34-135-4 55 9 97 39 126"/>
-            <path d="M375 104c35 7 67-1 95-26"/>
+          <span class="dragon-haze"></span>
+          <svg viewBox="0 0 720 500">
+            <!-- Hauptsilhouette: Kopf links, mächtiger Hals/Bogen nach rechts -->
+            <path class="dragon-shadow" d="
+              M520 58
+              C456 66 405 91 368 129
+              C334 123 300 130 269 147
+              C238 164 214 187 196 216
+              C229 204 259 203 287 213
+              C251 224 224 246 204 279
+              C242 256 284 251 326 265
+              C290 283 263 314 249 359
+              C291 323 343 309 399 319
+              C447 328 501 313 550 274
+              C507 285 472 278 447 254
+              C500 251 546 229 585 187
+              C535 203 493 199 461 174
+              C520 156 568 120 604 66
+              C573 76 545 73 520 58
+              Z
+
+              M267 146
+              C225 131 181 136 143 163
+              C183 163 213 174 235 194
+
+              M201 213
+              C153 212 113 228 83 263
+              C121 254 154 258 183 275
+
+              M373 130
+              C356 84 364 44 398 12
+              C398 62 413 100 444 128
+              C420 125 397 125 373 130
+              Z
+            "/>
+
+            <!-- Innerer Hals-/Rücken-Schatten für mehr Tiefe -->
+            <path class="dragon-inner" d="
+              M388 150
+              C419 159 448 176 470 199
+              C438 193 407 195 379 207
+              C415 214 443 232 462 262
+              C430 249 397 244 360 251
+              C385 270 414 279 448 277
+              C406 300 361 304 315 291
+              C346 279 365 262 372 238
+              C344 231 318 233 293 245
+              C316 217 344 197 377 184
+              C350 173 318 170 282 176
+              C314 154 349 145 388 150
+              Z
+            "/>
+
+            <!-- Kopf mit Kiefer und Hörnern -->
+            <path class="dragon-shadow" d="
+              M254 159
+              C221 142 185 137 150 148
+              C178 154 202 166 222 184
+              C194 182 168 189 144 205
+              C173 202 198 207 219 221
+              C193 224 170 235 150 254
+              C181 244 209 244 234 255
+              C252 264 268 264 281 254
+              C268 249 258 242 252 232
+              C274 230 293 224 310 213
+              C286 214 267 208 254 196
+              C281 190 302 177 317 158
+              C294 165 273 166 254 159
+              Z
+            "/>
+
+            <!-- Zacken / Schuppen am oberen Hals -->
+            <path class="dragon-inner" d="
+              M430 111
+              L451 73
+              L462 117
+              L503 89
+              L488 135
+              L535 124
+              L500 155
+              L542 166
+              L490 180
+              C472 158 452 135 430 111
+              Z
+            "/>
+
+            <!-- Untere Halszacken -->
+            <path class="dragon-inner" d="
+              M355 257
+              L331 295
+              L369 281
+              L350 326
+              L393 298
+              L388 342
+              L424 308
+              C399 306 374 289 355 257
+              Z
+            "/>
+
+            <!-- Schnittlinien / feine Silhouettenakzente -->
+            <path class="dragon-cut" d="M224 184 C243 186 259 194 272 207"/>
+            <path class="dragon-cut" d="M247 232 C276 229 302 220 325 204"/>
+            <path class="dragon-cut" d="M357 184 C402 190 438 210 467 244"/>
+            <path class="dragon-cut" d="M386 152 C426 153 461 164 492 184"/>
+            <path class="dragon-cut" d="M318 291 C361 300 404 293 444 270"/>
           </svg>
           <span class="dragon-eye"></span>
         </div>
