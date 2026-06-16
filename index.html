@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Hauptmenü</title>
+  <style>
+    :root {
+      --bg: #03080b;
+      --panel: rgba(4, 12, 16, 0.70);
+      --cyan: #8fe8ff;
+      --cyan-soft: rgba(143, 232, 255, 0.58);
+      --cyan-faint: rgba(143, 232, 255, 0.16);
+      --white: #f2fbff;
+      --muted: rgba(230, 247, 255, 0.72);
+      --gold: rgba(255, 231, 190, 0.78);
+      --font-main: Calibri, Arial, Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #191919;
+      font-family: var(--font-main);
+      color: var(--white);
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+    }
+
+    .notion-fit-stage {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at center, rgba(80, 220, 255, 0.035), transparent 58%),
+        #191919;
+    }
+
+    .notion-fit-inner {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1040px;
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    .system-menu {
+      position: relative;
+      width: 1040px;
+      min-height: 1320px;
+      padding: 34px 38px 46px;
+      overflow: hidden;
+      border: 1px solid rgba(143, 232, 255, 0.22);
+      border-radius: 4px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 18%, rgba(0,0,0,0.18) 100%),
+        radial-gradient(circle at 50% 23%, rgba(80, 230, 255, 0.10), transparent 28%),
+        radial-gradient(circle at 50% 92%, rgba(80, 230, 255, 0.12), transparent 23%),
+        linear-gradient(180deg, rgba(7, 16, 20, 0.92), rgba(2, 8, 11, 0.96));
+      box-shadow:
+        0 0 14px rgba(143, 232, 255, 0.08),
+        0 0 36px rgba(143, 232, 255, 0.04),
+        inset 0 0 42px rgba(143, 232, 255, 0.045);
+      isolation: isolate;
+    }
+
+    .system-menu::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.24;
+      background-image:
+        radial-gradient(circle, rgba(170, 245, 255, 0.75) 0 1px, transparent 1.8px),
+        radial-gradient(circle, rgba(255, 235, 180, 0.35) 0 0.8px, transparent 1.6px);
+      background-size: 58px 58px, 103px 103px;
+      background-position: 0 0, 31px 17px;
+      animation: starDrift 34s linear infinite;
+      z-index: -4;
+    }
+
+    .system-menu::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 2px;
+      height: 100%;
+      transform: translateX(-50%);
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(143, 232, 255, 0.0) 7%,
+        rgba(180, 250, 255, 0.62) 14%,
+        rgba(180, 250, 255, 0.22) 40%,
+        rgba(180, 250, 255, 0.42) 82%,
+        rgba(255,255,255,0.96) 100%
+      );
+      filter: drop-shadow(0 0 10px rgba(143, 232, 255, 0.82));
+      opacity: 0.74;
+      pointer-events: none;
+      animation: beamPulse 4.8s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    .frame-line {
+      position: absolute;
+      inset: 18px;
+      pointer-events: none;
+      border: 1px solid rgba(143, 232, 255, 0.20);
+      box-shadow: inset 0 0 24px rgba(143, 232, 255, 0.035);
+      z-index: 5;
+    }
+
+    .frame-line::before,
+    .frame-line::after {
+      content: "";
+      position: absolute;
+      width: 94px;
+      height: 94px;
+      border-color: rgba(143, 232, 255, 0.42);
+      border-style: solid;
+    }
+
+    .frame-line::before {
+      left: 14px;
+      top: 14px;
+      border-width: 2px 0 0 2px;
+    }
+
+    .frame-line::after {
+      right: 14px;
+      bottom: 14px;
+      border-width: 0 2px 2px 0;
+    }
+
+    .arc-system {
+      position: absolute;
+      left: 50%;
+      top: 22px;
+      width: 880px;
+      height: 880px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.55;
+      z-index: -2;
+    }
+
+    .arc-system .ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(143, 232, 255, 0.12);
+      box-shadow: inset 0 0 28px rgba(143, 232, 255, 0.018);
+      animation: rotateSlow 58s linear infinite;
+    }
+
+    .arc-system .ring:nth-child(2) {
+      inset: 42px;
+      border-top-color: rgba(255, 231, 190, 0.18);
+      border-left-color: transparent;
+      animation-duration: 82s;
+      animation-direction: reverse;
+    }
+
+    .arc-system .ring:nth-child(3) {
+      inset: 92px;
+      border-bottom-color: rgba(143, 232, 255, 0.26);
+      border-right-color: transparent;
+      animation-duration: 46s;
+    }
+
+    .dragon-mark {
+      position: absolute;
+      left: 50%;
+      top: 146px;
+      width: 430px;
+      height: 310px;
+      transform: translateX(-50%);
+      opacity: 0.18;
+      filter: drop-shadow(0 0 20px rgba(143, 232, 255, 0.22));
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .dragon-mark svg {
+      width: 100%;
+      height: 100%;
+      fill: rgba(120, 220, 255, 0.18);
+      stroke: rgba(170, 245, 255, 0.22);
+      stroke-width: 1.1;
+    }
+
+    .orb {
+      position: absolute;
+      left: 50%;
+      top: 160px;
+      width: 94px;
+      height: 94px;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .orb::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(200, 255, 255, 0.42);
+      box-shadow:
+        0 0 16px rgba(143, 232, 255, 0.34),
+        inset 0 0 14px rgba(143, 232, 255, 0.22);
+      animation: rotateSlow 12s linear infinite;
+    }
+
+    .orb::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 24px;
+      height: 24px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff, #8fe8ff 42%, transparent 72%);
+      box-shadow:
+        0 0 12px rgba(255,255,255,0.9),
+        0 0 34px rgba(143,232,255,0.9);
+      animation: orbPulse 2.4s ease-in-out infinite;
+    }
+
+    .title-block {
+      position: relative;
+      z-index: 3;
+      margin-top: 450px;
+      text-align: center;
+    }
+
+    .title {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 94px;
+      line-height: 0.92;
+      letter-spacing: 0.22em;
+      font-weight: 400;
+      color: rgba(245, 252, 255, 0.95);
+      text-shadow:
+        0 0 8px rgba(255,255,255,0.55),
+        0 0 22px rgba(143,232,255,0.34),
+        0 0 42px rgba(143,232,255,0.16);
+    }
+
+    .subtitle {
+      margin-top: 18px;
+      font-size: 18px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(143, 232, 255, 0.86);
+      text-shadow: 0 0 12px rgba(143,232,255,0.34);
+    }
+
+    .title-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 24px auto 0;
+      width: 290px;
+      color: rgba(143, 232, 255, 0.72);
+    }
+
+    .title-divider::before,
+    .title-divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, transparent, rgba(143, 232, 255, 0.66));
+    }
+
+    .title-divider::after {
+      background: linear-gradient(90deg, rgba(143, 232, 255, 0.66), transparent);
+    }
+
+    .title-divider span {
+      width: 18px;
+      height: 18px;
+      border: 1px solid currentColor;
+      transform: rotate(45deg);
+      box-shadow: 0 0 10px rgba(143,232,255,0.34);
+    }
+
+    .menu-grid {
+      position: relative;
+      z-index: 4;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin: 88px auto 0;
+      width: 860px;
+    }
+
+    .menu-card {
+      position: relative;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      min-height: 172px;
+      padding: 22px 18px;
+      border: 1px solid rgba(143, 232, 255, 0.19);
+      border-radius: 2px;
+      background:
+        linear-gradient(180deg, rgba(143, 232, 255, 0.035), rgba(255,255,255,0.012)),
+        rgba(2, 10, 14, 0.30);
+      color: rgba(245, 252, 255, 0.86);
+      text-decoration: none;
+      overflow: hidden;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+      box-shadow:
+        inset 0 0 18px rgba(143, 232, 255, 0.028),
+        0 0 10px rgba(143, 232, 255, 0.02);
+    }
+
+    .menu-card::before {
+      content: "";
+      position: absolute;
+      inset: -60% -30%;
+      transform: translateX(-78%) rotate(18deg);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      color: #ffffff;
+      border-color: rgba(180, 250, 255, 0.56);
+      background:
+        linear-gradient(180deg, rgba(143, 232, 255, 0.075), rgba(255,255,255,0.018)),
+        rgba(2, 10, 14, 0.48);
+      box-shadow:
+        0 0 16px rgba(143, 232, 255, 0.16),
+        0 0 34px rgba(143, 232, 255, 0.08),
+        inset 0 0 22px rgba(143, 232, 255, 0.05);
+    }
+
+    .menu-card:hover::before {
+      opacity: 1;
+      animation: cardSweep 1.15s ease forwards;
+    }
+
+    .icon-wrap {
+      position: relative;
+      width: 58px;
+      height: 58px;
+      margin-bottom: 22px;
+      color: var(--gold);
+      filter: drop-shadow(0 0 8px rgba(143, 232, 255, 0.12));
+    }
+
+    .icon-wrap svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.15;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .card-label {
+      font-size: 18px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(245, 252, 255, 0.86);
+      text-shadow: 0 0 8px rgba(143,232,255,0.18);
+    }
+
+    .card-line {
+      width: 28px;
+      height: 1px;
+      margin-top: 16px;
+      background: rgba(245, 252, 255, 0.58);
+      box-shadow: 0 0 8px rgba(143,232,255,0.25);
+    }
+
+    .corner {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-color: rgba(143, 232, 255, 0.30);
+      border-style: solid;
+      opacity: 0.86;
+    }
+
+    .c1 { left: 10px; top: 10px; border-width: 1px 0 0 1px; }
+    .c2 { right: 10px; top: 10px; border-width: 1px 1px 0 0; }
+    .c3 { right: 10px; bottom: 10px; border-width: 0 1px 1px 0; }
+    .c4 { left: 10px; bottom: 10px; border-width: 0 0 1px 1px; }
+
+    .ground {
+      position: absolute;
+      left: 50%;
+      bottom: 46px;
+      width: 520px;
+      height: 148px;
+      transform: translateX(-50%);
+      pointer-events: none;
+      opacity: 0.58;
+      z-index: 1;
+    }
+
+    .ground::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 460px;
+      height: 92px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      border: 1px solid rgba(143,232,255,0.33);
+      box-shadow:
+        0 0 18px rgba(143,232,255,0.20),
+        inset 0 0 18px rgba(143,232,255,0.12);
+      animation: groundPulse 4s ease-in-out infinite;
+    }
+
+    .ground::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 35px;
+      width: 8px;
+      height: 160px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, transparent, rgba(143,232,255,0.75), rgba(255,255,255,0.95));
+      filter: blur(1px) drop-shadow(0 0 20px rgba(143,232,255,0.82));
+      animation: beamPulse 3.2s ease-in-out infinite;
+    }
+
+    .ruins {
+      position: absolute;
+      inset: auto 0 0;
+      height: 210px;
+      opacity: 0.34;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        linear-gradient(158deg, transparent 0 13%, rgba(0,0,0,0.65) 13.2% 18%, transparent 18.2%),
+        linear-gradient(202deg, transparent 0 11%, rgba(0,0,0,0.72) 11.2% 19%, transparent 19.2%),
+        linear-gradient(180deg, transparent 0 40%, rgba(0,0,0,0.58) 40% 100%);
+      clip-path: polygon(0 42%, 7% 55%, 14% 38%, 22% 59%, 30% 40%, 39% 65%, 50% 45%, 61% 66%, 70% 41%, 80% 62%, 90% 38%, 100% 54%, 100% 100%, 0 100%);
+    }
+
+    @keyframes starDrift {
+      from { background-position: 0 0, 31px 17px; }
+      to { background-position: 0 580px, 31px 1030px; }
+    }
+
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes orbPulse {
+      0%, 100% { opacity: 0.70; transform: translate(-50%, -50%) scale(0.92); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+    }
+
+    @keyframes beamPulse {
+      0%, 100% { opacity: 0.42; }
+      50% { opacity: 0.92; }
+    }
+
+    @keyframes groundPulse {
+      0%, 100% { opacity: 0.38; transform: translateX(-50%) scale(0.96); }
+      50% { opacity: 0.78; transform: translateX(-50%) scale(1.03); }
+    }
+
+    @keyframes cardSweep {
+      from { transform: translateX(-78%) rotate(18deg); }
+      to { transform: translateX(78%) rotate(18deg); }
+    }
+
+    @media (max-width: 760px) {
+      .system-menu { width: 780px; min-height: 1180px; }
+      .notion-fit-inner { width: 780px; }
+      .title-block { margin-top: 390px; }
+      .title { font-size: 70px; }
+      .menu-grid { width: 670px; grid-template-columns: repeat(2, 1fr); margin-top: 70px; }
+      .menu-card { min-height: 138px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="notion-fit-stage">
+    <div class="notion-fit-inner" id="notionFitInner">
+      <main class="system-menu" aria-label="System Hauptmenü">
+        <div class="frame-line"></div>
+
+        <div class="arc-system" aria-hidden="true">
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+        </div>
+
+        <div class="dragon-mark" aria-hidden="true">
+          <svg viewBox="0 0 520 360">
+            <path d="M399 62c-54 9-89 34-113 69-42-8-80 8-109 32 35-3 58 4 72 19-36 2-65 18-84 42 36-14 70-12 101 4-37 11-66 35-82 70 38-29 81-41 129-36 33 4 67-4 97-25-29 5-52 0-68-16 38-1 69-13 93-38-35 10-61 8-80-7 40-12 70-35 91-69-26 14-50 18-71 12 26-19 44-38 54-57-9 2-19 2-30 0Z"/>
+            <path d="M183 162c-47-2-81 11-102 39 32-6 60-4 82 8"/>
+            <path d="M292 132c-12-42-4-77 25-105-3 42 6 74 27 95"/>
+            <circle cx="205" cy="170" r="5"/>
+          </svg>
+        </div>
+
+        <div class="orb" aria-hidden="true"></div>
+
+        <section class="title-block">
+          <h1 class="title">SYSTEM</h1>
+          <div class="subtitle">Status Interface</div>
+          <div class="title-divider"><span></span></div>
+        </section>
+
+        <nav class="menu-grid">
+        <a class="menu-card" href="https://app.notion.com/p/____________________________________________________________________________________________________-37e07d209dc080ba87bee0fea4a68d2d?source=copy_link" target="_blank" rel="noopener noreferrer" data-label="Status">
+          <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+          <span class="icon-wrap"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 52h44"/><path d="M16 52V34h8v18"/><path d="M28 52V20h8v32"/><path d="M40 52V28h8v24"/><path d="M16 30l8-10 8 6 12-14"/></svg></span>
+          <span class="card-label">Status</span>
+          <span class="card-line"></span>
+        </a>
+        <a class="menu-card" href="https://app.notion.com/p/Titel-37e07d209dc080298b35fe5a1ae29706?source=copy_link" target="_blank" rel="noopener noreferrer" data-label="Titel">
+          <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+          <span class="icon-wrap"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M17 12h30c-8 7-8 13 0 20H17c-8-7-8-13 0-20Z"/><path d="M17 32h30c-8 7-8 13 0 20H17c-8-7-8-13 0-20Z"/><path d="M17 12v40"/><path d="M24 20h16"/><path d="M24 40h16"/></svg></span>
+          <span class="card-label">Titel</span>
+          <span class="card-line"></span>
+        </a>
+        <a class="menu-card" href="https://app.notion.com/p/Resonanzen-37e07d209dc0806aa6eaed32feba1134?source=copy_link" target="_blank" rel="noopener noreferrer" data-label="Resonanzen">
+          <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+          <span class="icon-wrap"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="8"/><circle cx="32" cy="32" r="20"/><path d="M32 4v8M32 52v8M4 32h8M52 32h8"/><circle cx="47" cy="18" r="3"/><circle cx="18" cy="47" r="3"/><path d="M19 19l26 26"/></svg></span>
+          <span class="card-label">Resonanzen</span>
+          <span class="card-line"></span>
+        </a>
+        <a class="menu-card" href="https://app.notion.com/p/F-higkeiten-37e07d209dc080228a7df7ddf38b85e2?source=copy_link" target="_blank" rel="noopener noreferrer" data-label="Fähigkeiten">
+          <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+          <span class="icon-wrap"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 52l30-30 8-14 4 4-14 8-30 30Z"/><path d="M36 24l8 8"/><path d="M18 46l-6 6"/><path d="M12 20l14 14"/><path d="M8 24l8-8 14 14-8 8Z"/></svg></span>
+          <span class="card-label">Fähigkeiten</span>
+          <span class="card-line"></span>
+        </a>
+        <a class="menu-card" href="https://app.notion.com/p/Eigenschaften-37e07d209dc080838fc7dafa14bb5b7d?source=copy_link" target="_blank" rel="noopener noreferrer" data-label="Eigenschaften">
+          <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+          <span class="icon-wrap"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6l6 17 18-3-14 12 14 12-18-3-6 17-6-17-18 3 14-12L8 20l18 3Z"/><circle cx="32" cy="32" r="5"/></svg></span>
+          <span class="card-label">Eigenschaften</span>
+          <span class="card-line"></span>
+        </a>
+        <a class="menu-card" href="https://app.notion.com/p/Inventar-37e07d209dc0800394e2d7ffb71c9cfc?source=copy_link" target="_blank" rel="noopener noreferrer" data-label="Inventar">
+          <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+          <span class="icon-wrap"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 24h28l4 8v20H14V32Z"/><path d="M24 24v-7c0-5 4-9 8-9s8 4 8 9v7"/><path d="M14 32h36"/><path d="M24 38v8M40 38v8"/><path d="M8 34h6M50 34h6"/></svg></span>
+          <span class="card-label">Inventar</span>
+          <span class="card-line"></span>
+        </a>
+        <a class="menu-card" href="https://app.notion.com/p/Quests-37e07d209dc0800e9589eda3c14fb7b3?source=copy_link" target="_blank" rel="noopener noreferrer" data-label="Quests">
+          <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+          <span class="icon-wrap"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="12"/><circle cx="32" cy="32" r="4"/><path d="M32 4v12M32 48v12M4 32h12M48 32h12"/></svg></span>
+          <span class="card-label">Quests</span>
+          <span class="card-line"></span>
+        </a>
+        <a class="menu-card" href="https://app.notion.com/p/Bibliothek-37e07d209dc0805e9e47cdf1f10e96cb?source=copy_link" target="_blank" rel="noopener noreferrer" data-label="Bibliothek">
+          <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+          <span class="icon-wrap"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 14c9-3 16-1 22 5v37c-6-6-13-8-22-5Z"/><path d="M54 14c-9-3-16-1-22 5v37c6-6 13-8 22-5Z"/><path d="M32 19v37"/><path d="M16 23c4-.8 8 0 11 3M16 33c4-.8 8 0 11 3"/><path d="M48 23c-4-.8-8 0-11 3M48 33c-4-.8-8 0-11 3"/></svg></span>
+          <span class="card-label">Bibliothek</span>
+          <span class="card-line"></span>
+        </a>
+        </nav>
+
+        <div class="ground" aria-hidden="true"></div>
+        <div class="ruins" aria-hidden="true"></div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    function fitMenuToViewport() {
+      const inner = document.getElementById("notionFitInner");
+      if (!inner) return;
+
+      inner.style.transform = "translate(-50%, -50%) scale(1)";
+      const naturalWidth = inner.offsetWidth || 1040;
+      const naturalHeight = inner.scrollHeight || 1320;
+      const padding = 8;
+
+      const scale = Math.min(
+        (window.innerWidth - padding) / naturalWidth,
+        (window.innerHeight - padding) / naturalHeight,
+        1
+      );
+
+      inner.style.transform = `translate(-50%, -50%) scale(${Math.max(scale, 0.38)})`;
+    }
+
+    window.addEventListener("resize", fitMenuToViewport);
+    window.addEventListener("load", fitMenuToViewport);
+    requestAnimationFrame(fitMenuToViewport);
+  </script>
+</body>
+</html>
