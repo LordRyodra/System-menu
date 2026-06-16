@@ -191,15 +191,15 @@
       position: absolute;
       left: 50%;
       top: 118px;
-      width: 720px;
-      height: 500px;
+      width: 760px;
+      height: 470px;
       transform: translateX(-50%);
       z-index: 5;
-      opacity: 0.62;
+      opacity: 0.78;
       pointer-events: none;
       filter:
-        drop-shadow(0 0 16px rgba(142,232,255,0.12))
-        drop-shadow(0 0 44px rgba(0,0,0,0.76));
+        drop-shadow(0 0 14px rgba(142,232,255,0.11))
+        drop-shadow(0 0 44px rgba(0,0,0,0.82));
     }
 
     .dragon svg {
@@ -208,73 +208,94 @@
       overflow: visible;
     }
 
-    .dragon-shadow {
-      fill: rgba(2, 10, 13, 0.92);
-      stroke: rgba(142,232,255,0.105);
-      stroke-width: 0.9;
-      vector-effect: non-scaling-stroke;
-    }
-
-    .dragon-inner {
-      fill: rgba(6, 21, 26, 0.82);
-      stroke: rgba(142,232,255,0.075);
-      stroke-width: 0.75;
-      vector-effect: non-scaling-stroke;
-    }
-
-    .dragon-cut {
+    .dragon-body-shadow,
+    .dragon-neck-shadow {
       fill: none;
-      stroke: rgba(142,232,255,0.075);
-      stroke-width: 1.1;
+      stroke: rgba(1, 8, 11, 0.86);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 14px rgba(0,0,0,0.58));
+    }
+
+    .dragon-body-shadow {
+      stroke-width: 86;
+    }
+
+    .dragon-neck-shadow {
+      stroke-width: 58;
+    }
+
+    .dragon-body-line,
+    .dragon-neck-line {
+      fill: none;
+      stroke: rgba(142,232,255,0.105);
       stroke-linecap: round;
       stroke-linejoin: round;
       vector-effect: non-scaling-stroke;
     }
 
+    .dragon-body-line {
+      stroke-width: 1.3;
+    }
+
+    .dragon-neck-line {
+      stroke-width: 1.1;
+    }
+
+    .dragon-head,
+    .dragon-spikes,
+    .dragon-jaw,
+    .dragon-horn {
+      fill: rgba(1, 9, 12, 0.91);
+      stroke: rgba(142,232,255,0.13);
+      stroke-width: 1.05;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .dragon-detail {
+      fill: none;
+      stroke: rgba(142,232,255,0.115);
+      stroke-width: 1.15;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .dragon-eye-svg {
+      fill: rgba(190, 250, 255, 0.95);
+      filter:
+        drop-shadow(0 0 5px rgba(255,255,255,0.90))
+        drop-shadow(0 0 13px rgba(142,232,255,0.95))
+        drop-shadow(0 0 26px rgba(142,232,255,0.36));
+      animation: eyePulseSvg 2.3s ease-in-out infinite;
+      transform-origin: 166px 203px;
+    }
+
+    .dragon-eye-slit {
+      stroke: rgba(190, 250, 255, 0.42);
+      stroke-width: 1.1;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 7px rgba(142,232,255,0.42));
+      animation: eyeSlashSvg 3.5s ease-in-out infinite;
+      transform-origin: 166px 203px;
+    }
+
     .dragon-haze {
       position: absolute;
       left: 50%;
-      top: 42%;
-      width: 580px;
-      height: 250px;
+      top: 43%;
+      width: 640px;
+      height: 280px;
       transform: translate(-50%, -50%);
       border-radius: 50%;
       background:
-        radial-gradient(ellipse at center, rgba(10, 30, 35, 0.50), transparent 63%),
-        radial-gradient(ellipse at 38% 42%, rgba(142,232,255,0.055), transparent 42%);
-      filter: blur(18px);
-      opacity: 0.75;
+        radial-gradient(ellipse at 46% 42%, rgba(4, 18, 23, 0.70), transparent 62%),
+        radial-gradient(ellipse at 35% 48%, rgba(142,232,255,0.060), transparent 36%);
+      filter: blur(20px);
+      opacity: 0.84;
       mix-blend-mode: screen;
-    }
-
-    .dragon-eye {
-      position: absolute;
-      left: 235px;
-      top: 178px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle, rgba(255,255,255,1) 0 10%, rgba(168,244,255,0.95) 22%, rgba(72,210,255,0.70) 40%, transparent 70%);
-      filter:
-        drop-shadow(0 0 7px rgba(255,255,255,0.85))
-        drop-shadow(0 0 16px rgba(142,232,255,0.95))
-        drop-shadow(0 0 30px rgba(142,232,255,0.38));
-      animation: eyePulse 2.2s ease-in-out infinite;
-    }
-
-    .dragon-eye::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 58px;
-      height: 1px;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(90deg, transparent, rgba(168,244,255,0.38), transparent);
-      filter: drop-shadow(0 0 8px rgba(142,232,255,0.46));
-      opacity: 0.45;
-      animation: eyeSlash 3.4s ease-in-out infinite;
     }
 
     .spine {
@@ -576,10 +597,15 @@
       animation: debrisFloat 12s ease-in-out infinite;
     }
 
-    @keyframes eyeSlash {
-      0%, 100% { opacity: 0.18; transform: translate(-50%, -50%) scaleX(0.72); }
-      48% { opacity: 0.55; transform: translate(-50%, -50%) scaleX(1.14); }
-      52% { opacity: 0.85; transform: translate(-50%, -50%) scaleX(1.28); }
+    @keyframes eyePulseSvg {
+      0%, 100% { opacity: 0.56; transform: scale(0.82); }
+      50% { opacity: 1; transform: scale(1.22); }
+    }
+
+    @keyframes eyeSlashSvg {
+      0%, 100% { opacity: 0.14; transform: scaleX(0.74); }
+      48% { opacity: 0.48; transform: scaleX(1.18); }
+      52% { opacity: 0.82; transform: scaleX(1.34); }
     }
 
     @keyframes starDrift { from { background-position: 0 0, 33px 26px; } to { background-position: 0 640px, 33px 980px; } }
@@ -700,112 +726,123 @@
 
         <div class="dragon" aria-hidden="true">
           <span class="dragon-haze"></span>
-          <svg viewBox="0 0 720 500">
-            <!-- Hauptsilhouette: Kopf links, mächtiger Hals/Bogen nach rechts -->
-            <path class="dragon-shadow" d="
-              M520 58
-              C456 66 405 91 368 129
-              C334 123 300 130 269 147
-              C238 164 214 187 196 216
-              C229 204 259 203 287 213
-              C251 224 224 246 204 279
-              C242 256 284 251 326 265
-              C290 283 263 314 249 359
-              C291 323 343 309 399 319
-              C447 328 501 313 550 274
-              C507 285 472 278 447 254
-              C500 251 546 229 585 187
-              C535 203 493 199 461 174
-              C520 156 568 120 604 66
-              C573 76 545 73 520 58
-              Z
+          <svg viewBox="0 0 760 470">
+            <!-- Serpentine body: clear coiled dragon shape -->
+            <path class="dragon-body-shadow" d="
+              M592 72
+              C690 142 700 272 612 346
+              C525 419 372 403 276 323
+              C214 271 200 220 239 183
+              C290 135 401 143 506 210
+            "/>
+            <path class="dragon-body-line" d="
+              M592 72
+              C690 142 700 272 612 346
+              C525 419 372 403 276 323
+              C214 271 200 220 239 183
+              C290 135 401 143 506 210
+            "/>
 
-              M267 146
-              C225 131 181 136 143 163
-              C183 163 213 174 235 194
+            <!-- Neck connection into head -->
+            <path class="dragon-neck-shadow" d="
+              M246 213
+              C304 175 373 160 452 171
+              C503 178 548 200 588 236
+            "/>
+            <path class="dragon-neck-line" d="
+              M246 213
+              C304 175 373 160 452 171
+              C503 178 548 200 588 236
+            "/>
 
-              M201 213
-              C153 212 113 228 83 263
-              C121 254 154 258 183 275
-
-              M373 130
-              C356 84 364 44 398 12
-              C398 62 413 100 444 128
-              C420 125 397 125 373 130
+            <!-- Tail flare on upper right -->
+            <path class="dragon-spikes" d="
+              M571 72
+              C618 44 674 39 723 58
+              C685 68 653 83 626 107
+              C666 104 704 116 736 143
+              C685 139 644 148 612 172
+              C609 131 596 98 571 72
               Z
             "/>
 
-            <!-- Innerer Hals-/Rücken-Schatten für mehr Tiefe -->
-            <path class="dragon-inner" d="
-              M388 150
-              C419 159 448 176 470 199
-              C438 193 407 195 379 207
-              C415 214 443 232 462 262
-              C430 249 397 244 360 251
-              C385 270 414 279 448 277
-              C406 300 361 304 315 291
-              C346 279 365 262 372 238
-              C344 231 318 233 293 245
-              C316 217 344 197 377 184
-              C350 173 318 170 282 176
-              C314 154 349 145 388 150
+            <!-- Main head silhouette, left-facing with snout and open lower shape -->
+            <path class="dragon-head" d="
+              M250 165
+              C224 141 184 129 137 141
+              C160 150 179 164 192 184
+              C155 178 113 188 80 215
+              C119 212 151 219 176 236
+              C142 243 111 262 90 292
+              C128 273 164 267 197 277
+              C222 284 249 270 268 242
+              C296 242 328 230 358 205
+              C319 208 289 196 267 172
+              C302 163 329 145 348 120
+              C311 135 279 149 250 165
               Z
             "/>
 
-            <!-- Kopf mit Kiefer und Hörnern -->
-            <path class="dragon-shadow" d="
-              M254 159
-              C221 142 185 137 150 148
-              C178 154 202 166 222 184
-              C194 182 168 189 144 205
-              C173 202 198 207 219 221
-              C193 224 170 235 150 254
-              C181 244 209 244 234 255
-              C252 264 268 264 281 254
-              C268 249 258 242 252 232
-              C274 230 293 224 310 213
-              C286 214 267 208 254 196
-              C281 190 302 177 317 158
-              C294 165 273 166 254 159
+            <!-- Horn and crown spikes -->
+            <path class="dragon-horn" d="
+              M221 148
+              L232 88
+              L258 156
+              Z
+            "/>
+            <path class="dragon-horn" d="
+              M260 154
+              L304 101
+              L291 175
+              Z
+            "/>
+            <path class="dragon-spikes" d="
+              M355 158
+              L384 104
+              L394 173
+              L442 126
+              L428 190
+              L487 168
+              L445 213
+              C418 189 389 171 355 158
               Z
             "/>
 
-            <!-- Zacken / Schuppen am oberen Hals -->
-            <path class="dragon-inner" d="
-              M430 111
-              L451 73
-              L462 117
-              L503 89
-              L488 135
-              L535 124
-              L500 155
-              L542 166
-              L490 180
-              C472 158 452 135 430 111
+            <!-- Lower jaw / beard-like silhouette -->
+            <path class="dragon-jaw" d="
+              M181 237
+              C143 236 112 246 82 270
+              C120 262 153 263 183 276
+              C203 284 228 276 245 254
+              C220 254 199 248 181 237
               Z
             "/>
 
-            <!-- Untere Halszacken -->
-            <path class="dragon-inner" d="
-              M355 257
-              L331 295
-              L369 281
-              L350 326
-              L393 298
-              L388 342
-              L424 308
-              C399 306 374 289 355 257
+            <!-- Rear / belly spikes -->
+            <path class="dragon-spikes" d="
+              M390 306
+              L365 355
+              L409 333
+              L397 386
+              L439 347
+              L454 395
+              L474 338
+              C442 337 414 326 390 306
               Z
             "/>
 
-            <!-- Schnittlinien / feine Silhouettenakzente -->
-            <path class="dragon-cut" d="M224 184 C243 186 259 194 272 207"/>
-            <path class="dragon-cut" d="M247 232 C276 229 302 220 325 204"/>
-            <path class="dragon-cut" d="M357 184 C402 190 438 210 467 244"/>
-            <path class="dragon-cut" d="M386 152 C426 153 461 164 492 184"/>
-            <path class="dragon-cut" d="M318 291 C361 300 404 293 444 270"/>
+            <!-- Head details and mouth line -->
+            <path class="dragon-detail" d="M102 216 C137 218 165 229 188 246"/>
+            <path class="dragon-detail" d="M188 184 C210 190 230 202 247 219"/>
+            <path class="dragon-detail" d="M263 241 C299 238 330 224 356 203"/>
+            <path class="dragon-detail" d="M260 169 C286 171 311 164 337 149"/>
+            <path class="dragon-detail" d="M314 183 C368 178 421 190 472 220"/>
+            <path class="dragon-detail" d="M430 248 C479 265 529 266 581 244"/>
+
+            <!-- Eye -->
+            <line class="dragon-eye-slit" x1="151" y1="203" x2="181" y2="203"/>
+            <circle class="dragon-eye-svg" cx="166" cy="203" r="4.8"/>
           </svg>
-          <span class="dragon-eye"></span>
         </div>
 
         <div class="spine"></div>
