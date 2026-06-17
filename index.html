@@ -2632,17 +2632,18 @@
       }
 
       function blockedByDragon(x, y) {
-        /*
-          v43: nur die Stern-Sperrzone wurde erweitert.
-          Kein Layout, keine Größen, keine Positionierung wird verändert.
-        */
-        const dragonMain = insideEllipse(x, y, w * 0.50, h * 0.315, w * 0.44, h * 0.300);
-        const dragonHead = insideEllipse(x, y, w * 0.50, h * 0.240, w * 0.30, h * 0.145);
-        const dragonWings = insideEllipse(x, y, w * 0.50, h * 0.350, w * 0.48, h * 0.205);
-        const dragonLower = insideEllipse(x, y, w * 0.50, h * 0.445, w * 0.28, h * 0.145);
-        const orb = insideEllipse(x, y, w * 0.50, h * 0.145, w * 0.155, h * 0.120);
-        return dragonMain || dragonHead || dragonWings || dragonLower || orb;
-      }
+  /*
+    Originale v41-Sperrzone wiederhergestellt
+    + kleine Extra-Sperrzone direkt auf dem Drachenauge
+  */
+  const dragon = insideEllipse(x, y, w * 0.50, h * 0.315, w * 0.37, h * 0.255);
+  const orb = insideEllipse(x, y, w * 0.50, h * 0.145, w * 0.12, h * 0.095);
+
+  /* kleine zusätzliche Maske nur fürs Auge */
+  const eye = insideEllipse(x, y, w * 0.303, h * 0.254, w * 0.022, h * 0.014);
+
+  return dragon || orb || eye;
+}
 
       function createStar(x, y, cls, scale, opacity, duration, delay) {
         const star = document.createElement("span");
@@ -2676,13 +2677,12 @@
 
         let cls = "star tiny";
         const r = Math.random();
-        const centralDragonSky = y < h * 0.48 && x > w * 0.18 && x < w * 0.82;
 
-        if (!centralDragonSky && r > 0.965) cls = "star bright cross";
+        if (r > 0.965) cls = "star bright cross";
         else if (r > 0.90) cls = "star medium";
         else if (r > 0.58) cls = "star small";
 
-        if (!centralDragonSky && !cls.includes("cross") && Math.random() > 0.955) cls += " cross";
+        if (!cls.includes("cross") && Math.random() > 0.955) cls += " cross";
 
         const scale = 0.75 + Math.random() * 0.95;
         const opacity = 0.24 + Math.random() * 0.56;
