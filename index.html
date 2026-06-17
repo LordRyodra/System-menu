@@ -566,6 +566,22 @@
     .ruins::before { left: 0; }
     .ruins::after { right: 0; transform: scaleX(-1); }
 
+    .bottom-ruins-asset {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  transform: translateX(-50%);
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0.92;
+  filter:
+    brightness(0.75)
+    contrast(1.2)
+    drop-shadow(0 0 18px rgba(0,0,0,0.8));
+}
+
     .debris {
       position: absolute;
       inset: 0;
@@ -726,6 +742,8 @@
           <img src="assets/dragon-emblem.png" alt="" />
           <span class="dragon-eye-overlay"></span>
         </div>
+
+        <img class="bottom-ruins-asset" src="assets/bottom-ruins.png" alt="" />
 
         <div class="spine"></div>
 
