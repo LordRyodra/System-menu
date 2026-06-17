@@ -597,237 +597,13 @@
     }
 
 
-    /* --- v14: Ruinen-Asset sauber integriert --- */
-    .ruins,
-    .ruins::before,
-    .ruins::after {
-      display: none !important;
+    
+    /* --- clean v30: konsolidierte finale Overrides --- */
+    :root {
+      --axis-x: 50%;
+      --bottom-sigil-offset: -78px;
     }
 
-    .bottom-ruins-asset {
-      position: absolute;
-      left: 50%;
-      bottom: -18px;
-      width: 118%;
-      max-width: none;
-      height: auto;
-      transform: translateX(-50%);
-      z-index: 6;
-      pointer-events: none;
-      opacity: 0.96;
-      object-fit: contain;
-      filter:
-        brightness(0.58)
-        contrast(1.38)
-        saturate(0.92)
-        drop-shadow(0 0 18px rgba(0,0,0,0.86))
-        drop-shadow(0 -8px 18px rgba(75,190,225,0.08));
-      -webkit-mask-image:
-        linear-gradient(to top, black 0%, black 66%, rgba(0,0,0,0.76) 82%, transparent 100%);
-      mask-image:
-        linear-gradient(to top, black 0%, black 66%, rgba(0,0,0,0.76) 82%, transparent 100%);
-    }
-
-    .bottom-sigil {
-      bottom: 22px;
-      z-index: 8;
-      opacity: 0.60;
-    }
-
-    .debris {
-      z-index: 7;
-      opacity: 0.20;
-    }
-
-    @keyframes dragonBreathe {
-      0%, 100% {
-        opacity: 0.44;
-      }
-      50% {
-        opacity: 0.58;
-      }
-    }
-
-    @keyframes dragonEyePulseAsset {
-      0%, 100% {
-        opacity: 0.68;
-        filter:
-          drop-shadow(0 0 3px rgba(180, 240, 255, 0.28))
-          drop-shadow(0 0 7px rgba(120, 220, 255, 0.18))
-          drop-shadow(0 0 13px rgba(80, 180, 255, 0.09));
-      }
-      50% {
-        opacity: 1;
-        filter:
-          drop-shadow(0 0 5px rgba(215, 250, 255, 0.62))
-          drop-shadow(0 0 12px rgba(120, 230, 255, 0.42))
-          drop-shadow(0 0 22px rgba(80, 190, 255, 0.20));
-      }
-    }
-
-    @keyframes starDrift { from { background-position: 0 0, 33px 26px; } to { background-position: 0 640px, 33px 980px; } }
-    @keyframes nebulaBreathe { 0%,100% { opacity: .30; transform: scale(1); } 50% { opacity: .54; transform: scale(1.035); } }
-    @keyframes slowMist { 0%, 58% { transform: translateX(-120%); opacity: 0; } 70% { opacity: .23; } 100% { transform: translateX(120%); opacity: 0; } }
-    @keyframes rotateCW { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes rotateCCW { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
-    @keyframes dashFlow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -260; } }
-    @keyframes tickPulse { 0%,100% { opacity: .12; } 50% { opacity: .30; } }
-    @keyframes eyePulse { 0%,100% { opacity: .55; transform: scale(.86); } 50% { opacity: 1; transform: scale(1.22); } }
-    @keyframes spinePulse { 0%,100% { opacity: .48; } 50% { opacity: .88; } }
-    @keyframes orbPulse { 0%,100% { opacity: .62; transform: translate(-50%,-50%) scale(.92); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.12); } }
-    @keyframes runeFlicker { 0%,100% { opacity: .34; } 18% { opacity: .14; } 38% { opacity: .46; } 56% { opacity: .22; } 76% { opacity: .42; } }
-    @keyframes debrisFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; }
-    }
-  
-    /* --- v15: Unterer Bereich dichter / weniger leer --- */
-    .lower-atmosphere {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      width: 1086px;
-      height: 610px;
-      transform: translateX(-50%);
-      z-index: 5;
-      pointer-events: none;
-      opacity: 0.92;
-      background:
-        radial-gradient(ellipse at 50% 96%, rgba(165,245,255,0.14), transparent 19%),
-        radial-gradient(ellipse at 50% 83%, rgba(75,190,225,0.09), transparent 32%),
-        radial-gradient(ellipse at 6% 78%, rgba(75,190,225,0.14), transparent 38%),
-        radial-gradient(ellipse at 94% 78%, rgba(75,190,225,0.14), transparent 38%),
-        linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.42) 30%, rgba(0,0,0,0.16) 55%, transparent 82%);
-      mix-blend-mode: screen;
-    }
-
-    .lower-atmosphere::before,
-    .lower-atmosphere::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      width: 34%;
-      height: 100%;
-      opacity: 0.56;
-      background:
-        radial-gradient(ellipse at bottom, rgba(0,0,0,0.92), transparent 56%),
-        linear-gradient(to top, rgba(0,0,0,0.78), transparent 76%);
-      filter: blur(6px);
-    }
-
-    .lower-atmosphere::before {
-      left: -4%;
-    }
-
-    .lower-atmosphere::after {
-      right: -4%;
-    }
-
-    .bottom-ruins-asset {
-      left: 50%;
-      bottom: -42px;
-      width: 158%;
-      max-width: none;
-      height: auto;
-      transform: translateX(-50%);
-      z-index: 6;
-      opacity: 1;
-      filter:
-        brightness(0.52)
-        contrast(1.48)
-        saturate(0.95)
-        drop-shadow(0 0 24px rgba(0,0,0,0.92))
-        drop-shadow(0 -10px 22px rgba(75,190,225,0.10));
-      -webkit-mask-image:
-        linear-gradient(to top, black 0%, black 72%, rgba(0,0,0,0.82) 84%, transparent 100%);
-      mask-image:
-        linear-gradient(to top, black 0%, black 72%, rgba(0,0,0,0.82) 84%, transparent 100%);
-    }
-
-    .ground-portal {
-      position: absolute;
-      left: 50%;
-      bottom: 26px;
-      width: 560px;
-      height: 170px;
-      transform: translateX(-50%);
-      z-index: 9;
-      pointer-events: none;
-      opacity: 0.62;
-      border-radius: 50%;
-      background:
-        radial-gradient(ellipse at center, rgba(235,255,255,0.72) 0 2%, rgba(150,238,255,0.32) 4%, transparent 18%),
-        repeating-radial-gradient(ellipse at center, transparent 0 17px, rgba(142,232,255,0.22) 18px 19px, transparent 20px 33px),
-        radial-gradient(ellipse at center, rgba(142,232,255,0.16), transparent 62%);
-      filter:
-        drop-shadow(0 0 14px rgba(142,232,255,0.28))
-        drop-shadow(0 0 44px rgba(142,232,255,0.14));
-      mix-blend-mode: screen;
-      animation: portalBreath 5.8s ease-in-out infinite;
-    }
-
-    .ground-portal::before,
-    .ground-portal::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      border-radius: 50%;
-      border: 1px solid rgba(142,232,255,0.34);
-      transform: translate(-50%, -50%) rotate(0deg);
-      pointer-events: none;
-    }
-
-    .ground-portal::before {
-      width: 74%;
-      height: 43%;
-      animation: portalSpin 18s linear infinite;
-    }
-
-    .ground-portal::after {
-      width: 48%;
-      height: 28%;
-      opacity: 0.64;
-      animation: portalSpin 11s linear infinite reverse;
-    }
-
-    .bottom-sigil {
-      bottom: 20px;
-      z-index: 10;
-      opacity: 0.46;
-      transform: translateX(-50%) scale(0.92);
-      transform-origin: center bottom;
-    }
-
-    .debris {
-      z-index: 11;
-      opacity: 0.16;
-    }
-
-    @keyframes portalBreath {
-      0%, 100% {
-        opacity: 0.42;
-        filter:
-          drop-shadow(0 0 10px rgba(142,232,255,0.20))
-          drop-shadow(0 0 34px rgba(142,232,255,0.10));
-      }
-      50% {
-        opacity: 0.78;
-        filter:
-          drop-shadow(0 0 18px rgba(142,232,255,0.36))
-          drop-shadow(0 0 60px rgba(142,232,255,0.18));
-      }
-    }
-
-    @keyframes portalSpin {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-
-  
-    /* --- v16: zweite Ruinenebene für mehr Tiefe --- */
     .back-ruins-asset {
       position: absolute;
       left: 50%;
@@ -851,11 +627,17 @@
         linear-gradient(to top, black 0%, black 58%, rgba(0,0,0,0.68) 76%, transparent 100%);
       mask-image:
         linear-gradient(to top, black 0%, black 58%, rgba(0,0,0,0.68) 76%, transparent 100%);
-      animation: rearRuinsDrift 22s ease-in-out infinite;
+      animation: rearRuinsDrift 24s ease-in-out infinite;
     }
 
     .lower-atmosphere {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 510px;
       z-index: 5;
+      pointer-events: none;
       opacity: 0.82;
       background:
         radial-gradient(ellipse at 50% 96%, rgba(165,245,255,0.16), transparent 20%),
@@ -866,222 +648,97 @@
     }
 
     .bottom-ruins-asset {
-      z-index: 6;
+      position: absolute;
+      left: 50%;
       bottom: -46px;
       width: 158%;
+      max-width: none;
+      height: auto;
+      transform: translateX(-50%);
+      z-index: 6;
+      pointer-events: none;
       opacity: 0.98;
+      object-fit: contain;
+      filter:
+        brightness(0.52)
+        contrast(1.48)
+        saturate(0.95)
+        drop-shadow(0 0 24px rgba(0,0,0,0.92))
+        drop-shadow(0 -10px 22px rgba(75,190,225,0.10));
+      -webkit-mask-image:
+        linear-gradient(to top, black 0%, black 72%, rgba(0,0,0,0.72) 88%, transparent 100%);
+      mask-image:
+        linear-gradient(to top, black 0%, black 72%, rgba(0,0,0,0.72) 88%, transparent 100%);
+      animation: foregroundRuinsBreath 10s ease-in-out infinite;
     }
 
     .ground-portal {
+      left: var(--axis-x) !important;
+      transform: translateX(-50%) !important;
       z-index: 9;
       bottom: 28px;
       opacity: 0.60;
+      animation:
+        portalBreath 5.8s ease-in-out infinite,
+        portalWake 13s ease-in-out infinite;
     }
 
     .bottom-sigil {
+      left: calc(var(--axis-x) + var(--bottom-sigil-offset)) !important;
+      transform: translateX(-50%) scale(0.92) !important;
+      transform-origin: center bottom !important;
       z-index: 10;
       bottom: 20px;
       opacity: 0.44;
+      animation:
+        sigilTurn 44s linear infinite,
+        sigilGlow 7s ease-in-out infinite;
     }
 
-    @keyframes rearRuinsDrift {
-      0%, 100% {
-        opacity: 0.34;
-        transform: translateX(-50%) translateY(0px) scale(1);
-      }
-      50% {
-        opacity: 0.48;
-        transform: translateX(-50%) translateY(-8px) scale(1.012);
-      }
+    .spine {
+      left: var(--axis-x) !important;
+      transform: translateX(-50%) !important;
+      animation: spinePulse 5.5s ease-in-out infinite !important;
     }
 
-
-  
-    /* --- v19: Icon-Assets + alte Trennlinien entfernt --- */
-    .separators {
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
+    .top-node,
+    .woven {
+      left: var(--axis-x) !important;
     }
 
-    .menu-grid {
-      top: 785px;
-      width: 840px;
-      gap: 42px 40px;
-      z-index: 15;
+    .top-node {
+      transform: translate(-50%, -50%) !important;
     }
 
-    .menu-card {
-      min-height: 150px;
-      padding: 10px 4px 10px;
-      background: transparent;
-      border: 0;
-      overflow: visible;
+    .top-node .core {
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      animation:
+        orbPulse 2.8s ease-in-out infinite,
+        orbColorShift 9s ease-in-out infinite;
     }
 
-    .menu-frame {
-      inset: -9px -13px;
-      opacity: 0.22;
-      background:
-        linear-gradient(to right, rgba(142,232,255,0.22) 0 24px, transparent 24px calc(100% - 24px), rgba(142,232,255,0.22) calc(100% - 24px) 100%) top left / 100% 1px no-repeat,
-        linear-gradient(to right, rgba(142,232,255,0.16) 0 12px, transparent 12px calc(100% - 12px), rgba(142,232,255,0.16) calc(100% - 12px) 100%) bottom left / 100% 1px no-repeat,
-        linear-gradient(to bottom, rgba(142,232,255,0.22) 0 24px, transparent 24px calc(100% - 24px), rgba(142,232,255,0.22) calc(100% - 24px) 100%) top left / 1px 100% no-repeat,
-        linear-gradient(to bottom, rgba(142,232,255,0.16) 0 12px, transparent 12px calc(100% - 12px), rgba(142,232,255,0.16) calc(100% - 12px) 100%) top right / 1px 100% no-repeat;
-      filter: drop-shadow(0 0 5px rgba(142,232,255,0.06));
+    .top-node .ring { animation-duration: 5.2s; }
+    .top-node .r2 { animation-duration: 7.8s; }
+    .top-node .r3 { animation-duration: 11s; }
+
+    .woven {
+      transform: translateX(-50%) !important;
+      opacity: 0.50;
+      animation: wovenDrift 8s ease-in-out infinite;
     }
 
-    .menu-frame::before,
-    .menu-frame::after {
-      display: none;
+    .woven path {
+      stroke-dasharray: 15 18;
+      animation: weaveFlow 8s linear infinite;
     }
 
-    .menu-icon {
-      width: 84px;
-      height: 84px;
-      margin-bottom: 12px;
-      display: grid;
-      place-items: center;
-      color: rgba(232, 220, 188, 0.95);
-      opacity: 0.96;
-      filter:
-        drop-shadow(0 0 5px rgba(229,216,178,0.08))
-        drop-shadow(0 0 8px rgba(142,232,255,0.05));
-      transition:
-        transform 220ms ease,
-        opacity 220ms ease,
-        filter 220ms ease;
+    .divider span {
+      left: 50% !important;
+      transform: translate(-50%, -50%) rotate(45deg) !important;
     }
 
-    .menu-icon-asset {
-      width: 86px;
-      height: 86px;
-      object-fit: contain;
-      display: block;
-      opacity: 0.94;
-      mix-blend-mode: screen;
-      filter:
-        brightness(0.95)
-        contrast(1.05)
-        saturate(0.95)
-        drop-shadow(0 0 5px rgba(230,216,178,0.10))
-        drop-shadow(0 0 10px rgba(142,232,255,0.055));
-      transition:
-        transform 220ms ease,
-        opacity 220ms ease,
-        filter 220ms ease;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .menu-card[data-code="TITL"] .menu-icon-asset {
-      width: 92px;
-      height: 92px;
-    }
-
-    .menu-card[data-code="REZN"] .menu-icon-asset,
-    .menu-card[data-code="QEST"] .menu-icon-asset,
-    .menu-card[data-code="ATTR"] .menu-icon-asset {
-      width: 88px;
-      height: 88px;
-    }
-
-    .menu-card[data-code="INVT"] .menu-icon-asset {
-      width: 90px;
-      height: 90px;
-    }
-
-    .menu-label {
-      font-size: 16px;
-      letter-spacing: 0.185em;
-      color: rgba(236, 244, 245, 0.88);
-      text-shadow: 0 0 8px rgba(142,232,255,0.10);
-    }
-
-    .menu-underline {
-      width: 26px;
-      margin-top: 14px;
-      opacity: 0.82;
-    }
-
-    .menu-card::after {
-      font-size: 8px;
-      letter-spacing: 0.20em;
-    }
-
-    .menu-card:hover .menu-icon,
-    .menu-card:focus-visible .menu-icon {
-      transform: translateY(-4px) scale(1.035);
-      opacity: 1;
-      filter:
-        drop-shadow(0 0 7px rgba(229,216,178,0.16))
-        drop-shadow(0 0 14px rgba(142,232,255,0.12));
-    }
-
-    .menu-card:hover .menu-icon-asset,
-    .menu-card:focus-visible .menu-icon-asset {
-      opacity: 1;
-      transform: scale(1.045);
-      filter:
-        brightness(1.08)
-        contrast(1.10)
-        saturate(1.04)
-        drop-shadow(0 0 8px rgba(230,216,178,0.20))
-        drop-shadow(0 0 16px rgba(142,232,255,0.12));
-    }
-
-    .menu-card:hover .menu-label,
-    .menu-card:focus-visible .menu-label {
-      color: rgba(255,255,255,0.96);
-      letter-spacing: 0.215em;
-      transform: translateY(-1px);
-      text-shadow:
-        0 0 9px rgba(142,232,255,0.22),
-        0 0 16px rgba(229,216,178,0.10);
-    }
-
-    .menu-card:hover .menu-underline,
-    .menu-card:focus-visible .menu-underline {
-      width: 48px;
-      opacity: 1;
-      box-shadow:
-        0 0 8px rgba(142,232,255,0.28),
-        0 0 14px rgba(229,216,178,0.08);
-    }
-
-  
-    /* --- v20: optische Icon-Größen angeglichen --- */
-    .menu-icon {
-      width: 96px;
-      height: 96px;
-      margin-bottom: 10px;
-      display: grid;
-      place-items: center;
-    }
-
-    .menu-icon-asset {
-      width: 96px !important;
-      height: 96px !important;
-      object-fit: contain;
-      transform: scale(var(--icon-scale, 1));
-      transform-origin: center center;
-    }
-
-    .menu-card[data-code="STAT"] { --icon-scale: 1.20; }
-    .menu-card[data-code="TITL"] { --icon-scale: 1.00; }
-    .menu-card[data-code="REZN"] { --icon-scale: 0.98; }
-    .menu-card[data-code="SKIL"] { --icon-scale: 1.08; }
-    .menu-card[data-code="ATTR"] { --icon-scale: 0.98; }
-    .menu-card[data-code="INVT"] { --icon-scale: 0.94; }
-    .menu-card[data-code="QEST"] { --icon-scale: 0.98; }
-    .menu-card[data-code="LIBR"] { --icon-scale: 1.18; }
-
-    .menu-card:hover .menu-icon-asset,
-    .menu-card:focus-visible .menu-icon-asset {
-      transform: scale(calc(var(--icon-scale, 1) * 1.045));
-    }
-
-  
-    /* --- v21: Design-/Animationspass, ohne Menüstruktur zu verändern --- */
     .ether-pulse,
     .scan-veil,
     .constellation-glints {
@@ -1174,972 +831,12 @@
       animation: arcfieldBreath 10s ease-in-out infinite;
     }
 
-    .arc {
-      stroke-dashoffset: 0;
-    }
-
     .tick.major {
       animation: tickPulse 4.4s ease-in-out infinite;
     }
 
-    .spine {
-      animation:
-        spinePulse 5.5s ease-in-out infinite,
-        spineMicroShift 18s ease-in-out infinite;
-    }
-
     .spine::before {
       animation: spineCoreTravel 5.8s ease-in-out infinite;
-    }
-
-    .top-node .core {
-      animation:
-        orbPulse 2.8s ease-in-out infinite,
-        orbColorShift 9s ease-in-out infinite;
-    }
-
-    .top-node .ring {
-      animation-duration: 5.2s;
-    }
-
-    .top-node .r2 {
-      animation-duration: 7.8s;
-    }
-
-    .top-node .r3 {
-      animation-duration: 11s;
-    }
-
-    .woven {
-      opacity: 0.50;
-      animation: wovenDrift 8s ease-in-out infinite;
-    }
-
-    .woven path {
-      stroke-dasharray: 15 18;
-      animation: weaveFlow 8s linear infinite;
-    }
-
-    .runes .inner {
-      animation:
-        runeScroll 18s linear infinite,
-        runeFlicker 3.7s steps(6, end) infinite;
-    }
-
-    .runes.left {
-      animation: runeColumnPulse 8s ease-in-out infinite;
-    }
-
-    .runes.right {
-      animation: runeColumnPulse 8s ease-in-out infinite reverse;
-    }
-
-    .dragon {
-      animation: dragonBreathe 9s ease-in-out infinite;
-    }
-
-    .dragon-eye-overlay {
-      animation:
-        dragonEyePulseAsset 3.2s ease-in-out infinite,
-        eyeWake 12s ease-in-out infinite;
-    }
-
-    .back-ruins-asset {
-      animation:
-        rearRuinsDrift 24s ease-in-out infinite,
-        rearRuinsFog 9s ease-in-out infinite;
-    }
-
-    .bottom-ruins-asset {
-      animation: foregroundRuinsBreath 10s ease-in-out infinite;
-    }
-
-    .ground-portal {
-      animation:
-        portalBreath 5.8s ease-in-out infinite,
-        portalWake 13s ease-in-out infinite;
-    }
-
-    .bottom-sigil {
-      animation:
-        sigilTurn 44s linear infinite,
-        sigilGlow 7s ease-in-out infinite;
-      transform-origin: center center;
-    }
-
-    .debris {
-      animation: debrisFloat 18s ease-in-out infinite;
-    }
-
-    .menu-card {
-      --idle-delay: 0s;
-    }
-
-    .menu-card:nth-child(2) { --idle-delay: .4s; }
-    .menu-card:nth-child(3) { --idle-delay: .8s; }
-    .menu-card:nth-child(4) { --idle-delay: 1.2s; }
-    .menu-card:nth-child(5) { --idle-delay: 1.6s; }
-    .menu-card:nth-child(6) { --idle-delay: 2.0s; }
-    .menu-card:nth-child(7) { --idle-delay: 2.4s; }
-    .menu-card:nth-child(8) { --idle-delay: 2.8s; }
-
-    .menu-card::before {
-      animation: menuIdleAura 7.5s ease-in-out infinite;
-      animation-delay: var(--idle-delay);
-    }
-
-    .menu-card-scan {
-      position: absolute;
-      left: 12%;
-      top: 10%;
-      width: 76%;
-      height: 1px;
-      opacity: 0;
-      background: linear-gradient(90deg, transparent, rgba(221,253,255,0.42), transparent);
-      filter: drop-shadow(0 0 8px rgba(142,232,255,0.30));
-      pointer-events: none;
-      transform: translateY(0);
-      transition: opacity 220ms ease;
-    }
-
-    .menu-card:hover .menu-card-scan,
-    .menu-card:focus-visible .menu-card-scan {
-      opacity: 1;
-      animation: menuScanLine 900ms ease-out 1;
-    }
-
-    .menu-card:hover .menu-frame,
-    .menu-card:focus-visible .menu-frame {
-      animation: menuFrameAwake 1.5s ease-in-out infinite;
-    }
-
-    @keyframes etherPulse {
-      0%, 100% {
-        opacity: 0.40;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.72;
-        transform: scale(1.035);
-      }
-    }
-
-    @keyframes systemScan {
-      0%, 58% {
-        transform: translateY(-115%);
-        opacity: 0;
-      }
-      66% {
-        opacity: 0.22;
-      }
-      78% {
-        opacity: 0.12;
-      }
-      100% {
-        transform: translateY(115%);
-        opacity: 0;
-      }
-    }
-
-    @keyframes glint {
-      0%, 72%, 100% {
-        opacity: 0;
-        transform: scale(0.45) rotate(0deg);
-      }
-      78% {
-        opacity: 0.75;
-      }
-      84% {
-        opacity: 0.28;
-        transform: scale(1.25) rotate(45deg);
-      }
-      90% {
-        opacity: 0.55;
-      }
-    }
-
-    @keyframes frameBreath {
-      0%, 100% {
-        border-color: rgba(142,232,255,0.18);
-        box-shadow: inset 0 0 28px rgba(142,232,255,0.020);
-      }
-      50% {
-        border-color: rgba(142,232,255,0.28);
-        box-shadow: inset 0 0 42px rgba(142,232,255,0.050);
-      }
-    }
-
-    @keyframes cornerPulse {
-      0%, 100% {
-        opacity: 0.72;
-        filter: drop-shadow(0 0 6px rgba(142,232,255,0.14));
-      }
-      50% {
-        opacity: 1;
-        filter: drop-shadow(0 0 12px rgba(142,232,255,0.28));
-      }
-    }
-
-    @keyframes arcfieldBreath {
-      0%, 100% {
-        opacity: 0.88;
-        filter: drop-shadow(0 0 0 rgba(142,232,255,0));
-      }
-      50% {
-        opacity: 1;
-        filter: drop-shadow(0 0 10px rgba(142,232,255,0.055));
-      }
-    }
-
-    @keyframes spinePulse {
-      0%, 100% {
-        opacity: 0.62;
-        filter: drop-shadow(0 0 4px rgba(142,232,255,0.14));
-      }
-      50% {
-        opacity: 0.88;
-        filter: drop-shadow(0 0 13px rgba(142,232,255,0.28));
-      }
-    }
-
-    @keyframes spineMicroShift {
-      0%, 100% { transform: translateX(-50%); }
-      50% { transform: translateX(calc(-50% + 1px)); }
-    }
-
-    @keyframes spineCoreTravel {
-      0%, 100% {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      18% {
-        opacity: 0.40;
-      }
-      52% {
-        opacity: 0.78;
-      }
-      82% {
-        opacity: 0.18;
-      }
-      100% {
-        transform: translateY(100%);
-      }
-    }
-
-    @keyframes orbPulse {
-      0%, 100% {
-        transform: scale(0.86);
-        opacity: 0.78;
-        box-shadow:
-          0 0 9px rgba(230,252,255,0.66),
-          0 0 26px rgba(142,232,255,0.38),
-          0 0 56px rgba(142,232,255,0.16);
-      }
-      50% {
-        transform: scale(1.08);
-        opacity: 1;
-        box-shadow:
-          0 0 14px rgba(255,255,255,0.88),
-          0 0 38px rgba(142,232,255,0.60),
-          0 0 82px rgba(142,232,255,0.24);
-      }
-    }
-
-    @keyframes orbColorShift {
-      0%, 100% { filter: hue-rotate(0deg); }
-      50% { filter: hue-rotate(10deg); }
-    }
-
-    @keyframes wovenDrift {
-      0%, 100% {
-        transform: translateX(-50%) translateY(0);
-        opacity: 0.34;
-      }
-      50% {
-        transform: translateX(-50%) translateY(8px);
-        opacity: 0.58;
-      }
-    }
-
-    @keyframes weaveFlow {
-      from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -66; }
-    }
-
-    @keyframes runeFlicker {
-      0%, 100% { opacity: 0.26; }
-      20% { opacity: 0.44; }
-      38% { opacity: 0.18; }
-      61% { opacity: 0.52; }
-      76% { opacity: 0.24; }
-    }
-
-    @keyframes runeColumnPulse {
-      0%, 100% { filter: drop-shadow(0 0 3px rgba(142,232,255,0.08)); }
-      50% { filter: drop-shadow(0 0 9px rgba(142,232,255,0.22)); }
-    }
-
-    @keyframes eyeWake {
-      0%, 82%, 100% {
-        transform: translate(-50%, -50%) rotate(-9deg) scale(1);
-      }
-      88% {
-        transform: translate(-50%, -50%) rotate(-9deg) scale(1.16);
-      }
-      91% {
-        transform: translate(-50%, -50%) rotate(-9deg) scale(0.92);
-      }
-      95% {
-        transform: translate(-50%, -50%) rotate(-9deg) scale(1.04);
-      }
-    }
-
-    @keyframes rearRuinsFog {
-      0%, 100% {
-        filter:
-          blur(1.1px)
-          brightness(0.44)
-          contrast(1.18)
-          saturate(0.82)
-          drop-shadow(0 0 34px rgba(0,0,0,0.92))
-          drop-shadow(0 -6px 28px rgba(75,190,225,0.08));
-      }
-      50% {
-        filter:
-          blur(1.4px)
-          brightness(0.50)
-          contrast(1.20)
-          saturate(0.88)
-          drop-shadow(0 0 36px rgba(0,0,0,0.92))
-          drop-shadow(0 -9px 34px rgba(75,190,225,0.14));
-      }
-    }
-
-    @keyframes foregroundRuinsBreath {
-      0%, 100% {
-        opacity: 0.96;
-        filter:
-          brightness(0.52)
-          contrast(1.48)
-          saturate(0.95)
-          drop-shadow(0 0 24px rgba(0,0,0,0.92))
-          drop-shadow(0 -10px 22px rgba(75,190,225,0.10));
-      }
-      50% {
-        opacity: 1;
-        filter:
-          brightness(0.58)
-          contrast(1.52)
-          saturate(1)
-          drop-shadow(0 0 25px rgba(0,0,0,0.92))
-          drop-shadow(0 -13px 30px rgba(75,190,225,0.16));
-      }
-    }
-
-    @keyframes portalWake {
-      0%, 82%, 100% {
-        transform: translateX(-50%) scale(1);
-      }
-      90% {
-        transform: translateX(-50%) scale(1.035);
-      }
-    }
-
-    @keyframes sigilTurn {
-      from { rotate: 0deg; }
-      to { rotate: 360deg; }
-    }
-
-    @keyframes sigilGlow {
-      0%, 100% {
-        opacity: 0.32;
-        filter: drop-shadow(0 0 8px rgba(142,232,255,0.16));
-      }
-      50% {
-        opacity: 0.54;
-        filter: drop-shadow(0 0 18px rgba(142,232,255,0.28));
-      }
-    }
-
-    @keyframes debrisFloat {
-      0%, 100% {
-        transform: translateY(0);
-        opacity: 0.14;
-      }
-      50% {
-        transform: translateY(-10px);
-        opacity: 0.23;
-      }
-    }
-
-    @keyframes menuIdleAura {
-      0%, 100% {
-        opacity: 0;
-      }
-      45% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 0.22;
-      }
-      58% {
-        opacity: 0;
-      }
-    }
-
-    @keyframes menuScanLine {
-      0% {
-        transform: translateY(0);
-        opacity: 0;
-      }
-      20% {
-        opacity: 0.72;
-      }
-      100% {
-        transform: translateY(116px);
-        opacity: 0;
-      }
-    }
-
-    @keyframes menuFrameAwake {
-      0%, 100% {
-        filter:
-          drop-shadow(0 0 8px rgba(142,232,255,0.18))
-          drop-shadow(0 0 15px rgba(229,216,178,0.055));
-      }
-      50% {
-        filter:
-          drop-shadow(0 0 12px rgba(142,232,255,0.28))
-          drop-shadow(0 0 20px rgba(229,216,178,0.08));
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-  
-    /* --- v23: Fix für Runen, Achse und Button-Rahmen --- */
-
-    :root {
-      /*
-        Wenn die Linie minimal daneben sitzt:
-        0px = exakt geometrische Mitte.
-        Positive Werte schieben Linie + alle Achsenobjekte nach rechts.
-      */
-      --axis-shift: 0px;
-      --axis-x: calc(50% + var(--axis-shift));
-    }
-
-    /* Linie UND alle zentralen Achsenobjekte auf dieselbe X-Achse legen */
-    .spine,
-    .top-node,
-    .woven,
-    .ground-portal,
-    .bottom-sigil {
-      left: var(--axis-x) !important;
-    }
-
-    .divider span {
-      left: var(--axis-x) !important;
-    }
-
-    /*
-      Runen-Code: sichtbar, aber sauber getrennt.
-      Keine überlappenden Doppelstreams mehr.
-      Links und rechts enden auf unterschiedlicher Höhe.
-    */
-    .runes {
-      top: 348px !important;
-      width: 48px !important;
-      overflow: hidden !important;
-      z-index: 16 !important;
-      color: rgba(165, 236, 255, 0.44);
-      font-family: Consolas, "Courier New", monospace;
-      font-size: 12px;
-      line-height: 1;
-      letter-spacing: 0.05em;
-      white-space: normal !important;
-      text-shadow:
-        0 0 6px rgba(142,232,255,0.20),
-        0 0 12px rgba(142,232,255,0.08);
-      opacity: 1 !important;
-      animation: none !important;
-      mix-blend-mode: screen;
-      user-select: none;
-      pointer-events: none;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 90%, transparent 100%);
-      mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 90%, transparent 100%);
-    }
-
-    .runes.left {
-      left: 20px !important;
-      height: 605px !important;
-    }
-
-    .runes.right {
-      right: 18px !important;
-      height: 675px !important;
-    }
-
-    .runes .inner {
-      display: none !important;
-    }
-
-    .runes .stream-wrap {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
-
-    .runes .stream {
-      position: absolute;
-      left: 0;
-      top: -102%;
-      width: 100%;
-      min-height: 204%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      will-change: transform;
-      filter: drop-shadow(0 0 5px rgba(142,232,255,0.10));
-      animation: runeCodeFall 26s linear infinite;
-    }
-
-    .runes.right .stream {
-      gap: 11px;
-      animation-duration: 29s;
-    }
-
-    .rune-line {
-      display: block;
-      width: 100%;
-      text-align: center;
-      transition:
-        opacity 180ms linear,
-        transform 180ms linear,
-        color 180ms linear,
-        filter 180ms linear;
-      filter: drop-shadow(0 0 4px rgba(142,232,255,0.05));
-    }
-
-    .rune-line:nth-child(6n) {
-      color: rgba(210, 250, 255, 0.70);
-      filter: drop-shadow(0 0 8px rgba(142,232,255,0.16));
-    }
-
-    .rune-line:nth-child(11n) {
-      color: rgba(230, 216, 178, 0.42);
-      filter: drop-shadow(0 0 6px rgba(230,216,178,0.08));
-    }
-
-    .runes.left .rune-line:nth-child(7n) {
-      transform: translateX(-3px);
-    }
-
-    .runes.right .rune-line:nth-child(5n) {
-      transform: translateX(3px);
-    }
-
-    @keyframes runeCodeFall {
-      from { transform: translateY(0); }
-      to { transform: translateY(98%); }
-    }
-
-    /*
-      Button-Rahmen wieder sichtbar machen.
-      Hover bleibt wie vorher, aber die ruhenden Rahmenfragmente sind wieder da.
-    */
-    .menu-frame {
-      display: block !important;
-      position: absolute;
-      inset: -9px -13px !important;
-      opacity: 0.40 !important;
-      pointer-events: none;
-      background:
-        linear-gradient(to right, rgba(142,232,255,0.36) 0 28px, transparent 28px calc(100% - 28px), rgba(142,232,255,0.36) calc(100% - 28px) 100%) top left / 100% 1px no-repeat,
-        linear-gradient(to right, rgba(142,232,255,0.22) 0 14px, transparent 14px calc(100% - 14px), rgba(142,232,255,0.22) calc(100% - 14px) 100%) bottom left / 100% 1px no-repeat,
-        linear-gradient(to bottom, rgba(142,232,255,0.34) 0 28px, transparent 28px calc(100% - 28px), rgba(142,232,255,0.34) calc(100% - 28px) 100%) top left / 1px 100% no-repeat,
-        linear-gradient(to bottom, rgba(142,232,255,0.22) 0 14px, transparent 14px calc(100% - 14px), rgba(142,232,255,0.22) calc(100% - 14px) 100%) top right / 1px 100% no-repeat;
-      filter:
-        drop-shadow(0 0 5px rgba(142,232,255,0.10))
-        drop-shadow(0 0 10px rgba(142,232,255,0.04));
-      transition:
-        opacity 220ms ease,
-        transform 220ms ease,
-        filter 220ms ease;
-    }
-
-    .menu-frame::before,
-    .menu-frame::after {
-      display: none !important;
-    }
-
-    .menu-card:hover .menu-frame,
-    .menu-card:focus-visible .menu-frame {
-      opacity: 0.86 !important;
-      transform: scale(1.025);
-      filter:
-        drop-shadow(0 0 9px rgba(142,232,255,0.22))
-        drop-shadow(0 0 16px rgba(229,216,178,0.08));
-    }
-
-  
-    /* --- v25: echte Mittelachse + alle Zentralobjekte daran ausrichten --- */
-    :root {
-      --axis-shift: 0px !important;
-      --axis-x: calc(50% + var(--axis-shift)) !important;
-    }
-
-    .spine {
-      left: var(--axis-x) !important;
-      transform: translateX(-50%) !important;
-      animation: spinePulse 5.5s ease-in-out infinite !important;
-    }
-
-    .top-node,
-    .woven,
-    .ground-portal,
-    .bottom-sigil {
-      left: var(--axis-x) !important;
-    }
-
-    .top-node {
-      transform: translate(-50%, -50%) !important;
-    }
-
-    .woven {
-      transform: translateX(-50%) !important;
-    }
-
-    .ground-portal {
-      transform: translateX(-50%) !important;
-    }
-
-    .bottom-sigil {
-      transform: translateX(-50%) scale(0.92) !important;
-      transform-origin: center bottom !important;
-    }
-
-    .divider span {
-      left: 50% !important;
-      transform: translate(-50%, -50%) rotate(45deg) !important;
-    }
-
-    /* Keine seitliche Bewegung der eigentlichen Mittellinie mehr */
-    @keyframes spineMicroShift {
-      0%, 100% { transform: translateX(-50%); }
-      50% { transform: translateX(-50%); }
-    }
-
-    /*
-      Runen etwas kürzer und sauberer:
-      - enden nicht mehr so tief
-      - links/rechts verschieden
-      - größere Abstände gegen Überlagerung
-    */
-    .runes {
-      top: 345px !important;
-      width: 48px !important;
-      font-size: 12px !important;
-      line-height: 1 !important;
-    }
-
-    .runes.left {
-      left: 20px !important;
-      height: 560px !important;
-    }
-
-    .runes.right {
-      right: 18px !important;
-      height: 630px !important;
-    }
-
-    .runes .stream {
-      gap: 12px !important;
-      animation-duration: 30s !important;
-    }
-
-    .runes.right .stream {
-      gap: 13px !important;
-      animation-duration: 33s !important;
-    }
-
-    .rune-line {
-      max-width: 42px;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    /* Portal-Wake und Woven-Drift dürfen nicht mehr seitlich verschieben */
-    @keyframes portalWake {
-      0%, 82%, 100% {
-        transform: translateX(-50%) scale(1);
-      }
-      90% {
-        transform: translateX(-50%) scale(1.035);
-      }
-    }
-
-    @keyframes wovenDrift {
-      0%, 100% {
-        transform: translateX(-50%) translateY(0);
-        opacity: 0.34;
-      }
-      50% {
-        transform: translateX(-50%) translateY(8px);
-        opacity: 0.58;
-      }
-    }
-
-    @keyframes sigilTurn {
-      from { rotate: 0deg; }
-      to { rotate: 360deg; }
-    }
-
-  
-    /* --- v26: organische Runen + punktgenaue Elementkorrekturen --- */
-
-    /*
-      Die echte Mittelachse bleibt bei 50%.
-      Wir verschieben nicht mehr die Linie selbst, sondern nur Elemente,
-      die optisch neben der Linie sitzen.
-    */
-    :root {
-      --axis-shift: 0px !important;
-      --axis-x: 50% !important;
-    }
-
-    .spine {
-      left: var(--axis-x) !important;
-      transform: translateX(-50%) !important;
-      animation: spinePulse 5.5s ease-in-out infinite !important;
-    }
-
-    .top-node,
-    .woven {
-      left: var(--axis-x) !important;
-    }
-
-    .top-node {
-      transform: translate(-50%, -50%) !important;
-    }
-
-    .woven {
-      transform: translateX(-50%) !important;
-    }
-
-    /*
-      Der untere Ritual-/Portalbereich saß optisch etwas rechts.
-      Darum wird nur dieser Layer leicht nach links gezogen.
-    */
-    .ground-portal {
-      left: calc(var(--axis-x) - 13px) !important;
-      transform: translateX(-50%) !important;
-    }
-
-    .bottom-sigil {
-      left: calc(var(--axis-x) - 13px) !important;
-      transform: translateX(-50%) scale(0.92) !important;
-      transform-origin: center bottom !important;
-    }
-
-    .divider span {
-      left: 50% !important;
-      transform: translate(-50%, -50%) rotate(45deg) !important;
-    }
-
-    /*
-      Organische Runen:
-      Keine langen Leisten mehr.
-      Einzelne Glyphen fallen unabhängig voneinander und mutieren einzeln.
-    */
-    .runes {
-      top: 348px !important;
-      width: 52px !important;
-      overflow: hidden !important;
-      z-index: 16 !important;
-      color: rgba(165, 236, 255, 0.42);
-      font-family: Consolas, "Courier New", monospace;
-      font-size: 12px !important;
-      line-height: 1 !important;
-      letter-spacing: 0.05em;
-      white-space: normal !important;
-      text-shadow:
-        0 0 6px rgba(142,232,255,0.20),
-        0 0 12px rgba(142,232,255,0.08);
-      opacity: 1 !important;
-      animation: none !important;
-      mix-blend-mode: screen;
-      user-select: none;
-      pointer-events: none;
-      -webkit-mask-image:
-        linear-gradient(to bottom, transparent 0%, black 9%, black 88%, transparent 100%);
-      mask-image:
-        linear-gradient(to bottom, transparent 0%, black 9%, black 88%, transparent 100%);
-    }
-
-    .runes.left {
-      left: 20px !important;
-      height: 560px !important;
-    }
-
-    .runes.right {
-      right: 18px !important;
-      height: 630px !important;
-    }
-
-    .runes .inner,
-    .runes .stream {
-      display: none !important;
-    }
-
-    .runes .stream-wrap {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .rune-particle {
-      position: absolute;
-      left: var(--x);
-      top: -38px;
-      display: block;
-      width: auto;
-      max-width: 42px;
-      white-space: nowrap;
-      opacity: 0;
-      color: rgba(165, 236, 255, 0.48);
-      filter:
-        drop-shadow(0 0 4px rgba(142,232,255,0.10))
-        drop-shadow(0 0 8px rgba(142,232,255,0.04));
-      transform:
-        translateY(-42px)
-        translateX(0)
-        scale(var(--s));
-      will-change: transform, opacity;
-      animation: runeParticleFall var(--dur) linear infinite;
-      animation-delay: var(--delay);
-    }
-
-    .rune-particle.hot {
-      color: rgba(216, 252, 255, 0.74);
-      filter:
-        drop-shadow(0 0 6px rgba(142,232,255,0.28))
-        drop-shadow(0 0 12px rgba(142,232,255,0.10));
-    }
-
-    .rune-particle.gold {
-      color: rgba(230, 216, 178, 0.50);
-      filter:
-        drop-shadow(0 0 6px rgba(230,216,178,0.14))
-        drop-shadow(0 0 12px rgba(142,232,255,0.04));
-    }
-
-    @keyframes runeParticleFall {
-      0% {
-        opacity: 0;
-        transform:
-          translateY(-42px)
-          translateX(0)
-          scale(var(--s));
-      }
-      9% {
-        opacity: var(--o);
-      }
-      72% {
-        opacity: var(--o);
-      }
-      90% {
-        opacity: calc(var(--o) * 0.34);
-      }
-      100% {
-        opacity: 0;
-        transform:
-          translateY(var(--fall))
-          translateX(var(--drift))
-          scale(var(--s));
-      }
-    }
-
-    /* Keine seitliche Bewegung der eigentlichen Mittellinie mehr */
-    @keyframes spineMicroShift {
-      0%, 100% { transform: translateX(-50%); }
-      50% { transform: translateX(-50%); }
-    }
-
-    @keyframes portalWake {
-      0%, 82%, 100% {
-        transform: translateX(-50%) scale(1);
-      }
-      90% {
-        transform: translateX(-50%) scale(1.035);
-      }
-    }
-
-    @keyframes wovenDrift {
-      0%, 100% {
-        transform: translateX(-50%) translateY(0);
-        opacity: 0.34;
-      }
-      50% {
-        transform: translateX(-50%) translateY(8px);
-        opacity: 0.58;
-      }
-    }
-
-  
-    /* --- v28: smoother rune flow + precise axis nudges --- */
-    :root {
-      --axis-shift: 0px !important;
-      --axis-x: 50% !important;
-    }
-
-    .spine {
-      left: var(--axis-x) !important;
-      transform: translateX(-50%) !important;
-      animation: spinePulse 5.5s ease-in-out infinite !important;
-    }
-
-    .top-node,
-    .woven {
-      left: var(--axis-x) !important;
-    }
-
-    .top-node {
-      transform: translate(-50%, -50%) !important;
-    }
-
-    /* Orb minimal nach links, damit der helle Kern wirklich im Kreiszentrum sitzt */
-    .top-node .core {
-      left: calc(50% - 6px) !important;
-      top: 50% !important;
-      transform: translate(-50%, -50%) !important;
-    }
-
-    .ground-portal {
-      left: var(--axis-x) !important;
-      transform: translateX(-50%) !important;
-    }
-
-    /* Unteres Asset noch weiter nach links, damit sein optischer Mittelpunkt bündig liegt */
-    .bottom-sigil {
-      left: calc(var(--axis-x) - 40px) !important;
-      transform: translateX(-50%) scale(0.92) !important;
-      transform-origin: center bottom !important;
-    }
-
-    .divider span {
-      left: 50% !important;
-      transform: translate(-50%, -50%) rotate(45deg) !important;
     }
 
     .runes {
@@ -2207,12 +904,16 @@
       overflow: hidden;
       white-space: nowrap;
       opacity: var(--o, 0.42);
+      transform: translateX(calc(-50% + var(--x, 0px))) translateY(var(--y, 0px));
       color: rgba(165, 236, 255, 0.46);
       filter:
         drop-shadow(0 0 4px rgba(142,232,255,0.08))
         drop-shadow(0 0 8px rgba(142,232,255,0.03));
       will-change: transform, opacity, color;
-      transform: translateX(calc(-50% + var(--x, 0px))) translateY(var(--y, 0px));
+      transition:
+        opacity 220ms ease,
+        color 220ms ease,
+        filter 220ms ease;
     }
 
     .rune-row.hot {
@@ -2235,241 +936,355 @@
       filter: none !important;
     }
 
-    @keyframes spineMicroShift {
-      0%, 100% { transform: translateX(-50%); }
-      50% { transform: translateX(-50%); }
+    .menu-grid {
+      top: 785px;
+      width: 840px;
+      gap: 42px 40px;
+      z-index: 15;
     }
 
-    @keyframes portalWake {
-      0%, 82%, 100% {
-        transform: translateX(-50%) scale(1);
-      }
-      90% {
-        transform: translateX(-50%) scale(1.035);
-      }
+    .menu-card {
+      min-height: 150px;
+      padding: 10px 4px 10px;
+      background: transparent;
+      border: 0;
+      overflow: visible;
     }
 
-    @keyframes wovenDrift {
-      0%, 100% {
-        transform: translateX(-50%) translateY(0);
-        opacity: 0.34;
-      }
-      50% {
-        transform: translateX(-50%) translateY(8px);
-        opacity: 0.58;
-      }
-    }
-
-  
-    /* --- v29: Orb exakt mittig + Bottom-Sigil weiter links + flüssiger Rune-Code --- */
-
-    :root {
-      --axis-shift: 0px !important;
-      --axis-x: 50% !important;
-    }
-
-    /* Echte Mittelachse bleibt exakt in der Seitenmitte. */
-    .spine {
-      left: var(--axis-x) !important;
-      transform: translateX(-50%) !important;
-      animation: spinePulse 5.5s ease-in-out infinite !important;
-    }
-
-    .top-node,
-    .woven {
-      left: var(--axis-x) !important;
-    }
-
-    .top-node {
-      transform: translate(-50%, -50%) !important;
-    }
-
-    /*
-      Orb-Core exakt in die Mitte des Kreises.
-      Kein eigener Links-/Rechts-Offset mehr.
-    */
-    .top-node .core {
-      left: 50% !important;
-      top: 50% !important;
-      transform: translate(-50%, -50%) !important;
-    }
-
-    /* CSS-Kreis unten bleibt auf der Mittelachse. */
-    .ground-portal {
-      left: var(--axis-x) !important;
-      transform: translateX(-50%) !important;
-    }
-
-    /*
-      Nur das untere SVG-Sigil-Asset wird nach links gezogen.
-      Laut deiner roten/grünen Markierung musste es weiter nach links.
-    */
-    .bottom-sigil {
-      left: calc(var(--axis-x) - 57px) !important;
-      transform: translateX(-50%) scale(0.92) !important;
-      transform-origin: center bottom !important;
-    }
-
-    .divider span {
-      left: 50% !important;
-      transform: translate(-50%, -50%) rotate(45deg) !important;
-    }
-
-    /*
-      Runen: geordnet wie Code, aber flüssig.
-      Zwei identische Flows laufen versetzt; dadurch kein sichtbares Ploppen.
-    */
-    .runes {
-      top: 348px !important;
-      width: 54px !important;
-      overflow: hidden !important;
-      z-index: 16 !important;
-      color: rgba(165, 236, 255, 0.42);
-      font-family: Consolas, "Courier New", monospace;
-      font-size: 12px !important;
-      line-height: 1 !important;
-      letter-spacing: 0.05em;
-      white-space: normal !important;
-      text-shadow:
-        0 0 6px rgba(142,232,255,0.20),
-        0 0 12px rgba(142,232,255,0.08);
-      opacity: 1 !important;
-      animation: none !important;
-      mix-blend-mode: screen;
-      user-select: none;
+    .menu-frame {
+      display: block !important;
+      position: absolute;
+      inset: -9px -13px !important;
+      opacity: 0.40 !important;
       pointer-events: none;
-      -webkit-mask-image:
-        linear-gradient(to bottom, transparent 0%, black 8%, black 88%, transparent 100%);
-      mask-image:
-        linear-gradient(to bottom, transparent 0%, black 8%, black 88%, transparent 100%);
+      background:
+        linear-gradient(to right, rgba(142,232,255,0.36) 0 28px, transparent 28px calc(100% - 28px), rgba(142,232,255,0.36) calc(100% - 28px) 100%) top left / 100% 1px no-repeat,
+        linear-gradient(to right, rgba(142,232,255,0.22) 0 14px, transparent 14px calc(100% - 14px), rgba(142,232,255,0.22) calc(100% - 14px) 100%) bottom left / 100% 1px no-repeat,
+        linear-gradient(to bottom, rgba(142,232,255,0.34) 0 28px, transparent 28px calc(100% - 28px), rgba(142,232,255,0.34) calc(100% - 28px) 100%) top left / 1px 100% no-repeat,
+        linear-gradient(to bottom, rgba(142,232,255,0.22) 0 14px, transparent 14px calc(100% - 14px), rgba(142,232,255,0.22) calc(100% - 14px) 100%) top right / 1px 100% no-repeat;
+      filter:
+        drop-shadow(0 0 5px rgba(142,232,255,0.10))
+        drop-shadow(0 0 10px rgba(142,232,255,0.04));
+      transition:
+        opacity 220ms ease,
+        transform 220ms ease,
+        filter 220ms ease;
     }
 
-    .runes.left {
-      left: 20px !important;
-      height: 470px !important;
-    }
-
-    .runes.right {
-      right: 18px !important;
-      height: 530px !important;
-    }
-
-    .runes .inner,
-    .runes .stream,
-    .rune-particle {
+    .menu-frame::before,
+    .menu-frame::after {
       display: none !important;
     }
 
-    .runes .stream-wrap {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .rune-flow {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      will-change: transform;
-      animation: runeFlowDown 23s linear infinite;
-    }
-
-    .rune-flow-a {
-      top: -100%;
-    }
-
-    .rune-flow-b {
-      top: -100%;
-      animation-delay: -11.5s;
-    }
-
-    .runes.right .rune-flow {
-      animation-duration: 27s;
-      gap: 5px;
-    }
-
-    .runes.right .rune-flow-b {
-      animation-delay: -13.5s;
-    }
-
-    .rune-row {
-      display: block;
-      width: 100%;
-      height: var(--row-h, 14px);
-      min-height: var(--row-h, 14px);
-      text-align: center;
-      max-width: 46px;
-      overflow: hidden;
-      white-space: nowrap;
-      opacity: var(--o, 0.42);
-      transform: translateX(var(--x, 0px));
-      color: rgba(165, 236, 255, 0.46);
+    .menu-icon {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 10px;
+      display: grid;
+      place-items: center;
+      color: rgba(232, 220, 188, 0.95);
+      opacity: 0.96;
       filter:
-        drop-shadow(0 0 4px rgba(142,232,255,0.08))
-        drop-shadow(0 0 8px rgba(142,232,255,0.03));
+        drop-shadow(0 0 5px rgba(229,216,178,0.08))
+        drop-shadow(0 0 8px rgba(142,232,255,0.05));
       transition:
-        opacity 260ms ease,
-        color 260ms ease,
-        filter 260ms ease;
+        transform 220ms ease,
+        opacity 220ms ease,
+        filter 220ms ease;
     }
 
-    .rune-row.hot {
-      color: rgba(216, 252, 255, 0.72);
+    .menu-icon-asset {
+      width: 96px !important;
+      height: 96px !important;
+      object-fit: contain;
+      display: block;
+      opacity: 0.94;
+      mix-blend-mode: screen;
+      transform: scale(var(--icon-scale, 1));
+      transform-origin: center center;
       filter:
-        drop-shadow(0 0 6px rgba(142,232,255,0.22))
-        drop-shadow(0 0 12px rgba(142,232,255,0.08));
+        brightness(0.95)
+        contrast(1.05)
+        saturate(0.95)
+        drop-shadow(0 0 5px rgba(230,216,178,0.10))
+        drop-shadow(0 0 10px rgba(142,232,255,0.055));
+      transition:
+        transform 220ms ease,
+        opacity 220ms ease,
+        filter 220ms ease;
+      pointer-events: none;
+      user-select: none;
     }
 
-    .rune-row.gold {
-      color: rgba(230, 216, 178, 0.48);
+    .menu-card[data-code="STAT"] { --icon-scale: 1.00; }
+    .menu-card[data-code="TITL"] { --icon-scale: 1.00; }
+    .menu-card[data-code="REZN"] { --icon-scale: 0.98; }
+    .menu-card[data-code="SKIL"] { --icon-scale: 1.08; }
+    .menu-card[data-code="ATTR"] { --icon-scale: 0.98; }
+    .menu-card[data-code="INVT"] { --icon-scale: 0.94; }
+    .menu-card[data-code="QEST"] { --icon-scale: 0.98; }
+    .menu-card[data-code="LIBR"] { --icon-scale: 1.18; }
+
+    .menu-label {
+      font-size: 16px;
+      letter-spacing: 0.185em;
+      color: rgba(236, 244, 245, 0.88);
+      text-shadow: 0 0 8px rgba(142,232,255,0.10);
+    }
+
+    .menu-underline {
+      width: 26px;
+      margin-top: 14px;
+      opacity: 0.82;
+    }
+
+    .menu-card-scan {
+      position: absolute;
+      left: 12%;
+      top: 10%;
+      width: 76%;
+      height: 1px;
+      opacity: 0;
+      background: linear-gradient(90deg, transparent, rgba(221,253,255,0.42), transparent);
+      filter: drop-shadow(0 0 8px rgba(142,232,255,0.30));
+      pointer-events: none;
+      transform: translateY(0);
+      transition: opacity 220ms ease;
+    }
+
+    .menu-card:hover .menu-card-scan,
+    .menu-card:focus-visible .menu-card-scan {
+      opacity: 1;
+      animation: menuScanLine 900ms ease-out 1;
+    }
+
+    .menu-card:hover .menu-frame,
+    .menu-card:focus-visible .menu-frame {
+      opacity: 0.86 !important;
+      transform: scale(1.025);
       filter:
-        drop-shadow(0 0 6px rgba(230,216,178,0.12))
-        drop-shadow(0 0 12px rgba(142,232,255,0.04));
+        drop-shadow(0 0 9px rgba(142,232,255,0.22))
+        drop-shadow(0 0 16px rgba(229,216,178,0.08));
     }
 
-    .rune-gap {
-      opacity: 0 !important;
-      color: transparent !important;
-      filter: none !important;
+    .menu-card:hover .menu-icon,
+    .menu-card:focus-visible .menu-icon {
+      transform: translateY(-4px) scale(1.035);
+      opacity: 1;
+      filter:
+        drop-shadow(0 0 7px rgba(229,216,178,0.16))
+        drop-shadow(0 0 14px rgba(142,232,255,0.12));
     }
 
-    @keyframes runeFlowDown {
-      from {
-        transform: translateY(0);
+    .menu-card:hover .menu-icon-asset,
+    .menu-card:focus-visible .menu-icon-asset {
+      opacity: 1;
+      transform: scale(calc(var(--icon-scale, 1) * 1.045));
+      filter:
+        brightness(1.08)
+        contrast(1.10)
+        saturate(1.04)
+        drop-shadow(0 0 8px rgba(230,216,178,0.20))
+        drop-shadow(0 0 16px rgba(142,232,255,0.12));
+    }
+
+    .menu-card:hover .menu-label,
+    .menu-card:focus-visible .menu-label {
+      color: rgba(255,255,255,0.96);
+      letter-spacing: 0.215em;
+      transform: translateY(-1px);
+      text-shadow:
+        0 0 9px rgba(142,232,255,0.22),
+        0 0 16px rgba(229,216,178,0.10);
+    }
+
+    .menu-card:hover .menu-underline,
+    .menu-card:focus-visible .menu-underline {
+      width: 48px;
+      opacity: 1;
+      box-shadow:
+        0 0 8px rgba(142,232,255,0.28),
+        0 0 14px rgba(229,216,178,0.08);
+    }
+
+    .dragon {
+      animation: dragonBreathe 9s ease-in-out infinite;
+    }
+
+    .dragon-eye-overlay {
+      animation:
+        dragonEyePulseAsset 3.2s ease-in-out infinite,
+        eyeWake 12s ease-in-out infinite;
+    }
+
+    .debris {
+      animation: debrisFloat 18s ease-in-out infinite;
+    }
+
+    @keyframes rearRuinsDrift {
+      0%, 100% {
+        opacity: 0.34;
+        transform: translateX(-50%) translateY(0px) scale(1);
       }
-      to {
-        transform: translateY(100%);
+      50% {
+        opacity: 0.48;
+        transform: translateX(-50%) translateY(-8px) scale(1.012);
       }
     }
 
-    /* Keine seitliche Bewegung der echten Mittellinie */
+    @keyframes foregroundRuinsBreath {
+      0%, 100% {
+        opacity: 0.96;
+        filter:
+          brightness(0.52)
+          contrast(1.48)
+          saturate(0.95)
+          drop-shadow(0 0 24px rgba(0,0,0,0.92))
+          drop-shadow(0 -10px 22px rgba(75,190,225,0.10));
+      }
+      50% {
+        opacity: 1;
+        filter:
+          brightness(0.58)
+          contrast(1.52)
+          saturate(1)
+          drop-shadow(0 0 25px rgba(0,0,0,0.92))
+          drop-shadow(0 -13px 30px rgba(75,190,225,0.16));
+      }
+    }
+
+    @keyframes etherPulse {
+      0%, 100% { opacity: 0.40; transform: scale(1); }
+      50% { opacity: 0.72; transform: scale(1.035); }
+    }
+
+    @keyframes systemScan {
+      0%, 58% { transform: translateY(-115%); opacity: 0; }
+      66% { opacity: 0.22; }
+      78% { opacity: 0.12; }
+      100% { transform: translateY(115%); opacity: 0; }
+    }
+
+    @keyframes glint {
+      0%, 72%, 100% { opacity: 0; transform: scale(0.45) rotate(0deg); }
+      78% { opacity: 0.75; }
+      84% { opacity: 0.28; transform: scale(1.25) rotate(45deg); }
+      90% { opacity: 0.55; }
+    }
+
+    @keyframes frameBreath {
+      0%, 100% {
+        border-color: rgba(142,232,255,0.18);
+        box-shadow: inset 0 0 28px rgba(142,232,255,0.020);
+      }
+      50% {
+        border-color: rgba(142,232,255,0.28);
+        box-shadow: inset 0 0 42px rgba(142,232,255,0.050);
+      }
+    }
+
+    @keyframes cornerPulse {
+      0%, 100% {
+        opacity: 0.72;
+        filter: drop-shadow(0 0 6px rgba(142,232,255,0.14));
+      }
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 12px rgba(142,232,255,0.28));
+      }
+    }
+
+    @keyframes arcfieldBreath {
+      0%, 100% { opacity: 0.88; filter: drop-shadow(0 0 0 rgba(142,232,255,0)); }
+      50% { opacity: 1; filter: drop-shadow(0 0 10px rgba(142,232,255,0.055)); }
+    }
+
     @keyframes spineMicroShift {
       0%, 100% { transform: translateX(-50%); }
       50% { transform: translateX(-50%); }
     }
 
-    @keyframes portalWake {
-      0%, 82%, 100% {
-        transform: translateX(-50%) scale(1);
+    @keyframes spineCoreTravel {
+      0%, 100% { transform: translateY(-100%); opacity: 0; }
+      18% { opacity: 0.40; }
+      52% { opacity: 0.78; }
+      82% { opacity: 0.18; }
+      100% { transform: translateY(100%); }
+    }
+
+    @keyframes orbPulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(0.86);
+        opacity: 0.78;
+        box-shadow:
+          0 0 9px rgba(230,252,255,0.66),
+          0 0 26px rgba(142,232,255,0.38),
+          0 0 56px rgba(142,232,255,0.16);
       }
-      90% {
-        transform: translateX(-50%) scale(1.035);
+      50% {
+        transform: translate(-50%, -50%) scale(1.08);
+        opacity: 1;
+        box-shadow:
+          0 0 14px rgba(255,255,255,0.88),
+          0 0 38px rgba(142,232,255,0.60),
+          0 0 82px rgba(142,232,255,0.24);
       }
     }
 
+    @keyframes orbColorShift {
+      0%, 100% { filter: hue-rotate(0deg); }
+      50% { filter: hue-rotate(10deg); }
+    }
+
     @keyframes wovenDrift {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.34; }
+      50% { transform: translateX(-50%) translateY(8px); opacity: 0.58; }
+    }
+
+    @keyframes weaveFlow {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -66; }
+    }
+
+    @keyframes portalWake {
+      0%, 82%, 100% { transform: translateX(-50%) scale(1); }
+      90% { transform: translateX(-50%) scale(1.035); }
+    }
+
+    @keyframes sigilTurn {
+      from { rotate: 0deg; }
+      to { rotate: 360deg; }
+    }
+
+    @keyframes sigilGlow {
       0%, 100% {
-        transform: translateX(-50%) translateY(0);
-        opacity: 0.34;
+        opacity: 0.32;
+        filter: drop-shadow(0 0 8px rgba(142,232,255,0.16));
       }
       50% {
-        transform: translateX(-50%) translateY(8px);
-        opacity: 0.58;
+        opacity: 0.54;
+        filter: drop-shadow(0 0 18px rgba(142,232,255,0.28));
+      }
+    }
+
+    @keyframes debrisFloat {
+      0%, 100% { transform: translateY(0); opacity: 0.14; }
+      50% { transform: translateY(-10px); opacity: 0.23; }
+    }
+
+    @keyframes menuScanLine {
+      0% { transform: translateY(0); opacity: 0; }
+      20% { opacity: 0.72; }
+      100% { transform: translateY(116px); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
       }
     }
 
@@ -2771,51 +1586,48 @@
       return out;
     }
 
-    function makeRuneRow(pool, side, forceLine = false) {
-      const row = document.createElement("span");
+    function setupRuneRow(row, pool, side, forceGlyph = false) {
+      const isGap = !forceGlyph && Math.random() < 0.18;
 
-      // Geordnete Code-Absätze: keine Überlagerung, aber unregelmäßige Lücken.
-      const isGap = !forceLine && Math.random() < 0.18;
+      row.className = "rune-row" + (isGap ? " rune-gap" : "");
+      row.textContent = isGap ? "" : runeText(pool);
 
-      if (isGap) {
-        row.className = "rune-row rune-gap";
-        row.style.setProperty("--row-h", `${12 + Math.random() * 22}px`);
-        row.textContent = "";
-        return row;
-      }
+      const rowHeight = isGap
+        ? 13 + Math.random() * 24
+        : 14;
 
-      row.className = "rune-row";
-      row.textContent = runeText(pool);
+      const opacity = isGap
+        ? 0
+        : 0.20 + Math.random() * 0.54;
 
-      const opacity = 0.20 + Math.random() * 0.54;
       const shift = side === "left"
-        ? (-2 + Math.random() * 5)
-        : (-3 + Math.random() * 6);
+        ? -2 + Math.random() * 5
+        : -3 + Math.random() * 6;
 
+      row.dataset.h = rowHeight.toFixed(2);
+      row.dataset.isGap = isGap ? "1" : "0";
       row.style.setProperty("--o", opacity.toFixed(2));
       row.style.setProperty("--x", `${shift.toFixed(1)}px`);
-      row.style.setProperty("--row-h", "14px");
 
-      if (Math.random() > 0.78) row.classList.add("hot");
-      if (Math.random() > 0.91) row.classList.add("gold");
+      row.classList.toggle("hot", !isGap && Math.random() > 0.78);
+      row.classList.toggle("gold", !isGap && Math.random() > 0.91);
 
-      return row;
+      return rowHeight;
     }
 
-    function fillRuneFlow(flow, pool, side, rows) {
-      flow.innerHTML = "";
-      for (let i = 0; i < rows; i++) {
-        flow.appendChild(makeRuneRow(pool, side, i < 5));
-      }
+    function setRuneY(row, y) {
+      row.dataset.y = y.toFixed(2);
+      row.style.setProperty("--y", `${y.toFixed(2)}px`);
     }
 
-    function mutateRuneFlow(flow, pool) {
-      const rows = Array.from(flow.querySelectorAll(".rune-row:not(.rune-gap)"));
-      if (!rows.length) return;
+    function mutateRuneRows(rows, pool) {
+      const glyphRows = rows.filter(row => row.dataset.isGap !== "1");
+      if (!glyphRows.length) return;
 
-      const count = Math.max(1, Math.floor(rows.length * 0.06));
+      const count = Math.max(1, Math.floor(glyphRows.length * 0.06));
+
       for (let i = 0; i < count; i++) {
-        const row = rows[Math.floor(Math.random() * rows.length)];
+        const row = glyphRows[Math.floor(Math.random() * glyphRows.length)];
         row.textContent = runeText(pool);
         row.style.setProperty("--o", (0.20 + Math.random() * 0.54).toFixed(2));
         row.classList.toggle("hot", Math.random() > 0.78);
@@ -2823,32 +1635,65 @@
       }
     }
 
-    function initRuneColumn(containerId, pool, side, rows) {
+    function initRuneColumn(containerId, pool, side, visibleHeight, speed) {
       const container = document.getElementById(containerId);
       if (!container) return;
 
-      container.innerHTML = `
-        <div class="rune-flow rune-flow-a"></div>
-        <div class="rune-flow rune-flow-b"></div>
-      `;
+      container.innerHTML = `<div class="rune-flow"></div>`;
+      const flow = container.querySelector(".rune-flow");
+      const rows = [];
 
-      const a = container.querySelector(".rune-flow-a");
-      const b = container.querySelector(".rune-flow-b");
+      let y = -34;
+      while (y < visibleHeight + 72) {
+        const row = document.createElement("span");
+        setupRuneRow(row, pool, side, rows.length < 4);
+        setRuneY(row, y);
+        flow.appendChild(row);
+        rows.push(row);
+        y += parseFloat(row.dataset.h);
+      }
 
-      fillRuneFlow(a, pool, side, rows);
-      fillRuneFlow(b, pool, side, rows);
+      let last = performance.now();
+      let mutateTimer = 0;
 
-      // Einzelne Zeichen ändern sich sanft, während die Spalten kontinuierlich laufen.
-      setInterval(() => mutateRuneFlow(a, pool), side === "left" ? 780 : 920);
-      setInterval(() => mutateRuneFlow(b, pool), side === "left" ? 900 : 840);
+      function frame(now) {
+        const dt = Math.min((now - last) / 1000, 0.05);
+        last = now;
+        mutateTimer += dt;
 
-      // Am Ende eines Zyklus wird nur der unsichtbare Flow neu gemischt.
-      a.addEventListener("animationiteration", () => fillRuneFlow(a, pool, side, rows));
-      b.addEventListener("animationiteration", () => fillRuneFlow(b, pool, side, rows));
+        let topY = Infinity;
+
+        for (const row of rows) {
+          const nextY = parseFloat(row.dataset.y) + speed * dt;
+          setRuneY(row, nextY);
+          if (nextY < topY) topY = nextY;
+        }
+
+        if (mutateTimer > 0.9) {
+          mutateTimer = 0;
+          mutateRuneRows(rows, pool);
+        }
+
+        for (const row of rows) {
+          const rowY = parseFloat(row.dataset.y);
+          const rowHeight = parseFloat(row.dataset.h);
+
+          if (rowY > visibleHeight + 20) {
+            const newHeight = setupRuneRow(row, pool, side);
+            const newY = topY - newHeight;
+            setRuneY(row, newY);
+            topY = newY;
+          }
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
     }
 
-    initRuneColumn("runesLeft", glyphPoolLeft, "left", 42);
-    initRuneColumn("runesRight", glyphPoolRight, "right", 48);
+    initRuneColumn("runesLeft", glyphPoolLeft, "left", 470, 12.5);
+    initRuneColumn("runesRight", glyphPoolRight, "right", 530, 11.2);
   </script>
 </body>
 </html>
