@@ -1080,6 +1080,550 @@
       transform: scale(calc(var(--icon-scale, 1) * 1.045));
     }
 
+  
+    /* --- v21: Design-/Animationspass, ohne Menüstruktur zu verändern --- */
+    .ether-pulse,
+    .scan-veil,
+    .constellation-glints {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .ether-pulse {
+      z-index: 2;
+      opacity: 0.58;
+      background:
+        radial-gradient(ellipse at 50% 18%, rgba(205,252,255,0.060), transparent 18%),
+        radial-gradient(ellipse at 50% 46%, rgba(142,232,255,0.040), transparent 34%),
+        radial-gradient(ellipse at 50% 92%, rgba(142,232,255,0.075), transparent 22%);
+      mix-blend-mode: screen;
+      animation: etherPulse 9.5s ease-in-out infinite;
+    }
+
+    .scan-veil {
+      z-index: 18;
+      opacity: 0.18;
+      background:
+        linear-gradient(180deg,
+          transparent 0%,
+          rgba(142,232,255,0.020) 38%,
+          rgba(236,255,255,0.090) 49%,
+          rgba(142,232,255,0.020) 61%,
+          transparent 100%);
+      transform: translateY(-105%);
+      mix-blend-mode: screen;
+      animation: systemScan 11s cubic-bezier(.22,.61,.36,1) infinite;
+    }
+
+    .constellation-glints {
+      z-index: 19;
+      mix-blend-mode: screen;
+    }
+
+    .constellation-glints span {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      opacity: 0;
+      background: rgba(226, 252, 255, 0.88);
+      box-shadow:
+        0 0 8px rgba(142,232,255,0.65),
+        0 0 18px rgba(142,232,255,0.25);
+      animation: glint 6.8s ease-in-out infinite;
+      animation-delay: var(--d);
+    }
+
+    .constellation-glints span::before,
+    .constellation-glints span::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(90deg, transparent, rgba(226,252,255,0.65), transparent);
+      opacity: 0.75;
+    }
+
+    .constellation-glints span::before {
+      width: 18px;
+      height: 1px;
+    }
+
+    .constellation-glints span::after {
+      width: 1px;
+      height: 18px;
+      background: linear-gradient(180deg, transparent, rgba(226,252,255,0.55), transparent);
+    }
+
+    .frame {
+      animation: frameBreath 8.5s ease-in-out infinite;
+    }
+
+    .frame::before,
+    .frame::after,
+    .frame-extra::before,
+    .frame-extra::after {
+      animation: cornerPulse 6.4s ease-in-out infinite;
+    }
+
+    .arcfield {
+      animation: arcfieldBreath 10s ease-in-out infinite;
+    }
+
+    .arc {
+      stroke-dashoffset: 0;
+    }
+
+    .tick.major {
+      animation: tickPulse 4.4s ease-in-out infinite;
+    }
+
+    .spine {
+      animation:
+        spinePulse 5.5s ease-in-out infinite,
+        spineMicroShift 18s ease-in-out infinite;
+    }
+
+    .spine::before {
+      animation: spineCoreTravel 5.8s ease-in-out infinite;
+    }
+
+    .top-node .core {
+      animation:
+        orbPulse 2.8s ease-in-out infinite,
+        orbColorShift 9s ease-in-out infinite;
+    }
+
+    .top-node .ring {
+      animation-duration: 5.2s;
+    }
+
+    .top-node .r2 {
+      animation-duration: 7.8s;
+    }
+
+    .top-node .r3 {
+      animation-duration: 11s;
+    }
+
+    .woven {
+      opacity: 0.50;
+      animation: wovenDrift 8s ease-in-out infinite;
+    }
+
+    .woven path {
+      stroke-dasharray: 15 18;
+      animation: weaveFlow 8s linear infinite;
+    }
+
+    .runes .inner {
+      animation:
+        runeScroll 18s linear infinite,
+        runeFlicker 3.7s steps(6, end) infinite;
+    }
+
+    .runes.left {
+      animation: runeColumnPulse 8s ease-in-out infinite;
+    }
+
+    .runes.right {
+      animation: runeColumnPulse 8s ease-in-out infinite reverse;
+    }
+
+    .dragon {
+      animation: dragonBreathe 9s ease-in-out infinite;
+    }
+
+    .dragon-eye-overlay {
+      animation:
+        dragonEyePulseAsset 3.2s ease-in-out infinite,
+        eyeWake 12s ease-in-out infinite;
+    }
+
+    .back-ruins-asset {
+      animation:
+        rearRuinsDrift 24s ease-in-out infinite,
+        rearRuinsFog 9s ease-in-out infinite;
+    }
+
+    .bottom-ruins-asset {
+      animation: foregroundRuinsBreath 10s ease-in-out infinite;
+    }
+
+    .ground-portal {
+      animation:
+        portalBreath 5.8s ease-in-out infinite,
+        portalWake 13s ease-in-out infinite;
+    }
+
+    .bottom-sigil {
+      animation:
+        sigilTurn 44s linear infinite,
+        sigilGlow 7s ease-in-out infinite;
+      transform-origin: center center;
+    }
+
+    .debris {
+      animation: debrisFloat 18s ease-in-out infinite;
+    }
+
+    .menu-card {
+      --idle-delay: 0s;
+    }
+
+    .menu-card:nth-child(2) { --idle-delay: .4s; }
+    .menu-card:nth-child(3) { --idle-delay: .8s; }
+    .menu-card:nth-child(4) { --idle-delay: 1.2s; }
+    .menu-card:nth-child(5) { --idle-delay: 1.6s; }
+    .menu-card:nth-child(6) { --idle-delay: 2.0s; }
+    .menu-card:nth-child(7) { --idle-delay: 2.4s; }
+    .menu-card:nth-child(8) { --idle-delay: 2.8s; }
+
+    .menu-card::before {
+      animation: menuIdleAura 7.5s ease-in-out infinite;
+      animation-delay: var(--idle-delay);
+    }
+
+    .menu-card-scan {
+      position: absolute;
+      left: 12%;
+      top: 10%;
+      width: 76%;
+      height: 1px;
+      opacity: 0;
+      background: linear-gradient(90deg, transparent, rgba(221,253,255,0.42), transparent);
+      filter: drop-shadow(0 0 8px rgba(142,232,255,0.30));
+      pointer-events: none;
+      transform: translateY(0);
+      transition: opacity 220ms ease;
+    }
+
+    .menu-card:hover .menu-card-scan,
+    .menu-card:focus-visible .menu-card-scan {
+      opacity: 1;
+      animation: menuScanLine 900ms ease-out 1;
+    }
+
+    .menu-card:hover .menu-frame,
+    .menu-card:focus-visible .menu-frame {
+      animation: menuFrameAwake 1.5s ease-in-out infinite;
+    }
+
+    @keyframes etherPulse {
+      0%, 100% {
+        opacity: 0.40;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.72;
+        transform: scale(1.035);
+      }
+    }
+
+    @keyframes systemScan {
+      0%, 58% {
+        transform: translateY(-115%);
+        opacity: 0;
+      }
+      66% {
+        opacity: 0.22;
+      }
+      78% {
+        opacity: 0.12;
+      }
+      100% {
+        transform: translateY(115%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes glint {
+      0%, 72%, 100% {
+        opacity: 0;
+        transform: scale(0.45) rotate(0deg);
+      }
+      78% {
+        opacity: 0.75;
+      }
+      84% {
+        opacity: 0.28;
+        transform: scale(1.25) rotate(45deg);
+      }
+      90% {
+        opacity: 0.55;
+      }
+    }
+
+    @keyframes frameBreath {
+      0%, 100% {
+        border-color: rgba(142,232,255,0.18);
+        box-shadow: inset 0 0 28px rgba(142,232,255,0.020);
+      }
+      50% {
+        border-color: rgba(142,232,255,0.28);
+        box-shadow: inset 0 0 42px rgba(142,232,255,0.050);
+      }
+    }
+
+    @keyframes cornerPulse {
+      0%, 100% {
+        opacity: 0.72;
+        filter: drop-shadow(0 0 6px rgba(142,232,255,0.14));
+      }
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 12px rgba(142,232,255,0.28));
+      }
+    }
+
+    @keyframes arcfieldBreath {
+      0%, 100% {
+        opacity: 0.88;
+        filter: drop-shadow(0 0 0 rgba(142,232,255,0));
+      }
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 10px rgba(142,232,255,0.055));
+      }
+    }
+
+    @keyframes spinePulse {
+      0%, 100% {
+        opacity: 0.62;
+        filter: drop-shadow(0 0 4px rgba(142,232,255,0.14));
+      }
+      50% {
+        opacity: 0.88;
+        filter: drop-shadow(0 0 13px rgba(142,232,255,0.28));
+      }
+    }
+
+    @keyframes spineMicroShift {
+      0%, 100% { transform: translateX(-50%); }
+      50% { transform: translateX(calc(-50% + 1px)); }
+    }
+
+    @keyframes spineCoreTravel {
+      0%, 100% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      18% {
+        opacity: 0.40;
+      }
+      52% {
+        opacity: 0.78;
+      }
+      82% {
+        opacity: 0.18;
+      }
+      100% {
+        transform: translateY(100%);
+      }
+    }
+
+    @keyframes orbPulse {
+      0%, 100% {
+        transform: scale(0.86);
+        opacity: 0.78;
+        box-shadow:
+          0 0 9px rgba(230,252,255,0.66),
+          0 0 26px rgba(142,232,255,0.38),
+          0 0 56px rgba(142,232,255,0.16);
+      }
+      50% {
+        transform: scale(1.08);
+        opacity: 1;
+        box-shadow:
+          0 0 14px rgba(255,255,255,0.88),
+          0 0 38px rgba(142,232,255,0.60),
+          0 0 82px rgba(142,232,255,0.24);
+      }
+    }
+
+    @keyframes orbColorShift {
+      0%, 100% { filter: hue-rotate(0deg); }
+      50% { filter: hue-rotate(10deg); }
+    }
+
+    @keyframes wovenDrift {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0.34;
+      }
+      50% {
+        transform: translateX(-50%) translateY(8px);
+        opacity: 0.58;
+      }
+    }
+
+    @keyframes weaveFlow {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -66; }
+    }
+
+    @keyframes runeFlicker {
+      0%, 100% { opacity: 0.26; }
+      20% { opacity: 0.44; }
+      38% { opacity: 0.18; }
+      61% { opacity: 0.52; }
+      76% { opacity: 0.24; }
+    }
+
+    @keyframes runeColumnPulse {
+      0%, 100% { filter: drop-shadow(0 0 3px rgba(142,232,255,0.08)); }
+      50% { filter: drop-shadow(0 0 9px rgba(142,232,255,0.22)); }
+    }
+
+    @keyframes eyeWake {
+      0%, 82%, 100% {
+        transform: translate(-50%, -50%) rotate(-9deg) scale(1);
+      }
+      88% {
+        transform: translate(-50%, -50%) rotate(-9deg) scale(1.16);
+      }
+      91% {
+        transform: translate(-50%, -50%) rotate(-9deg) scale(0.92);
+      }
+      95% {
+        transform: translate(-50%, -50%) rotate(-9deg) scale(1.04);
+      }
+    }
+
+    @keyframes rearRuinsFog {
+      0%, 100% {
+        filter:
+          blur(1.1px)
+          brightness(0.44)
+          contrast(1.18)
+          saturate(0.82)
+          drop-shadow(0 0 34px rgba(0,0,0,0.92))
+          drop-shadow(0 -6px 28px rgba(75,190,225,0.08));
+      }
+      50% {
+        filter:
+          blur(1.4px)
+          brightness(0.50)
+          contrast(1.20)
+          saturate(0.88)
+          drop-shadow(0 0 36px rgba(0,0,0,0.92))
+          drop-shadow(0 -9px 34px rgba(75,190,225,0.14));
+      }
+    }
+
+    @keyframes foregroundRuinsBreath {
+      0%, 100% {
+        opacity: 0.96;
+        filter:
+          brightness(0.52)
+          contrast(1.48)
+          saturate(0.95)
+          drop-shadow(0 0 24px rgba(0,0,0,0.92))
+          drop-shadow(0 -10px 22px rgba(75,190,225,0.10));
+      }
+      50% {
+        opacity: 1;
+        filter:
+          brightness(0.58)
+          contrast(1.52)
+          saturate(1)
+          drop-shadow(0 0 25px rgba(0,0,0,0.92))
+          drop-shadow(0 -13px 30px rgba(75,190,225,0.16));
+      }
+    }
+
+    @keyframes portalWake {
+      0%, 82%, 100% {
+        transform: translateX(-50%) scale(1);
+      }
+      90% {
+        transform: translateX(-50%) scale(1.035);
+      }
+    }
+
+    @keyframes sigilTurn {
+      from { rotate: 0deg; }
+      to { rotate: 360deg; }
+    }
+
+    @keyframes sigilGlow {
+      0%, 100% {
+        opacity: 0.32;
+        filter: drop-shadow(0 0 8px rgba(142,232,255,0.16));
+      }
+      50% {
+        opacity: 0.54;
+        filter: drop-shadow(0 0 18px rgba(142,232,255,0.28));
+      }
+    }
+
+    @keyframes debrisFloat {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 0.14;
+      }
+      50% {
+        transform: translateY(-10px);
+        opacity: 0.23;
+      }
+    }
+
+    @keyframes menuIdleAura {
+      0%, 100% {
+        opacity: 0;
+      }
+      45% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.22;
+      }
+      58% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes menuScanLine {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.72;
+      }
+      100% {
+        transform: translateY(116px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes menuFrameAwake {
+      0%, 100% {
+        filter:
+          drop-shadow(0 0 8px rgba(142,232,255,0.18))
+          drop-shadow(0 0 15px rgba(229,216,178,0.055));
+      }
+      50% {
+        filter:
+          drop-shadow(0 0 12px rgba(142,232,255,0.28))
+          drop-shadow(0 0 20px rgba(229,216,178,0.08));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -1091,6 +1635,20 @@
         <div class="dust"></div>
         <div class="mist"></div>
         <div class="glyph-noise"></div>
+        <div class="ether-pulse" aria-hidden="true"></div>
+        <div class="scan-veil" aria-hidden="true"></div>
+        <div class="constellation-glints" aria-hidden="true">
+          <span style="--x:18%;--y:18%;--d:0.2s"></span>
+          <span style="--x:31%;--y:25%;--d:1.8s"></span>
+          <span style="--x:76%;--y:20%;--d:0.9s"></span>
+          <span style="--x:83%;--y:43%;--d:2.4s"></span>
+          <span style="--x:23%;--y:58%;--d:1.2s"></span>
+          <span style="--x:65%;--y:61%;--d:3.1s"></span>
+          <span style="--x:36%;--y:74%;--d:2.0s"></span>
+          <span style="--x:74%;--y:78%;--d:0.7s"></span>
+          <span style="--x:51%;--y:32%;--d:2.8s"></span>
+          <span style="--x:49%;--y:91%;--d:1.5s"></span>
+        </div>
 
         <div class="arcfield" aria-hidden="true">
           <svg viewBox="0 0 1086 1448">
@@ -1222,6 +1780,7 @@
 
           <a class="menu-card" href="https://app.notion.com/p/____________________________________________________________________________________________________-37e07d209dc080ba87bee0fea4a68d2d?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Status öffnen" data-code="STAT">
             <span class="menu-frame" aria-hidden="true"></span>
+            <span class="menu-card-scan" aria-hidden="true"></span>
             <span class="menu-icon menu-icon-asset-wrap">
               <img class="menu-icon-asset" src="assets/icon-status.png" alt="" />
             </span>
@@ -1231,6 +1790,7 @@
 
           <a class="menu-card" href="https://app.notion.com/p/Titel-37e07d209dc080298b35fe5a1ae29706?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Titel öffnen" data-code="TITL">
             <span class="menu-frame" aria-hidden="true"></span>
+            <span class="menu-card-scan" aria-hidden="true"></span>
             <span class="menu-icon menu-icon-asset-wrap">
               <img class="menu-icon-asset" src="assets/icon-titel.png" alt="" />
             </span>
@@ -1240,6 +1800,7 @@
 
           <a class="menu-card" href="https://app.notion.com/p/Resonanzen-37e07d209dc0806aa6eaed32feba1134?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Resonanzen öffnen" data-code="REZN">
             <span class="menu-frame" aria-hidden="true"></span>
+            <span class="menu-card-scan" aria-hidden="true"></span>
             <span class="menu-icon menu-icon-asset-wrap">
               <img class="menu-icon-asset" src="assets/icon-resonanzen.png" alt="" />
             </span>
@@ -1249,6 +1810,7 @@
 
           <a class="menu-card" href="https://app.notion.com/p/F-higkeiten-37e07d209dc080228a7df7ddf38b85e2?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Fähigkeiten öffnen" data-code="SKIL">
             <span class="menu-frame" aria-hidden="true"></span>
+            <span class="menu-card-scan" aria-hidden="true"></span>
             <span class="menu-icon menu-icon-asset-wrap">
               <img class="menu-icon-asset" src="assets/icon-faehigkeiten.png" alt="" />
             </span>
@@ -1258,6 +1820,7 @@
 
           <a class="menu-card" href="https://app.notion.com/p/Eigenschaften-37e07d209dc080838fc7dafa14bb5b7d?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Eigenschaften öffnen" data-code="ATTR">
             <span class="menu-frame" aria-hidden="true"></span>
+            <span class="menu-card-scan" aria-hidden="true"></span>
             <span class="menu-icon menu-icon-asset-wrap">
               <img class="menu-icon-asset" src="assets/icon-eigenschaften.png" alt="" />
             </span>
@@ -1267,6 +1830,7 @@
 
           <a class="menu-card" href="https://app.notion.com/p/Inventar-37e07d209dc0800394e2d7ffb71c9cfc?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Inventar öffnen" data-code="INVT">
             <span class="menu-frame" aria-hidden="true"></span>
+            <span class="menu-card-scan" aria-hidden="true"></span>
             <span class="menu-icon menu-icon-asset-wrap">
               <img class="menu-icon-asset" src="assets/icon-inventar.png" alt="" />
             </span>
@@ -1276,6 +1840,7 @@
 
           <a class="menu-card" href="https://app.notion.com/p/Quests-37e07d209dc0800e9589eda3c14fb7b3?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Quests öffnen" data-code="QEST">
             <span class="menu-frame" aria-hidden="true"></span>
+            <span class="menu-card-scan" aria-hidden="true"></span>
             <span class="menu-icon menu-icon-asset-wrap">
               <img class="menu-icon-asset" src="assets/icon-quests.png" alt="" />
             </span>
@@ -1285,6 +1850,7 @@
 
           <a class="menu-card" href="https://app.notion.com/p/Bibliothek-37e07d209dc0805e9e47cdf1f10e96cb?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Bibliothek öffnen" data-code="LIBR">
             <span class="menu-frame" aria-hidden="true"></span>
+            <span class="menu-card-scan" aria-hidden="true"></span>
             <span class="menu-icon menu-icon-asset-wrap">
               <img class="menu-icon-asset" src="assets/icon-bibliothek.png" alt="" />
             </span>
