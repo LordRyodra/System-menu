@@ -2260,6 +2260,219 @@
       }
     }
 
+  
+    /* --- v29: Orb exakt mittig + Bottom-Sigil weiter links + flüssiger Rune-Code --- */
+
+    :root {
+      --axis-shift: 0px !important;
+      --axis-x: 50% !important;
+    }
+
+    /* Echte Mittelachse bleibt exakt in der Seitenmitte. */
+    .spine {
+      left: var(--axis-x) !important;
+      transform: translateX(-50%) !important;
+      animation: spinePulse 5.5s ease-in-out infinite !important;
+    }
+
+    .top-node,
+    .woven {
+      left: var(--axis-x) !important;
+    }
+
+    .top-node {
+      transform: translate(-50%, -50%) !important;
+    }
+
+    /*
+      Orb-Core exakt in die Mitte des Kreises.
+      Kein eigener Links-/Rechts-Offset mehr.
+    */
+    .top-node .core {
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+    }
+
+    /* CSS-Kreis unten bleibt auf der Mittelachse. */
+    .ground-portal {
+      left: var(--axis-x) !important;
+      transform: translateX(-50%) !important;
+    }
+
+    /*
+      Nur das untere SVG-Sigil-Asset wird nach links gezogen.
+      Laut deiner roten/grünen Markierung musste es weiter nach links.
+    */
+    .bottom-sigil {
+      left: calc(var(--axis-x) - 57px) !important;
+      transform: translateX(-50%) scale(0.92) !important;
+      transform-origin: center bottom !important;
+    }
+
+    .divider span {
+      left: 50% !important;
+      transform: translate(-50%, -50%) rotate(45deg) !important;
+    }
+
+    /*
+      Runen: geordnet wie Code, aber flüssig.
+      Zwei identische Flows laufen versetzt; dadurch kein sichtbares Ploppen.
+    */
+    .runes {
+      top: 348px !important;
+      width: 54px !important;
+      overflow: hidden !important;
+      z-index: 16 !important;
+      color: rgba(165, 236, 255, 0.42);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px !important;
+      line-height: 1 !important;
+      letter-spacing: 0.05em;
+      white-space: normal !important;
+      text-shadow:
+        0 0 6px rgba(142,232,255,0.20),
+        0 0 12px rgba(142,232,255,0.08);
+      opacity: 1 !important;
+      animation: none !important;
+      mix-blend-mode: screen;
+      user-select: none;
+      pointer-events: none;
+      -webkit-mask-image:
+        linear-gradient(to bottom, transparent 0%, black 8%, black 88%, transparent 100%);
+      mask-image:
+        linear-gradient(to bottom, transparent 0%, black 8%, black 88%, transparent 100%);
+    }
+
+    .runes.left {
+      left: 20px !important;
+      height: 470px !important;
+    }
+
+    .runes.right {
+      right: 18px !important;
+      height: 530px !important;
+    }
+
+    .runes .inner,
+    .runes .stream,
+    .rune-particle {
+      display: none !important;
+    }
+
+    .runes .stream-wrap {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .rune-flow {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      will-change: transform;
+      animation: runeFlowDown 23s linear infinite;
+    }
+
+    .rune-flow-a {
+      top: -100%;
+    }
+
+    .rune-flow-b {
+      top: -100%;
+      animation-delay: -11.5s;
+    }
+
+    .runes.right .rune-flow {
+      animation-duration: 27s;
+      gap: 5px;
+    }
+
+    .runes.right .rune-flow-b {
+      animation-delay: -13.5s;
+    }
+
+    .rune-row {
+      display: block;
+      width: 100%;
+      height: var(--row-h, 14px);
+      min-height: var(--row-h, 14px);
+      text-align: center;
+      max-width: 46px;
+      overflow: hidden;
+      white-space: nowrap;
+      opacity: var(--o, 0.42);
+      transform: translateX(var(--x, 0px));
+      color: rgba(165, 236, 255, 0.46);
+      filter:
+        drop-shadow(0 0 4px rgba(142,232,255,0.08))
+        drop-shadow(0 0 8px rgba(142,232,255,0.03));
+      transition:
+        opacity 260ms ease,
+        color 260ms ease,
+        filter 260ms ease;
+    }
+
+    .rune-row.hot {
+      color: rgba(216, 252, 255, 0.72);
+      filter:
+        drop-shadow(0 0 6px rgba(142,232,255,0.22))
+        drop-shadow(0 0 12px rgba(142,232,255,0.08));
+    }
+
+    .rune-row.gold {
+      color: rgba(230, 216, 178, 0.48);
+      filter:
+        drop-shadow(0 0 6px rgba(230,216,178,0.12))
+        drop-shadow(0 0 12px rgba(142,232,255,0.04));
+    }
+
+    .rune-gap {
+      opacity: 0 !important;
+      color: transparent !important;
+      filter: none !important;
+    }
+
+    @keyframes runeFlowDown {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(100%);
+      }
+    }
+
+    /* Keine seitliche Bewegung der echten Mittellinie */
+    @keyframes spineMicroShift {
+      0%, 100% { transform: translateX(-50%); }
+      50% { transform: translateX(-50%); }
+    }
+
+    @keyframes portalWake {
+      0%, 82%, 100% {
+        transform: translateX(-50%) scale(1);
+      }
+      90% {
+        transform: translateX(-50%) scale(1.035);
+      }
+    }
+
+    @keyframes wovenDrift {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0.34;
+      }
+      50% {
+        transform: translateX(-50%) translateY(8px);
+        opacity: 0.58;
+      }
+    }
+
   </style>
 </head>
 
@@ -2551,104 +2764,91 @@
     }
 
     function runeText(pool) {
-      const len = Math.random() > 0.72 ? 2 : 1;
+      const len = Math.random() > 0.74 ? 2 : 1;
       let out = "";
       for (let i = 0; i < len; i++) out += randomFrom(pool);
       if (Math.random() > 0.88) out += " " + randomFrom(pool);
       return out;
     }
 
-    function seedRuneVisual(el, pool, side, forceGap = false) {
-      const gapChance = forceGap ? 1 : 0.18;
-      const isGap = Math.random() < gapChance;
-      el.className = 'rune-row' + (isGap ? ' rune-gap' : '');
-      el.textContent = isGap ? ' ' : runeText(pool);
+    function makeRuneRow(pool, side, forceLine = false) {
+      const row = document.createElement("span");
 
-      const opacity = isGap ? 0 : (0.18 + Math.random() * 0.58);
-      const shift = side === 'left' ? (-2 + Math.random() * 5) : (-3 + Math.random() * 6);
-      const rowHeight = isGap ? (Math.random() < 0.35 ? (18 + Math.random() * 14) : (9 + Math.random() * 9)) : 14;
+      // Geordnete Code-Absätze: keine Überlagerung, aber unregelmäßige Lücken.
+      const isGap = !forceLine && Math.random() < 0.18;
 
-      el.dataset.h = rowHeight.toFixed(2);
-      el.dataset.isGap = isGap ? '1' : '0';
-      el.style.setProperty('--o', opacity.toFixed(2));
-      el.style.setProperty('--x', `${shift.toFixed(1)}px`);
-      el.classList.toggle('hot', !isGap && Math.random() > 0.78);
-      el.classList.toggle('gold', !isGap && Math.random() > 0.91);
-      return rowHeight;
+      if (isGap) {
+        row.className = "rune-row rune-gap";
+        row.style.setProperty("--row-h", `${12 + Math.random() * 22}px`);
+        row.textContent = "";
+        return row;
+      }
+
+      row.className = "rune-row";
+      row.textContent = runeText(pool);
+
+      const opacity = 0.20 + Math.random() * 0.54;
+      const shift = side === "left"
+        ? (-2 + Math.random() * 5)
+        : (-3 + Math.random() * 6);
+
+      row.style.setProperty("--o", opacity.toFixed(2));
+      row.style.setProperty("--x", `${shift.toFixed(1)}px`);
+      row.style.setProperty("--row-h", "14px");
+
+      if (Math.random() > 0.78) row.classList.add("hot");
+      if (Math.random() > 0.91) row.classList.add("gold");
+
+      return row;
     }
 
-    function setRuneY(el, y) {
-      el.dataset.y = y.toFixed(2);
-      el.style.setProperty('--y', `${y.toFixed(2)}px`);
+    function fillRuneFlow(flow, pool, side, rows) {
+      flow.innerHTML = "";
+      for (let i = 0; i < rows; i++) {
+        flow.appendChild(makeRuneRow(pool, side, i < 5));
+      }
     }
 
-    function initRuneColumn(containerId, pool, side, visibleHeight, speed) {
+    function mutateRuneFlow(flow, pool) {
+      const rows = Array.from(flow.querySelectorAll(".rune-row:not(.rune-gap)"));
+      if (!rows.length) return;
+
+      const count = Math.max(1, Math.floor(rows.length * 0.06));
+      for (let i = 0; i < count; i++) {
+        const row = rows[Math.floor(Math.random() * rows.length)];
+        row.textContent = runeText(pool);
+        row.style.setProperty("--o", (0.20 + Math.random() * 0.54).toFixed(2));
+        row.classList.toggle("hot", Math.random() > 0.78);
+        row.classList.toggle("gold", Math.random() > 0.91);
+      }
+    }
+
+    function initRuneColumn(containerId, pool, side, rows) {
       const container = document.getElementById(containerId);
       if (!container) return;
-      container.innerHTML = `<div class="rune-flow"></div>`;
-      const flow = container.querySelector('.rune-flow');
 
-      const rows = [];
-      let y = -26;
-      while (y < visibleHeight + 80) {
-        const el = document.createElement('span');
-        seedRuneVisual(el, pool, side, rows.length < 3 ? false : Math.random() < 0.22);
-        setRuneY(el, y);
-        flow.appendChild(el);
-        rows.push(el);
-        y += parseFloat(el.dataset.h);
-      }
+      container.innerHTML = `
+        <div class="rune-flow rune-flow-a"></div>
+        <div class="rune-flow rune-flow-b"></div>
+      `;
 
-      let last = performance.now();
-      let mutateClock = 0;
+      const a = container.querySelector(".rune-flow-a");
+      const b = container.querySelector(".rune-flow-b");
 
-      function frame(now) {
-        const dt = Math.min((now - last) / 1000, 0.05);
-        last = now;
-        mutateClock += dt;
+      fillRuneFlow(a, pool, side, rows);
+      fillRuneFlow(b, pool, side, rows);
 
-        let topY = Infinity;
-        for (const el of rows) {
-          let yv = parseFloat(el.dataset.y) + speed * dt;
-          setRuneY(el, yv);
-          if (yv < topY) topY = yv;
-        }
+      // Einzelne Zeichen ändern sich sanft, während die Spalten kontinuierlich laufen.
+      setInterval(() => mutateRuneFlow(a, pool), side === "left" ? 780 : 920);
+      setInterval(() => mutateRuneFlow(b, pool), side === "left" ? 900 : 840);
 
-        // Nur einzelne Zeilen verändern, damit es eher wie laufender Code wirkt.
-        if (mutateClock > 0.85) {
-          mutateClock = 0;
-          const editable = rows.filter(r => r.dataset.isGap !== '1');
-          const count = Math.max(1, Math.floor(editable.length * 0.07));
-          for (let i = 0; i < count; i++) {
-            const row = editable[Math.floor(Math.random() * editable.length)];
-            row.textContent = runeText(pool);
-            row.style.setProperty('--o', (0.18 + Math.random() * 0.58).toFixed(2));
-            row.classList.toggle('hot', Math.random() > 0.78);
-            row.classList.toggle('gold', Math.random() > 0.91);
-          }
-        }
-
-        // Wenn eine Zeile unten rausläuft, wird sie oben wieder eingefügt.
-        for (const el of rows) {
-          const h = parseFloat(el.dataset.h);
-          const yv = parseFloat(el.dataset.y);
-          if (yv > visibleHeight + 16) {
-            const recycleAsGap = Math.random() < 0.18;
-            const nh = seedRuneVisual(el, pool, side, recycleAsGap);
-            const newY = topY - nh;
-            setRuneY(el, newY);
-            topY = newY;
-          }
-        }
-
-        requestAnimationFrame(frame);
-      }
-
-      requestAnimationFrame(frame);
+      // Am Ende eines Zyklus wird nur der unsichtbare Flow neu gemischt.
+      a.addEventListener("animationiteration", () => fillRuneFlow(a, pool, side, rows));
+      b.addEventListener("animationiteration", () => fillRuneFlow(b, pool, side, rows));
     }
 
-    initRuneColumn("runesLeft", glyphPoolLeft, "left", 470, 12.5);
-    initRuneColumn("runesRight", glyphPoolRight, "right", 530, 11.2);
+    initRuneColumn("runesLeft", glyphPoolLeft, "left", 42);
+    initRuneColumn("runesRight", glyphPoolRight, "right", 48);
   </script>
 </body>
 </html>
