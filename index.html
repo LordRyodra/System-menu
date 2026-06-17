@@ -1624,273 +1624,275 @@
     }
 
   
-    /* ===== Orb energy-system pass v39 ===== */
-    .top-node.top-node--energy {
-      position: absolute;
-      left: var(--axis-x, 50%) !important;
-      top: 205px;
-      width: 170px;
-      height: 220px;
-      transform: translate(-50%, -50%) !important;
-      z-index: 9;
-      pointer-events: none;
-      mix-blend-mode: screen;
-      opacity: 0.98;
-      filter: drop-shadow(0 0 14px rgba(142,232,255,0.16));
-    }
+  /* ===== ORB v40 ===== */
+.top-node.top-node--energy {
+  position: absolute;
+  left: var(--axis-x, 50%) !important;
+  top: 205px;
+  width: 188px;
+  height: 228px;
+  transform: translate(-50%, -50%) !important;
+  z-index: 9;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 1;
+  filter: drop-shadow(0 0 22px rgba(110, 225, 255, 0.18));
+}
 
-    .top-node.top-node--energy svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
+.top-node.top-node--energy svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
 
-    .top-node.top-node--energy .orb-axis,
-    .top-node.top-node--energy .orb-ring,
-    .top-node.top-node--energy .orb-blue-track,
-    .top-node.top-node--energy .orb-eight-track,
-    .top-node.top-node--energy .orb-blue-flow,
-    .top-node.top-node--energy .orb-eight-flow,
-    .top-node.top-node--energy .orb-feed-stream,
-    .top-node.top-node--energy .orb-core-ring {
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      vector-effect: non-scaling-stroke;
-    }
+.top-node.top-node--energy .orb-axis,
+.top-node.top-node--energy .orb-ring,
+.top-node.top-node--energy .orb-blue-track,
+.top-node.top-node--energy .orb-blue-flow,
+.top-node.top-node--energy .orb-eight-track,
+.top-node.top-node--energy .orb-eight-flow,
+.top-node.top-node--energy .orb-feed-line,
+.top-node.top-node--energy .orb-core-ring {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
 
-    /* gelb = feste Energiezufuhr / Leitachse */
-    .top-node.top-node--energy .orb-axis {
-      stroke: rgba(228, 232, 188, 0.50);
-      stroke-width: 1.15;
-      opacity: 0.62;
-      filter: drop-shadow(0 0 5px rgba(230,216,178,0.15));
-      animation: orbConduitPulse 4.8s ease-in-out infinite;
-    }
+.top-node.top-node--energy .orb-mist {
+  fill: url(#orbMistGradientV40);
+  opacity: 0.9;
+  transform-origin: 90px 110px;
+  animation: orbMistPulse 5.5s ease-in-out infinite;
+}
 
-    .top-node.top-node--energy .orb-axis-horizontal {
-      opacity: 0.48;
-      stroke-width: 1.0;
-    }
+.top-node.top-node--energy .orb-axis {
+  stroke: rgba(225, 230, 190, 0.58);
+  stroke-width: 1.15;
+  opacity: 0.72;
+  filter: drop-shadow(0 0 8px rgba(225, 230, 190, 0.16));
+  animation: orbAxisPulse 4.2s ease-in-out infinite;
+}
 
-    .top-node.top-node--energy .orb-feed-stream {
-      stroke: rgba(238, 252, 224, 0.86);
-      stroke-width: 2.1;
-      opacity: 0.72;
-      stroke-dasharray: 18 72;
-      filter:
-        drop-shadow(0 0 6px rgba(230,216,178,0.30))
-        drop-shadow(0 0 14px rgba(142,232,255,0.16));
-    }
+.top-node.top-node--energy .orb-axis-horizontal {
+  opacity: 0.52;
+  stroke-width: 1.0;
+}
 
-    .top-node.top-node--energy .orb-feed-top {
-      animation: orbFeedDown 2.4s linear infinite;
-    }
+.top-node.top-node--energy .orb-feed-line {
+  stroke: rgba(235, 250, 220, 0.85);
+  stroke-width: 1.8;
+  opacity: 0.68;
+  filter:
+    drop-shadow(0 0 8px rgba(255,255,255,0.14))
+    drop-shadow(0 0 14px rgba(122,236,255,0.16));
+}
 
-    .top-node.top-node--energy .orb-feed-bottom {
-      animation: orbFeedUp 2.4s linear infinite;
-      animation-delay: -1.2s;
-    }
+.top-node.top-node--energy .orb-feed-particle {
+  fill: rgba(235, 255, 255, 0.95);
+  filter:
+    drop-shadow(0 0 8px rgba(255,255,255,0.7))
+    drop-shadow(0 0 16px rgba(122,236,255,0.45));
+}
 
-    /* orange = feste Hauptkreise, nur leitend/pulsierend */
-    .top-node.top-node--energy .orb-ring {
-      stroke: rgba(229, 216, 178, 0.48);
-      stroke-width: 1.25;
-      opacity: 0.70;
-      filter: drop-shadow(0 0 7px rgba(230,216,178,0.13));
-      animation: orbRingPulse 5.2s ease-in-out infinite;
-    }
+.top-node.top-node--energy .orb-feed-particle-top,
+.top-node.top-node--energy .orb-feed-particle-bottom {
+  animation: orbParticlePulse 1.65s ease-in-out infinite;
+}
 
-    .top-node.top-node--energy .orb-ring-inner {
-      opacity: 0.58;
-      stroke-width: 1.05;
-      animation-delay: -1.8s;
-    }
+.top-node.top-node--energy .orb-ring {
+  stroke: rgba(232, 219, 185, 0.52);
+  stroke-width: 1.35;
+  opacity: 0.82;
+  filter: drop-shadow(0 0 8px rgba(232,219,185,0.12));
+  animation: orbRingPulseMystic 4.8s ease-in-out infinite;
+}
 
-    /* blau = Nebenstraßen / Connections */
-    .top-node.top-node--energy .orb-blue-track {
-      stroke: rgba(90, 215, 255, 0.34);
-      stroke-width: 1.20;
-      opacity: 0.48;
-      filter: drop-shadow(0 0 5px rgba(90,215,255,0.10));
-    }
+.top-node.top-node--energy .orb-ring-inner {
+  stroke-width: 1.15;
+  opacity: 0.7;
+  animation-delay: -1.2s;
+}
 
-    .top-node.top-node--energy .orb-blue-flow {
-      stroke: rgba(110, 230, 255, 0.76);
-      stroke-width: 1.65;
-      opacity: 0.72;
-      stroke-dasharray: 18 95;
-      filter:
-        drop-shadow(0 0 6px rgba(90,215,255,0.30))
-        drop-shadow(0 0 14px rgba(90,215,255,0.12));
-    }
+.top-node.top-node--energy .orb-blue-track {
+  stroke: rgba(108, 220, 255, 0.30);
+  stroke-width: 1.1;
+  opacity: 0.45;
+}
 
-    .top-node.top-node--energy .orb-blue-flow-a {
-      animation: orbSideFlowA 5.8s linear infinite;
-    }
+.top-node.top-node--energy .orb-blue-flow {
+  stroke: rgba(114, 231, 255, 0.82);
+  stroke-width: 1.65;
+  opacity: 0.8;
+  stroke-dasharray: 20 90;
+  filter:
+    drop-shadow(0 0 6px rgba(114,231,255,0.30))
+    drop-shadow(0 0 16px rgba(114,231,255,0.16));
+}
 
-    .top-node.top-node--energy .orb-blue-flow-b {
-      animation: orbSideFlowB 6.4s linear infinite;
-      animation-delay: -2s;
-    }
+.top-node.top-node--energy .orb-blue-flow-a {
+  animation: orbBlueFlowA 4.8s linear infinite;
+}
 
-    /* grün = eigentliche Acht-Bewegung */
-    .top-node.top-node--energy .orb-eight-track {
-      stroke: rgba(72, 235, 174, 0.20);
-      stroke-width: 1.15;
-      opacity: 0.30;
-      filter: drop-shadow(0 0 5px rgba(72,235,174,0.08));
-    }
+.top-node.top-node--energy .orb-blue-flow-b {
+  animation: orbBlueFlowB 4.4s linear infinite;
+}
 
-    .top-node.top-node--energy .orb-eight-flow {
-      stroke: rgba(70, 255, 178, 0.88);
-      stroke-width: 2.3;
-      opacity: 0.78;
-      stroke-dasharray: 24 116;
-      filter:
-        drop-shadow(0 0 7px rgba(70,255,178,0.42))
-        drop-shadow(0 0 18px rgba(70,255,178,0.16));
-    }
+.top-node.top-node--energy .orb-eight-track {
+  stroke: rgba(70, 255, 176, 0.16);
+  stroke-width: 1.15;
+  opacity: 0.34;
+}
 
-    .top-node.top-node--energy .orb-eight-flow-a {
-      animation: orbEightFlow 4.6s linear infinite;
-    }
+.top-node.top-node--energy .orb-eight-flow {
+  stroke: rgba(62, 255, 176, 0.95);
+  stroke-width: 2.35;
+  opacity: 0.9;
+  stroke-dasharray: 26 116;
+  filter:
+    drop-shadow(0 0 10px rgba(62,255,176,0.46))
+    drop-shadow(0 0 24px rgba(62,255,176,0.18));
+}
 
-    .top-node.top-node--energy .orb-eight-flow-b {
-      stroke-width: 1.45;
-      opacity: 0.46;
-      stroke-dasharray: 8 92;
-      animation: orbEightFlow 4.6s linear infinite;
-      animation-delay: -2.3s;
-    }
+.top-node.top-node--energy .orb-eight-flow-a {
+  animation: orbEightFlowMystic 3.2s linear infinite;
+}
 
-    .top-node.top-node--energy .orb-node {
-      fill: rgba(218,250,255,0.85);
-      opacity: 0.70;
-      filter:
-        drop-shadow(0 0 5px rgba(142,232,255,0.34))
-        drop-shadow(0 0 10px rgba(230,216,178,0.10));
-      animation: orbNodePulse 4.2s ease-in-out infinite;
-    }
+.top-node.top-node--energy .orb-eight-flow-b {
+  stroke-width: 1.45;
+  opacity: 0.54;
+  stroke-dasharray: 8 88;
+  animation: orbEightFlowMystic 3.2s linear infinite;
+  animation-delay: -1.6s;
+}
 
-    /* rot = Magiekern */
-    .top-node.top-node--energy .orb-core-halo {
-      fill: rgba(142,232,255,0.14);
-      filter: url(#orbSoftGlow);
-      transform-origin: 90px 110px;
-      animation: orbCoreHaloPulse 3.2s ease-in-out infinite;
-    }
+.top-node.top-node--energy .orb-flow-particle {
+  filter:
+    drop-shadow(0 0 8px rgba(255,255,255,0.35))
+    drop-shadow(0 0 16px currentColor);
+}
 
-    .top-node.top-node--energy .orb-core-ring {
-      stroke: rgba(255, 238, 238, 0.72);
-      stroke-width: 1.25;
-      opacity: 0.78;
-      filter:
-        drop-shadow(0 0 6px rgba(255,230,230,0.28))
-        drop-shadow(0 0 14px rgba(142,232,255,0.15));
-      animation: orbCoreRingPulse 3s ease-in-out infinite;
-    }
+.top-node.top-node--energy .orb-flow-particle-green {
+  fill: rgba(84, 255, 184, 0.98);
+  color: rgba(84, 255, 184, 0.7);
+}
 
-    .top-node.top-node--energy .orb-core {
-      fill: url(#orbCoreGradient);
-      transform-origin: 90px 110px;
-      filter:
-        drop-shadow(0 0 9px rgba(255,255,255,0.94))
-        drop-shadow(0 0 24px rgba(142,232,255,0.62))
-        drop-shadow(0 0 42px rgba(70,255,178,0.18));
-      animation: orbCorePulseV39 2.75s ease-in-out infinite;
-    }
+.top-node.top-node--energy .orb-flow-particle-blue {
+  fill: rgba(116, 228, 255, 0.95);
+  color: rgba(116, 228, 255, 0.65);
+}
 
-    @keyframes orbFeedDown {
-      from { stroke-dashoffset: 88; }
-      to { stroke-dashoffset: 0; }
-    }
+.top-node.top-node--energy .orb-node {
+  fill: rgba(222, 251, 255, 0.85);
+  opacity: 0.75;
+  filter:
+    drop-shadow(0 0 5px rgba(114,231,255,0.32))
+    drop-shadow(0 0 12px rgba(255,255,255,0.12));
+  animation: orbNodePulse 3.8s ease-in-out infinite;
+}
 
-    @keyframes orbFeedUp {
-      from { stroke-dashoffset: -88; }
-      to { stroke-dashoffset: 0; }
-    }
+.top-node.top-node--energy .orb-core-halo {
+  fill: rgba(122, 240, 255, 0.15);
+  filter: url(#orbSoftGlowV40);
+  transform-origin: 90px 110px;
+}
 
-    @keyframes orbEightFlow {
-      from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -420; }
-    }
+.top-node.top-node--energy .orb-core-halo.outer {
+  animation: orbCoreHaloOuter 2.9s ease-in-out infinite;
+}
 
-    @keyframes orbSideFlowA {
-      from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -360; }
-    }
+.top-node.top-node--energy .orb-core-halo.inner {
+  animation: orbCoreHaloInner 2.1s ease-in-out infinite;
+}
 
-    @keyframes orbSideFlowB {
-      from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: 360; }
-    }
+.top-node.top-node--energy .orb-core-ring {
+  stroke: rgba(255, 240, 240, 0.74);
+  stroke-width: 1.25;
+  opacity: 0.84;
+  filter:
+    drop-shadow(0 0 8px rgba(255,255,255,0.22))
+    drop-shadow(0 0 18px rgba(122,240,255,0.18));
+  animation: orbCoreRingPulse 2.4s ease-in-out infinite;
+}
 
-    @keyframes orbConduitPulse {
-      0%, 100% {
-        opacity: 0.42;
-        filter: drop-shadow(0 0 4px rgba(230,216,178,0.10));
-      }
-      50% {
-        opacity: 0.72;
-        filter: drop-shadow(0 0 10px rgba(230,216,178,0.24));
-      }
-    }
+.top-node.top-node--energy .orb-core-ring.second {
+  opacity: 0.42;
+  stroke-width: 1.05;
+  animation-delay: -1.2s;
+}
 
-    @keyframes orbRingPulse {
-      0%, 100% {
-        opacity: 0.48;
-        filter: drop-shadow(0 0 5px rgba(230,216,178,0.10));
-      }
-      50% {
-        opacity: 0.78;
-        filter: drop-shadow(0 0 12px rgba(230,216,178,0.22));
-      }
-    }
+.top-node.top-node--energy .orb-core {
+  fill: url(#orbCoreGradientV40);
+  transform-origin: 90px 110px;
+  filter:
+    drop-shadow(0 0 14px rgba(255,255,255,0.95))
+    drop-shadow(0 0 30px rgba(122,240,255,0.85))
+    drop-shadow(0 0 48px rgba(84,255,184,0.24));
+  animation: orbCorePulseMystic 2.4s ease-in-out infinite;
+}
 
-    @keyframes orbNodePulse {
-      0%, 100% {
-        opacity: 0.42;
-        transform: scale(0.92);
-      }
-      50% {
-        opacity: 0.92;
-        transform: scale(1.16);
-      }
-    }
+/* Animationen */
+@keyframes orbAxisPulse {
+  0%,100% { opacity: 0.48; }
+  50%     { opacity: 0.82; }
+}
 
-    @keyframes orbCoreHaloPulse {
-      0%, 100% {
-        opacity: 0.22;
-        transform: scale(0.88);
-      }
-      50% {
-        opacity: 0.50;
-        transform: scale(1.14);
-      }
-    }
+@keyframes orbMistPulse {
+  0%,100% { opacity: 0.40; transform: scale(0.96); }
+  50%     { opacity: 0.95; transform: scale(1.08); }
+}
 
-    @keyframes orbCoreRingPulse {
-      0%, 100% {
-        opacity: 0.52;
-        transform: scale(0.96);
-      }
-      50% {
-        opacity: 0.90;
-        transform: scale(1.08);
-      }
-    }
+@keyframes orbRingPulseMystic {
+  0%,100% { opacity: 0.48; }
+  50%     { opacity: 0.9; }
+}
 
-    @keyframes orbCorePulseV39 {
-      0%, 100% {
-        opacity: 0.86;
-        transform: scale(0.92);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.18);
-      }
-    }
+@keyframes orbBlueFlowA {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -240; }
+}
+
+@keyframes orbBlueFlowB {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: 220; }
+}
+
+@keyframes orbEightFlowMystic {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -360; }
+}
+
+@keyframes orbParticlePulse {
+  0%,100% { opacity: 0; }
+  20%     { opacity: 0.65; }
+  50%     { opacity: 1; }
+  80%     { opacity: 0.6; }
+}
+
+@keyframes orbNodePulse {
+  0%,100% { opacity: 0.45; transform: scale(0.92); }
+  50%     { opacity: 0.95; transform: scale(1.18); }
+}
+
+@keyframes orbCoreHaloOuter {
+  0%,100% { opacity: 0.18; transform: scale(0.90); }
+  50%     { opacity: 0.52; transform: scale(1.16); }
+}
+
+@keyframes orbCoreHaloInner {
+  0%,100% { opacity: 0.26; transform: scale(0.94); }
+  50%     { opacity: 0.72; transform: scale(1.08); }
+}
+
+@keyframes orbCoreRingPulse {
+  0%,100% { opacity: 0.48; transform: scale(0.96); }
+  50%     { opacity: 1; transform: scale(1.10); }
+}
+
+@keyframes orbCorePulseMystic {
+  0%,100% { opacity: 0.88; transform: scale(0.92); }
+  50%     { opacity: 1; transform: scale(1.22); }
+}
 
 </style>
 </head>
@@ -2027,75 +2029,134 @@
           </svg>
         </div>
 
-        <div class="top-node top-node--energy" aria-hidden="true">
-          <svg viewBox="0 0 180 220" role="presentation">
-            <defs>
-              <filter id="orbSoftGlow" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="2.4" result="blur"/>
-                <feMerge>
-                  <feMergeNode in="blur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
+       <div class="top-node top-node--energy" aria-hidden="true">
+  <svg viewBox="0 0 180 220" role="presentation">
+    <defs>
+      <filter id="orbSoftGlowV40" x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur stdDeviation="3.2" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
 
-              <radialGradient id="orbCoreGradient" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="rgba(255,255,255,1)"/>
-                <stop offset="42%" stop-color="rgba(164,245,255,0.92)"/>
-                <stop offset="72%" stop-color="rgba(142,232,255,0.30)"/>
-                <stop offset="100%" stop-color="rgba(142,232,255,0)"/>
-              </radialGradient>
+      <radialGradient id="orbCoreGradientV40" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+        <stop offset="28%" stop-color="#f7f3ff" stop-opacity="0.96"/>
+        <stop offset="56%" stop-color="#b6f2ff" stop-opacity="0.92"/>
+        <stop offset="82%" stop-color="#72e5ff" stop-opacity="0.42"/>
+        <stop offset="100%" stop-color="#72e5ff" stop-opacity="0"/>
+      </radialGradient>
 
-              <path id="orbEightPath"
-                d="M90 110
-                   C46 55 48 42 90 40
-                   C132 42 134 55 90 110
-                   C46 165 48 178 90 180
-                   C132 178 134 165 90 110" />
+      <radialGradient id="orbMistGradientV40" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#7bf0ff" stop-opacity="0.22"/>
+        <stop offset="55%" stop-color="#4de7cf" stop-opacity="0.09"/>
+        <stop offset="100%" stop-color="#4de7cf" stop-opacity="0"/>
+      </radialGradient>
 
-              <path id="orbBluePathA"
-                d="M31 110 C54 54 126 54 149 110
-                   C126 166 54 166 31 110" />
+      <!-- Haupt-Acht -->
+      <path id="orbEightPathV40"
+        d="M90 110
+           C50 63 52 46 90 44
+           C128 46 130 63 90 110
+           C50 157 52 174 90 176
+           C128 174 130 157 90 110" />
 
-              <path id="orbBluePathB"
-                d="M90 51 C38 75 38 145 90 169
-                   C142 145 142 75 90 51" />
-            </defs>
+      <!-- Nebenverbindungen -->
+      <path id="orbBluePathAV40"
+        d="M34 110
+           C56 62 124 62 146 110
+           C124 158 56 158 34 110" />
 
-            <!-- feste gelbe Zuführungs-/Leitachsen -->
-            <line class="orb-axis orb-axis-vertical" x1="90" y1="0" x2="90" y2="220"></line>
-            <line class="orb-axis orb-axis-horizontal" x1="26" y1="110" x2="154" y2="110"></line>
+      <path id="orbBluePathBV40"
+        d="M90 54
+           C44 76 44 144 90 166
+           C136 144 136 76 90 54" />
 
-            <!-- Energiezufuhr von oben und unten in den Kern -->
-            <line class="orb-feed-stream orb-feed-top" x1="90" y1="0" x2="90" y2="110"></line>
-            <line class="orb-feed-stream orb-feed-bottom" x1="90" y1="220" x2="90" y2="110"></line>
+      <!-- Zuleitung oben / unten -->
+      <path id="orbFeedTopPathV40" d="M90 0 L90 110" />
+      <path id="orbFeedBottomPathV40" d="M90 220 L90 110" />
+    </defs>
 
-            <!-- feste orangene Hauptstruktur -->
-            <circle class="orb-ring orb-ring-outer" cx="90" cy="110" r="58"></circle>
-            <circle class="orb-ring orb-ring-inner" cx="90" cy="110" r="34"></circle>
+    <!-- mystischer Nebel -->
+    <ellipse class="orb-mist" cx="90" cy="110" rx="62" ry="46"></ellipse>
 
-            <!-- blaue Nebenverbindungen -->
-            <use href="#orbBluePathA" class="orb-blue-track"></use>
-            <use href="#orbBluePathB" class="orb-blue-track"></use>
-            <use href="#orbBluePathA" class="orb-blue-flow orb-blue-flow-a"></use>
-            <use href="#orbBluePathB" class="orb-blue-flow orb-blue-flow-b"></use>
+    <!-- feste Leitstruktur -->
+    <line class="orb-axis orb-axis-vertical" x1="90" y1="0" x2="90" y2="220"></line>
+    <line class="orb-axis orb-axis-horizontal" x1="28" y1="110" x2="152" y2="110"></line>
 
-            <!-- grüne Acht-Hauptbahn -->
-            <use href="#orbEightPath" class="orb-eight-track"></use>
-            <use href="#orbEightPath" class="orb-eight-flow orb-eight-flow-a"></use>
-            <use href="#orbEightPath" class="orb-eight-flow orb-eight-flow-b"></use>
+    <!-- feste Kreise -->
+    <circle class="orb-ring orb-ring-outer" cx="90" cy="110" r="59"></circle>
+    <circle class="orb-ring orb-ring-inner" cx="90" cy="110" r="36"></circle>
 
-            <!-- feste Knotenpunkte -->
-            <circle class="orb-node" cx="90" cy="40" r="2.2"></circle>
-            <circle class="orb-node" cx="90" cy="180" r="2.2"></circle>
-            <circle class="orb-node" cx="31" cy="110" r="2.2"></circle>
-            <circle class="orb-node" cx="149" cy="110" r="2.2"></circle>
+    <!-- statische Tracks -->
+    <use href="#orbBluePathAV40" class="orb-blue-track"></use>
+    <use href="#orbBluePathBV40" class="orb-blue-track"></use>
 
-            <!-- Kern -->
-            <circle class="orb-core-halo" cx="90" cy="110" r="22"></circle>
-            <circle class="orb-core-ring" cx="90" cy="110" r="12"></circle>
-            <circle class="orb-core" cx="90" cy="110" r="7.2"></circle>
-          </svg>
-        </div>
+    <use href="#orbEightPathV40" class="orb-eight-track"></use>
+
+    <!-- grüne Hauptbahn -->
+    <use href="#orbEightPathV40" class="orb-eight-flow orb-eight-flow-a"></use>
+    <use href="#orbEightPathV40" class="orb-eight-flow orb-eight-flow-b"></use>
+
+    <!-- blaue Nebenbahnen -->
+    <use href="#orbBluePathAV40" class="orb-blue-flow orb-blue-flow-a"></use>
+    <use href="#orbBluePathBV40" class="orb-blue-flow orb-blue-flow-b"></use>
+
+    <!-- Energiezufuhr nach innen -->
+    <line class="orb-feed-line" x1="90" y1="0" x2="90" y2="110"></line>
+    <line class="orb-feed-line" x1="90" y1="220" x2="90" y2="110"></line>
+
+    <!-- wandernde Partikel von oben zum Kern -->
+    <circle class="orb-feed-particle orb-feed-particle-top" r="2.7">
+      <animateMotion dur="1.65s" repeatCount="indefinite" path="M90 0 L90 110"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="1.65s" repeatCount="indefinite"/>
+    </circle>
+    <circle class="orb-feed-particle orb-feed-particle-top" r="1.9">
+      <animateMotion dur="1.65s" begin="-0.82s" repeatCount="indefinite" path="M90 0 L90 110"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="1.65s" begin="-0.82s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- wandernde Partikel von unten zum Kern -->
+    <circle class="orb-feed-particle orb-feed-particle-bottom" r="2.7">
+      <animateMotion dur="1.65s" repeatCount="indefinite" path="M90 220 L90 110"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="1.65s" repeatCount="indefinite"/>
+    </circle>
+    <circle class="orb-feed-particle orb-feed-particle-bottom" r="1.9">
+      <animateMotion dur="1.65s" begin="-0.82s" repeatCount="indefinite" path="M90 220 L90 110"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="1.65s" begin="-0.82s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- grüne Energiepunkte auf der Hauptbahn -->
+    <circle class="orb-flow-particle orb-flow-particle-green" r="2.4">
+      <animateMotion dur="3.2s" repeatCount="indefinite" path="M90 110 C50 63 52 46 90 44 C128 46 130 63 90 110 C50 157 52 174 90 176 C128 174 130 157 90 110"/>
+    </circle>
+    <circle class="orb-flow-particle orb-flow-particle-green" r="1.8">
+      <animateMotion dur="3.2s" begin="-1.6s" repeatCount="indefinite" path="M90 110 C50 63 52 46 90 44 C128 46 130 63 90 110 C50 157 52 174 90 176 C128 174 130 157 90 110"/>
+    </circle>
+
+    <!-- blaue Energiepunkte auf Nebenbahnen -->
+    <circle class="orb-flow-particle orb-flow-particle-blue" r="1.8">
+      <animateMotion dur="4.6s" repeatCount="indefinite" path="M34 110 C56 62 124 62 146 110 C124 158 56 158 34 110"/>
+    </circle>
+    <circle class="orb-flow-particle orb-flow-particle-blue" r="1.5">
+      <animateMotion dur="4.2s" begin="-2.1s" repeatCount="indefinite" path="M90 54 C44 76 44 144 90 166 C136 144 136 76 90 54"/>
+    </circle>
+
+    <!-- feste Knoten -->
+    <circle class="orb-node" cx="90" cy="44" r="2.3"></circle>
+    <circle class="orb-node" cx="90" cy="176" r="2.3"></circle>
+    <circle class="orb-node" cx="34" cy="110" r="2.3"></circle>
+    <circle class="orb-node" cx="146" cy="110" r="2.3"></circle>
+
+    <!-- Kern -->
+    <circle class="orb-core-halo outer" cx="90" cy="110" r="28"></circle>
+    <circle class="orb-core-halo inner" cx="90" cy="110" r="18"></circle>
+    <circle class="orb-core-ring" cx="90" cy="110" r="13.5"></circle>
+    <circle class="orb-core-ring second" cx="90" cy="110" r="18"></circle>
+    <circle class="orb-core" cx="90" cy="110" r="10"></circle>
+  </svg>
+</div>
 
         <div class="runes left" aria-hidden="true"><div class="stream-wrap" id="runesLeft"></div></div>
         <div class="runes right" aria-hidden="true"><div class="stream-wrap" id="runesRight"></div></div>
