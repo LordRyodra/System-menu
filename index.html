@@ -512,76 +512,6 @@
         linear-gradient(180deg, transparent 47.5%, rgba(142,232,255,0.10) 47.7%, transparent 48%);
     }
 
-    .bottom-sigil {
-      position: absolute;
-      left: 50%;
-      bottom: 44px;
-      width: 540px;
-      height: 190px;
-      transform: translateX(-50%);
-      z-index: 8;
-      pointer-events: none;
-      opacity: 0.73;
-      mix-blend-mode: screen;
-    }
-    .bottom-sigil svg { width: 100%; height: 100%; overflow: visible; }
-    .sigil-circle, .sigil-line, .sigil-glyph {
-      fill: none;
-      stroke: rgba(142,232,255,0.58);
-      stroke-width: 1.1;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      vector-effect: non-scaling-stroke;
-    }
-    .sigil-faint { opacity: 0.34; }
-    .sigil-ring-1 { animation: rotateCW 25s linear infinite; transform-origin: 270px 110px; }
-    .sigil-ring-2 { animation: rotateCCW 18s linear infinite; transform-origin: 270px 110px; }
-    .sigil-ring-3 { animation: rotateCW 42s linear infinite; transform-origin: 270px 110px; }
-    .sigil-dash { stroke-dasharray: 8 13; animation: dashFlow 12s linear infinite; }
-
-    .ruins {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 260px;
-      z-index: 6;
-      pointer-events: none;
-      opacity: 0.94;
-      background:
-        linear-gradient(160deg, transparent 0 10%, rgba(0,0,0,0.82) 10.5% 18%, transparent 18.4%),
-        linear-gradient(206deg, transparent 0 12%, rgba(0,0,0,0.74) 12.5% 20%, transparent 20.4%),
-        linear-gradient(180deg, transparent 0, rgba(0,0,0,0.94) 78%);
-      clip-path: polygon(0 44%, 5% 56%, 10% 47%, 15% 39%, 22% 61%, 30% 44%, 39% 67%, 50% 49%, 61% 69%, 70% 45%, 78% 63%, 86% 39%, 94% 58%, 100% 46%, 100% 100%, 0 100%);
-    }
-    .ruins::before, .ruins::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      width: 260px;
-      height: 220px;
-      background: rgba(0,0,0,0.68);
-      clip-path: polygon(0 100%, 0 60%, 10% 52%, 20% 70%, 30% 40%, 42% 88%, 54% 32%, 64% 70%, 75% 54%, 100% 100%);
-    }
-    .ruins::before { left: 0; }
-    .ruins::after { right: 0; transform: scaleX(-1); }
-
-    .bottom-ruins-asset {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-  transform: translateX(-50%);
-  z-index: 6;
-  pointer-events: none;
-  opacity: 0.92;
-  filter:
-    brightness(0.75)
-    contrast(1.2)
-    drop-shadow(0 0 18px rgba(0,0,0,0.8));
-}
-
     .debris {
       position: absolute;
       inset: 0;
@@ -598,20 +528,23 @@
 
 
     
-    /* --- clean v30: konsolidierte finale Overrides --- */
+    
+    /* --- FINAL CLEAN: Hauptmenü konsolidiert --- */
     :root {
       --axis-x: 50%;
-      --bottom-sigil-offset: -78px;
+      --bottom-ruins-x: -13px;
+      --back-ruins-x: 0px;
     }
 
+    /* Assets / Tiefe */
     .back-ruins-asset {
       position: absolute;
-      left: 50%;
+      left: calc(50% + var(--back-ruins-x)) !important;
       bottom: 78px;
       width: 150%;
       max-width: none;
       height: auto;
-      transform: translateX(-50%);
+      transform: translateX(-50%) !important;
       z-index: 4;
       pointer-events: none;
       opacity: 0.42;
@@ -649,12 +582,12 @@
 
     .bottom-ruins-asset {
       position: absolute;
-      left: 50%;
+      left: calc(50% + var(--bottom-ruins-x)) !important;
       bottom: -46px;
       width: 158%;
       max-width: none;
       height: auto;
-      transform: translateX(-50%);
+      transform: translateX(-50%) !important;
       z-index: 6;
       pointer-events: none;
       opacity: 0.98;
@@ -672,41 +605,21 @@
       animation: foregroundRuinsBreath 10s ease-in-out infinite;
     }
 
-    .ground-portal {
-      left: var(--axis-x) !important;
-      transform: translateX(-50%) !important;
-      z-index: 9;
-      bottom: 28px;
-      opacity: 0.60;
-      animation:
-        portalBreath 5.8s ease-in-out infinite,
-        portalWake 13s ease-in-out infinite;
+    .ruins,
+    .ruins::before,
+    .ruins::after {
+      display: none !important;
     }
 
-    .bottom-sigil {
-      left: calc(var(--axis-x) + var(--bottom-sigil-offset)) !important;
-      transform: translateX(-50%) scale(0.92) !important;
-      transform-origin: center bottom !important;
-      z-index: 10;
-      bottom: 20px;
-      opacity: 0.44;
-      animation:
-        sigilTurn 44s linear infinite,
-        sigilGlow 7s ease-in-out infinite;
-    }
-
+    /* Achse / zentrale HUD-Elemente */
     .spine {
       left: var(--axis-x) !important;
       transform: translateX(-50%) !important;
       animation: spinePulse 5.5s ease-in-out infinite !important;
     }
 
-    .top-node,
-    .woven {
-      left: var(--axis-x) !important;
-    }
-
     .top-node {
+      left: var(--axis-x) !important;
       transform: translate(-50%, -50%) !important;
     }
 
@@ -723,22 +636,17 @@
     .top-node .r2 { animation-duration: 7.8s; }
     .top-node .r3 { animation-duration: 11s; }
 
-    .woven {
-      transform: translateX(-50%) !important;
-      opacity: 0.50;
-      animation: wovenDrift 8s ease-in-out infinite;
-    }
-
-    .woven path {
-      stroke-dasharray: 15 18;
-      animation: weaveFlow 8s linear infinite;
-    }
-
     .divider span {
       left: 50% !important;
       transform: translate(-50%, -50%) rotate(45deg) !important;
     }
 
+    /* Das alte Woven/Stern-Gebilde ist bewusst komplett entfernt/unsichtbar. */
+    .woven {
+      display: none !important;
+    }
+
+    /* Atmosphärische Animation-Layer */
     .ether-pulse,
     .scan-veil,
     .constellation-glints {
@@ -816,8 +724,25 @@
       background: linear-gradient(180deg, transparent, rgba(226,252,255,0.55), transparent);
     }
 
+    /* Rahmen */
     .frame {
+      inset: 0 !important;
+      border-color: rgba(142,232,255,0.22) !important;
       animation: frameBreath 8.5s ease-in-out infinite;
+    }
+
+    .frame::before {
+      left: 26px !important;
+      top: 26px !important;
+    }
+
+    .frame::after {
+      right: 26px !important;
+      bottom: 26px !important;
+    }
+
+    .frame-extra {
+      inset: 34px !important;
     }
 
     .frame::before,
@@ -839,6 +764,18 @@
       animation: spineCoreTravel 5.8s ease-in-out infinite;
     }
 
+    /* Drache */
+    .dragon {
+      animation: dragonBreathe 9s ease-in-out infinite;
+    }
+
+    .dragon-eye-overlay {
+      animation:
+        dragonEyePulseAsset 3.2s ease-in-out infinite,
+        eyeWake 12s ease-in-out infinite;
+    }
+
+    /* Runen-Code */
     .runes {
       top: 348px !important;
       width: 54px !important;
@@ -895,16 +832,21 @@
     }
 
     .rune-row {
-      position: absolute;
-      left: 50%;
+      position: absolute !important;
+      top: 0 !important;
+      left: 50% !important;
       width: 100%;
       min-height: 12px;
+      height: 14px;
+      line-height: 12px !important;
       text-align: center;
       max-width: 46px;
       overflow: hidden;
       white-space: nowrap;
       opacity: var(--o, 0.42);
-      transform: translateX(calc(-50% + var(--x, 0px))) translateY(var(--y, 0px));
+      transform:
+        translateX(calc(-50% + var(--x, 0px)))
+        translateY(var(--y, 0px)) !important;
       color: rgba(165, 236, 255, 0.46);
       filter:
         drop-shadow(0 0 4px rgba(142,232,255,0.08))
@@ -934,8 +876,10 @@
       opacity: 0 !important;
       color: transparent !important;
       filter: none !important;
+      pointer-events: none !important;
     }
 
+    /* Menü / Icons */
     .menu-grid {
       top: 785px;
       width: 840px;
@@ -1107,533 +1051,11 @@
         0 0 14px rgba(229,216,178,0.08);
     }
 
-    .dragon {
-      animation: dragonBreathe 9s ease-in-out infinite;
-    }
-
-    .dragon-eye-overlay {
-      animation:
-        dragonEyePulseAsset 3.2s ease-in-out infinite,
-        eyeWake 12s ease-in-out infinite;
-    }
-
     .debris {
       animation: debrisFloat 18s ease-in-out infinite;
     }
 
-    @keyframes rearRuinsDrift {
-      0%, 100% {
-        opacity: 0.34;
-        transform: translateX(-50%) translateY(0px) scale(1);
-      }
-      50% {
-        opacity: 0.48;
-        transform: translateX(-50%) translateY(-8px) scale(1.012);
-      }
-    }
-
-    @keyframes foregroundRuinsBreath {
-      0%, 100% {
-        opacity: 0.96;
-        filter:
-          brightness(0.52)
-          contrast(1.48)
-          saturate(0.95)
-          drop-shadow(0 0 24px rgba(0,0,0,0.92))
-          drop-shadow(0 -10px 22px rgba(75,190,225,0.10));
-      }
-      50% {
-        opacity: 1;
-        filter:
-          brightness(0.58)
-          contrast(1.52)
-          saturate(1)
-          drop-shadow(0 0 25px rgba(0,0,0,0.92))
-          drop-shadow(0 -13px 30px rgba(75,190,225,0.16));
-      }
-    }
-
-    @keyframes etherPulse {
-      0%, 100% { opacity: 0.40; transform: scale(1); }
-      50% { opacity: 0.72; transform: scale(1.035); }
-    }
-
-    @keyframes systemScan {
-      0%, 58% { transform: translateY(-115%); opacity: 0; }
-      66% { opacity: 0.22; }
-      78% { opacity: 0.12; }
-      100% { transform: translateY(115%); opacity: 0; }
-    }
-
-    @keyframes glint {
-      0%, 72%, 100% { opacity: 0; transform: scale(0.45) rotate(0deg); }
-      78% { opacity: 0.75; }
-      84% { opacity: 0.28; transform: scale(1.25) rotate(45deg); }
-      90% { opacity: 0.55; }
-    }
-
-    @keyframes frameBreath {
-      0%, 100% {
-        border-color: rgba(142,232,255,0.18);
-        box-shadow: inset 0 0 28px rgba(142,232,255,0.020);
-      }
-      50% {
-        border-color: rgba(142,232,255,0.28);
-        box-shadow: inset 0 0 42px rgba(142,232,255,0.050);
-      }
-    }
-
-    @keyframes cornerPulse {
-      0%, 100% {
-        opacity: 0.72;
-        filter: drop-shadow(0 0 6px rgba(142,232,255,0.14));
-      }
-      50% {
-        opacity: 1;
-        filter: drop-shadow(0 0 12px rgba(142,232,255,0.28));
-      }
-    }
-
-    @keyframes arcfieldBreath {
-      0%, 100% { opacity: 0.88; filter: drop-shadow(0 0 0 rgba(142,232,255,0)); }
-      50% { opacity: 1; filter: drop-shadow(0 0 10px rgba(142,232,255,0.055)); }
-    }
-
-    @keyframes spineMicroShift {
-      0%, 100% { transform: translateX(-50%); }
-      50% { transform: translateX(-50%); }
-    }
-
-    @keyframes spineCoreTravel {
-      0%, 100% { transform: translateY(-100%); opacity: 0; }
-      18% { opacity: 0.40; }
-      52% { opacity: 0.78; }
-      82% { opacity: 0.18; }
-      100% { transform: translateY(100%); }
-    }
-
-    @keyframes orbPulse {
-      0%, 100% {
-        transform: translate(-50%, -50%) scale(0.86);
-        opacity: 0.78;
-        box-shadow:
-          0 0 9px rgba(230,252,255,0.66),
-          0 0 26px rgba(142,232,255,0.38),
-          0 0 56px rgba(142,232,255,0.16);
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1.08);
-        opacity: 1;
-        box-shadow:
-          0 0 14px rgba(255,255,255,0.88),
-          0 0 38px rgba(142,232,255,0.60),
-          0 0 82px rgba(142,232,255,0.24);
-      }
-    }
-
-    @keyframes orbColorShift {
-      0%, 100% { filter: hue-rotate(0deg); }
-      50% { filter: hue-rotate(10deg); }
-    }
-
-    @keyframes wovenDrift {
-      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.34; }
-      50% { transform: translateX(-50%) translateY(8px); opacity: 0.58; }
-    }
-
-    @keyframes weaveFlow {
-      from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -66; }
-    }
-
-    @keyframes portalWake {
-      0%, 82%, 100% { transform: translateX(-50%) scale(1); }
-      90% { transform: translateX(-50%) scale(1.035); }
-    }
-
-    @keyframes sigilTurn {
-      from { rotate: 0deg; }
-      to { rotate: 360deg; }
-    }
-
-    @keyframes sigilGlow {
-      0%, 100% {
-        opacity: 0.32;
-        filter: drop-shadow(0 0 8px rgba(142,232,255,0.16));
-      }
-      50% {
-        opacity: 0.54;
-        filter: drop-shadow(0 0 18px rgba(142,232,255,0.28));
-      }
-    }
-
-    @keyframes debrisFloat {
-      0%, 100% { transform: translateY(0); opacity: 0.14; }
-      50% { transform: translateY(-10px); opacity: 0.23; }
-    }
-
-    @keyframes menuScanLine {
-      0% { transform: translateY(0); opacity: 0; }
-      20% { opacity: 0.72; }
-      100% { transform: translateY(116px); opacity: 0; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-  
-    /* --- clean v31: Rahmen, Ruinen, Ritualkreis und fehlende Animationen repariert --- */
-
-    :root {
-      --axis-x: 50%;
-      /*
-        Nur das SVG-Ritual-Sigil. Der CSS-Leuchtkreis bleibt mittig.
-        Mehr Minus = weiter nach links.
-      */
-      --bottom-sigil-offset: -78px;
-    }
-
-    /*
-      1) Scan-Rand / Außenframe wieder bis zum ganzen Bild ziehen.
-      Die inneren Ecken bleiben sichtbar, aber der Rand füllt die Fläche besser.
-    */
-    .frame {
-      inset: 0 !important;
-      border-color: rgba(142,232,255,0.22) !important;
-      animation: frameBreath 8.5s ease-in-out infinite;
-    }
-
-    .frame::before {
-      left: 26px !important;
-      top: 26px !important;
-    }
-
-    .frame::after {
-      right: 26px !important;
-      bottom: 26px !important;
-    }
-
-    .frame-extra {
-      inset: 34px !important;
-    }
-
-    .frame::before,
-    .frame::after,
-    .frame-extra::before,
-    .frame-extra::after {
-      animation: cornerPulse 6.4s ease-in-out infinite;
-    }
-
-    /*
-      2) Alten CSS-Berg/Hintergrund komplett entfernen.
-      Der untere Bereich soll nur noch von den Asset-Layern kommen.
-    */
-    .ruins,
-    .ruins::before,
-    .ruins::after {
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-    }
-
-    /*
-      3) Das unpassende vertikale Woven/Stern-Gebilde entfernen.
-      Das war der rot markierte Bereich rechts unten.
-    */
-    .woven {
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      animation: none !important;
-    }
-
-    /*
-      4) Ritualkreis unten reparieren:
-      - CSS-Leuchtkreis bleibt exakt mittig
-      - SVG-Sigil wird NICHT mehr als ganzes Element gedreht
-      - nur die inneren SVG-Ringe rotieren
-    */
-    .ground-portal {
-      left: var(--axis-x) !important;
-      bottom: 30px !important;
-      transform: translateX(-50%) !important;
-      z-index: 11 !important;
-      opacity: 0.64 !important;
-      animation:
-        portalBreath 5.8s ease-in-out infinite,
-        portalWake 13s ease-in-out infinite;
-    }
-
-    .bottom-sigil {
-      left: calc(var(--axis-x) + var(--bottom-sigil-offset)) !important;
-      bottom: 12px !important;
-      width: 560px !important;
-      height: 198px !important;
-      transform: translateX(-50%) scale(0.92) !important;
-      transform-origin: center center !important;
-      z-index: 12 !important;
-      opacity: 0.62 !important;
-      animation: sigilGlow 7s ease-in-out infinite !important;
-      mix-blend-mode: screen;
-    }
-
-    .bottom-sigil svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-
-    .sigil-ring-1 {
-      animation: rotateCW 25s linear infinite !important;
-      transform-origin: 270px 110px !important;
-    }
-
-    .sigil-ring-2 {
-      animation: rotateCCW 18s linear infinite !important;
-      transform-origin: 270px 110px !important;
-    }
-
-    .sigil-ring-3 {
-      animation: rotateCW 42s linear infinite !important;
-      transform-origin: 270px 110px !important;
-    }
-
-    .sigil-dash {
-      stroke-dasharray: 8 13;
-      animation: dashFlow 12s linear infinite !important;
-    }
-
-    /*
-      5) Runen: sauber übereinander vermeiden.
-      Sie bleiben geordnet, aber jede Zeile hat eine eigene absolute Y-Position.
-    */
-    .rune-row {
-      top: 0 !important;
-      left: 50% !important;
-      position: absolute !important;
-      line-height: 12px !important;
-      height: 14px;
-      transform:
-        translateX(calc(-50% + var(--x, 0px)))
-        translateY(var(--y, 0px)) !important;
-    }
-
-    .rune-gap {
-      opacity: 0 !important;
-      pointer-events: none !important;
-    }
-
-    /*
-      6) Fehlende Animationen wiederherstellen.
-      Beim Bereinigen waren die Keyframes für Kreise, Auge, Nebel usw. versehentlich rausgefallen.
-    */
-    @keyframes rotateCW {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes rotateCCW {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(-360deg); }
-    }
-
-    @keyframes dashFlow {
-      from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -160; }
-    }
-
-    @keyframes tickPulse {
-      0%, 100% { opacity: 0.45; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes starDrift {
-      from { background-position: 0 0, 33px 26px; }
-      to { background-position: 48px 48px, 146px 139px; }
-    }
-
-    @keyframes nebulaBreathe {
-      0%, 100% {
-        opacity: 0.18;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.30;
-        transform: scale(1.04);
-      }
-    }
-
-    @keyframes slowMist {
-      0%, 100% {
-        transform: translateX(-120%);
-        opacity: 0;
-      }
-      42% {
-        opacity: 0.18;
-      }
-      70% {
-        transform: translateX(120%);
-        opacity: 0;
-      }
-    }
-
-    @keyframes dragonBreathe {
-      0%, 100% {
-        opacity: 0.46;
-        filter:
-          brightness(0.66)
-          contrast(1.36)
-          saturate(0.88)
-          drop-shadow(0 0 12px rgba(142,232,255,0.055))
-          drop-shadow(0 0 54px rgba(0,0,0,0.88));
-      }
-      50% {
-        opacity: 0.58;
-        filter:
-          brightness(0.78)
-          contrast(1.42)
-          saturate(0.96)
-          drop-shadow(0 0 18px rgba(142,232,255,0.10))
-          drop-shadow(0 0 62px rgba(0,0,0,0.88));
-      }
-    }
-
-    @keyframes dragonEyePulseAsset {
-      0%, 100% {
-        opacity: 0.60;
-        filter:
-          brightness(0.90)
-          saturate(1.05)
-          drop-shadow(0 0 5px rgba(142,232,255,0.30));
-      }
-      50% {
-        opacity: 1;
-        filter:
-          brightness(1.35)
-          saturate(1.28)
-          drop-shadow(0 0 9px rgba(142,232,255,0.66))
-          drop-shadow(0 0 20px rgba(142,232,255,0.28));
-      }
-    }
-
-    @keyframes eyeWake {
-      0%, 82%, 100% {
-        transform: translate(-50%, -50%) rotate(-9deg) scale(1);
-      }
-      88% {
-        transform: translate(-50%, -50%) rotate(-9deg) scale(1.13);
-      }
-      91% {
-        transform: translate(-50%, -50%) rotate(-9deg) scale(0.94);
-      }
-      95% {
-        transform: translate(-50%, -50%) rotate(-9deg) scale(1.04);
-      }
-    }
-
-    @keyframes portalBreath {
-      0%, 100% {
-        opacity: 0.44;
-        filter: drop-shadow(0 0 10px rgba(142,232,255,0.12));
-      }
-      50% {
-        opacity: 0.70;
-        filter: drop-shadow(0 0 24px rgba(142,232,255,0.28));
-      }
-    }
-
-    @keyframes portalWake {
-      0%, 82%, 100% {
-        transform: translateX(-50%) scale(1);
-      }
-      90% {
-        transform: translateX(-50%) scale(1.035);
-      }
-    }
-
-    @keyframes sigilGlow {
-      0%, 100% {
-        opacity: 0.48;
-        filter: drop-shadow(0 0 8px rgba(142,232,255,0.16));
-      }
-      50% {
-        opacity: 0.70;
-        filter: drop-shadow(0 0 20px rgba(142,232,255,0.30));
-      }
-    }
-
-    @keyframes foregroundRuinsBreath {
-      0%, 100% {
-        opacity: 0.96;
-        filter:
-          brightness(0.52)
-          contrast(1.48)
-          saturate(0.95)
-          drop-shadow(0 0 24px rgba(0,0,0,0.92))
-          drop-shadow(0 -10px 22px rgba(75,190,225,0.10));
-      }
-      50% {
-        opacity: 1;
-        filter:
-          brightness(0.58)
-          contrast(1.52)
-          saturate(1)
-          drop-shadow(0 0 25px rgba(0,0,0,0.92))
-          drop-shadow(0 -13px 30px rgba(75,190,225,0.16));
-      }
-    }
-
-    @keyframes rearRuinsDrift {
-      0%, 100% {
-        opacity: 0.34;
-        transform: translateX(-50%) translateY(0px) scale(1);
-      }
-      50% {
-        opacity: 0.48;
-        transform: translateX(-50%) translateY(-8px) scale(1.012);
-      }
-    }
-
-  
-    /* --- clean v32: Ritualkreis komplett neu animiert --- */
-
-    /*
-      Das alte SVG-Sigil unten bleibt im Code, wird aber als dezente Textur ausgeschaltet.
-      Die eigentliche Animation kommt jetzt über .ritual-system.
-    */
-    .bottom-sigil {
-      display: none !important;
-      opacity: 0 !important;
-      animation: none !important;
-    }
-
-    .ground-portal {
-      left: var(--axis-x) !important;
-      bottom: 30px !important;
-      width: 610px !important;
-      height: 155px !important;
-      transform: translateX(-50%) !important;
-      z-index: 11 !important;
-      opacity: 0.42 !important;
-      background:
-        radial-gradient(ellipse at 50% 50%, rgba(222,255,255,0.30), rgba(142,232,255,0.14) 9%, transparent 18%),
-        repeating-radial-gradient(ellipse at 50% 50%,
-          rgba(142,232,255,0.20) 0 1px,
-          transparent 2px 24px);
-      filter:
-        drop-shadow(0 0 12px rgba(142,232,255,0.14))
-        drop-shadow(0 0 30px rgba(142,232,255,0.08));
-      mix-blend-mode: screen;
-      animation: portalBaseBreath 6.2s ease-in-out infinite !important;
-    }
-
+    /* Neuer Ritualkreis ohne top-left Nebenprodukt */
     .ritual-system {
       position: absolute;
       left: var(--axis-x);
@@ -1729,13 +1151,11 @@
       opacity: 0.82;
     }
 
-    .ritual-ring-a::before { animation: ritualRotateCW 38s linear infinite; }
+    .ritual-ring-a::before,
     .ritual-ring-a::after { animation: ritualRotateCW 38s linear infinite; }
-
-    .ritual-ring-b::before { animation: ritualRotateCCW 24s linear infinite; }
+    .ritual-ring-b::before,
     .ritual-ring-b::after { animation: ritualRotateCCW 24s linear infinite; }
-
-    .ritual-ring-c::before { animation: ritualRotateCW 14s linear infinite; }
+    .ritual-ring-c::before,
     .ritual-ring-c::after { animation: ritualRotateCW 14s linear infinite; }
 
     .ritual-diamond {
@@ -1750,9 +1170,7 @@
       filter: drop-shadow(0 0 7px rgba(142,232,255,0.12));
     }
 
-    .ritual-diamond-a {
-      animation: ritualDiamondA 16s ease-in-out infinite;
-    }
+    .ritual-diamond-a { animation: ritualDiamondA 16s ease-in-out infinite; }
 
     .ritual-diamond-b {
       width: 72px;
@@ -1798,19 +1216,221 @@
       animation: ritualBeamPulse 6.5s ease-in-out infinite;
     }
 
-    @keyframes portalBaseBreath {
+    /* Keyframes */
+    @keyframes starDrift {
+      from { background-position: 0 0, 33px 26px; }
+      to { background-position: 48px 48px, 146px 139px; }
+    }
+
+    @keyframes nebulaBreathe {
+      0%, 100% { opacity: 0.18; transform: scale(1); }
+      50% { opacity: 0.30; transform: scale(1.04); }
+    }
+
+    @keyframes slowMist {
+      0%, 100% { transform: translateX(-120%); opacity: 0; }
+      42% { opacity: 0.18; }
+      70% { transform: translateX(120%); opacity: 0; }
+    }
+
+    @keyframes rotateCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes rotateCCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes dashFlow {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -160; }
+    }
+
+    @keyframes tickPulse {
+      0%, 100% { opacity: 0.45; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes rearRuinsDrift {
       0%, 100% {
-        opacity: 0.32;
-        filter:
-          drop-shadow(0 0 10px rgba(142,232,255,0.11))
-          drop-shadow(0 0 26px rgba(142,232,255,0.06));
+        opacity: 0.34;
+        transform: translateX(-50%) translateY(0px) scale(1);
       }
       50% {
-        opacity: 0.52;
-        filter:
-          drop-shadow(0 0 17px rgba(142,232,255,0.22))
-          drop-shadow(0 0 38px rgba(142,232,255,0.12));
+        opacity: 0.48;
+        transform: translateX(-50%) translateY(-8px) scale(1.012);
       }
+    }
+
+    @keyframes foregroundRuinsBreath {
+      0%, 100% {
+        opacity: 0.96;
+        filter:
+          brightness(0.52)
+          contrast(1.48)
+          saturate(0.95)
+          drop-shadow(0 0 24px rgba(0,0,0,0.92))
+          drop-shadow(0 -10px 22px rgba(75,190,225,0.10));
+      }
+      50% {
+        opacity: 1;
+        filter:
+          brightness(0.58)
+          contrast(1.52)
+          saturate(1)
+          drop-shadow(0 0 25px rgba(0,0,0,0.92))
+          drop-shadow(0 -13px 30px rgba(75,190,225,0.16));
+      }
+    }
+
+    @keyframes etherPulse {
+      0%, 100% { opacity: 0.40; transform: scale(1); }
+      50% { opacity: 0.72; transform: scale(1.035); }
+    }
+
+    @keyframes systemScan {
+      0%, 58% { transform: translateY(-115%); opacity: 0; }
+      66% { opacity: 0.22; }
+      78% { opacity: 0.12; }
+      100% { transform: translateY(115%); opacity: 0; }
+    }
+
+    @keyframes glint {
+      0%, 72%, 100% { opacity: 0; transform: scale(0.45) rotate(0deg); }
+      78% { opacity: 0.75; }
+      84% { opacity: 0.28; transform: scale(1.25) rotate(45deg); }
+      90% { opacity: 0.55; }
+    }
+
+    @keyframes frameBreath {
+      0%, 100% {
+        border-color: rgba(142,232,255,0.18);
+        box-shadow: inset 0 0 28px rgba(142,232,255,0.020);
+      }
+      50% {
+        border-color: rgba(142,232,255,0.28);
+        box-shadow: inset 0 0 42px rgba(142,232,255,0.050);
+      }
+    }
+
+    @keyframes cornerPulse {
+      0%, 100% {
+        opacity: 0.72;
+        filter: drop-shadow(0 0 6px rgba(142,232,255,0.14));
+      }
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 12px rgba(142,232,255,0.28));
+      }
+    }
+
+    @keyframes arcfieldBreath {
+      0%, 100% { opacity: 0.88; filter: drop-shadow(0 0 0 rgba(142,232,255,0)); }
+      50% { opacity: 1; filter: drop-shadow(0 0 10px rgba(142,232,255,0.055)); }
+    }
+
+    @keyframes spinePulse {
+      0%, 100% { opacity: 0.62; filter: drop-shadow(0 0 4px rgba(142,232,255,0.14)); }
+      50% { opacity: 0.88; filter: drop-shadow(0 0 13px rgba(142,232,255,0.28)); }
+    }
+
+    @keyframes spineCoreTravel {
+      0%, 100% { transform: translateY(-100%); opacity: 0; }
+      18% { opacity: 0.40; }
+      52% { opacity: 0.78; }
+      82% { opacity: 0.18; }
+      100% { transform: translateY(100%); }
+    }
+
+    @keyframes orbPulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(0.86);
+        opacity: 0.78;
+        box-shadow:
+          0 0 9px rgba(230,252,255,0.66),
+          0 0 26px rgba(142,232,255,0.38),
+          0 0 56px rgba(142,232,255,0.16);
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.08);
+        opacity: 1;
+        box-shadow:
+          0 0 14px rgba(255,255,255,0.88),
+          0 0 38px rgba(142,232,255,0.60),
+          0 0 82px rgba(142,232,255,0.24);
+      }
+    }
+
+    @keyframes orbColorShift {
+      0%, 100% { filter: hue-rotate(0deg); }
+      50% { filter: hue-rotate(10deg); }
+    }
+
+    @keyframes dragonBreathe {
+      0%, 100% {
+        opacity: 0.46;
+        filter:
+          brightness(0.66)
+          contrast(1.36)
+          saturate(0.88)
+          drop-shadow(0 0 12px rgba(142,232,255,0.055))
+          drop-shadow(0 0 54px rgba(0,0,0,0.88));
+      }
+      50% {
+        opacity: 0.58;
+        filter:
+          brightness(0.78)
+          contrast(1.42)
+          saturate(0.96)
+          drop-shadow(0 0 18px rgba(142,232,255,0.10))
+          drop-shadow(0 0 62px rgba(0,0,0,0.88));
+      }
+    }
+
+    @keyframes dragonEyePulseAsset {
+      0%, 100% {
+        opacity: 0.60;
+        filter:
+          brightness(0.90)
+          saturate(1.05)
+          drop-shadow(0 0 5px rgba(142,232,255,0.30));
+      }
+      50% {
+        opacity: 1;
+        filter:
+          brightness(1.35)
+          saturate(1.28)
+          drop-shadow(0 0 9px rgba(142,232,255,0.66))
+          drop-shadow(0 0 20px rgba(142,232,255,0.28));
+      }
+    }
+
+    @keyframes eyeWake {
+      0%, 82%, 100% {
+        transform: translate(-50%, -50%) rotate(-9deg) scale(1);
+      }
+      88% {
+        transform: translate(-50%, -50%) rotate(-9deg) scale(1.13);
+      }
+      91% {
+        transform: translate(-50%, -50%) rotate(-9deg) scale(0.94);
+      }
+      95% {
+        transform: translate(-50%, -50%) rotate(-9deg) scale(1.04);
+      }
+    }
+
+    @keyframes debrisFloat {
+      0%, 100% { transform: translateY(0); opacity: 0.14; }
+      50% { transform: translateY(-10px); opacity: 0.23; }
+    }
+
+    @keyframes menuScanLine {
+      0% { transform: translateY(0); opacity: 0; }
+      20% { opacity: 0.72; }
+      100% { transform: translateY(116px); opacity: 0; }
     }
 
     @keyframes ritualGlowPulse {
@@ -1886,23 +1506,14 @@
       }
     }
 
-
-    /* --- v33 fix: top-left orbit mask + controllable ruins offsets --- */
-    :root {
-      --bottom-ruins-x: -13px;
-      --back-ruins-x: 0px;
-    }
-   
-
-    /* Ruinen-Assets jetzt über klare Offsets steuerbar */
-    .bottom-ruins-asset {
-      left: calc(50% + var(--bottom-ruins-x)) !important;
-      transform: translateX(-50%) !important;
-    }
-
-    .back-ruins-asset {
-      left: calc(50% + var(--back-ruins-x)) !important;
-      transform: translateX(-50%) !important;
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
     }
 
   </style>
@@ -2139,10 +1750,7 @@
             <span class="menu-underline"></span>
           </a>
         </nav>
-
-        <div class="ground-portal" aria-hidden="true"></div>
-
-        <div class="ritual-system" aria-hidden="true">
+<div class="ritual-system" aria-hidden="true">
           <div class="ritual-glow"></div>
           <div class="ritual-ring ritual-ring-a"></div>
           <div class="ritual-ring ritual-ring-b"></div>
@@ -2152,29 +1760,7 @@
           <div class="ritual-core"></div>
           <div class="ritual-beam"></div>
         </div>
-        
-        <div class="bottom-sigil" aria-hidden="true">
-          <svg viewBox="0 0 540 190">
-            <g class="sigil-ring-1">
-              <ellipse class="sigil-circle" cx="270" cy="110" rx="204" ry="49"/>
-              <ellipse class="sigil-circle sigil-faint" cx="270" cy="110" rx="150" ry="34"/>
-              <ellipse class="sigil-circle sigil-faint" cx="270" cy="110" rx="82" ry="19"/>
-            </g>
-            <g class="sigil-ring-2">
-              <circle class="sigil-circle sigil-dash" cx="270" cy="110" r="72"/>
-              <path class="sigil-glyph" d="M270 33l11 27 29 2-22 20 7 29-25-16-25 16 7-29-22-20 29-2Z"/>
-            </g>
-            <g class="sigil-ring-3">
-              <path class="sigil-line sigil-dash" d="M62 110h416"/>
-              <path class="sigil-line" d="M270 10v170"/>
-              <path class="sigil-line sigil-faint" d="M112 78Q270 28 428 78Q270 130 112 78Z"/>
-              <path class="sigil-line sigil-faint" d="M112 142Q270 88 428 142Q270 181 112 142Z"/>
-            </g>
-          </svg>
-        </div>
-
-        <div class="ruins" aria-hidden="true"></div>
-        <div class="debris" aria-hidden="true"></div>
+<div class="debris" aria-hidden="true"></div>
 
         <div class="frame" aria-hidden="true"></div>
         <div class="frame-extra" aria-hidden="true"></div>
