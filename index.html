@@ -1633,7 +1633,7 @@
         0px = exakt geometrische Mitte.
         Positive Werte schieben Linie + alle Achsenobjekte nach rechts.
       */
-      --axis-shift: 16px;
+      --axis-shift: 0px;
       --axis-x: calc(50% + var(--axis-shift));
     }
 
@@ -1789,6 +1789,119 @@
       filter:
         drop-shadow(0 0 9px rgba(142,232,255,0.22))
         drop-shadow(0 0 16px rgba(229,216,178,0.08));
+    }
+
+  
+    /* --- v25: echte Mittelachse + alle Zentralobjekte daran ausrichten --- */
+    :root {
+      --axis-shift: 0px !important;
+      --axis-x: calc(50% + var(--axis-shift)) !important;
+    }
+
+    .spine {
+      left: var(--axis-x) !important;
+      transform: translateX(-50%) !important;
+      animation: spinePulse 5.5s ease-in-out infinite !important;
+    }
+
+    .top-node,
+    .woven,
+    .ground-portal,
+    .bottom-sigil {
+      left: var(--axis-x) !important;
+    }
+
+    .top-node {
+      transform: translate(-50%, -50%) !important;
+    }
+
+    .woven {
+      transform: translateX(-50%) !important;
+    }
+
+    .ground-portal {
+      transform: translateX(-50%) !important;
+    }
+
+    .bottom-sigil {
+      transform: translateX(-50%) scale(0.92) !important;
+      transform-origin: center bottom !important;
+    }
+
+    .divider span {
+      left: 50% !important;
+      transform: translate(-50%, -50%) rotate(45deg) !important;
+    }
+
+    /* Keine seitliche Bewegung der eigentlichen Mittellinie mehr */
+    @keyframes spineMicroShift {
+      0%, 100% { transform: translateX(-50%); }
+      50% { transform: translateX(-50%); }
+    }
+
+    /*
+      Runen etwas kürzer und sauberer:
+      - enden nicht mehr so tief
+      - links/rechts verschieden
+      - größere Abstände gegen Überlagerung
+    */
+    .runes {
+      top: 345px !important;
+      width: 48px !important;
+      font-size: 12px !important;
+      line-height: 1 !important;
+    }
+
+    .runes.left {
+      left: 20px !important;
+      height: 560px !important;
+    }
+
+    .runes.right {
+      right: 18px !important;
+      height: 630px !important;
+    }
+
+    .runes .stream {
+      gap: 12px !important;
+      animation-duration: 30s !important;
+    }
+
+    .runes.right .stream {
+      gap: 13px !important;
+      animation-duration: 33s !important;
+    }
+
+    .rune-line {
+      max-width: 42px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    /* Portal-Wake und Woven-Drift dürfen nicht mehr seitlich verschieben */
+    @keyframes portalWake {
+      0%, 82%, 100% {
+        transform: translateX(-50%) scale(1);
+      }
+      90% {
+        transform: translateX(-50%) scale(1.035);
+      }
+    }
+
+    @keyframes wovenDrift {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0.34;
+      }
+      50% {
+        transform: translateX(-50%) translateY(8px);
+        opacity: 0.58;
+      }
+    }
+
+    @keyframes sigilTurn {
+      from { rotate: 0deg; }
+      to { rotate: 360deg; }
     }
 
   </style>
@@ -2132,8 +2245,8 @@
       a.addEventListener("animationiteration", () => fillRuneStream(a, pool, side, lines));
     }
 
-    initRuneColumn("runesLeft", glyphPoolLeft, "left", 62);
-    initRuneColumn("runesRight", glyphPoolRight, "right", 72);
+    initRuneColumn("runesLeft", glyphPoolLeft, "left", 54);
+    initRuneColumn("runesRight", glyphPoolRight, "right", 62);
   </script>
 </body>
 </html>
