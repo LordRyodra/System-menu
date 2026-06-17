@@ -1886,35 +1886,32 @@
       }
     }
 
-  
-    /* --- clean v33: Top-left Arc entfernt + Bottom-Assets manuell verschiebbar --- */
 
+    /* --- v33 fix: top-left orbit mask + controllable ruins offsets --- */
     :root {
-      /*
-        Manuelles Feintuning der unteren Ruinen-Assets.
-        Negative Werte = nach links, positive Werte = nach rechts.
-      */
-      --bottom-ruins-x: 0px;
+      --bottom-ruins-x: -18px;
       --back-ruins-x: 0px;
     }
 
-    /*
-      1) Den oben links störenden Kreis entfernen.
-      Das sind die äußersten HUD-Arcs aus arc-rot-a.
-      Die inneren Drachenkreise / Haupt-HUD-Kreise bleiben erhalten.
-    */
-    .arc-rot-a > circle:nth-of-type(1),
-    .arc-rot-a > circle:nth-of-type(2),
-    .arc-rot-a > path.arc.gold {
-      display: none !important;
-      opacity: 0 !important;
+    /* Das "Umlaufbahn"-Element oben links ist ein sichtbarer Ausschnitt
+       der großen arcfield-HUD-Kreise. Statt die Hauptkreise kaputt zu machen,
+       maskieren wir nur diesen Eckbereich sauber weg. */
+    .system::before {
+      content: "";
+      position: absolute;
+      left: 34px;
+      top: 26px;
+      width: 370px;
+      height: 155px;
+      pointer-events: none;
+      z-index: 18;
+      background:
+        radial-gradient(ellipse at 0% 0%, rgba(2,12,16,0.995) 0 42%, rgba(2,12,16,0.985) 58%, rgba(2,12,16,0.86) 76%, transparent 100%),
+        linear-gradient(to right, rgba(2,12,16,0.98) 0%, rgba(2,12,16,0.94) 68%, rgba(2,12,16,0.35) 88%, transparent 100%),
+        linear-gradient(to bottom, rgba(2,12,16,0.98) 0%, rgba(2,12,16,0.92) 68%, rgba(2,12,16,0.30) 88%, transparent 100%);
     }
 
-    /*
-      2) Untere Assets per Hand verschiebbar machen.
-      Wenn dir die Ruinen unten nicht mittig vorkommen:
-      oben bei --bottom-ruins-x oder --back-ruins-x ändern.
-    */
+    /* Ruinen-Assets jetzt über klare Offsets steuerbar */
     .bottom-ruins-asset {
       left: calc(50% + var(--bottom-ruins-x)) !important;
       transform: translateX(-50%) !important;
@@ -1922,17 +1919,7 @@
 
     .back-ruins-asset {
       left: calc(50% + var(--back-ruins-x)) !important;
-    }
-
-    @keyframes rearRuinsDrift {
-      0%, 100% {
-        opacity: 0.34;
-        transform: translateX(-50%) translateY(0px) scale(1);
-      }
-      50% {
-        opacity: 0.48;
-        transform: translateX(-50%) translateY(-8px) scale(1.012);
-      }
+      transform: translateX(-50%) !important;
     }
 
   </style>
