@@ -1143,6 +1143,93 @@
     }
 
 
+  
+
+    /* --- v18: icon reference pass + remove old separators --- */
+    .separators { display: none !important; opacity: 0 !important; visibility: hidden !important; }
+
+    .menu-grid {
+      top: 786px;
+      width: 840px;
+      gap: 44px 40px;
+    }
+
+    .menu-card {
+      min-height: 150px;
+      padding: 10px 4px 10px;
+    }
+
+    .menu-frame {
+      inset: -9px -13px;
+      opacity: 0.22;
+      background:
+        linear-gradient(to right, rgba(142,232,255,0.22) 0 24px, transparent 24px calc(100% - 24px), rgba(142,232,255,0.22) calc(100% - 24px) 100%) top left / 100% 1px no-repeat,
+        linear-gradient(to right, rgba(142,232,255,0.16) 0 12px, transparent 12px calc(100% - 12px), rgba(142,232,255,0.16) calc(100% - 12px) 100%) bottom left / 100% 1px no-repeat,
+        linear-gradient(to bottom, rgba(142,232,255,0.22) 0 24px, transparent 24px calc(100% - 24px), rgba(142,232,255,0.22) calc(100% - 24px) 100%) top left / 1px 100% no-repeat,
+        linear-gradient(to bottom, rgba(142,232,255,0.16) 0 12px, transparent 12px calc(100% - 12px), rgba(142,232,255,0.16) calc(100% - 12px) 100%) top right / 1px 100% no-repeat;
+    }
+
+    .menu-frame::before,
+    .menu-frame::after {
+      display: none;
+    }
+
+    .menu-card::after {
+      opacity: 0;
+      font-size: 8px;
+      letter-spacing: 0.20em;
+    }
+
+    .menu-icon {
+      width: 78px;
+      height: 78px;
+      margin-bottom: 15px;
+      color: rgba(232, 220, 188, 0.95);
+      filter:
+        drop-shadow(0 0 4px rgba(229,216,178,0.08))
+        drop-shadow(0 0 8px rgba(142,232,255,0.05));
+    }
+
+    .menu-icon svg {
+      stroke-width: 1.75;
+    }
+
+    .menu-icon svg .icon-soft {
+      opacity: 0.50;
+      stroke-width: 1.2;
+    }
+
+    .menu-icon svg .icon-faint {
+      opacity: 0.42;
+      stroke-width: 1.15;
+    }
+
+    .menu-icon svg .icon-accent {
+      opacity: 0.88;
+      stroke-width: 1.8;
+    }
+
+    .menu-icon svg .icon-node {
+      opacity: 0.92;
+      filter: drop-shadow(0 0 4px rgba(229,216,178,0.16));
+    }
+
+    .menu-label {
+      font-size: 16px;
+      letter-spacing: 0.185em;
+    }
+
+    .menu-underline {
+      width: 26px;
+      margin-top: 14px;
+      opacity: 0.82;
+    }
+
+    .menu-card:hover .menu-icon,
+    .menu-card:focus-visible .menu-icon {
+      transform: translateY(-4px) scale(1.03);
+    }
+
   </style>
 </head>
 
@@ -1280,20 +1367,18 @@
           <div class="divider"><span></span></div>
         </section>
 
-        <div class="separators" aria-hidden="true"></div>
-
+        
         <nav class="menu-grid" aria-label="Hauptmenü">
 
           <a class="menu-card" href="https://app.notion.com/p/____________________________________________________________________________________________________-37e07d209dc080ba87bee0fea4a68d2d?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Status öffnen" data-code="STAT">
             <span class="menu-frame" aria-hidden="true"></span>
             <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path class="icon-soft" d="M16 75h64"/>
-  <path d="M25 75V55h10v20"/>
-  <path d="M43 75V28h10v47"/>
-  <path d="M61 75V43h10v32"/>
-  <path class="icon-accent" d="M22 48l12-15 14 10 24-29"/>
-  <path class="icon-faint" d="M20 24h14M20 31h8M59 18h13"/>
-  <circle class="icon-node" cx="72" cy="14" r="2.5"/>
+  <path class="icon-soft" d="M18 76h60"/>
+  <path d="M26 76V54h9v22"/>
+  <path d="M43 76V24h10v52"/>
+  <path d="M61 76V42h10v34"/>
+  <path class="icon-accent" d="M22 49l12-14 13 9 25-27"/>
+  <circle class="icon-node" cx="72" cy="17" r="2.3"/>
 </svg></span>
             <span class="menu-label">Status</span>
             <span class="menu-underline"></span>
@@ -1302,12 +1387,15 @@
           <a class="menu-card" href="https://app.notion.com/p/Titel-37e07d209dc080298b35fe5a1ae29706?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Titel öffnen" data-code="TITL">
             <span class="menu-frame" aria-hidden="true"></span>
             <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path d="M26 19h44c-8 7-8 16 0 23H26c-8-7-8-16 0-23Z"/>
-  <path d="M26 42h44c-8 7-8 16 0 23H26c-8-7-8-16 0-23Z"/>
-  <path class="icon-accent" d="M26 19v46"/>
-  <path class="icon-faint" d="M36 29h23M36 52h23"/>
-  <path class="icon-soft" d="M22 20c-5 5-5 12 0 18M22 43c-5 5-5 12 0 18"/>
-  <circle class="icon-node" cx="72" cy="42" r="2"/>
+  <path class="icon-accent" d="M29 20h37c-6 4-9 8-9 14s3 10 9 14H29"/>
+  <path class="icon-accent" d="M29 48h37c-6 4-9 8-9 14s3 10 9 14H29"/>
+  <path d="M29 20c-8 5-8 23 0 28"/>
+  <path d="M29 48c-8 5-8 23 0 28"/>
+  <path class="icon-soft" d="M66 20c7 5 7 23 0 28"/>
+  <path class="icon-soft" d="M66 48c7 5 7 23 0 28"/>
+  <path class="icon-faint" d="M38 34h18M38 62h18"/>
+  <circle class="icon-node" cx="24" cy="34" r="2.1"/>
+  <circle class="icon-node" cx="71" cy="62" r="2.1"/>
 </svg></span>
             <span class="menu-label">Titel</span>
             <span class="menu-underline"></span>
@@ -1316,13 +1404,19 @@
           <a class="menu-card" href="https://app.notion.com/p/Resonanzen-37e07d209dc0806aa6eaed32feba1134?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Resonanzen öffnen" data-code="REZN">
             <span class="menu-frame" aria-hidden="true"></span>
             <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <circle cx="48" cy="48" r="8"/>
-  <circle class="icon-faint" cx="48" cy="48" r="25"/>
-  <ellipse class="icon-accent" cx="48" cy="48" rx="35" ry="16" transform="rotate(-25 48 48)"/>
-  <ellipse class="icon-soft" cx="48" cy="48" rx="33" ry="13" transform="rotate(33 48 48)"/>
-  <path d="M48 10v13M48 73v13M10 48h13M73 48h13"/>
-  <circle class="icon-node" cx="70" cy="30" r="3"/>
-  <circle class="icon-node" cx="28" cy="67" r="2.4"/>
+  <circle cx="48" cy="48" r="10"/>
+  <circle class="icon-faint" cx="48" cy="48" r="21"/>
+  <circle class="icon-soft" cx="48" cy="48" r="31"/>
+  <ellipse class="icon-accent" cx="48" cy="48" rx="32" ry="15" transform="rotate(18 48 48)"/>
+  <circle class="icon-node" cx="48" cy="17" r="2.3"/>
+  <circle class="icon-node" cx="73" cy="30" r="2.1"/>
+  <circle class="icon-node" cx="77" cy="53" r="2.1"/>
+  <circle class="icon-node" cx="62" cy="74" r="2.1"/>
+  <circle class="icon-node" cx="34" cy="77" r="2.1"/>
+  <circle class="icon-node" cx="18" cy="60" r="2.1"/>
+  <circle class="icon-node" cx="18" cy="34" r="2.1"/>
+  <circle class="icon-node" cx="33" cy="18" r="2.1"/>
+  <path class="icon-faint" d="M23 25l5 4M68 20l-3 5M75 39l-6 1M73 63l-5-3M22 56l5-2"/>
 </svg></span>
             <span class="menu-label">Resonanzen</span>
             <span class="menu-underline"></span>
@@ -1331,12 +1425,12 @@
           <a class="menu-card" href="https://app.notion.com/p/F-higkeiten-37e07d209dc080228a7df7ddf38b85e2?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Fähigkeiten öffnen" data-code="SKIL">
             <span class="menu-frame" aria-hidden="true"></span>
             <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path class="icon-accent" d="M25 77l37-37 12-22 7 7-22 12-37 37Z"/>
-  <path d="M54 42l11 11"/>
-  <path class="icon-soft" d="M29 70l-9 9"/>
-  <path d="M20 29l20 20"/>
-  <path d="M15 36l12-12 20 20-12 12Z"/>
-  <path class="icon-faint" d="M65 18l7 7M22 79l-6 6"/>
+  <path class="icon-accent" d="M26 71l29-29 8 8-29 29-11 3Z"/>
+  <path d="M56 41l17-17 8 8-17 17"/>
+  <path d="M63 24l9-9 12 12-9 9"/>
+  <path class="icon-soft" d="M20 76l-4 4"/>
+  <path class="icon-faint" d="M22 34l3-3M73 21l4-4M78 38l3-3M29 82l3-3"/>
+  <path class="icon-faint" d="M19 44h4M80 18h4M74 47h4"/>
 </svg></span>
             <span class="menu-label">Fähigkeiten</span>
             <span class="menu-underline"></span>
@@ -1345,10 +1439,10 @@
           <a class="menu-card" href="https://app.notion.com/p/Eigenschaften-37e07d209dc080838fc7dafa14bb5b7d?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Eigenschaften öffnen" data-code="ATTR">
             <span class="menu-frame" aria-hidden="true"></span>
             <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path class="icon-accent" d="M48 9l8 27 28-7-20 20 20 18-28-6-8 26-8-26-28 6 20-18-20-20 28 7Z"/>
+  <path class="icon-accent" d="M48 13l7 17 20-5-12 16 18 9-20 4 7 19-20-9-20 9 7-19-20-4 18-9-12-16 20 5Z"/>
   <circle cx="48" cy="49" r="7"/>
-  <circle class="icon-node" cx="48" cy="49" r="2.5"/>
-  <path class="icon-faint" d="M48 18v14M48 66v12M20 49h12M64 49h12"/>
+  <circle class="icon-node" cx="48" cy="49" r="2.6"/>
+  <path class="icon-faint" d="M48 20v7M48 71v7M21 49h7M68 49h7M31 31l4 4M65 31l-4 4M31 67l4-4M65 67l-4-4"/>
 </svg></span>
             <span class="menu-label">Eigenschaften</span>
             <span class="menu-underline"></span>
@@ -1357,12 +1451,14 @@
           <a class="menu-card" href="https://app.notion.com/p/Inventar-37e07d209dc0800394e2d7ffb71c9cfc?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Inventar öffnen" data-code="INVT">
             <span class="menu-frame" aria-hidden="true"></span>
             <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path d="M27 39h42l7 12v28H20V51Z"/>
-  <path class="icon-accent" d="M35 39v-9c0-8 6-14 13-14s13 6 13 14v9"/>
-  <path d="M20 51h56"/>
-  <path class="icon-faint" d="M35 59v11M61 59v11"/>
-  <path class="icon-soft" d="M10 54h10M76 54h10"/>
-  <circle class="icon-node" cx="48" cy="56" r="2"/>
+  <path d="M30 30h36l8 10v34H22V40Z"/>
+  <path class="icon-accent" d="M37 30v-7c0-7 5-12 11-12s11 5 11 12v7"/>
+  <path d="M22 40h52"/>
+  <path d="M37 30h22"/>
+  <path d="M42 48h12v10H42z"/>
+  <path class="icon-soft" d="M22 48l-8 4v18l8 4M74 48l8 4v18l-8 4"/>
+  <path class="icon-faint" d="M31 56v11M65 56v11"/>
+  <circle class="icon-node" cx="48" cy="53" r="1.9"/>
 </svg></span>
             <span class="menu-label">Inventar</span>
             <span class="menu-underline"></span>
@@ -1371,11 +1467,11 @@
           <a class="menu-card" href="https://app.notion.com/p/Quests-37e07d209dc0800e9589eda3c14fb7b3?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Quests öffnen" data-code="QEST">
             <span class="menu-frame" aria-hidden="true"></span>
             <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <circle class="icon-faint" cx="48" cy="48" r="31"/>
-  <circle cx="48" cy="48" r="17"/>
-  <circle class="icon-node" cx="48" cy="48" r="4"/>
-  <path d="M48 8v16M48 72v16M8 48h16M72 48h16"/>
-  <path class="icon-accent" d="M26 26l10 10M70 26L60 36M26 70l10-10M70 70L60 60"/>
+  <circle class="icon-soft" cx="48" cy="48" r="28"/>
+  <circle cx="48" cy="48" r="13"/>
+  <circle class="icon-node" cx="48" cy="48" r="3.2"/>
+  <path class="icon-accent" d="M48 11v13M48 72v13M11 48h13M72 48h13"/>
+  <path class="icon-faint" d="M28 28l7 7M68 28l-7 7M28 68l7-7M68 68l-7-7"/>
 </svg></span>
             <span class="menu-label">Quests</span>
             <span class="menu-underline"></span>
@@ -1384,12 +1480,11 @@
           <a class="menu-card" href="https://app.notion.com/p/Bibliothek-37e07d209dc0805e9e47cdf1f10e96cb?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Bibliothek öffnen" data-code="LIBR">
             <span class="menu-frame" aria-hidden="true"></span>
             <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path d="M16 22c13-5 24-2 32 8v50c-8-10-19-13-32-8Z"/>
-  <path d="M80 22c-13-5-24-2-32 8v50c8-10 19-13 32-8Z"/>
-  <path class="icon-accent" d="M48 30v50"/>
-  <path class="icon-faint" d="M25 37c6-2 12 0 17 4M25 51c6-2 12 0 17 4"/>
-  <path class="icon-faint" d="M71 37c-6-2-12 0-17 4M71 51c-6-2-12 0-17 4"/>
-  <path class="icon-soft" d="M16 22v50M80 22v50"/>
+  <path d="M18 24c11-4 22-3 30 5v42c-8-8-19-9-30-5Z"/>
+  <path d="M78 24c-11-4-22-3-30 5v42c8-8 19-9 30-5Z"/>
+  <path class="icon-accent" d="M48 29v43"/>
+  <path class="icon-soft" d="M18 24v42M78 24v42"/>
+  <path class="icon-faint" d="M26 36c6-2 12-1 18 4M26 49c6-2 12-1 18 4M70 36c-6-2-12-1-18 4M70 49c-6-2-12-1-18 4"/>
 </svg></span>
             <span class="menu-label">Bibliothek</span>
             <span class="menu-underline"></span>
