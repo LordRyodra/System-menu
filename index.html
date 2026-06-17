@@ -1937,14 +1937,6 @@
     }
 
     /*
-      Der helle Core im oberen Orb saß optisch etwas rechts.
-      Nur der Core wird korrigiert, nicht die gesamte Achse.
-    */
-    .top-node .core {
-      left: calc(50% - 8px) !important;
-    }
-
-    /*
       Der untere Ritual-/Portalbereich saß optisch etwas rechts.
       Darum wird nur dieser Layer leicht nach links gezogen.
     */
@@ -2105,12 +2097,7 @@
     }
 
   
-    /* --- v27: geordnete Runenabsätze + Orb/Portal feinjustiert --- */
-
-    /*
-      Die Linie selbst bleibt die echte Mitte.
-      Wir korrigieren nur Elemente, deren optischer Mittelpunkt im Asset daneben liegt.
-    */
+    /* --- v28: smoother rune flow + precise axis nudges --- */
     :root {
       --axis-shift: 0px !important;
       --axis-x: 50% !important;
@@ -2131,27 +2118,21 @@
       transform: translate(-50%, -50%) !important;
     }
 
-    /*
-      Der Orb-Core sitzt wieder exakt im Mittelpunkt des oberen Kreises.
-      Nicht mehr separat nach links/rechts verschoben.
-    */
+    /* Orb minimal nach links, damit der helle Kern wirklich im Kreiszentrum sitzt */
     .top-node .core {
-      left: 50% !important;
+      left: calc(50% - 6px) !important;
       top: 50% !important;
       transform: translate(-50%, -50%) !important;
     }
 
-    /*
-      Der CSS-Kreis unten bleibt mittig auf der Mittelachse.
-      Nur das eigentliche Bottom-Sigil-Asset wird weiter nach links gezogen.
-    */
     .ground-portal {
       left: var(--axis-x) !important;
       transform: translateX(-50%) !important;
     }
 
+    /* Unteres Asset noch weiter nach links, damit sein optischer Mittelpunkt bündig liegt */
     .bottom-sigil {
-      left: calc(var(--axis-x) - 26px) !important;
+      left: calc(var(--axis-x) - 40px) !important;
       transform: translateX(-50%) scale(0.92) !important;
       transform-origin: center bottom !important;
     }
@@ -2161,11 +2142,6 @@
       transform: translate(-50%, -50%) rotate(45deg) !important;
     }
 
-    /*
-      Geordneter Rune-Code:
-      keine fallenden Partikel, keine Überlagerung.
-      Stattdessen Zeilen mit unregelmäßigen Leerabsätzen.
-    */
     .runes {
       top: 348px !important;
       width: 54px !important;
@@ -2193,12 +2169,12 @@
 
     .runes.left {
       left: 20px !important;
-      height: 545px !important;
+      height: 470px !important;
     }
 
     .runes.right {
       right: 18px !important;
-      height: 610px !important;
+      height: 530px !important;
     }
 
     .runes .inner,
@@ -2216,17 +2192,14 @@
 
     .rune-flow {
       position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
     }
 
     .rune-row {
-      display: block;
+      position: absolute;
+      left: 50%;
       width: 100%;
       min-height: 12px;
       text-align: center;
@@ -2234,21 +2207,12 @@
       overflow: hidden;
       white-space: nowrap;
       opacity: var(--o, 0.42);
-      transform: translateX(var(--x, 0px));
       color: rgba(165, 236, 255, 0.46);
       filter:
         drop-shadow(0 0 4px rgba(142,232,255,0.08))
         drop-shadow(0 0 8px rgba(142,232,255,0.03));
-      transition:
-        opacity 220ms ease,
-        transform 220ms ease,
-        color 220ms ease,
-        filter 220ms ease;
-    }
-
-    .rune-row.incoming {
-      opacity: 0 !important;
-      transform: translateY(-6px) translateX(var(--x, 0px));
+      will-change: transform, opacity, color;
+      transform: translateX(calc(-50% + var(--x, 0px))) translateY(var(--y, 0px));
     }
 
     .rune-row.hot {
@@ -2266,12 +2230,11 @@
     }
 
     .rune-gap {
-      height: var(--gap, 16px);
-      min-height: var(--gap, 16px);
       opacity: 0 !important;
+      color: transparent !important;
+      filter: none !important;
     }
 
-    /* Keine seitliche Bewegung der echten Mittellinie */
     @keyframes spineMicroShift {
       0%, 100% { transform: translateX(-50%); }
       50% { transform: translateX(-50%); }
@@ -2587,91 +2550,105 @@
       return pool[Math.floor(Math.random() * pool.length)];
     }
 
-    function makeRuneText(pool) {
+    function runeText(pool) {
       const len = Math.random() > 0.72 ? 2 : 1;
       let out = "";
       for (let i = 0; i < len; i++) out += randomFrom(pool);
-
-      if (Math.random() > 0.86) out += " " + randomFrom(pool);
+      if (Math.random() > 0.88) out += " " + randomFrom(pool);
       return out;
     }
 
-    function makeRuneRow(pool, side, forceLine = false) {
-      const row = document.createElement("span");
+    function seedRuneVisual(el, pool, side, forceGap = false) {
+      const gapChance = forceGap ? 1 : 0.18;
+      const isGap = Math.random() < gapChance;
+      el.className = 'rune-row' + (isGap ? ' rune-gap' : '');
+      el.textContent = isGap ? ' ' : runeText(pool);
 
-      // Unregelmäßige Absätze im Code: echte Leerzeilen, aber geordnet.
-      if (!forceLine && Math.random() < 0.20) {
-        row.className = "rune-row rune-gap";
-        row.style.setProperty("--gap", `${8 + Math.random() * 22}px`);
-        return row;
-      }
+      const opacity = isGap ? 0 : (0.18 + Math.random() * 0.58);
+      const shift = side === 'left' ? (-2 + Math.random() * 5) : (-3 + Math.random() * 6);
+      const rowHeight = isGap ? (Math.random() < 0.35 ? (18 + Math.random() * 14) : (9 + Math.random() * 9)) : 14;
 
-      row.className = "rune-row";
-      row.textContent = makeRuneText(pool);
-
-      const opacity = 0.20 + Math.random() * 0.56;
-      const shift = side === "left"
-        ? (-2 + Math.random() * 6)
-        : (-3 + Math.random() * 7);
-
-      row.style.setProperty("--o", opacity.toFixed(2));
-      row.style.setProperty("--x", `${shift.toFixed(1)}px`);
-
-      if (Math.random() > 0.78) row.classList.add("hot");
-      if (Math.random() > 0.90) row.classList.add("gold");
-
-      return row;
+      el.dataset.h = rowHeight.toFixed(2);
+      el.dataset.isGap = isGap ? '1' : '0';
+      el.style.setProperty('--o', opacity.toFixed(2));
+      el.style.setProperty('--x', `${shift.toFixed(1)}px`);
+      el.classList.toggle('hot', !isGap && Math.random() > 0.78);
+      el.classList.toggle('gold', !isGap && Math.random() > 0.91);
+      return rowHeight;
     }
 
-    function mutateRuneRows(flow, pool, side) {
-      const rows = Array.from(flow.querySelectorAll(".rune-row:not(.rune-gap)"));
-      if (!rows.length) return;
-
-      const changes = Math.max(2, Math.floor(rows.length * 0.08));
-      for (let i = 0; i < changes; i++) {
-        const row = rows[Math.floor(Math.random() * rows.length)];
-        row.textContent = makeRuneText(pool);
-        row.style.setProperty("--o", (0.20 + Math.random() * 0.56).toFixed(2));
-        row.classList.toggle("hot", Math.random() > 0.78);
-        row.classList.toggle("gold", Math.random() > 0.90);
-      }
+    function setRuneY(el, y) {
+      el.dataset.y = y.toFixed(2);
+      el.style.setProperty('--y', `${y.toFixed(2)}px`);
     }
 
-    function stepRuneCode(flow, pool, side, maxRows) {
-      // Eine neue Zeile kommt oben rein, alles rückt geordnet nach unten.
-      const newRow = makeRuneRow(pool, side);
-      newRow.classList.add("incoming");
-      flow.prepend(newRow);
-
-      requestAnimationFrame(() => {
-        newRow.classList.remove("incoming");
-      });
-
-      while (flow.children.length > maxRows) {
-        flow.lastElementChild.remove();
-      }
-
-      mutateRuneRows(flow, pool, side);
-    }
-
-    function initRuneColumn(containerId, pool, side, rows) {
+    function initRuneColumn(containerId, pool, side, visibleHeight, speed) {
       const container = document.getElementById(containerId);
       if (!container) return;
-
       container.innerHTML = `<div class="rune-flow"></div>`;
-      const flow = container.querySelector(".rune-flow");
+      const flow = container.querySelector('.rune-flow');
 
-      // Startbild: bereits gefüllter, aber lückiger Code.
-      for (let i = 0; i < rows; i++) {
-        flow.appendChild(makeRuneRow(pool, side, i < 5));
+      const rows = [];
+      let y = -26;
+      while (y < visibleHeight + 80) {
+        const el = document.createElement('span');
+        seedRuneVisual(el, pool, side, rows.length < 3 ? false : Math.random() < 0.22);
+        setRuneY(el, y);
+        flow.appendChild(el);
+        rows.push(el);
+        y += parseFloat(el.dataset.h);
       }
 
-      const interval = side === "left" ? 470 : 560;
-      setInterval(() => stepRuneCode(flow, pool, side, rows), interval);
+      let last = performance.now();
+      let mutateClock = 0;
+
+      function frame(now) {
+        const dt = Math.min((now - last) / 1000, 0.05);
+        last = now;
+        mutateClock += dt;
+
+        let topY = Infinity;
+        for (const el of rows) {
+          let yv = parseFloat(el.dataset.y) + speed * dt;
+          setRuneY(el, yv);
+          if (yv < topY) topY = yv;
+        }
+
+        // Nur einzelne Zeilen verändern, damit es eher wie laufender Code wirkt.
+        if (mutateClock > 0.85) {
+          mutateClock = 0;
+          const editable = rows.filter(r => r.dataset.isGap !== '1');
+          const count = Math.max(1, Math.floor(editable.length * 0.07));
+          for (let i = 0; i < count; i++) {
+            const row = editable[Math.floor(Math.random() * editable.length)];
+            row.textContent = runeText(pool);
+            row.style.setProperty('--o', (0.18 + Math.random() * 0.58).toFixed(2));
+            row.classList.toggle('hot', Math.random() > 0.78);
+            row.classList.toggle('gold', Math.random() > 0.91);
+          }
+        }
+
+        // Wenn eine Zeile unten rausläuft, wird sie oben wieder eingefügt.
+        for (const el of rows) {
+          const h = parseFloat(el.dataset.h);
+          const yv = parseFloat(el.dataset.y);
+          if (yv > visibleHeight + 16) {
+            const recycleAsGap = Math.random() < 0.18;
+            const nh = seedRuneVisual(el, pool, side, recycleAsGap);
+            const newY = topY - nh;
+            setRuneY(el, newY);
+            topY = newY;
+          }
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
     }
 
-    initRuneColumn("runesLeft", glyphPoolLeft, "left", 38);
-    initRuneColumn("runesRight", glyphPoolRight, "right", 43);
+    initRuneColumn("runesLeft", glyphPoolLeft, "left", 470, 12.5);
+    initRuneColumn("runesRight", glyphPoolRight, "right", 530, 11.2);
   </script>
 </body>
 </html>
