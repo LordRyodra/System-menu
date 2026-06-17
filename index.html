@@ -1624,6 +1624,108 @@
       }
     }
 
+  
+
+    /* --- v22: axis alignment + deeper rune code rain --- */
+    :root {
+      --axis-shift: 5px;
+      --axis-line-x: calc(50% + var(--axis-shift));
+      --rune-left-height: 740px;
+      --rune-right-height: 790px;
+    }
+
+    .spine {
+      left: var(--axis-line-x) !important;
+    }
+
+    .divider span {
+      left: calc(50% + var(--axis-shift)) !important;
+    }
+
+    .runes {
+      top: 330px !important;
+      width: 46px;
+      height: auto !important;
+      min-height: 0;
+      overflow: hidden;
+      font-size: 14px;
+      line-height: 1;
+      color: rgba(165, 236, 255, 0.42);
+      text-shadow:
+        0 0 6px rgba(142,232,255,0.18),
+        0 0 12px rgba(142,232,255,0.10);
+      animation: none !important;
+      opacity: 1;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 92%, transparent 100%);
+    }
+
+    .runes.left {
+      left: 18px;
+      height: var(--rune-left-height);
+    }
+
+    .runes.right {
+      right: 18px;
+      height: var(--rune-right-height);
+    }
+
+    .runes .stream-wrap {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0.95;
+    }
+
+    .runes .stream {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      will-change: transform;
+      animation: runeRain 18s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(142,232,255,0.10));
+    }
+
+    .runes.left .stream-a,
+    .runes.right .stream-a { top: 0; }
+
+    .runes.left .stream-b,
+    .runes.right .stream-b { top: calc(-100% - 7px); }
+
+    .runes.right .stream {
+      animation-duration: 20.5s;
+    }
+
+    .runes .rune-line {
+      display: block;
+      width: 100%;
+      text-align: center;
+      letter-spacing: 0.08em;
+      transition: opacity 180ms linear, transform 180ms linear, filter 180ms linear;
+      filter: drop-shadow(0 0 4px rgba(142,232,255,0.06));
+    }
+
+    .runes .rune-line:nth-child(7n) { letter-spacing: 0.14em; }
+    .runes .rune-line:nth-child(5n) { filter: drop-shadow(0 0 6px rgba(142,232,255,0.16)); }
+
+    .runes.left .rune-line:nth-child(8n) {
+      color: rgba(203, 246, 255, 0.68);
+    }
+
+    .runes.right .rune-line:nth-child(11n) {
+      color: rgba(177, 234, 255, 0.62);
+    }
+
+    @keyframes runeRain {
+      from { transform: translateY(0); }
+      to { transform: translateY(calc(100% + 7px)); }
+    }
+
   </style>
 </head>
 
@@ -1766,8 +1868,8 @@
           <span class="core"></span>
         </div>
 
-        <div class="runes left" aria-hidden="true"><div class="inner" id="runesLeft"></div></div>
-        <div class="runes right" aria-hidden="true"><div class="inner" id="runesRight"></div></div>
+        <div class="runes left" aria-hidden="true"><div class="stream-wrap" id="runesLeft"></div></div>
+        <div class="runes right" aria-hidden="true"><div class="stream-wrap" id="runesRight"></div></div>
 
         <section class="title-block" aria-label="System Status Interface">
           <h1 class="title">SYSTEM</h1>
@@ -1907,27 +2009,68 @@
     window.addEventListener("resize", fitToViewport);
     window.addEventListener("load", fitToViewport);
     requestAnimationFrame(fitToViewport);
+    const glyphPoolLeft = ["ᚠ","ᚢ","ᚦ","ᚨ","ᚱ","ᚲ","ᚷ","ᛉ","ᛋ","ᛏ","ᛒ","ᛖ","ᛗ","ᛟ","⌬","⌖","⟡","⋄","⊹","⟢","⟣","⟁","⟐","○","◌"];
+    const glyphPoolRight = ["⌬","⌖","⟡","⋄","⊹","⟢","⟣","⟁","⟐","○","◌","ᛞ","ᛃ","ᛇ","ᛚ","ᛜ","ᛝ","ᛞ","✧","✦","⟴","⟲","⟡","◈"];
 
-    const glyphPool = ["ᚠ","ᚢ","ᚦ","ᚨ","ᚱ","ᚲ","ᚷ","ᛉ","ᛋ","ᛏ","ᛒ","ᛖ","ᛗ","ᛟ","⌬","⌖","⟡","⋄","⊹","⟢","⟣","⟁","⟐","○","◌"];
+    function randomFrom(pool) {
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
 
-    function makeRuneColumn(lines = 36) {
-      const out = [];
-      for (let i = 0; i < lines; i++) {
-        const len = 1 + Math.floor(Math.random() * 3);
-        let group = "";
-        for (let j = 0; j < len; j++) group += glyphPool[Math.floor(Math.random() * glyphPool.length)];
-        out.push(group);
+    function makeRuneGroup(pool, minLen = 1, maxLen = 4) {
+      const len = minLen + Math.floor(Math.random() * (maxLen - minLen + 1));
+      let out = "";
+      for (let i = 0; i < len; i++) out += randomFrom(pool);
+      return out;
+    }
+
+    function makeRuneLine(pool, side) {
+      const groupA = makeRuneGroup(pool, 1, 3);
+      const groupB = Math.random() > 0.45 ? " " + makeRuneGroup(pool, 1, 2) : "";
+      const dim = 0.28 + Math.random() * 0.52;
+      const shift = side === "left"
+        ? (-2 + Math.random() * 5).toFixed(1)
+        : (-3 + Math.random() * 6).toFixed(1);
+      return `<span class="rune-line" style="opacity:${dim.toFixed(2)}; transform: translateX(${shift}px)">${groupA}${groupB}</span>`;
+    }
+
+    function makeRuneStreamHTML(pool, side, lines = 88) {
+      const chunks = [];
+      for (let i = 0; i < lines; i++) chunks.push(makeRuneLine(pool, side));
+      return chunks.join("");
+    }
+
+    function fillRuneStream(stream, pool, side, lines) {
+      stream.innerHTML = makeRuneStreamHTML(pool, side, lines);
+    }
+
+    function mutateRuneStream(stream, pool, side) {
+      const lines = stream.querySelectorAll('.rune-line');
+      if (!lines.length) return;
+      const mutations = Math.max(3, Math.floor(lines.length * 0.08));
+      for (let i = 0; i < mutations; i++) {
+        const line = lines[Math.floor(Math.random() * lines.length)];
+        line.innerHTML = makeRuneLine(pool, side).replace(/^<span class="rune-line"[^>]*>|<\/span>$/g, '');
+        line.style.opacity = (0.25 + Math.random() * 0.6).toFixed(2);
+        line.style.transform = `translateX(${(-3 + Math.random() * 6).toFixed(1)}px)`;
       }
-      return out.join("\n");
     }
 
-    function updateRunes() {
-      document.getElementById("runesLeft").textContent = makeRuneColumn();
-      document.getElementById("runesRight").textContent = makeRuneColumn();
+    function initRuneColumn(containerId, pool, side, lines) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = `<div class="stream stream-a"></div><div class="stream stream-b"></div>`;
+      const a = container.querySelector('.stream-a');
+      const b = container.querySelector('.stream-b');
+      fillRuneStream(a, pool, side, lines);
+      fillRuneStream(b, pool, side, lines);
+      a.addEventListener('animationiteration', () => fillRuneStream(a, pool, side, lines));
+      b.addEventListener('animationiteration', () => fillRuneStream(b, pool, side, lines));
+      setInterval(() => mutateRuneStream(a, pool, side), 260);
+      setInterval(() => mutateRuneStream(b, pool, side), 320);
     }
 
-    updateRunes();
-    setInterval(updateRunes, 1400);
+    initRuneColumn('runesLeft', glyphPoolLeft, 'left', 92);
+    initRuneColumn('runesRight', glyphPoolRight, 'right', 98);
   </script>
 </body>
 </html>
