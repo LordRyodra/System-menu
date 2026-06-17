@@ -1886,6 +1886,55 @@
       }
     }
 
+  
+    /* --- clean v33: Top-left Arc entfernt + Bottom-Assets manuell verschiebbar --- */
+
+    :root {
+      /*
+        Manuelles Feintuning der unteren Ruinen-Assets.
+        Negative Werte = nach links, positive Werte = nach rechts.
+      */
+      --bottom-ruins-x: 0px;
+      --back-ruins-x: 0px;
+    }
+
+    /*
+      1) Den oben links störenden Kreis entfernen.
+      Das sind die äußersten HUD-Arcs aus arc-rot-a.
+      Die inneren Drachenkreise / Haupt-HUD-Kreise bleiben erhalten.
+    */
+    .arc-rot-a > circle:nth-of-type(1),
+    .arc-rot-a > circle:nth-of-type(2),
+    .arc-rot-a > path.arc.gold {
+      display: none !important;
+      opacity: 0 !important;
+    }
+
+    /*
+      2) Untere Assets per Hand verschiebbar machen.
+      Wenn dir die Ruinen unten nicht mittig vorkommen:
+      oben bei --bottom-ruins-x oder --back-ruins-x ändern.
+    */
+    .bottom-ruins-asset {
+      left: calc(50% + var(--bottom-ruins-x)) !important;
+      transform: translateX(-50%) !important;
+    }
+
+    .back-ruins-asset {
+      left: calc(50% + var(--back-ruins-x)) !important;
+    }
+
+    @keyframes rearRuinsDrift {
+      0%, 100% {
+        opacity: 0.34;
+        transform: translateX(-50%) translateY(0px) scale(1);
+      }
+      50% {
+        opacity: 0.48;
+        transform: translateX(-50%) translateY(-8px) scale(1.012);
+      }
+    }
+
   </style>
 </head>
 
