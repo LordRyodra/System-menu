@@ -596,6 +596,49 @@
       animation: debrisFloat 12s ease-in-out infinite;
     }
 
+
+    /* --- v14: Ruinen-Asset sauber integriert --- */
+    .ruins,
+    .ruins::before,
+    .ruins::after {
+      display: none !important;
+    }
+
+    .bottom-ruins-asset {
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      width: 118%;
+      max-width: none;
+      height: auto;
+      transform: translateX(-50%);
+      z-index: 6;
+      pointer-events: none;
+      opacity: 0.96;
+      object-fit: contain;
+      filter:
+        brightness(0.58)
+        contrast(1.38)
+        saturate(0.92)
+        drop-shadow(0 0 18px rgba(0,0,0,0.86))
+        drop-shadow(0 -8px 18px rgba(75,190,225,0.08));
+      -webkit-mask-image:
+        linear-gradient(to top, black 0%, black 66%, rgba(0,0,0,0.76) 82%, transparent 100%);
+      mask-image:
+        linear-gradient(to top, black 0%, black 66%, rgba(0,0,0,0.76) 82%, transparent 100%);
+    }
+
+    .bottom-sigil {
+      bottom: 22px;
+      z-index: 8;
+      opacity: 0.60;
+    }
+
+    .debris {
+      z-index: 7;
+      opacity: 0.20;
+    }
+
     @keyframes dragonBreathe {
       0%, 100% {
         opacity: 0.44;
@@ -894,3 +937,4 @@
   </script>
 </body>
 </html>
+
