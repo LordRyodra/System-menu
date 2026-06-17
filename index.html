@@ -897,220 +897,136 @@
 
 
   
-    /* --- v17: edlere Icons und referenznähere Menüflächen --- */
+    /* --- v19: Icon-Assets + alte Trennlinien entfernt --- */
+    .separators {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+
     .menu-grid {
       top: 785px;
-      width: 825px;
-      gap: 42px 38px;
+      width: 840px;
+      gap: 42px 40px;
       z-index: 15;
     }
 
     .menu-card {
-      min-height: 148px;
-      padding: 12px 6px 10px;
-      display: grid;
-      place-items: center;
-      align-content: center;
-      text-decoration: none;
-      color: rgba(238, 244, 235, 0.88);
+      min-height: 150px;
+      padding: 10px 4px 10px;
       background: transparent;
       border: 0;
-      outline: none;
-      isolation: isolate;
       overflow: visible;
-      transition:
-        transform 220ms ease,
-        filter 220ms ease;
     }
 
     .menu-frame {
-      position: absolute;
-      inset: -10px -15px;
-      opacity: 0.28;
-      pointer-events: none;
-      transition:
-        opacity 220ms ease,
-        transform 220ms ease,
-        filter 220ms ease;
+      inset: -9px -13px;
+      opacity: 0.22;
       background:
-        linear-gradient(to right, rgba(142,232,255,0.30) 0 27px, transparent 27px calc(100% - 27px), rgba(142,232,255,0.30) calc(100% - 27px) 100%) top left / 100% 1px no-repeat,
-        linear-gradient(to right, rgba(142,232,255,0.20) 0 14px, transparent 14px calc(100% - 14px), rgba(142,232,255,0.20) calc(100% - 14px) 100%) bottom left / 100% 1px no-repeat,
-        linear-gradient(to bottom, rgba(142,232,255,0.28) 0 28px, transparent 28px calc(100% - 28px), rgba(142,232,255,0.28) calc(100% - 28px) 100%) top left / 1px 100% no-repeat,
-        linear-gradient(to bottom, rgba(142,232,255,0.20) 0 14px, transparent 14px calc(100% - 14px), rgba(142,232,255,0.20) calc(100% - 14px) 100%) top right / 1px 100% no-repeat;
-      filter: drop-shadow(0 0 5px rgba(142,232,255,0.08));
+        linear-gradient(to right, rgba(142,232,255,0.22) 0 24px, transparent 24px calc(100% - 24px), rgba(142,232,255,0.22) calc(100% - 24px) 100%) top left / 100% 1px no-repeat,
+        linear-gradient(to right, rgba(142,232,255,0.16) 0 12px, transparent 12px calc(100% - 12px), rgba(142,232,255,0.16) calc(100% - 12px) 100%) bottom left / 100% 1px no-repeat,
+        linear-gradient(to bottom, rgba(142,232,255,0.22) 0 24px, transparent 24px calc(100% - 24px), rgba(142,232,255,0.22) calc(100% - 24px) 100%) top left / 1px 100% no-repeat,
+        linear-gradient(to bottom, rgba(142,232,255,0.16) 0 12px, transparent 12px calc(100% - 12px), rgba(142,232,255,0.16) calc(100% - 12px) 100%) top right / 1px 100% no-repeat;
+      filter: drop-shadow(0 0 5px rgba(142,232,255,0.06));
     }
 
     .menu-frame::before,
     .menu-frame::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 34px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(220,245,255,0.42), transparent);
-      box-shadow: 0 0 6px rgba(142,232,255,0.12);
-      transition: opacity 220ms ease, width 220ms ease;
-      opacity: 0.65;
-    }
-
-    .menu-frame::before { top: 50%; margin-top: -58px; }
-    .menu-frame::after { bottom: 50%; margin-bottom: -58px; }
-
-    .menu-card::before {
-      content: "";
-      position: absolute;
-      inset: -16px -24px;
-      opacity: 0;
-      z-index: -1;
-      pointer-events: none;
-      transform: scale(0.985);
-      transition:
-        opacity 240ms ease,
-        transform 240ms ease;
-      background:
-        radial-gradient(ellipse at center, rgba(142,232,255,0.115), transparent 62%),
-        linear-gradient(90deg, transparent, rgba(230,216,178,0.045), transparent);
-      box-shadow:
-        inset 0 0 22px rgba(142,232,255,0.035),
-        0 0 22px rgba(142,232,255,0.075);
-    }
-
-    .menu-card::after {
-      content: attr(data-code);
-      position: absolute;
-      top: 1px;
-      right: 6px;
-      color: rgba(142,232,255,0.22);
-      font-family: Consolas, "Courier New", monospace;
-      font-size: 9px;
-      letter-spacing: 0.22em;
-      opacity: 0;
-      transform: translateY(3px);
-      transition:
-        opacity 220ms ease,
-        transform 220ms ease;
-      pointer-events: none;
+      display: none;
     }
 
     .menu-icon {
-      width: 70px;
-      height: 70px;
-      margin-bottom: 17px;
-      color: rgba(229, 216, 178, 0.90);
-      opacity: 0.93;
+      width: 84px;
+      height: 84px;
+      margin-bottom: 12px;
+      display: grid;
+      place-items: center;
+      color: rgba(232, 220, 188, 0.95);
+      opacity: 0.96;
       filter:
-        drop-shadow(0 0 4px rgba(229,216,178,0.08))
-        drop-shadow(0 0 9px rgba(142,232,255,0.065));
+        drop-shadow(0 0 5px rgba(229,216,178,0.08))
+        drop-shadow(0 0 8px rgba(142,232,255,0.05));
       transition:
-        color 220ms ease,
-        opacity 220ms ease,
         transform 220ms ease,
+        opacity 220ms ease,
         filter 220ms ease;
     }
 
-    .menu-icon svg {
-      width: 100%;
-      height: 100%;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.55;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      overflow: visible;
+    .menu-icon-asset {
+      width: 86px;
+      height: 86px;
+      object-fit: contain;
+      display: block;
+      opacity: 0.94;
+      mix-blend-mode: screen;
+      filter:
+        brightness(0.95)
+        contrast(1.05)
+        saturate(0.95)
+        drop-shadow(0 0 5px rgba(230,216,178,0.10))
+        drop-shadow(0 0 10px rgba(142,232,255,0.055));
+      transition:
+        transform 220ms ease,
+        opacity 220ms ease,
+        filter 220ms ease;
+      pointer-events: none;
+      user-select: none;
     }
 
-    .menu-icon svg .icon-soft {
-      opacity: 0.58;
+    .menu-card[data-code="TITL"] .menu-icon-asset {
+      width: 92px;
+      height: 92px;
     }
 
-    .menu-icon svg .icon-faint {
-      opacity: 0.38;
-      stroke-width: 1.05;
+    .menu-card[data-code="REZN"] .menu-icon-asset,
+    .menu-card[data-code="QEST"] .menu-icon-asset,
+    .menu-card[data-code="ATTR"] .menu-icon-asset {
+      width: 88px;
+      height: 88px;
     }
 
-    .menu-icon svg .icon-accent {
-      opacity: 0.82;
-      stroke-width: 1.7;
-    }
-
-    .menu-icon svg .icon-node {
-      fill: currentColor;
-      stroke: none;
-      opacity: 0.82;
-      filter: drop-shadow(0 0 4px rgba(229,216,178,0.18));
+    .menu-card[data-code="INVT"] .menu-icon-asset {
+      width: 90px;
+      height: 90px;
     }
 
     .menu-label {
+      font-size: 16px;
+      letter-spacing: 0.185em;
       color: rgba(236, 244, 245, 0.88);
-      font-size: 17px;
-      letter-spacing: 0.19em;
-      text-transform: uppercase;
       text-shadow: 0 0 8px rgba(142,232,255,0.10);
-      transition:
-        color 220ms ease,
-        letter-spacing 220ms ease,
-        text-shadow 220ms ease,
-        transform 220ms ease;
     }
 
     .menu-underline {
-      width: 30px;
-      height: 1px;
-      margin-top: 16px;
-      background:
-        linear-gradient(90deg, transparent, rgba(230,245,255,0.58), transparent);
-      box-shadow: 0 0 8px rgba(142,232,255,0.18);
-      transition:
-        width 220ms ease,
-        opacity 220ms ease,
-        box-shadow 220ms ease;
-      opacity: 0.88;
+      width: 26px;
+      margin-top: 14px;
+      opacity: 0.82;
     }
 
-    .menu-card:hover,
-    .menu-card:focus-visible {
-      transform: translateY(-3px);
-      filter: drop-shadow(0 0 11px rgba(142,232,255,0.08));
-    }
-
-    .menu-card:hover::before,
-    .menu-card:focus-visible::before {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .menu-card:hover::after,
-    .menu-card:focus-visible::after {
-      opacity: 0.75;
-      transform: translateY(0);
-    }
-
-    .menu-card:hover .menu-frame,
-    .menu-card:focus-visible .menu-frame {
-      opacity: 0.72;
-      transform: scale(1.025);
-      filter:
-        drop-shadow(0 0 8px rgba(142,232,255,0.18))
-        drop-shadow(0 0 15px rgba(229,216,178,0.055));
-    }
-
-    .menu-card:hover .menu-frame::before,
-    .menu-card:focus-visible .menu-frame::before,
-    .menu-card:hover .menu-frame::after,
-    .menu-card:focus-visible .menu-frame::after {
-      width: 52px;
-      opacity: 1;
+    .menu-card::after {
+      font-size: 8px;
+      letter-spacing: 0.20em;
     }
 
     .menu-card:hover .menu-icon,
     .menu-card:focus-visible .menu-icon {
-      color: rgba(247, 237, 198, 0.98);
-      opacity: 1;
       transform: translateY(-4px) scale(1.035);
+      opacity: 1;
       filter:
-        drop-shadow(0 0 6px rgba(229,216,178,0.18))
-        drop-shadow(0 0 14px rgba(142,232,255,0.16));
+        drop-shadow(0 0 7px rgba(229,216,178,0.16))
+        drop-shadow(0 0 14px rgba(142,232,255,0.12));
+    }
+
+    .menu-card:hover .menu-icon-asset,
+    .menu-card:focus-visible .menu-icon-asset {
+      opacity: 1;
+      transform: scale(1.045);
+      filter:
+        brightness(1.08)
+        contrast(1.10)
+        saturate(1.04)
+        drop-shadow(0 0 8px rgba(230,216,178,0.20))
+        drop-shadow(0 0 16px rgba(142,232,255,0.12));
     }
 
     .menu-card:hover .menu-label,
@@ -1130,104 +1046,6 @@
       box-shadow:
         0 0 8px rgba(142,232,255,0.28),
         0 0 14px rgba(229,216,178,0.08);
-    }
-
-    .separators {
-      top: 775px;
-      width: 825px;
-      height: 385px;
-      opacity: 0.38;
-      background:
-        linear-gradient(90deg, transparent 24.85%, rgba(142,232,255,0.14) 25%, transparent 25.15%, transparent 49.85%, rgba(142,232,255,0.13) 50%, transparent 50.15%, transparent 74.85%, rgba(142,232,255,0.14) 75%, transparent 75.15%),
-        linear-gradient(180deg, transparent 48.4%, rgba(142,232,255,0.075) 48.6%, transparent 48.9%);
-    }
-
-
-  
-
-    /* --- v18: icon reference pass + remove old separators --- */
-    .separators { display: none !important; opacity: 0 !important; visibility: hidden !important; }
-
-    .menu-grid {
-      top: 786px;
-      width: 840px;
-      gap: 44px 40px;
-    }
-
-    .menu-card {
-      min-height: 150px;
-      padding: 10px 4px 10px;
-    }
-
-    .menu-frame {
-      inset: -9px -13px;
-      opacity: 0.22;
-      background:
-        linear-gradient(to right, rgba(142,232,255,0.22) 0 24px, transparent 24px calc(100% - 24px), rgba(142,232,255,0.22) calc(100% - 24px) 100%) top left / 100% 1px no-repeat,
-        linear-gradient(to right, rgba(142,232,255,0.16) 0 12px, transparent 12px calc(100% - 12px), rgba(142,232,255,0.16) calc(100% - 12px) 100%) bottom left / 100% 1px no-repeat,
-        linear-gradient(to bottom, rgba(142,232,255,0.22) 0 24px, transparent 24px calc(100% - 24px), rgba(142,232,255,0.22) calc(100% - 24px) 100%) top left / 1px 100% no-repeat,
-        linear-gradient(to bottom, rgba(142,232,255,0.16) 0 12px, transparent 12px calc(100% - 12px), rgba(142,232,255,0.16) calc(100% - 12px) 100%) top right / 1px 100% no-repeat;
-    }
-
-    .menu-frame::before,
-    .menu-frame::after {
-      display: none;
-    }
-
-    .menu-card::after {
-      opacity: 0;
-      font-size: 8px;
-      letter-spacing: 0.20em;
-    }
-
-    .menu-icon {
-      width: 78px;
-      height: 78px;
-      margin-bottom: 15px;
-      color: rgba(232, 220, 188, 0.95);
-      filter:
-        drop-shadow(0 0 4px rgba(229,216,178,0.08))
-        drop-shadow(0 0 8px rgba(142,232,255,0.05));
-    }
-
-    .menu-icon svg {
-      stroke-width: 1.75;
-    }
-
-    .menu-icon svg .icon-soft {
-      opacity: 0.50;
-      stroke-width: 1.2;
-    }
-
-    .menu-icon svg .icon-faint {
-      opacity: 0.42;
-      stroke-width: 1.15;
-    }
-
-    .menu-icon svg .icon-accent {
-      opacity: 0.88;
-      stroke-width: 1.8;
-    }
-
-    .menu-icon svg .icon-node {
-      opacity: 0.92;
-      filter: drop-shadow(0 0 4px rgba(229,216,178,0.16));
-    }
-
-    .menu-label {
-      font-size: 16px;
-      letter-spacing: 0.185em;
-    }
-
-    .menu-underline {
-      width: 26px;
-      margin-top: 14px;
-      opacity: 0.82;
-    }
-
-    .menu-card:hover .menu-icon,
-    .menu-card:focus-visible .menu-icon {
-      transform: translateY(-4px) scale(1.03);
     }
 
   </style>
@@ -1372,120 +1190,72 @@
 
           <a class="menu-card" href="https://app.notion.com/p/____________________________________________________________________________________________________-37e07d209dc080ba87bee0fea4a68d2d?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Status öffnen" data-code="STAT">
             <span class="menu-frame" aria-hidden="true"></span>
-            <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path class="icon-soft" d="M18 76h60"/>
-  <path d="M26 76V54h9v22"/>
-  <path d="M43 76V24h10v52"/>
-  <path d="M61 76V42h10v34"/>
-  <path class="icon-accent" d="M22 49l12-14 13 9 25-27"/>
-  <circle class="icon-node" cx="72" cy="17" r="2.3"/>
-</svg></span>
+            <span class="menu-icon menu-icon-asset-wrap">
+              <img class="menu-icon-asset" src="assets/icon-status.png" alt="" />
+            </span>
             <span class="menu-label">Status</span>
             <span class="menu-underline"></span>
           </a>
 
           <a class="menu-card" href="https://app.notion.com/p/Titel-37e07d209dc080298b35fe5a1ae29706?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Titel öffnen" data-code="TITL">
             <span class="menu-frame" aria-hidden="true"></span>
-            <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path class="icon-accent" d="M29 20h37c-6 4-9 8-9 14s3 10 9 14H29"/>
-  <path class="icon-accent" d="M29 48h37c-6 4-9 8-9 14s3 10 9 14H29"/>
-  <path d="M29 20c-8 5-8 23 0 28"/>
-  <path d="M29 48c-8 5-8 23 0 28"/>
-  <path class="icon-soft" d="M66 20c7 5 7 23 0 28"/>
-  <path class="icon-soft" d="M66 48c7 5 7 23 0 28"/>
-  <path class="icon-faint" d="M38 34h18M38 62h18"/>
-  <circle class="icon-node" cx="24" cy="34" r="2.1"/>
-  <circle class="icon-node" cx="71" cy="62" r="2.1"/>
-</svg></span>
+            <span class="menu-icon menu-icon-asset-wrap">
+              <img class="menu-icon-asset" src="assets/icon-titel.png" alt="" />
+            </span>
             <span class="menu-label">Titel</span>
             <span class="menu-underline"></span>
           </a>
 
           <a class="menu-card" href="https://app.notion.com/p/Resonanzen-37e07d209dc0806aa6eaed32feba1134?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Resonanzen öffnen" data-code="REZN">
             <span class="menu-frame" aria-hidden="true"></span>
-            <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <circle cx="48" cy="48" r="10"/>
-  <circle class="icon-faint" cx="48" cy="48" r="21"/>
-  <circle class="icon-soft" cx="48" cy="48" r="31"/>
-  <ellipse class="icon-accent" cx="48" cy="48" rx="32" ry="15" transform="rotate(18 48 48)"/>
-  <circle class="icon-node" cx="48" cy="17" r="2.3"/>
-  <circle class="icon-node" cx="73" cy="30" r="2.1"/>
-  <circle class="icon-node" cx="77" cy="53" r="2.1"/>
-  <circle class="icon-node" cx="62" cy="74" r="2.1"/>
-  <circle class="icon-node" cx="34" cy="77" r="2.1"/>
-  <circle class="icon-node" cx="18" cy="60" r="2.1"/>
-  <circle class="icon-node" cx="18" cy="34" r="2.1"/>
-  <circle class="icon-node" cx="33" cy="18" r="2.1"/>
-  <path class="icon-faint" d="M23 25l5 4M68 20l-3 5M75 39l-6 1M73 63l-5-3M22 56l5-2"/>
-</svg></span>
+            <span class="menu-icon menu-icon-asset-wrap">
+              <img class="menu-icon-asset" src="assets/icon-resonanzen.png" alt="" />
+            </span>
             <span class="menu-label">Resonanzen</span>
             <span class="menu-underline"></span>
           </a>
 
           <a class="menu-card" href="https://app.notion.com/p/F-higkeiten-37e07d209dc080228a7df7ddf38b85e2?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Fähigkeiten öffnen" data-code="SKIL">
             <span class="menu-frame" aria-hidden="true"></span>
-            <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path class="icon-accent" d="M26 71l29-29 8 8-29 29-11 3Z"/>
-  <path d="M56 41l17-17 8 8-17 17"/>
-  <path d="M63 24l9-9 12 12-9 9"/>
-  <path class="icon-soft" d="M20 76l-4 4"/>
-  <path class="icon-faint" d="M22 34l3-3M73 21l4-4M78 38l3-3M29 82l3-3"/>
-  <path class="icon-faint" d="M19 44h4M80 18h4M74 47h4"/>
-</svg></span>
+            <span class="menu-icon menu-icon-asset-wrap">
+              <img class="menu-icon-asset" src="assets/icon-faehigkeiten.png" alt="" />
+            </span>
             <span class="menu-label">Fähigkeiten</span>
             <span class="menu-underline"></span>
           </a>
 
           <a class="menu-card" href="https://app.notion.com/p/Eigenschaften-37e07d209dc080838fc7dafa14bb5b7d?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Eigenschaften öffnen" data-code="ATTR">
             <span class="menu-frame" aria-hidden="true"></span>
-            <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path class="icon-accent" d="M48 13l7 17 20-5-12 16 18 9-20 4 7 19-20-9-20 9 7-19-20-4 18-9-12-16 20 5Z"/>
-  <circle cx="48" cy="49" r="7"/>
-  <circle class="icon-node" cx="48" cy="49" r="2.6"/>
-  <path class="icon-faint" d="M48 20v7M48 71v7M21 49h7M68 49h7M31 31l4 4M65 31l-4 4M31 67l4-4M65 67l-4-4"/>
-</svg></span>
+            <span class="menu-icon menu-icon-asset-wrap">
+              <img class="menu-icon-asset" src="assets/icon-eigenschaften.png" alt="" />
+            </span>
             <span class="menu-label">Eigenschaften</span>
             <span class="menu-underline"></span>
           </a>
 
           <a class="menu-card" href="https://app.notion.com/p/Inventar-37e07d209dc0800394e2d7ffb71c9cfc?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Inventar öffnen" data-code="INVT">
             <span class="menu-frame" aria-hidden="true"></span>
-            <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path d="M30 30h36l8 10v34H22V40Z"/>
-  <path class="icon-accent" d="M37 30v-7c0-7 5-12 11-12s11 5 11 12v7"/>
-  <path d="M22 40h52"/>
-  <path d="M37 30h22"/>
-  <path d="M42 48h12v10H42z"/>
-  <path class="icon-soft" d="M22 48l-8 4v18l8 4M74 48l8 4v18l-8 4"/>
-  <path class="icon-faint" d="M31 56v11M65 56v11"/>
-  <circle class="icon-node" cx="48" cy="53" r="1.9"/>
-</svg></span>
+            <span class="menu-icon menu-icon-asset-wrap">
+              <img class="menu-icon-asset" src="assets/icon-inventar.png" alt="" />
+            </span>
             <span class="menu-label">Inventar</span>
             <span class="menu-underline"></span>
           </a>
 
           <a class="menu-card" href="https://app.notion.com/p/Quests-37e07d209dc0800e9589eda3c14fb7b3?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Quests öffnen" data-code="QEST">
             <span class="menu-frame" aria-hidden="true"></span>
-            <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <circle class="icon-soft" cx="48" cy="48" r="28"/>
-  <circle cx="48" cy="48" r="13"/>
-  <circle class="icon-node" cx="48" cy="48" r="3.2"/>
-  <path class="icon-accent" d="M48 11v13M48 72v13M11 48h13M72 48h13"/>
-  <path class="icon-faint" d="M28 28l7 7M68 28l-7 7M28 68l7-7M68 68l-7-7"/>
-</svg></span>
+            <span class="menu-icon menu-icon-asset-wrap">
+              <img class="menu-icon-asset" src="assets/icon-quests.png" alt="" />
+            </span>
             <span class="menu-label">Quests</span>
             <span class="menu-underline"></span>
           </a>
 
           <a class="menu-card" href="https://app.notion.com/p/Bibliothek-37e07d209dc0805e9e47cdf1f10e96cb?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Bibliothek öffnen" data-code="LIBR">
             <span class="menu-frame" aria-hidden="true"></span>
-            <span class="menu-icon"><svg viewBox="0 0 96 96" aria-hidden="true">
-  <path d="M18 24c11-4 22-3 30 5v42c-8-8-19-9-30-5Z"/>
-  <path d="M78 24c-11-4-22-3-30 5v42c8-8 19-9 30-5Z"/>
-  <path class="icon-accent" d="M48 29v43"/>
-  <path class="icon-soft" d="M18 24v42M78 24v42"/>
-  <path class="icon-faint" d="M26 36c6-2 12-1 18 4M26 49c6-2 12-1 18 4M70 36c-6-2-12-1-18 4M70 49c-6-2-12-1-18 4"/>
-</svg></span>
+            <span class="menu-icon menu-icon-asset-wrap">
+              <img class="menu-icon-asset" src="assets/icon-bibliothek.png" alt="" />
+            </span>
             <span class="menu-label">Bibliothek</span>
             <span class="menu-underline"></span>
           </a>
