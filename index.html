@@ -165,7 +165,7 @@
     .arcfield svg {
       width: 100%;
       height: 100%;
-      overflow: visible;
+      overflow: hidden;
     }
     .arc {
       fill: none;
@@ -511,6 +511,76 @@
         linear-gradient(90deg, transparent 24.8%, rgba(142,232,255,0.16) 25%, transparent 25.2%, transparent 49.8%, rgba(142,232,255,0.16) 50%, transparent 50.2%, transparent 74.8%, rgba(142,232,255,0.16) 75%, transparent 75.2%),
         linear-gradient(180deg, transparent 47.5%, rgba(142,232,255,0.10) 47.7%, transparent 48%);
     }
+
+    .bottom-sigil {
+      position: absolute;
+      left: 50%;
+      bottom: 44px;
+      width: 540px;
+      height: 190px;
+      transform: translateX(-50%);
+      z-index: 8;
+      pointer-events: none;
+      opacity: 0.73;
+      mix-blend-mode: screen;
+    }
+    .bottom-sigil svg { width: 100%; height: 100%; overflow: visible; }
+    .sigil-circle, .sigil-line, .sigil-glyph {
+      fill: none;
+      stroke: rgba(142,232,255,0.58);
+      stroke-width: 1.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+    .sigil-faint { opacity: 0.34; }
+    .sigil-ring-1 { animation: rotateCW 25s linear infinite; transform-origin: 270px 110px; }
+    .sigil-ring-2 { animation: rotateCCW 18s linear infinite; transform-origin: 270px 110px; }
+    .sigil-ring-3 { animation: rotateCW 42s linear infinite; transform-origin: 270px 110px; }
+    .sigil-dash { stroke-dasharray: 8 13; animation: dashFlow 12s linear infinite; }
+
+    .ruins {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 260px;
+      z-index: 6;
+      pointer-events: none;
+      opacity: 0.94;
+      background:
+        linear-gradient(160deg, transparent 0 10%, rgba(0,0,0,0.82) 10.5% 18%, transparent 18.4%),
+        linear-gradient(206deg, transparent 0 12%, rgba(0,0,0,0.74) 12.5% 20%, transparent 20.4%),
+        linear-gradient(180deg, transparent 0, rgba(0,0,0,0.94) 78%);
+      clip-path: polygon(0 44%, 5% 56%, 10% 47%, 15% 39%, 22% 61%, 30% 44%, 39% 67%, 50% 49%, 61% 69%, 70% 45%, 78% 63%, 86% 39%, 94% 58%, 100% 46%, 100% 100%, 0 100%);
+    }
+    .ruins::before, .ruins::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 260px;
+      height: 220px;
+      background: rgba(0,0,0,0.68);
+      clip-path: polygon(0 100%, 0 60%, 10% 52%, 20% 70%, 30% 40%, 42% 88%, 54% 32%, 64% 70%, 75% 54%, 100% 100%);
+    }
+    .ruins::before { left: 0; }
+    .ruins::after { right: 0; transform: scaleX(-1); }
+
+    .bottom-ruins-asset {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  transform: translateX(-50%);
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0.92;
+  filter:
+    brightness(0.75)
+    contrast(1.2)
+    drop-shadow(0 0 18px rgba(0,0,0,0.8));
+}
 
     .debris {
       position: absolute;
@@ -1054,166 +1124,192 @@
     .debris {
       animation: debrisFloat 18s ease-in-out infinite;
     }
-
-    /* Neuer Ritualkreis ohne top-left Nebenprodukt */
+    /* Ritualkreis – flacher Beschwörungszirkel mit Tiefenwirkung */
     .ritual-system {
       position: absolute;
       left: var(--axis-x);
-      bottom: 21px;
-      width: 610px;
-      height: 185px;
+      bottom: 12px;
+      width: 620px;
+      height: 220px;
       transform: translateX(-50%);
       z-index: 13;
       pointer-events: none;
+      opacity: 0.92;
       mix-blend-mode: screen;
-      opacity: 0.84;
-      filter: drop-shadow(0 0 11px rgba(142,232,255,0.11));
+      filter: drop-shadow(0 0 12px rgba(142,232,255,0.10));
     }
 
-    .ritual-glow {
-      position: absolute;
-      left: 50%;
-      bottom: 9px;
-      width: 390px;
-      height: 86px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      background:
-        radial-gradient(ellipse at center,
-          rgba(229,255,255,0.20) 0%,
-          rgba(142,232,255,0.13) 18%,
-          rgba(142,232,255,0.055) 42%,
-          transparent 72%);
-      filter: blur(1.5px);
-      animation: ritualGlowPulse 5.8s ease-in-out infinite;
+    .ritual-system svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
     }
 
-    .ritual-ring {
-      position: absolute;
-      left: 50%;
-      bottom: 22px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      border: 1px solid rgba(142,232,255,0.24);
-      box-shadow:
-        inset 0 0 12px rgba(142,232,255,0.04),
-        0 0 10px rgba(142,232,255,0.08);
+    .ritual-floor-glow {
+      fill: url(#ritualFloorGlow);
+      opacity: 0.90;
+      transform-origin: 310px 174px;
+      animation: ritualGlowPulse 6.2s ease-in-out infinite;
     }
 
-    .ritual-ring::before,
-    .ritual-ring::after {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: 50%;
-      background:
-        conic-gradient(
-          from 0deg,
-          transparent 0deg 18deg,
-          rgba(210,252,255,0.55) 20deg 23deg,
-          transparent 26deg 72deg,
-          rgba(142,232,255,0.34) 74deg 77deg,
-          transparent 80deg 142deg,
-          rgba(230,216,178,0.24) 145deg 148deg,
-          transparent 151deg 230deg,
-          rgba(210,252,255,0.42) 232deg 235deg,
-          transparent 238deg 360deg
-        );
-      -webkit-mask:
-        radial-gradient(ellipse at center, transparent 58%, black 59%, black 62%, transparent 63%);
-      mask:
-        radial-gradient(ellipse at center, transparent 58%, black 59%, black 62%, transparent 63%);
-      opacity: 0.85;
+    .ritual-floor-haze {
+      fill: url(#ritualHaze);
+      opacity: 0.58;
+      transform-origin: 310px 174px;
+      animation: ritualHazeBreath 7.8s ease-in-out infinite;
     }
 
-    .ritual-ring::after {
+    .ritual-trace,
+    .ritual-glyph-track,
+    .ritual-segment,
+    .ritual-mark,
+    .ritual-sigil,
+    .ritual-axis-line {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .ritual-trace {
+      stroke: rgba(142,232,255,0.28);
+      stroke-width: 1.15;
+      opacity: 0.66;
+    }
+
+    .ritual-trace.faint {
+      stroke: rgba(142,232,255,0.15);
+      opacity: 0.44;
+    }
+
+    .ritual-glyph-track {
+      stroke: rgba(210,248,255,0.44);
+      stroke-width: 1.2;
+      stroke-dasharray: 2 16;
+      opacity: 0.55;
+      animation: ritualDashForward 20s linear infinite;
+      filter: drop-shadow(0 0 4px rgba(142,232,255,0.12));
+    }
+
+    .ritual-glyph-track.reverse {
+      stroke: rgba(230,216,178,0.30);
+      stroke-dasharray: 1 19;
+      opacity: 0.40;
+      animation: ritualDashReverse 26s linear infinite;
+    }
+
+    .ritual-segment {
+      stroke: rgba(142,232,255,0.42);
+      stroke-width: 1.45;
+      opacity: 0.52;
+      stroke-dasharray: 18 26;
+      animation: ritualDashForward 13s linear infinite;
+    }
+
+    .ritual-segment.gold {
+      stroke: rgba(230,216,178,0.33);
+      opacity: 0.38;
+      stroke-dasharray: 8 31;
+      animation: ritualDashReverse 18s linear infinite;
+    }
+
+    .ritual-rune-text {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      letter-spacing: 8px;
+      fill: rgba(210,248,255,0.62);
+      opacity: 0.50;
+      filter: drop-shadow(0 0 4px rgba(142,232,255,0.14));
+    }
+
+    .ritual-rune-text.back {
+      font-size: 10px;
+      letter-spacing: 10px;
+      fill: rgba(142,232,255,0.34);
       opacity: 0.28;
-      filter: blur(3px);
     }
 
-    .ritual-ring-a {
-      width: 430px;
-      height: 94px;
-      opacity: 0.60;
+    .ritual-rune-text.gold {
+      font-size: 11px;
+      letter-spacing: 12px;
+      fill: rgba(230,216,178,0.36);
+      opacity: 0.34;
     }
 
-    .ritual-ring-b {
-      width: 310px;
-      height: 68px;
-      bottom: 34px;
-      opacity: 0.72;
+    .ritual-mark {
+      stroke: rgba(218,250,255,0.72);
+      stroke-width: 1.2;
+      opacity: 0.58;
+      animation: ritualMarkPulse 5.5s ease-in-out infinite;
     }
 
-    .ritual-ring-c {
-      width: 184px;
-      height: 40px;
-      bottom: 47px;
-      opacity: 0.82;
+    .ritual-mark.dim {
+      stroke: rgba(142,232,255,0.32);
+      opacity: 0.36;
+      animation-delay: -1.6s;
     }
 
-    .ritual-ring-a::before,
-    .ritual-ring-a::after { animation: ritualRotateCW 38s linear infinite; }
-    .ritual-ring-b::before,
-    .ritual-ring-b::after { animation: ritualRotateCCW 24s linear infinite; }
-    .ritual-ring-c::before,
-    .ritual-ring-c::after { animation: ritualRotateCW 14s linear infinite; }
-
-    .ritual-diamond {
-      position: absolute;
-      left: 50%;
-      bottom: 50px;
-      width: 105px;
-      height: 105px;
-      transform: translateX(-50%) rotate(45deg);
-      border: 1px solid rgba(142,232,255,0.22);
-      opacity: 0.24;
-      filter: drop-shadow(0 0 7px rgba(142,232,255,0.12));
+    .ritual-sigil {
+      stroke: rgba(210,248,255,0.58);
+      stroke-width: 1.15;
+      opacity: 0.56;
+      filter: drop-shadow(0 0 4px rgba(142,232,255,0.10));
+      animation: ritualMarkPulse 6.8s ease-in-out infinite;
     }
 
-    .ritual-diamond-a { animation: ritualDiamondA 16s ease-in-out infinite; }
+    .ritual-sigil.gold {
+      stroke: rgba(230,216,178,0.34);
+      opacity: 0.34;
+      animation-delay: -2.4s;
+    }
 
-    .ritual-diamond-b {
-      width: 72px;
-      height: 72px;
-      bottom: 58px;
-      opacity: 0.18;
-      animation: ritualDiamondB 11s ease-in-out infinite;
+    .ritual-axis-line {
+      stroke: rgba(200,248,255,0.23);
+      stroke-width: 1.05;
+      opacity: 0.40;
     }
 
     .ritual-core {
-      position: absolute;
-      left: 50%;
-      bottom: 64px;
-      width: 14px;
-      height: 14px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      background: rgba(232,255,255,0.94);
-      box-shadow:
-        0 0 10px rgba(230,252,255,0.74),
-        0 0 26px rgba(142,232,255,0.42),
-        0 0 54px rgba(142,232,255,0.18);
+      fill: rgba(236,255,255,0.96);
+      transform-origin: 310px 170px;
+      filter:
+        drop-shadow(0 0 10px rgba(236,255,255,0.78))
+        drop-shadow(0 0 26px rgba(142,232,255,0.38));
       animation: ritualCorePulse 2.9s ease-in-out infinite;
     }
 
+    .ritual-core-halo {
+      fill: rgba(142,232,255,0.12);
+      transform-origin: 310px 170px;
+      filter: blur(2px);
+      animation: ritualCoreHalo 4.8s ease-in-out infinite;
+    }
+
     .ritual-beam {
-      position: absolute;
-      left: 50%;
-      bottom: 66px;
-      width: 2px;
-      height: 250px;
-      transform: translateX(-50%);
-      opacity: 0.22;
-      background:
-        linear-gradient(to top,
-          rgba(230,255,255,0.70),
-          rgba(142,232,255,0.36) 28%,
-          rgba(142,232,255,0.11) 66%,
-          transparent 100%);
-      filter:
-        blur(0.2px)
-        drop-shadow(0 0 8px rgba(142,232,255,0.24));
-      animation: ritualBeamPulse 6.5s ease-in-out infinite;
+      stroke: rgba(208,250,255,0.50);
+      stroke-width: 2;
+      opacity: 0.25;
+      filter: drop-shadow(0 0 10px rgba(142,232,255,0.22));
+      animation: ritualBeamPulse 6.2s ease-in-out infinite;
+    }
+
+    .ritual-beam-soft {
+      stroke: rgba(142,232,255,0.16);
+      stroke-width: 10;
+      opacity: 0.14;
+      filter: blur(3px);
+      animation: ritualBeamPulse 6.2s ease-in-out infinite;
+    }
+
+    .ritual-depth-shadow {
+      fill: rgba(0,0,0,0.22);
+      opacity: 0.55;
+      filter: blur(2.6px);
+    }
+
+    .ritual-front-veil {
+      fill: url(#ritualFrontVeil);
+      opacity: 0.72;
     }
 
     /* Keyframes */
@@ -1432,74 +1528,80 @@
       20% { opacity: 0.72; }
       100% { transform: translateY(116px); opacity: 0; }
     }
-
     @keyframes ritualGlowPulse {
       0%, 100% {
+        opacity: 0.78;
+        transform: scale(0.99);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.025);
+      }
+    }
+
+    @keyframes ritualHazeBreath {
+      0%, 100% {
         opacity: 0.45;
-        transform: translateX(-50%) scale(0.98);
+        transform: scale(0.985);
       }
       50% {
-        opacity: 0.82;
-        transform: translateX(-50%) scale(1.04);
+        opacity: 0.68;
+        transform: scale(1.02);
       }
     }
 
-    @keyframes ritualRotateCW {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    @keyframes ritualDashForward {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -220; }
     }
 
-    @keyframes ritualRotateCCW {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(-360deg); }
+    @keyframes ritualDashReverse {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: 220; }
     }
 
-    @keyframes ritualDiamondA {
+    @keyframes ritualMarkPulse {
       0%, 100% {
-        opacity: 0.15;
-        transform: translateX(-50%) rotate(45deg) scale(0.92);
-      }
-      50% {
         opacity: 0.34;
-        transform: translateX(-50%) rotate(52deg) scale(1.05);
-      }
-    }
-
-    @keyframes ritualDiamondB {
-      0%, 100% {
-        opacity: 0.12;
-        transform: translateX(-50%) rotate(45deg) scale(1.04);
+        filter: drop-shadow(0 0 2px rgba(142,232,255,0.08));
       }
       50% {
-        opacity: 0.28;
-        transform: translateX(-50%) rotate(34deg) scale(0.92);
+        opacity: 0.74;
+        filter: drop-shadow(0 0 7px rgba(142,232,255,0.18));
       }
     }
 
     @keyframes ritualCorePulse {
       0%, 100% {
-        opacity: 0.68;
-        transform: translateX(-50%) scale(0.78);
-        box-shadow:
-          0 0 8px rgba(230,252,255,0.54),
-          0 0 22px rgba(142,232,255,0.32),
-          0 0 48px rgba(142,232,255,0.13);
+        opacity: 0.86;
+        transform: scale(0.92);
       }
       50% {
         opacity: 1;
-        transform: translateX(-50%) scale(1.08);
-        box-shadow:
-          0 0 12px rgba(255,255,255,0.88),
-          0 0 34px rgba(142,232,255,0.54),
-          0 0 78px rgba(142,232,255,0.22);
+        transform: scale(1.14);
+      }
+    }
+
+    @keyframes ritualCoreHalo {
+      0%, 100% {
+        opacity: 0.16;
+        transform: scale(0.92);
+      }
+      50% {
+        opacity: 0.30;
+        transform: scale(1.10);
       }
     }
 
     @keyframes ritualBeamPulse {
-      0%, 100% {
-        opacity: 0.12;
-        height: 220px;
+      0%, 100% { opacity: 0.13; }
+      50% { opacity: 0.32; }
+    }
+      50% {
+        opacity: 0.34;
       }
+    }
+
       50% {
         opacity: 0.34;
         height: 285px;
@@ -1751,14 +1853,101 @@
           </a>
         </nav>
 <div class="ritual-system" aria-hidden="true">
-          <div class="ritual-glow"></div>
-          <div class="ritual-ring ritual-ring-a"></div>
-          <div class="ritual-ring ritual-ring-b"></div>
-          <div class="ritual-ring ritual-ring-c"></div>
-          <div class="ritual-diamond ritual-diamond-a"></div>
-          <div class="ritual-diamond ritual-diamond-b"></div>
-          <div class="ritual-core"></div>
-          <div class="ritual-beam"></div>
+          <svg viewBox="0 0 620 220" role="presentation">
+            <defs>
+              <radialGradient id="ritualFloorGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(236,255,255,0.92)" />
+                <stop offset="10%" stop-color="rgba(210,248,255,0.46)" />
+                <stop offset="32%" stop-color="rgba(142,232,255,0.18)" />
+                <stop offset="70%" stop-color="rgba(142,232,255,0.05)" />
+                <stop offset="100%" stop-color="rgba(142,232,255,0)" />
+              </radialGradient>
+
+              <radialGradient id="ritualHaze" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(142,232,255,0.20)" />
+                <stop offset="42%" stop-color="rgba(142,232,255,0.08)" />
+                <stop offset="100%" stop-color="rgba(142,232,255,0)" />
+              </radialGradient>
+
+              <linearGradient id="ritualFrontVeil" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="rgba(0,0,0,0)" />
+                <stop offset="58%" stop-color="rgba(0,0,0,0)" />
+                <stop offset="100%" stop-color="rgba(0,0,0,0.38)" />
+              </linearGradient>
+
+              <path id="ritualPathOuter"
+                d="M80 170 A230 38 0 1 1 540 170 A230 38 0 1 1 80 170" />
+              <path id="ritualPathMiddle"
+                d="M134 170 A176 27 0 1 1 486 170 A176 27 0 1 1 134 170" />
+              <path id="ritualPathInner"
+                d="M192 170 A118 17 0 1 1 428 170 A118 17 0 1 1 192 170" />
+            </defs>
+
+            <ellipse class="ritual-depth-shadow" cx="310" cy="184" rx="260" ry="30"></ellipse>
+            <ellipse class="ritual-floor-haze" cx="310" cy="178" rx="258" ry="42"></ellipse>
+            <ellipse class="ritual-floor-glow" cx="310" cy="178" rx="205" ry="28"></ellipse>
+
+            <line class="ritual-beam-soft" x1="310" y1="174" x2="310" y2="24"></line>
+            <line class="ritual-beam" x1="310" y1="174" x2="310" y2="25"></line>
+
+            <ellipse class="ritual-trace" cx="310" cy="170" rx="230" ry="38"></ellipse>
+            <ellipse class="ritual-segment" cx="310" cy="170" rx="230" ry="38"></ellipse>
+            <ellipse class="ritual-glyph-track" cx="310" cy="170" rx="196" ry="31"></ellipse>
+
+            <ellipse class="ritual-trace faint" cx="310" cy="170" rx="176" ry="27"></ellipse>
+            <ellipse class="ritual-segment gold" cx="310" cy="170" rx="176" ry="27"></ellipse>
+            <ellipse class="ritual-glyph-track reverse" cx="310" cy="170" rx="146" ry="22"></ellipse>
+
+            <ellipse class="ritual-trace" cx="310" cy="170" rx="118" ry="17"></ellipse>
+            <ellipse class="ritual-segment" cx="310" cy="170" rx="118" ry="17"></ellipse>
+            <ellipse class="ritual-glyph-track" cx="310" cy="170" rx="88" ry="13"></ellipse>
+
+            <text class="ritual-rune-text">
+              <textPath href="#ritualPathOuter" startOffset="0%">
+                ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᛉ ᛋ ᛏ ᛒ ᛖ ᛗ ᛟ ⟡ ⟁ ⌬ ⌖
+                <animate attributeName="startOffset" values="0%;100%" dur="46s" repeatCount="indefinite" />
+              </textPath>
+            </text>
+
+            <text class="ritual-rune-text back">
+              <textPath href="#ritualPathMiddle" startOffset="72%">
+                ⌬ ◌ ⟐ ᛃ ᛇ ᛚ ᛜ ᛝ ✧ ◈ ◎ ◇ ⟴ ⟲
+                <animate attributeName="startOffset" values="72%;-28%" dur="33s" repeatCount="indefinite" />
+              </textPath>
+            </text>
+
+            <text class="ritual-rune-text gold">
+              <textPath href="#ritualPathInner" startOffset="18%">
+                ⟁ ⟡ ᚱ ⌖ ᛟ ◌ ᚨ ⟐ ᚲ
+                <animate attributeName="startOffset" values="18%;118%" dur="25s" repeatCount="indefinite" />
+              </textPath>
+            </text>
+
+            <line class="ritual-axis-line" x1="310" y1="96" x2="310" y2="166"></line>
+            <line class="ritual-axis-line" x1="118" y1="170" x2="224" y2="170"></line>
+            <line class="ritual-axis-line" x1="396" y1="170" x2="502" y2="170"></line>
+
+            <path class="ritual-mark" d="M310 118 l10 10 l-10 10 l-10 -10 z"></path>
+            <path class="ritual-mark dim" d="M148 170 l7 7 l-7 7 l-7 -7 z"></path>
+            <path class="ritual-mark dim" d="M472 170 l7 7 l-7 7 l-7 -7 z"></path>
+            <path class="ritual-mark" d="M310 150 l6 6 l-6 6 l-6 -6 z"></path>
+            <path class="ritual-mark dim" d="M234 152 l12 0 M240 146 l0 12"></path>
+            <path class="ritual-mark dim" d="M374 152 l12 0 M380 146 l0 12"></path>
+            <path class="ritual-mark dim" d="M270 187 l10 0 M275 182 l0 10"></path>
+            <path class="ritual-mark dim" d="M340 187 l10 0 M345 182 l0 10"></path>
+
+            <path class="ritual-sigil" d="M192 170 q10 -12 20 0 q-10 12 -20 0z"></path>
+            <path class="ritual-sigil" d="M418 170 q10 -12 20 0 q-10 12 -20 0z"></path>
+            <path class="ritual-sigil gold" d="M258 170 q8 -9 16 0 q-8 9 -16 0z"></path>
+            <path class="ritual-sigil gold" d="M346 170 q8 -9 16 0 q-8 9 -16 0z"></path>
+            <path class="ritual-sigil" d="M310 136 l8 8 l-8 8 l-8 -8 z"></path>
+            <path class="ritual-sigil gold" d="M310 188 l6 6 l-6 6 l-6 -6 z"></path>
+
+            <ellipse class="ritual-core-halo" cx="310" cy="170" rx="24" ry="9"></ellipse>
+            <circle class="ritual-core" cx="310" cy="170" r="4.8"></circle>
+
+            <rect class="ritual-front-veil" x="38" y="154" width="544" height="62"></rect>
+          </svg>
         </div>
 <div class="debris" aria-hidden="true"></div>
 
