@@ -826,6 +826,76 @@
     }
 
 
+  
+    /* --- v16: zweite Ruinenebene für mehr Tiefe --- */
+    .back-ruins-asset {
+      position: absolute;
+      left: 50%;
+      bottom: 78px;
+      width: 150%;
+      max-width: none;
+      height: auto;
+      transform: translateX(-50%);
+      z-index: 4;
+      pointer-events: none;
+      opacity: 0.42;
+      object-fit: contain;
+      filter:
+        blur(1.1px)
+        brightness(0.44)
+        contrast(1.18)
+        saturate(0.82)
+        drop-shadow(0 0 34px rgba(0,0,0,0.92))
+        drop-shadow(0 -6px 28px rgba(75,190,225,0.08));
+      -webkit-mask-image:
+        linear-gradient(to top, black 0%, black 58%, rgba(0,0,0,0.68) 76%, transparent 100%);
+      mask-image:
+        linear-gradient(to top, black 0%, black 58%, rgba(0,0,0,0.68) 76%, transparent 100%);
+      animation: rearRuinsDrift 22s ease-in-out infinite;
+    }
+
+    .lower-atmosphere {
+      z-index: 5;
+      opacity: 0.82;
+      background:
+        radial-gradient(ellipse at 50% 96%, rgba(165,245,255,0.16), transparent 20%),
+        radial-gradient(ellipse at 50% 82%, rgba(75,190,225,0.105), transparent 35%),
+        radial-gradient(ellipse at 10% 75%, rgba(75,190,225,0.13), transparent 40%),
+        radial-gradient(ellipse at 90% 75%, rgba(75,190,225,0.13), transparent 40%),
+        linear-gradient(to top, rgba(0,0,0,0.66) 0%, rgba(0,0,0,0.38) 32%, rgba(0,0,0,0.14) 58%, transparent 84%);
+    }
+
+    .bottom-ruins-asset {
+      z-index: 6;
+      bottom: -46px;
+      width: 158%;
+      opacity: 0.98;
+    }
+
+    .ground-portal {
+      z-index: 9;
+      bottom: 28px;
+      opacity: 0.60;
+    }
+
+    .bottom-sigil {
+      z-index: 10;
+      bottom: 20px;
+      opacity: 0.44;
+    }
+
+    @keyframes rearRuinsDrift {
+      0%, 100% {
+        opacity: 0.34;
+        transform: translateX(-50%) translateY(0px) scale(1);
+      }
+      50% {
+        opacity: 0.48;
+        transform: translateX(-50%) translateY(-8px) scale(1.012);
+      }
+    }
+
+
   </style>
 </head>
 
@@ -930,6 +1000,8 @@
           <img src="assets/dragon-emblem.png" alt="" />
           <span class="dragon-eye-overlay"></span>
         </div>
+
+        <img class="back-ruins-asset" src="assets/back-ruins.png" alt="" />
 
         <div class="lower-atmosphere" aria-hidden="true"></div>
 
