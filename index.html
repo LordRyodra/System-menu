@@ -1213,27 +1213,32 @@
       animation: ritualDashReverse 18s linear infinite;
     }
 
-    .ritual-rune-text {
+
+    .ritual-rune-ring {
+      pointer-events: none;
+    }
+
+    .ritual-rune-glyph {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 14px;
-      letter-spacing: 8px;
-      fill: rgba(210,248,255,0.62);
-      opacity: 0.50;
+      font-size: 12px;
+      letter-spacing: 0;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      fill: rgba(210,248,255,0.58);
+      opacity: 0.52;
       filter: drop-shadow(0 0 4px rgba(142,232,255,0.14));
     }
 
-    .ritual-rune-text.back {
-      font-size: 10px;
-      letter-spacing: 10px;
-      fill: rgba(142,232,255,0.34);
-      opacity: 0.28;
+    .ritual-rune-glyph.back {
+      font-size: 9px;
+      fill: rgba(142,232,255,0.28);
+      opacity: 0.26;
     }
 
-    .ritual-rune-text.gold {
-      font-size: 11px;
-      letter-spacing: 12px;
-      fill: rgba(230,216,178,0.36);
-      opacity: 0.34;
+    .ritual-rune-glyph.gold {
+      font-size: 10px;
+      fill: rgba(230,216,178,0.34);
+      opacity: 0.30;
     }
 
     .ritual-mark {
@@ -1875,12 +1880,12 @@
                 <stop offset="100%" stop-color="rgba(0,0,0,0.38)" />
               </linearGradient>
 
-              <path id="ritualPathOuter"
-                d="M80 170 A230 38 0 1 1 540 170 A230 38 0 1 1 80 170" />
-              <path id="ritualPathMiddle"
-                d="M134 170 A176 27 0 1 1 486 170 A176 27 0 1 1 134 170" />
-              <path id="ritualPathInner"
-                d="M192 170 A118 17 0 1 1 428 170 A118 17 0 1 1 192 170" />
+              <path id="ritualOuterFrontArc" d="M80 170 C 144 191, 476 191, 540 170" />
+              <path id="ritualOuterBackArc" d="M80 170 C 144 149, 476 149, 540 170" />
+              <path id="ritualMiddleFrontArc" d="M134 170 C 184 184, 436 184, 486 170" />
+              <path id="ritualMiddleBackArc" d="M134 170 C 184 156, 436 156, 486 170" />
+              <path id="ritualInnerFrontArc" d="M192 170 C 226 179, 394 179, 428 170" />
+              <path id="ritualInnerBackArc" d="M192 170 C 226 161, 394 161, 428 170" />
             </defs>
 
             <ellipse class="ritual-depth-shadow" cx="310" cy="184" rx="260" ry="30"></ellipse>
@@ -1902,26 +1907,12 @@
             <ellipse class="ritual-segment" cx="310" cy="170" rx="118" ry="17"></ellipse>
             <ellipse class="ritual-glyph-track" cx="310" cy="170" rx="88" ry="13"></ellipse>
 
-            <text class="ritual-rune-text">
-              <textPath href="#ritualPathOuter" startOffset="0%">
-                ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᛉ ᛋ ᛏ ᛒ ᛖ ᛗ ᛟ ⟡ ⟁ ⌬ ⌖
-                <animate attributeName="startOffset" values="0%;100%" dur="46s" repeatCount="indefinite" />
-              </textPath>
-            </text>
-
-            <text class="ritual-rune-text back">
-              <textPath href="#ritualPathMiddle" startOffset="72%">
-                ⌬ ◌ ⟐ ᛃ ᛇ ᛚ ᛜ ᛝ ✧ ◈ ◎ ◇ ⟴ ⟲
-                <animate attributeName="startOffset" values="72%;-28%" dur="33s" repeatCount="indefinite" />
-              </textPath>
-            </text>
-
-            <text class="ritual-rune-text gold">
-              <textPath href="#ritualPathInner" startOffset="18%">
-                ⟁ ⟡ ᚱ ⌖ ᛟ ◌ ᚨ ⟐ ᚲ
-                <animate attributeName="startOffset" values="18%;118%" dur="25s" repeatCount="indefinite" />
-              </textPath>
-            </text>
+            <g class="ritual-rune-ring" id="ritualOuterFrontRunes"></g>
+            <g class="ritual-rune-ring" id="ritualOuterBackRunes"></g>
+            <g class="ritual-rune-ring" id="ritualMiddleFrontRunes"></g>
+            <g class="ritual-rune-ring" id="ritualMiddleBackRunes"></g>
+            <g class="ritual-rune-ring" id="ritualInnerFrontRunes"></g>
+            <g class="ritual-rune-ring" id="ritualInnerBackRunes"></g>
 
             <line class="ritual-axis-line" x1="310" y1="96" x2="310" y2="166"></line>
             <line class="ritual-axis-line" x1="118" y1="170" x2="224" y2="170"></line>
@@ -2094,6 +2085,78 @@
 
       requestAnimationFrame(frame);
     }
+
+    function initRitualRunes() {
+      const svg = document.querySelector('.ritual-system svg');
+      if (!svg) return;
+      const ns = 'http://www.w3.org/2000/svg';
+      const pools = {
+        cyan: ["ᚠ","ᚢ","ᚦ","ᚨ","ᚱ","ᚲ","ᚷ","ᛉ","ᛋ","ᛏ","ᛒ","ᛖ","ᛗ","ᛟ","⌬","⌖","⟡","⋄","⟁","⟐"],
+        gold: ["⟡","⌖","⟁","⟐","◈","◎","◇","ᚱ","ᚨ","ᚲ","ᛟ"]
+      };
+
+      const configs = [
+        { pathId: 'ritualOuterFrontArc', groupId: 'ritualOuterFrontRunes', count: 20, speed: 10, className: 'ritual-rune-glyph', pool: pools.cyan },
+        { pathId: 'ritualOuterBackArc',  groupId: 'ritualOuterBackRunes',  count: 16, speed: -7, className: 'ritual-rune-glyph back', pool: pools.cyan },
+        { pathId: 'ritualMiddleFrontArc', groupId: 'ritualMiddleFrontRunes', count: 16, speed: -11, className: 'ritual-rune-glyph gold', pool: pools.gold },
+        { pathId: 'ritualMiddleBackArc',  groupId: 'ritualMiddleBackRunes',  count: 12, speed: 8, className: 'ritual-rune-glyph back', pool: pools.cyan },
+        { pathId: 'ritualInnerFrontArc', groupId: 'ritualInnerFrontRunes', count: 12, speed: 12.5, className: 'ritual-rune-glyph', pool: pools.cyan },
+        { pathId: 'ritualInnerBackArc',  groupId: 'ritualInnerBackRunes',  count: 9, speed: -9, className: 'ritual-rune-glyph gold', pool: pools.gold }
+      ];
+
+      const rings = configs.map((cfg, ringIndex) => {
+        const path = svg.querySelector('#' + cfg.pathId);
+        const group = svg.querySelector('#' + cfg.groupId);
+        if (!path || !group) return null;
+        const length = path.getTotalLength();
+        const gap = length / cfg.count;
+        const items = [];
+
+        for (let i = 0; i < cfg.count; i++) {
+          const t = document.createElementNS(ns, 'text');
+          t.setAttribute('class', cfg.className);
+          t.textContent = cfg.pool[(i + ringIndex * 3) % cfg.pool.length];
+          group.appendChild(t);
+          items.push({ el: t, base: i * gap, charIndex: (i + ringIndex * 3) % cfg.pool.length });
+        }
+
+        return { ...cfg, path, length, items };
+      }).filter(Boolean);
+
+      function edgeFade(n) {
+        const edge = 0.10;
+        if (n < edge) return n / edge;
+        if (n > 1 - edge) return (1 - n) / edge;
+        return 1;
+      }
+
+      function tick(now) {
+        const t = now * 0.001;
+        for (const ring of rings) {
+          for (const item of ring.items) {
+            const pos = ((item.base + t * ring.speed) % ring.length + ring.length) % ring.length;
+            const next = (pos + 0.6) % ring.length;
+            const pt = ring.path.getPointAtLength(pos);
+            const pt2 = ring.path.getPointAtLength(next);
+            const angle = Math.atan2(pt2.y - pt.y, pt2.x - pt.x) * 180 / Math.PI;
+            const n = pos / ring.length;
+            const fade = Math.max(0, Math.min(1, edgeFade(n)));
+            const wobble = 0.88 + 0.18 * Math.sin(t * 1.4 + item.base * 0.03);
+            item.el.setAttribute('transform', `translate(${pt.x.toFixed(2)} ${pt.y.toFixed(2)}) rotate(${angle.toFixed(2)})`);
+            item.el.style.opacity = (fade * wobble).toFixed(3);
+
+            if ((Math.floor((t * Math.abs(ring.speed) + item.base) / (ring.length * 0.32)) % 17) === 0) {
+              item.el.textContent = ring.pool[(item.charIndex + Math.floor(t * 0.9)) % ring.pool.length];
+            }
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    initRitualRunes();
 
     initRuneColumn("runesLeft", glyphPoolLeft, "left", 470, 12.5);
     initRuneColumn("runesRight", glyphPoolRight, "right", 530, 11.2);
