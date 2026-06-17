@@ -1048,6 +1048,38 @@
         0 0 14px rgba(229,216,178,0.08);
     }
 
+  
+    /* --- v20: optische Icon-Größen angeglichen --- */
+    .menu-icon {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 10px;
+      display: grid;
+      place-items: center;
+    }
+
+    .menu-icon-asset {
+      width: 96px !important;
+      height: 96px !important;
+      object-fit: contain;
+      transform: scale(var(--icon-scale, 1));
+      transform-origin: center center;
+    }
+
+    .menu-card[data-code="STAT"] { --icon-scale: 1.00; }
+    .menu-card[data-code="TITL"] { --icon-scale: 1.00; }
+    .menu-card[data-code="REZN"] { --icon-scale: 0.98; }
+    .menu-card[data-code="SKIL"] { --icon-scale: 1.08; }
+    .menu-card[data-code="ATTR"] { --icon-scale: 0.98; }
+    .menu-card[data-code="INVT"] { --icon-scale: 0.94; }
+    .menu-card[data-code="QEST"] { --icon-scale: 0.98; }
+    .menu-card[data-code="LIBR"] { --icon-scale: 1.18; }
+
+    .menu-card:hover .menu-icon-asset,
+    .menu-card:focus-visible .menu-icon-asset {
+      transform: scale(calc(var(--icon-scale, 1) * 1.045));
+    }
+
   </style>
 </head>
 
