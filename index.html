@@ -1633,7 +1633,7 @@
         0px = exakt geometrische Mitte.
         Positive Werte schieben Linie + alle Achsenobjekte nach rechts.
       */
-      --axis-shift: 5px;
+      --axis-shift: 16px;
       --axis-x: calc(50% + var(--axis-shift));
     }
 
@@ -1651,44 +1651,41 @@
     }
 
     /*
-      Runen-Code: sichtbar, länger, links/rechts unterschiedlich,
-      nach unten laufend und fortlaufend mutierend.
+      Runen-Code: sichtbar, aber sauber getrennt.
+      Keine überlappenden Doppelstreams mehr.
+      Links und rechts enden auf unterschiedlicher Höhe.
     */
     .runes {
-      top: 330px !important;
-      width: 54px !important;
-      height: 810px !important;
+      top: 348px !important;
+      width: 48px !important;
       overflow: hidden !important;
       z-index: 16 !important;
-      color: rgba(165, 236, 255, 0.46);
+      color: rgba(165, 236, 255, 0.44);
       font-family: Consolas, "Courier New", monospace;
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       white-space: normal !important;
       text-shadow:
-        0 0 6px rgba(142,232,255,0.26),
-        0 0 14px rgba(142,232,255,0.12);
+        0 0 6px rgba(142,232,255,0.20),
+        0 0 12px rgba(142,232,255,0.08);
       opacity: 1 !important;
       animation: none !important;
       mix-blend-mode: screen;
       user-select: none;
       pointer-events: none;
-
-      -webkit-mask-image:
-        linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
-      mask-image:
-        linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 90%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 90%, transparent 100%);
     }
 
     .runes.left {
-      left: 18px !important;
-      height: 790px !important;
+      left: 20px !important;
+      height: 605px !important;
     }
 
     .runes.right {
       right: 18px !important;
-      height: 850px !important;
+      height: 675px !important;
     }
 
     .runes .inner {
@@ -1704,29 +1701,21 @@
     .runes .stream {
       position: absolute;
       left: 0;
-      top: -104%;
+      top: -102%;
       width: 100%;
-      min-height: 210%;
+      min-height: 204%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 7px;
+      gap: 10px;
       will-change: transform;
-      filter: drop-shadow(0 0 6px rgba(142,232,255,0.12));
-      animation: runeCodeFall 20s linear infinite;
-    }
-
-    .runes .stream-b {
-      animation-delay: -10s;
+      filter: drop-shadow(0 0 5px rgba(142,232,255,0.10));
+      animation: runeCodeFall 26s linear infinite;
     }
 
     .runes.right .stream {
-      animation-duration: 23s;
-      gap: 8px;
-    }
-
-    .runes.right .stream-b {
-      animation-delay: -11.5s;
+      gap: 11px;
+      animation-duration: 29s;
     }
 
     .rune-line {
@@ -1738,30 +1727,30 @@
         transform 180ms linear,
         color 180ms linear,
         filter 180ms linear;
-      filter: drop-shadow(0 0 4px rgba(142,232,255,0.06));
+      filter: drop-shadow(0 0 4px rgba(142,232,255,0.05));
     }
 
-    .rune-line:nth-child(5n) {
-      color: rgba(210, 250, 255, 0.72);
-      filter: drop-shadow(0 0 8px rgba(142,232,255,0.20));
+    .rune-line:nth-child(6n) {
+      color: rgba(210, 250, 255, 0.70);
+      filter: drop-shadow(0 0 8px rgba(142,232,255,0.16));
     }
 
-    .rune-line:nth-child(9n) {
-      color: rgba(230, 216, 178, 0.45);
-      filter: drop-shadow(0 0 7px rgba(230,216,178,0.10));
+    .rune-line:nth-child(11n) {
+      color: rgba(230, 216, 178, 0.42);
+      filter: drop-shadow(0 0 6px rgba(230,216,178,0.08));
     }
 
     .runes.left .rune-line:nth-child(7n) {
-      transform: translateX(-4px);
+      transform: translateX(-3px);
     }
 
-    .runes.right .rune-line:nth-child(6n) {
-      transform: translateX(4px);
+    .runes.right .rune-line:nth-child(5n) {
+      transform: translateX(3px);
     }
 
     @keyframes runeCodeFall {
       from { transform: translateY(0); }
-      to { transform: translateY(104%); }
+      to { transform: translateY(98%); }
     }
 
     /*
@@ -2100,8 +2089,8 @@
     }
 
     function makeRuneLine(pool, side) {
-      const groupA = makeRuneGroup(pool, 1, 3);
-      const groupB = Math.random() > 0.52 ? " " + makeRuneGroup(pool, 1, 2) : "";
+      const groupA = makeRuneGroup(pool, 1, 2);
+      const groupB = Math.random() > 0.72 ? " " + makeRuneGroup(pool, 1, 1) : "";
       const dim = 0.24 + Math.random() * 0.58;
       const shift = side === "left"
         ? (-2 + Math.random() * 5).toFixed(1)
@@ -2135,26 +2124,16 @@
       const container = document.getElementById(containerId);
       if (!container) return;
 
-      container.innerHTML = `
-        <div class="stream stream-a"></div>
-        <div class="stream stream-b"></div>
-      `;
-
+      container.innerHTML = `<div class="stream stream-a"></div>`;
       const a = container.querySelector(".stream-a");
-      const b = container.querySelector(".stream-b");
 
       fillRuneStream(a, pool, side, lines);
-      fillRuneStream(b, pool, side, lines);
-
-      setInterval(() => mutateRuneStream(a, pool, side), side === "left" ? 240 : 310);
-      setInterval(() => mutateRuneStream(b, pool, side), side === "left" ? 330 : 260);
-
+      setInterval(() => mutateRuneStream(a, pool, side), side === "left" ? 280 : 340);
       a.addEventListener("animationiteration", () => fillRuneStream(a, pool, side, lines));
-      b.addEventListener("animationiteration", () => fillRuneStream(b, pool, side, lines));
     }
 
-    initRuneColumn("runesLeft", glyphPoolLeft, "left", 118);
-    initRuneColumn("runesRight", glyphPoolRight, "right", 126);
+    initRuneColumn("runesLeft", glyphPoolLeft, "left", 62);
+    initRuneColumn("runesRight", glyphPoolRight, "right", 72);
   </script>
 </body>
 </html>
