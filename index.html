@@ -73,38 +73,7 @@
       pointer-events: none;
     }
 
-    .stars {
-      z-index: 0;
-      opacity: 0.34;
-      background-image:
-        radial-gradient(circle, rgba(180, 252, 255, 0.76) 0 0.8px, transparent 1.7px),
-        radial-gradient(circle, rgba(255, 236, 190, 0.38) 0 0.65px, transparent 1.5px);
-      background-size: 48px 48px, 113px 113px;
-      background-position: 0 0, 33px 26px;
-      animation: starDrift 48s linear infinite;
-    }
-
-    .dust {
-      z-index: 1;
-      opacity: 0.22;
-      background:
-        radial-gradient(ellipse at 18% 58%, rgba(90, 220, 255, 0.17), transparent 32%),
-        radial-gradient(ellipse at 83% 57%, rgba(90, 220, 255, 0.14), transparent 34%),
-        radial-gradient(ellipse at 50% 42%, rgba(140, 235, 255, 0.08), transparent 42%);
-      filter: blur(18px);
-      animation: nebulaBreathe 12s ease-in-out infinite;
-    }
-
-    .mist {
-      z-index: 2;
-      opacity: 0.18;
-      background:
-        linear-gradient(115deg, transparent, rgba(255,255,255,0.06), transparent 42%),
-        repeating-linear-gradient(0deg, transparent 0 21px, rgba(142,232,255,0.018) 22px, transparent 23px);
-      transform: translateX(-120%);
-      mix-blend-mode: screen;
-      animation: slowMist 13s ease-in-out infinite;
-    }
+    
 
     .glyph-noise {
       z-index: 3;
