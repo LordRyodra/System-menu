@@ -2038,213 +2038,147 @@
 
 
   
-    /* ===== TOP RAIL v61 =====
-       Aufbau nach roter Skizze:
-       Kreis über Runen -> vertikale Leitung -> technische Ecke -> Brücke zur Mittellinie.
-    */
-    .frame-shell-v45 .top-rail-v61,
-    .frame-shell-v45 .top-center-rail-v61,
-    .frame-shell-v45 .bottom-center-rail-v61,
-    .frame-shell-v45 .top-rail-v61 * ,
-    .frame-shell-v45 .top-center-rail-v61 *,
-    .frame-shell-v45 .bottom-center-rail-v61 * {
+
+    /* ===== FRAME REBUILD v62: feste technische Top-Rails ===== */
+    .frame-shell-v45 .tech-rail * {
       vector-effect: non-scaling-stroke;
       stroke-linecap: round;
       stroke-linejoin: round;
+      filter: url(#frameGlowV45);
     }
 
-    .frame-shell-v45 .rail-main {
+    .frame-shell-v45 .tech-main {
       fill: none;
-      stroke: rgba(184, 246, 255, 0.45);
+      stroke: rgba(188,246,255,0.50);
       stroke-width: 1.08;
       opacity: 0.80;
-      filter: url(#frameGlowV45);
     }
 
-    .frame-shell-v45 .rail-main.top-bridge {
-      opacity: 0.62;
-      stroke-width: 0.96;
-    }
-
-    .frame-shell-v45 .rail-main.center {
-      opacity: 0.68;
-      stroke-width: 0.92;
-    }
-
-    .frame-shell-v45 .rail-layer {
+    .frame-shell-v45 .tech-soft {
       fill: none;
-      stroke: rgba(150, 236, 255, 0.22);
-      stroke-width: 0.78;
+      stroke: rgba(154,233,255,0.22);
+      stroke-width: 0.76;
       opacity: 0.60;
-      filter: url(#frameGlowV45);
     }
 
-    .frame-shell-v45 .rail-layer.strong {
-      stroke: rgba(158, 240, 255, 0.30);
-      stroke-width: 0.86;
-      opacity: 0.68;
-    }
-
-    .frame-shell-v45 .rail-layer.faint,
-    .frame-shell-v45 .rail-accent.faint {
-      stroke: rgba(142, 232, 255, 0.12);
-      opacity: 0.36;
-    }
-
-    .frame-shell-v45 .top-bridge-soft {
-      opacity: 0.36;
-    }
-
-    .frame-shell-v45 .rail-accent {
+    .frame-shell-v45 .tech-detail {
       fill: none;
-      stroke: rgba(208, 252, 255, 0.34);
-      stroke-width: 0.72;
-      opacity: 0.52;
-      filter: url(#frameGlowV45);
-      animation: railAccentFadeV61 8.2s ease-in-out infinite;
+      stroke: rgba(205,248,255,0.28);
+      stroke-width: 0.70;
+      opacity: 0.50;
+      animation: techDetailFadeV62 10s ease-in-out infinite;
     }
 
-    .frame-shell-v45 .rail-accent.delay-1 { animation-delay: -1.6s; }
-    .frame-shell-v45 .rail-accent.delay-2 { animation-delay: -3.4s; }
-    .frame-shell-v45 .rail-accent.delay-3 { animation-delay: -5.2s; }
+    .frame-shell-v45 .tech-detail.delay-1 { animation-delay: -2.1s; }
+    .frame-shell-v45 .tech-detail.delay-2 { animation-delay: -4.8s; }
+    .frame-shell-v45 .tech-detail.delay-3 { animation-delay: -7.3s; }
 
-    .frame-shell-v45 .rail-chip {
-      fill: rgba(92, 231, 255, 0.045);
-      stroke: rgba(166, 244, 255, 0.26);
-      stroke-width: 0.62;
+    .frame-shell-v45 .tech-chip {
+      fill: rgba(92,231,255,0.055);
+      stroke: rgba(168,244,255,0.26);
+      stroke-width: 0.65;
       opacity: 0.24;
-      filter: url(#frameGlowV45);
-      animation: railChipFadeV61 11s ease-in-out infinite;
+      animation: techChipBlinkV62 13s ease-in-out infinite;
     }
 
-    .frame-shell-v45 .chip-a { animation-delay: -1.2s; }
-    .frame-shell-v45 .chip-b { animation-delay: -4.4s; animation-duration: 13s; }
-    .frame-shell-v45 .chip-c { animation-delay: -7.0s; animation-duration: 12s; }
+    .frame-shell-v45 .tech-chip.c2 { animation-delay: -3.5s; }
+    .frame-shell-v45 .tech-chip.c3 { animation-delay: -7.0s; }
 
-    .frame-shell-v45 .rail-energy {
+    .frame-shell-v45 .tech-node {
+      fill: rgba(210,250,255,0.68);
+      stroke: rgba(140,233,255,0.30);
+      stroke-width: 0.72;
+      opacity: 0.68;
+      animation: techNodePulseV62 5.5s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .tech-node.hollow {
+      fill: rgba(2,8,11,0.55);
+      stroke: rgba(210,250,255,0.52);
+    }
+
+    .frame-shell-v45 .tech-energy {
       fill: none;
-      stroke: rgba(214, 252, 255, 0.42);
-      stroke-width: 0.78;
-      stroke-dasharray: 34 330;
+      stroke: rgba(224,252,255,0.56);
+      stroke-width: 0.84;
+      stroke-dasharray: 28 360;
       opacity: 0;
-      filter: url(#frameGlowV45);
-      animation: railEnergyRunV61 12s linear infinite;
+      animation: techFlowV62 12s linear infinite;
     }
 
-    .frame-shell-v45 .rail-energy.secondary {
-      stroke: rgba(90, 235, 255, 0.26);
-      stroke-width: 0.62;
-      stroke-dasharray: 18 285;
+    .frame-shell-v45 .tech-energy.alt {
+      stroke: rgba(114,239,255,0.34);
+      stroke-width: 0.66;
+      stroke-dasharray: 16 300;
       animation-duration: 15.5s;
-      animation-delay: -6s;
+      animation-delay: -5.5s;
     }
 
-    .frame-shell-v45 .right .rail-energy {
-      animation-delay: -3s;
+    .frame-shell-v45 .tech-rail.right .tech-energy {
+      animation-delay: -2.7s;
+    }
+    .frame-shell-v45 .tech-rail.right .tech-energy.alt {
+      animation-delay: -8.2s;
     }
 
-    .frame-shell-v45 .rail-node {
-      fill: rgba(214, 250, 255, 0.72);
-      stroke: rgba(142, 232, 255, 0.26);
-      stroke-width: 0.7;
-      opacity: 0.66;
+    .frame-shell-v45 .center-rail-v62 * {
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      stroke-linejoin: round;
       filter: url(#frameGlowV45);
-      animation: railNodePulseV61 6s ease-in-out infinite;
     }
 
-    .frame-shell-v45 .rail-node.inner {
-      fill: rgba(5, 20, 24, 0.72);
-      stroke: rgba(214, 250, 255, 0.42);
-      opacity: 0.80;
-    }
-
-    .frame-shell-v45 .rail-node.small {
-      opacity: 0.54;
-      animation-delay: -2s;
-    }
-
-    .frame-shell-v45 .rail-diamond {
+    .frame-shell-v45 .center-rail-v62 .center-line {
       fill: none;
-      stroke: rgba(205, 248, 255, 0.52);
-      stroke-width: 0.95;
-      opacity: 0.72;
-      filter: url(#frameGlowV45);
-      animation: railDiamondPulseV61 6.6s ease-in-out infinite;
+      stroke: rgba(190,246,255,0.46);
+      stroke-width: 1.0;
+      opacity: 0.76;
     }
 
-    .frame-shell-v45 .rail-diamond.core {
-      fill: rgba(120, 220, 255, 0.08);
-      opacity: 0.64;
-      animation-delay: -2.2s;
+    .frame-shell-v45 .center-rail-v62 .center-line.soft {
+      stroke: rgba(156,234,255,0.24);
+      stroke-width: 0.76;
+      opacity: 0.54;
     }
 
-    @keyframes railAccentFadeV61 {
-      0%, 100% { opacity: 0.18; }
-      48% { opacity: 0.72; }
-      56% { opacity: 0.34; }
-      64% { opacity: 0.60; }
+    .frame-shell-v45 .center-rail-v62 .center-diamond {
+      fill: rgba(10,23,28,0.18);
+      stroke: rgba(208,248,255,0.62);
+      stroke-width: 0.92;
+      opacity: 0.80;
+      animation: techNodePulseV62 6.2s ease-in-out infinite;
     }
 
-    @keyframes railChipFadeV61 {
-      0%, 100% {
-        opacity: 0.12;
-        fill: rgba(92, 231, 255, 0.025);
-      }
-      48% {
-        opacity: 0.30;
-        fill: rgba(92, 231, 255, 0.050);
-      }
-      54% {
-        opacity: 0.72;
-        fill: rgba(116, 242, 255, 0.13);
-      }
-      62% {
-        opacity: 0.20;
-        fill: rgba(92, 231, 255, 0.035);
-      }
+    @keyframes techFlowV62 {
+      0%   { opacity: 0; stroke-dashoffset: 0; }
+      10%  { opacity: 0.14; }
+      28%  { opacity: 0.56; }
+      46%  { opacity: 0.24; }
+      72%  { opacity: 0.58; }
+      88%  { opacity: 0.16; }
+      100% { opacity: 0; stroke-dashoffset: -388; }
     }
 
-    @keyframes railEnergyRunV61 {
-      0% {
-        opacity: 0;
-        stroke-dashoffset: 0;
-      }
-      14% {
-        opacity: 0.20;
-      }
-      40% {
-        opacity: 0.62;
-      }
-      66% {
-        opacity: 0.24;
-      }
-      100% {
-        opacity: 0;
-        stroke-dashoffset: -364;
-      }
+    @keyframes techDetailFadeV62 {
+      0%,100% { opacity: 0.22; }
+      48% { opacity: 0.56; }
+      56% { opacity: 0.24; }
+      70% { opacity: 0.44; }
     }
 
-    @keyframes railNodePulseV61 {
-      0%, 100% {
-        opacity: 0.38;
-        transform: scale(0.94);
-      }
-      50% {
-        opacity: 0.82;
-        transform: scale(1.10);
-      }
+    @keyframes techChipBlinkV62 {
+      0%,100% { opacity: 0.14; fill: rgba(92,231,255,0.035); }
+      46% { opacity: 0.22; }
+      52% { opacity: 0.78; fill: rgba(120,242,255,0.14); }
+      60% { opacity: 0.18; fill: rgba(92,231,255,0.04); }
     }
 
-    @keyframes railDiamondPulseV61 {
-      0%, 100% {
-        opacity: 0.42;
-      }
-      50% {
-        opacity: 0.86;
-      }
+    @keyframes techNodePulseV62 {
+      0%,100% { opacity: 0.38; }
+      50% { opacity: 0.84; }
     }
 
-</style>
+  </style>
 </head>
 
 <body>
@@ -2690,139 +2624,115 @@
                 </feMerge>
               </filter>
             </defs>
-
-            <!-- äußerer Rahmen deutlich näher am Rand, mit seitlichen Lücken für Runen -->
+            <!-- äußerer Rahmen: nah am Rand, mit freien Runenfenstern -->
             <path class="frame-line outer" d="M10 10 H1076"></path>
             <path class="frame-line outer" d="M10 1438 H1076"></path>
-            <path class="frame-line outer" d="M10 10 V340"></path>
-            <path class="frame-line outer" d="M10 940 V1438"></path>
-            <path class="frame-line outer" d="M1076 10 V340"></path>
-            <path class="frame-line outer" d="M1076 940 V1438"></path>
+            <path class="frame-line outer" d="M10 10 V332"></path>
+            <path class="frame-line outer" d="M10 942 V1438"></path>
+            <path class="frame-line outer" d="M1076 10 V332"></path>
+            <path class="frame-line outer" d="M1076 942 V1438"></path>
 
-            <!-- innerer Rahmen ebenfalls näher am Rand und an Runen ausgespart -->
             <path class="frame-line inner" d="M28 28 H1058"></path>
             <path class="frame-line inner" d="M28 1420 H1058"></path>
-            <path class="frame-line inner" d="M28 28 V356"></path>
-            <path class="frame-line inner" d="M28 922 V1420"></path>
-            <path class="frame-line inner" d="M1058 28 V356"></path>
-            <path class="frame-line inner" d="M1058 922 V1420"></path>
+            <path class="frame-line inner" d="M28 28 V348"></path>
+            <path class="frame-line inner" d="M28 926 V1420"></path>
+            <path class="frame-line inner" d="M1058 28 V348"></path>
+            <path class="frame-line inner" d="M1058 926 V1420"></path>
 
-            <!-- Runen-Aussparungen / Klammern -->
-            <path class="frame-rune-gap" d="M10 356 H34 M10 922 H34"></path>
-            <path class="frame-rune-gap" d="M1052 356 H1076 M1052 922 H1076"></path>
-            <path class="frame-rune-gap" d="M28 372 H48 M28 906 H48"></path>
-            <path class="frame-rune-gap" d="M1038 372 H1058 M1038 906 H1058"></path>
+            <!-- dezente Aussparungen an den Runenfenstern -->
+            <path class="frame-rune-gap" d="M10 350 H34 M10 920 H34"></path>
+            <path class="frame-rune-gap" d="M1052 350 H1076 M1052 920 H1076"></path>
+            <path class="frame-rune-gap" d="M28 368 H48 M28 902 H48"></path>
+            <path class="frame-rune-gap" d="M1038 368 H1058 M1038 902 H1058"></path>
 
-            <!-- Top Rail v61: Kreis bei Runen -> Ecke -> Mittellinie/Raute -->
-            <g class="top-rail-v61 left">
-              <!-- Startkreis bei der linken Runenspalte -->
-              <circle class="rail-node main" cx="22" cy="470" r="3.2"></circle>
-              <circle class="rail-node inner" cx="22" cy="470" r="1.2"></circle>
+            <!-- obere feste technische Rails: Kreis -> Ecke -> Mittellinie -->
+            <g class="tech-rail left">
+              <circle class="tech-node hollow" cx="24" cy="486" r="4.2"></circle>
+              <circle class="tech-node" cx="24" cy="486" r="1.35"></circle>
 
-              <!-- Hauptleitung von Runen nach oben -->
-              <path class="rail-main" d="M22 470 V146"></path>
+              <path class="tech-main" d="M24 486 V34 H154 L182 34 H543"></path>
+              <path class="tech-soft" d="M38 452 V92 L84 46 H146"></path>
+              <path class="tech-soft" d="M54 428 V112 L98 68 H132"></path>
+              <path class="tech-soft" d="M68 404 V134 L112 90 H118"></path>
 
-              <!-- Äußerste Eckführung -->
-              <path class="rail-main" d="M22 146 V34 H160"></path>
+              <path class="tech-detail" d="M44 46 H102"></path>
+              <path class="tech-detail delay-1" d="M116 46 H168"></path>
+              <path class="tech-detail delay-2" d="M42 62 H88"></path>
+              <path class="tech-detail delay-3" d="M40 80 H128"></path>
+              <path class="tech-detail delay-1" d="M58 132 V182"></path>
+              <path class="tech-detail delay-2" d="M76 160 V206"></path>
+              <path class="tech-detail" d="M84 126 L104 106"></path>
+              <path class="tech-detail delay-3" d="M100 126 L122 104"></path>
 
-              <!-- Mehrlagige technische Ecke -->
-              <path class="rail-layer strong" d="M34 452 V164 L64 134 V58 H146"></path>
-              <path class="rail-layer" d="M48 432 V186 L78 156 V76 H132"></path>
-              <path class="rail-layer faint" d="M60 405 V210 L90 180 V96 H118"></path>
+              <polygon class="tech-chip c1" points="40,454 56,454 66,464 50,464"></polygon>
+              <polygon class="tech-chip c2" points="84,46 118,46 110,54 76,54"></polygon>
+              <polygon class="tech-chip c3" points="54,148 68,134 82,148 68,162"></polygon>
 
-              <!-- Kurze technische Segmente oben links -->
-              <path class="rail-accent" d="M52 46 H96"></path>
-              <path class="rail-accent delay-1" d="M104 46 H140"></path>
-              <path class="rail-accent delay-2" d="M40 62 H78"></path>
-              <path class="rail-accent delay-3" d="M38 78 H122"></path>
-
-              <!-- Vertikale Detailspuren -->
-              <path class="rail-accent delay-1" d="M52 116 V158"></path>
-              <path class="rail-accent delay-2" d="M74 144 V188"></path>
-              <path class="rail-accent faint" d="M88 168 V214"></path>
-
-              <!-- Diagonale Technikdetails -->
-              <path class="rail-accent" d="M74 126 L94 106"></path>
-              <path class="rail-accent delay-3" d="M92 126 L114 104"></path>
-
-              <!-- Kleine technische Plättchen -->
-              <polygon class="rail-chip chip-a" points="42,432 56,432 66,442 52,442"></polygon>
-              <polygon class="rail-chip chip-b" points="48,146 62,132 76,146 62,160"></polygon>
-              <polygon class="rail-chip chip-c" points="104,46 138,46 130,54 96,54"></polygon>
-
-              <!-- Verbindung von Ecke zur Mittellinie -->
-              <path class="rail-main top-bridge" d="M160 34 H530"></path>
-              <path class="rail-layer top-bridge-soft" d="M146 46 H516"></path>
-
-              <!-- Lebendige Energie auf den Hauptbahnen -->
-              <path class="rail-energy" d="M22 470 V146 V34 H530"></path>
-              <path class="rail-energy secondary" d="M34 452 V164 L64 134 V58 H516"></path>
-
-              <!-- Knotenpunkte -->
-              <circle class="rail-node small" cx="96" cy="46" r="1.6"></circle>
-              <circle class="rail-node small" cx="122" cy="78" r="1.35"></circle>
-              <circle class="rail-node small" cx="64" cy="134" r="1.35"></circle>
+              <path class="tech-energy" d="M24 486 V34 H543"></path>
+              <path class="tech-energy alt" d="M38 452 V92 L84 46 H543"></path>
             </g>
 
-            <g class="top-rail-v61 right" transform="translate(1086 0) scale(-1 1)">
-              <!-- Startkreis bei der rechten Runenspalte -->
-              <circle class="rail-node main" cx="22" cy="470" r="3.2"></circle>
-              <circle class="rail-node inner" cx="22" cy="470" r="1.2"></circle>
+            <g class="tech-rail right" transform="translate(1086 0) scale(-1 1)">
+              <circle class="tech-node hollow" cx="24" cy="486" r="4.2"></circle>
+              <circle class="tech-node" cx="24" cy="486" r="1.35"></circle>
 
-              <path class="rail-main" d="M22 470 V146"></path>
-              <path class="rail-main" d="M22 146 V34 H160"></path>
+              <path class="tech-main" d="M24 486 V34 H154 L182 34 H543"></path>
+              <path class="tech-soft" d="M38 448 V94 L84 46 H146"></path>
+              <path class="tech-soft" d="M54 424 V114 L98 68 H132"></path>
+              <path class="tech-soft" d="M68 400 V136 L112 90 H118"></path>
 
-              <path class="rail-layer strong" d="M34 446 V166 L66 132 V58 H148"></path>
-              <path class="rail-layer" d="M50 426 V188 L80 156 V78 H134"></path>
-              <path class="rail-layer faint" d="M62 398 V214 L92 182 V98 H120"></path>
+              <path class="tech-detail" d="M42 46 H96"></path>
+              <path class="tech-detail delay-1" d="M108 46 H166"></path>
+              <path class="tech-detail delay-2" d="M44 60 H122"></path>
+              <path class="tech-detail delay-3" d="M46 78 H94"></path>
+              <path class="tech-detail delay-1" d="M60 130 V176"></path>
+              <path class="tech-detail delay-2" d="M78 156 V200"></path>
+              <path class="tech-detail" d="M88 122 L108 102"></path>
+              <path class="tech-detail delay-3" d="M104 122 L126 100"></path>
 
-              <path class="rail-accent" d="M52 46 H92"></path>
-              <path class="rail-accent delay-1" d="M102 46 H142"></path>
-              <path class="rail-accent delay-2" d="M42 60 H120"></path>
-              <path class="rail-accent delay-3" d="M44 76 H94"></path>
+              <polygon class="tech-chip c1" points="42,450 58,450 68,460 52,460"></polygon>
+              <polygon class="tech-chip c2" points="84,46 118,46 110,54 76,54"></polygon>
+              <polygon class="tech-chip c3" points="56,146 70,132 84,146 70,160"></polygon>
 
-              <path class="rail-accent delay-1" d="M58 110 V152"></path>
-              <path class="rail-accent delay-2" d="M78 140 V178"></path>
-              <path class="rail-accent faint" d="M92 166 V206"></path>
-
-              <path class="rail-accent" d="M84 118 L104 98"></path>
-              <path class="rail-accent delay-3" d="M102 120 L124 100"></path>
-
-              <polygon class="rail-chip chip-b" points="44,426 58,426 68,436 54,436"></polygon>
-              <polygon class="rail-chip chip-c" points="50,146 64,132 78,146 64,160"></polygon>
-              <polygon class="rail-chip chip-a" points="102,46 140,46 132,54 94,54"></polygon>
-
-              <path class="rail-main top-bridge" d="M160 34 H530"></path>
-              <path class="rail-layer top-bridge-soft" d="M146 46 H516"></path>
-
-              <path class="rail-energy" d="M22 470 V146 V34 H530"></path>
-              <path class="rail-energy secondary" d="M34 446 V166 L66 132 V58 H516"></path>
-
-              <circle class="rail-node small" cx="92" cy="46" r="1.5"></circle>
-              <circle class="rail-node small" cx="120" cy="76" r="1.35"></circle>
-              <circle class="rail-node small" cx="66" cy="132" r="1.25"></circle>
+              <path class="tech-energy" d="M24 486 V34 H543"></path>
+              <path class="tech-energy alt" d="M38 448 V94 L84 46 H543"></path>
             </g>
 
-            <!-- obere Mittellinie + Rauten -->
-            <g class="top-center-rail-v61">
-              <path class="rail-main center" d="M543 18 V84"></path>
-              <path class="rail-layer center-soft" d="M543 94 V122"></path>
-
-              <path class="rail-diamond" d="M543 16 l9 9 l-9 9 l-9 -9 z"></path>
-              <path class="rail-diamond core" d="M543 58 l7 7 l-7 7 l-7 -7 z"></path>
-
-              <circle class="rail-node small" cx="543" cy="84" r="1.9"></circle>
+            <!-- obere Mittellinie mit zwei Rauten -->
+            <g class="center-rail-v62">
+              <path class="center-line" d="M543 10 V126"></path>
+              <path class="center-line soft" d="M543 126 V152"></path>
+              <path class="center-diamond" d="M543 10 l9 9 l-9 9 l-9 -9 z"></path>
+              <path class="center-diamond" d="M543 58 l7 7 l-7 7 l-7 -7 z"></path>
+              <circle class="frame-node" cx="543" cy="90" r="2.0"></circle>
             </g>
 
-            <!-- unterer Mittelmarker bleibt vorerst schlicht -->
-            <g class="bottom-center-rail-v61">
-              <path class="frame-mark" d="M270 1428 H420 M666 1428 H816"></path>
-              <path class="frame-mark" d="M543 1390 V1428"></path>
-              <path class="frame-mark" d="M543 1406 l7 7 l-7 7 l-7 -7 z"></path>
-              <circle class="frame-node" cx="543" cy="1390" r="2.2"></circle>
+            <!-- kompakte untere Ecken -->
+            <g class="corner-symbol corner-bl" transform="translate(0 1448) scale(1 -1)">
+              <path class="frame-corner" d="M28 206 V30 H174"></path>
+              <path class="frame-corner soft" d="M46 182 V90 L84 52 H152"></path>
+              <path class="frame-corner soft" d="M62 160 V112 L100 74 H132"></path>
+              <path class="frame-mark" d="M40 46 H88"></path>
+              <path class="frame-mark" d="M104 46 H150"></path>
+              <path class="frame-mark" d="M54 134 V178"></path>
+              <circle class="frame-node" cx="28" cy="30" r="2.0"></circle>
             </g>
 
+            <g class="corner-symbol corner-br" transform="translate(1086 1448) scale(-1 -1)">
+              <path class="frame-corner" d="M28 206 V30 H174"></path>
+              <path class="frame-corner soft" d="M46 182 V90 L84 52 H152"></path>
+              <path class="frame-corner soft" d="M62 160 V112 L100 74 H132"></path>
+              <path class="frame-mark" d="M40 46 H88"></path>
+              <path class="frame-mark" d="M104 46 H150"></path>
+              <path class="frame-mark" d="M54 134 V178"></path>
+              <circle class="frame-node" cx="28" cy="30" r="2.0"></circle>
+            </g>
 
+            <!-- untere Mittellinie bleibt schlicht -->
+            <path class="frame-mark" d="M270 1428 H420 M666 1428 H816"></path>
+            <path class="frame-mark" d="M543 1390 V1428"></path>
+            <path class="frame-mark" d="M543 1406 l7 7 l-7 7 l-7 -7 z"></path>
+            <circle class="frame-node" cx="543" cy="1390" r="2.2"></circle>
 
           </svg>
         </div>
