@@ -157,21 +157,21 @@
     }
 
     .frame-shell-v45 .frame-corner {
-      stroke: rgba(180,245,255,0.42);
-      stroke-width: 1.10;
-      opacity: 0.78;
+      stroke: rgba(180,245,255,0.34);
+      stroke-width: 1.15;
+      opacity: 0.72;
     }
 
     .frame-shell-v45 .frame-corner.soft {
-      stroke: rgba(155,236,255,0.22);
+      stroke: rgba(155,236,255,0.16);
       stroke-width: 0.78;
-      opacity: 0.60;
+      opacity: 0.52;
     }
 
     .frame-shell-v45 .frame-mark {
-      stroke: rgba(155,236,255,0.26);
-      stroke-width: 0.78;
-      opacity: 0.62;
+      stroke: rgba(155,236,255,0.20);
+      stroke-width: 0.82;
+      opacity: 0.54;
     }
 
     .frame-shell-v45 .frame-rune-gap {
@@ -2037,6 +2037,132 @@
     .runes { z-index: 24 !important; }
 
 
+  
+    /* =========================
+       HUD CORNERS v54
+       Mehrlagige technische Ecken im Referenzstil
+    ========================= */
+    .hud-corner-set {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 30;
+      mix-blend-mode: screen;
+    }
+
+    .hud-corner {
+      position: absolute;
+      width: 178px;
+      height: 178px;
+      opacity: 0.88;
+      filter:
+        drop-shadow(0 0 6px rgba(130,220,255,0.14))
+        drop-shadow(0 0 16px rgba(130,220,255,0.07));
+    }
+
+    .hud-corner.tl { top: 16px; left: 16px; }
+    .hud-corner.tr { top: 16px; right: 16px; }
+    .hud-corner.bl { bottom: 16px; left: 16px; }
+    .hud-corner.br { bottom: 16px; right: 16px; }
+
+    .corner-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .corner-svg path,
+    .corner-svg circle {
+      fill: none;
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .corner-svg .c-main {
+      stroke: rgba(178, 238, 255, 0.62);
+      stroke-width: 1.45;
+      opacity: 0.86;
+      animation: hudCornerMainPulse 6.2s ease-in-out infinite;
+    }
+
+    .corner-svg .c-mid {
+      stroke: rgba(130, 222, 255, 0.38);
+      stroke-width: 1.02;
+      opacity: 0.74;
+    }
+
+    .corner-svg .c-inner {
+      stroke: rgba(130, 222, 255, 0.25);
+      stroke-width: 0.86;
+      opacity: 0.66;
+    }
+
+    .corner-svg .c-accent {
+      stroke: rgba(197, 246, 255, 0.50);
+      stroke-width: 0.88;
+      opacity: 0.72;
+    }
+
+    .corner-svg .c-accent.faint {
+      stroke: rgba(142, 232, 255, 0.20);
+      stroke-width: 0.72;
+      opacity: 0.50;
+    }
+
+    .corner-svg .c-detail {
+      stroke: rgba(116, 218, 255, 0.32);
+      stroke-width: 0.82;
+      opacity: 0.64;
+    }
+
+    .corner-svg .c-connect {
+      stroke: rgba(142, 232, 255, 0.18);
+      stroke-width: 0.82;
+      opacity: 0.42;
+    }
+
+    .corner-svg .c-dot {
+      fill: rgba(210, 248, 255, 0.80);
+      stroke: none;
+      filter: drop-shadow(0 0 4px rgba(180,240,255,0.45));
+      animation: hudCornerDotPulse 5.4s ease-in-out infinite;
+    }
+
+    .corner-svg .c-dot.small { opacity: 0.72; }
+    .corner-svg .c-dot.tiny { opacity: 0.52; }
+
+    .hud-corner.tr .c-accent,
+    .hud-corner.bl .c-accent {
+      animation-delay: -1.4s;
+    }
+
+    .hud-corner.br .c-main {
+      animation-delay: -2.1s;
+    }
+
+    @keyframes hudCornerMainPulse {
+      0%, 100% {
+        opacity: 0.66;
+        filter: drop-shadow(0 0 0 rgba(130,220,255,0));
+      }
+      50% {
+        opacity: 0.96;
+        filter: drop-shadow(0 0 5px rgba(150,235,255,0.18));
+      }
+    }
+
+    @keyframes hudCornerDotPulse {
+      0%, 100% {
+        opacity: 0.42;
+        transform: scale(0.92);
+      }
+      50% {
+        opacity: 0.95;
+        transform: scale(1.08);
+      }
+    }
+
   </style>
 </head>
 
@@ -2485,96 +2611,26 @@
             </defs>
 
             <!-- äußerer Rahmen deutlich näher am Rand, mit seitlichen Lücken für Runen -->
-            <path class="frame-line outer" d="M10 10 H1076"></path>
-            <path class="frame-line outer" d="M10 1438 H1076"></path>
-            <path class="frame-line outer" d="M10 10 V340"></path>
-            <path class="frame-line outer" d="M10 940 V1438"></path>
-            <path class="frame-line outer" d="M1076 10 V340"></path>
-            <path class="frame-line outer" d="M1076 940 V1438"></path>
+            <path class="frame-line outer" d="M190 10 H896"></path>
+            <path class="frame-line outer" d="M190 1438 H896"></path>
+            <path class="frame-line outer" d="M10 190 V340"></path>
+            <path class="frame-line outer" d="M10 940 V1258"></path>
+            <path class="frame-line outer" d="M1076 190 V340"></path>
+            <path class="frame-line outer" d="M1076 940 V1258"></path>
 
             <!-- innerer Rahmen ebenfalls näher am Rand und an Runen ausgespart -->
-            <path class="frame-line inner" d="M28 28 H1058"></path>
-            <path class="frame-line inner" d="M28 1420 H1058"></path>
-            <path class="frame-line inner" d="M28 28 V356"></path>
-            <path class="frame-line inner" d="M28 922 V1420"></path>
-            <path class="frame-line inner" d="M1058 28 V356"></path>
-            <path class="frame-line inner" d="M1058 922 V1420"></path>
+            <path class="frame-line inner" d="M210 28 H876"></path>
+            <path class="frame-line inner" d="M210 1420 H876"></path>
+            <path class="frame-line inner" d="M28 210 V356"></path>
+            <path class="frame-line inner" d="M28 922 V1238"></path>
+            <path class="frame-line inner" d="M1058 210 V356"></path>
+            <path class="frame-line inner" d="M1058 922 V1238"></path>
 
             <!-- Runen-Aussparungen / Klammern -->
             <path class="frame-rune-gap" d="M10 356 H34 M10 922 H34"></path>
             <path class="frame-rune-gap" d="M1052 356 H1076 M1052 922 H1076"></path>
             <path class="frame-rune-gap" d="M28 372 H48 M28 906 H48"></path>
             <path class="frame-rune-gap" d="M1038 372 H1058 M1038 906 H1058"></path>
-
-            <!-- ===== Corner Rebuild v52: technischer HUD-Rahmen, ähnlich aber nicht identisch ===== -->
-
-            <!-- oben links: detailreichste Ecke -->
-            <g class="corner-symbol corner-tl" transform="translate(0 0)">
-              <path class="frame-corner" d="M28 216 V28 H216"></path>
-              <path class="frame-corner soft" d="M48 190 V96 L92 52 H194"></path>
-              <path class="frame-corner soft" d="M68 164 V114 L106 76 H170"></path>
-              <path class="frame-mark" d="M42 44 H90 M106 44 H170"></path>
-              <path class="frame-mark" d="M42 58 H74 M88 58 H136"></path>
-              <path class="frame-mark" d="M42 76 H150"></path>
-              <path class="frame-mark" d="M54 94 V136"></path>
-              <path class="frame-mark" d="M70 190 H118 M132 190 H178"></path>
-              <path class="frame-mark" d="M126 156 L158 188"></path>
-              <path class="frame-mark" d="M184 66 V92"></path>
-              <circle class="frame-node" cx="28" cy="28" r="2.2"></circle>
-              <circle class="frame-node" cx="170" cy="44" r="1.35"></circle>
-              <circle class="frame-node" cx="178" cy="190" r="1.15"></circle>
-            </g>
-
-            <!-- oben rechts: gleiche Sprache, andere Segmentierung -->
-            <g class="corner-symbol corner-tr" transform="translate(1086 0) scale(-1 1)">
-              <path class="frame-corner" d="M28 206 V28 H210"></path>
-              <path class="frame-corner soft" d="M50 184 V92 L88 52 H190"></path>
-              <path class="frame-corner soft" d="M70 156 V110 L106 74 H162"></path>
-              <path class="frame-mark" d="M44 44 H82 M98 44 H158"></path>
-              <path class="frame-mark" d="M44 60 H124"></path>
-              <path class="frame-mark" d="M138 60 H184"></path>
-              <path class="frame-mark" d="M56 86 V126"></path>
-              <path class="frame-mark" d="M120 146 H174"></path>
-              <path class="frame-mark" d="M140 156 L166 182"></path>
-              <path class="frame-mark" d="M180 74 V106"></path>
-              <circle class="frame-node" cx="28" cy="28" r="2.2"></circle>
-              <circle class="frame-node" cx="82" cy="44" r="1.2"></circle>
-              <circle class="frame-node" cx="166" cy="182" r="1.15"></circle>
-            </g>
-
-            <!-- unten links: etwas schwerer, ruhiger -->
-            <g class="corner-symbol corner-bl" transform="translate(0 1448) scale(1 -1)">
-              <path class="frame-corner" d="M28 208 V28 H208"></path>
-              <path class="frame-corner soft" d="M50 186 V96 L92 54 H186"></path>
-              <path class="frame-corner soft" d="M72 160 V114 L108 78 H162"></path>
-              <path class="frame-mark" d="M44 44 H96 M112 44 H168"></path>
-              <path class="frame-mark" d="M44 60 H76"></path>
-              <path class="frame-mark" d="M44 76 H118"></path>
-              <path class="frame-mark" d="M56 98 V146"></path>
-              <path class="frame-mark" d="M92 186 H142 M154 186 H184"></path>
-              <path class="frame-mark" d="M130 148 L158 176"></path>
-              <circle class="frame-node" cx="28" cy="28" r="2.2"></circle>
-              <circle class="frame-node" cx="168" cy="44" r="1.3"></circle>
-              <circle class="frame-node" cx="184" cy="186" r="1.15"></circle>
-            </g>
-
-            <!-- unten rechts: filigraner Gegenpol -->
-            <g class="corner-symbol corner-br" transform="translate(1086 1448) scale(-1 -1)">
-              <path class="frame-corner" d="M28 210 V28 H212"></path>
-              <path class="frame-corner soft" d="M48 184 V94 L86 54 H190"></path>
-              <path class="frame-corner soft" d="M68 158 V112 L104 76 H166"></path>
-              <path class="frame-mark" d="M44 44 H88 M104 44 H164"></path>
-              <path class="frame-mark" d="M44 58 H122"></path>
-              <path class="frame-mark" d="M136 58 H182"></path>
-              <path class="frame-mark" d="M54 88 V130"></path>
-              <path class="frame-mark" d="M124 150 H178"></path>
-              <path class="frame-mark" d="M132 160 L154 182"></path>
-              <path class="frame-mark" d="M184 78 V102"></path>
-              <circle class="frame-node" cx="28" cy="28" r="2.2"></circle>
-              <circle class="frame-node" cx="164" cy="44" r="1.35"></circle>
-              <circle class="frame-node" cx="154" cy="182" r="1.15"></circle>
-            </g>
-
             <!-- kleine Artefaktmarker oben/unten -->
             <path class="frame-mark" d="M255 20 H414 M672 20 H831"></path>
             <path class="frame-mark" d="M543 10 V58"></path>
@@ -2588,6 +2644,88 @@
 
           </svg>
         </div>
+        <div class="hud-corner-set" aria-hidden="true">
+          <div class="hud-corner tl">
+            <svg viewBox="0 0 180 180" class="corner-svg">
+              <path class="c-main" d="M18 160 V22 H145" />
+              <path class="c-connect" d="M0 160 H18 M145 22 H172" />
+              <path class="c-mid" d="M42 138 V58 L74 26 H126" />
+              <path class="c-inner" d="M58 144 H118 L146 116" />
+              <path class="c-accent" d="M22 146 H44" />
+              <path class="c-accent" d="M30 34 H68" />
+              <path class="c-accent" d="M94 26 H116" />
+              <path class="c-accent faint" d="M42 52 H116" />
+              <path class="c-accent faint" d="M42 74 H88" />
+              <path class="c-detail" d="M54 136 L68 150" />
+              <path class="c-detail" d="M74 26 L88 40" />
+              <circle class="c-dot" cx="22" cy="160" r="2.2" />
+              <circle class="c-dot small" cx="44" cy="146" r="1.4" />
+              <circle class="c-dot small" cx="118" cy="144" r="1.4" />
+              <circle class="c-dot tiny" cx="116" cy="26" r="1.1" />
+            </svg>
+          </div>
+
+          <div class="hud-corner tr">
+            <svg viewBox="0 0 180 180" class="corner-svg">
+              <path class="c-main" d="M162 160 V22 H35" />
+              <path class="c-connect" d="M180 160 H162 M35 22 H8" />
+              <path class="c-mid" d="M138 138 V58 L106 26 H54" />
+              <path class="c-inner" d="M122 144 H62 L34 116" />
+              <path class="c-accent" d="M158 146 H136" />
+              <path class="c-accent" d="M150 34 H112" />
+              <path class="c-accent" d="M86 26 H64" />
+              <path class="c-accent faint" d="M138 54 H76" />
+              <path class="c-accent faint" d="M138 76 H94" />
+              <path class="c-detail" d="M126 136 L112 150" />
+              <path class="c-detail" d="M106 26 L92 40" />
+              <circle class="c-dot" cx="158" cy="160" r="2.2" />
+              <circle class="c-dot small" cx="136" cy="146" r="1.4" />
+              <circle class="c-dot small" cx="62" cy="144" r="1.4" />
+              <circle class="c-dot tiny" cx="64" cy="26" r="1.1" />
+            </svg>
+          </div>
+
+          <div class="hud-corner bl">
+            <svg viewBox="0 0 180 180" class="corner-svg">
+              <path class="c-main" d="M18 20 V158 H145" />
+              <path class="c-connect" d="M0 20 H18 M145 158 H172" />
+              <path class="c-mid" d="M42 42 V122 L74 154 H126" />
+              <path class="c-inner" d="M58 36 H118 L146 64" />
+              <path class="c-accent" d="M22 34 H44" />
+              <path class="c-accent" d="M30 146 H68" />
+              <path class="c-accent" d="M94 154 H116" />
+              <path class="c-accent faint" d="M42 126 H112" />
+              <path class="c-accent faint" d="M42 108 H88" />
+              <path class="c-detail" d="M54 44 L68 30" />
+              <path class="c-detail" d="M74 154 L88 140" />
+              <circle class="c-dot" cx="22" cy="20" r="2.2" />
+              <circle class="c-dot small" cx="44" cy="34" r="1.4" />
+              <circle class="c-dot small" cx="118" cy="36" r="1.4" />
+              <circle class="c-dot tiny" cx="116" cy="154" r="1.1" />
+            </svg>
+          </div>
+
+          <div class="hud-corner br">
+            <svg viewBox="0 0 180 180" class="corner-svg">
+              <path class="c-main" d="M162 20 V158 H35" />
+              <path class="c-connect" d="M180 20 H162 M35 158 H8" />
+              <path class="c-mid" d="M138 42 V122 L106 154 H54" />
+              <path class="c-inner" d="M122 36 H62 L34 64" />
+              <path class="c-accent" d="M158 34 H136" />
+              <path class="c-accent" d="M150 146 H112" />
+              <path class="c-accent" d="M86 154 H64" />
+              <path class="c-accent faint" d="M138 126 H68" />
+              <path class="c-accent faint" d="M138 108 H92" />
+              <path class="c-detail" d="M126 44 L112 30" />
+              <path class="c-detail" d="M106 154 L92 140" />
+              <circle class="c-dot" cx="158" cy="20" r="2.2" />
+              <circle class="c-dot small" cx="136" cy="34" r="1.4" />
+              <circle class="c-dot small" cx="62" cy="36" r="1.4" />
+              <circle class="c-dot tiny" cx="64" cy="154" r="1.1" />
+            </svg>
+          </div>
+        </div>
+
       </main>
     </div>
   </div>
