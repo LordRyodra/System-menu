@@ -1946,112 +1946,156 @@
 
     
     
-    /* ===== FRAME STEP 1 v64 CLEAN =====
-       Nur äußerer linker/rechter Rahmen + obere Rail + Mittelraute.
-       Keine alten Ecken, keine alten Top-Rails.
-    */
-    .frame-step1-v64 {
-      position: absolute;
-      inset: 0;
-      z-index: 23;
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
+    /* =========================================================
+   FRAME STEP 2
+   äußerer Rahmen + Mittelraute + erste innere Parallele
+   ========================================================= */
+.frame-step1-v64 {
+  position: absolute;
+  inset: 0;
+  z-index: 23;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
 
-    .frame-step1-v64 svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
+.frame-step1-v64 svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
 
-    .frame-step1-v64 .step-main,
-    .frame-step1-v64 .step-energy,
-    .frame-step1-v64 .step-diamond,
-    .frame-step1-v64 .step-node,
-    .frame-step1-v64 .step-node-ring {
-      vector-effect: non-scaling-stroke;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      filter: url(#stepFrameGlowV64);
-    }
+.frame-step1-v64 .step-main,
+.frame-step1-v64 .step-main-soft,
+.frame-step1-v64 .step-energy,
+.frame-step1-v64 .step-inner,
+.frame-step1-v64 .step-inner-fade,
+.frame-step1-v64 .step-diamond,
+.frame-step1-v64 .step-node,
+.frame-step1-v64 .step-node-ring {
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: url(#stepFrameGlowV68);
+}
 
-    .frame-step1-v64 .step-main {
-      fill: none;
-      stroke: rgba(190, 246, 255, 0.52);
-      stroke-width: 1.12;
-      opacity: 0.78;
-      animation: stepFrameBreatheV64 8.5s ease-in-out infinite;
-    }
+.frame-step1-v64 .step-main {
+  fill: none;
+  stroke: rgba(196, 247, 255, 0.56);
+  stroke-width: 1.14;
+  opacity: 0.80;
+  animation: stepFrameBreatheV68 8.5s ease-in-out infinite;
+}
 
-    .frame-step1-v64 .step-main.soft {
-      stroke: rgba(150, 232, 255, 0.16);
-      stroke-width: 0.82;
-      opacity: 0.42;
-      animation-delay: -2.5s;
-    }
+.frame-step1-v64 .step-main-soft {
+  fill: none;
+  stroke: rgba(150, 232, 255, 0.16);
+  stroke-width: 0.82;
+  opacity: 0.42;
+  animation: stepFrameBreatheV68 10s ease-in-out infinite;
+}
 
-    .frame-step1-v64 .step-energy {
-      fill: none;
-      stroke: rgba(230, 254, 255, 0.62);
-      stroke-width: 0.86;
-      stroke-dasharray: 34 420;
-      opacity: 0;
-      animation: stepEnergyRunV64 12s linear infinite;
-    }
+.frame-step1-v64 .step-energy {
+  fill: none;
+  stroke: rgba(235, 252, 255, 0.72);
+  stroke-width: 0.88;
+  stroke-dasharray: 38 430;
+  opacity: 0;
+  animation: stepEnergyRunV68 12s linear infinite;
+}
 
-    .frame-step1-v64 .right .step-energy {
-      animation-delay: -4s;
-      animation-direction: reverse;
-    }
+.frame-step1-v64 .right .step-energy {
+  animation-delay: -4s;
+}
 
-    .frame-step1-v64 .step-node-ring {
-      fill: rgba(2, 9, 12, 0.56);
-      stroke: rgba(204, 249, 255, 0.46);
-      stroke-width: 0.9;
-      opacity: 0.72;
-      animation: stepNodePulseV64 6s ease-in-out infinite;
-    }
+.frame-step1-v64 .step-inner {
+  fill: none;
+  stroke: rgba(175, 238, 255, 0.34);
+  stroke-width: 0.96;
+  opacity: 0.62;
+  animation: stepInnerBreatheV68 9.5s ease-in-out infinite;
+}
 
-    .frame-step1-v64 .step-node {
-      fill: rgba(214, 250, 255, 0.72);
-      stroke: rgba(140, 232, 255, 0.32);
-      stroke-width: 0.7;
-      opacity: 0.66;
-      animation: stepNodePulseV64 5s ease-in-out infinite -1.5s;
-    }
+.frame-step1-v64 .step-inner-fade {
+  fill: none;
+  stroke: url(#stepInnerFadeV68);
+  stroke-width: 0.96;
+  opacity: 0.72;
+  animation: stepInnerBreatheV68 9.5s ease-in-out infinite;
+}
 
-    .frame-step1-v64 .step-diamond {
-      fill: rgba(6, 16, 20, 0.62);
-      stroke: rgba(214, 250, 255, 0.68);
-      stroke-width: 0.95;
-      opacity: 0.84;
-      animation: stepNodePulseV64 6.8s ease-in-out infinite;
-    }
+.frame-step1-v64 .step-node-ring {
+  fill: rgba(2, 9, 12, 0.56);
+  stroke: rgba(204, 249, 255, 0.48);
+  stroke-width: 0.9;
+  opacity: 0.76;
+  animation: stepNodePulseV68 6s ease-in-out infinite;
+}
 
-    @keyframes stepFrameBreatheV64 {
-      0%, 100% { opacity: 0.46; }
-      38% { opacity: 0.76; }
-      58% { opacity: 0.58; }
-      82% { opacity: 0.86; }
-    }
+.frame-step1-v64 .step-node {
+  fill: rgba(214, 250, 255, 0.74);
+  stroke: rgba(140, 232, 255, 0.32);
+  stroke-width: 0.7;
+  opacity: 0.70;
+  animation: stepNodePulseV68 5s ease-in-out infinite -1.4s;
+}
 
-    @keyframes stepEnergyRunV64 {
-      0% { opacity: 0; stroke-dashoffset: 0; }
-      10% { opacity: 0.12; }
-      30% { opacity: 0.58; }
-      52% { opacity: 0.20; }
-      74% { opacity: 0.60; }
-      92% { opacity: 0.14; }
-      100% { opacity: 0; stroke-dashoffset: -460; }
-    }
+.frame-step1-v64 .step-diamond {
+  fill: rgba(6, 16, 20, 0.62);
+  stroke: rgba(214, 250, 255, 0.68);
+  stroke-width: 0.95;
+  opacity: 0.84;
+  animation: stepNodePulseV68 6.8s ease-in-out infinite;
+}
 
-    @keyframes stepNodePulseV64 {
-      0%, 100% { opacity: 0.44; }
-      50% { opacity: 0.88; }
-    }
+@keyframes stepFrameBreatheV68 {
+  0%, 100% { opacity: 0.48; }
+  35% { opacity: 0.78; }
+  58% { opacity: 0.60; }
+  82% { opacity: 0.86; }
+}
 
+@keyframes stepInnerBreatheV68 {
+  0%, 100% { opacity: 0.40; }
+  30% { opacity: 0.66; }
+  55% { opacity: 0.48; }
+  85% { opacity: 0.72; }
+}
+
+@keyframes stepEnergyRunV68 {
+  0% {
+    stroke-dashoffset: 470;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.34;
+  }
+  45% {
+    opacity: 0.68;
+  }
+  85% {
+    opacity: 0.28;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes stepNodePulseV68 {
+  0%, 100% {
+    opacity: 0.54;
+    filter: url(#stepFrameGlowV68);
+  }
+  45% {
+    opacity: 0.92;
+    filter: url(#stepFrameGlowHotV68);
+  }
+  70% {
+    opacity: 0.68;
+  }
+}
   </style>
 </head>
 
@@ -2487,45 +2531,82 @@
 <div class="debris" aria-hidden="true"></div>
 
         
-        <!-- FRAME STEP 1 v64 CLEAN: nur Basisrahmen + Mittelraute -->
-        <div class="frame-step1-v64" aria-hidden="true">
-          <svg viewBox="0 0 1086 1448" preserveAspectRatio="none" role="presentation">
-            <defs>
-              <filter id="stepFrameGlowV64" x="-35%" y="-35%" width="170%" height="170%">
-                <feGaussianBlur stdDeviation="0.95" result="blur"/>
-                <feMerge>
-                  <feMergeNode in="blur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
+       <div class="frame-step1-v64" aria-hidden="true">
+  <svg viewBox="0 0 1086 1448" preserveAspectRatio="none" role="presentation">
+    <defs>
+      <filter id="stepFrameGlowV68" x="-35%" y="-35%" width="170%" height="170%">
+        <feGaussianBlur stdDeviation="0.95" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
 
-            <g class="left">
-              <circle class="step-node-ring" cx="46" cy="416" r="4.8"></circle>
-              <circle class="step-node" cx="46" cy="416" r="1.45"></circle>
-              <path class="step-main" d="M46 416 V46 H534"></path>
-              <path class="step-main soft" d="M30 30 V1418"></path>
-              <path class="step-main soft" d="M12 12 V1436"></path>
-              <path class="step-energy" d="M46 416 V46 H534"></path>
-            </g>
+      <filter id="stepFrameGlowHotV68" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="1.8" result="blurA"/>
+        <feGaussianBlur in="SourceGraphic" stdDeviation="0.6" result="blurB"/>
+        <feMerge>
+          <feMergeNode in="blurA"/>
+          <feMergeNode in="blurB"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
 
-            <g class="right" transform="translate(1086 0) scale(-1 1)">
-              <circle class="step-node-ring" cx="46" cy="416" r="4.8"></circle>
-              <circle class="step-node" cx="46" cy="416" r="1.45"></circle>
-              <path class="step-main" d="M46 416 V46 H534"></path>
-              <path class="step-main soft" d="M30 30 V1418"></path>
-              <path class="step-main soft" d="M12 12 V1436"></path>
-              <path class="step-energy" d="M46 416 V46 H534"></path>
-            </g>
+      <linearGradient id="stepInnerFadeV68" x1="94" y1="70" x2="358" y2="70" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#d7f7ff" stop-opacity="0.66"/>
+        <stop offset="68%" stop-color="#bdefff" stop-opacity="0.32"/>
+        <stop offset="100%" stop-color="#bdefff" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
 
-            <!-- Mittelraute: horizontale Rail endet an der Raute und beginnt auf der anderen Seite wieder -->
-            <path class="step-diamond" d="M543 37 l9 9 l-9 9 l-9 -9 z"></path>
-            <path class="step-diamond" d="M543 94 l7 7 l-7 7 l-7 -7 z"></path>
-            <path class="step-main" d="M543 55 V126"></path>
-            <path class="step-main soft" d="M543 126 V152"></path>
-            <circle class="step-node" cx="543" cy="78" r="1.8"></circle>
-          </svg>
-        </div>
+    <!-- LINKS -->
+    <g class="left">
+      <!-- Startkreis über den Runen -->
+      <circle class="step-node-ring" cx="46" cy="416" r="4.8"></circle>
+      <circle class="step-node" cx="46" cy="416" r="1.45"></circle>
+
+      <!-- äußerer Hauptrahmen -->
+      <path class="step-main" d="M46 416 V46 H534"></path>
+
+      <!-- weiche Außenlinien -->
+      <path class="step-main-soft" d="M30 30 V1418"></path>
+      <path class="step-main-soft" d="M12 12 V1436"></path>
+
+      <!-- Energiefluss außen zur Mitte -->
+      <path class="step-energy" d="M46 416 V46 H534"></path>
+
+      <!-- erste innere Parallele -->
+      <!-- startet ca. bei 1/3 des Weges -->
+      <path class="step-inner" d="M46 292 L70 268 V94 L94 70"></path>
+      <path class="step-inner-fade" d="M94 70 H358"></path>
+    </g>
+
+    <!-- RECHTS gespiegelt -->
+    <g class="right" transform="translate(1086 0) scale(-1 1)">
+      <circle class="step-node-ring" cx="46" cy="416" r="4.8"></circle>
+      <circle class="step-node" cx="46" cy="416" r="1.45"></circle>
+
+      <path class="step-main" d="M46 416 V46 H534"></path>
+
+      <path class="step-main-soft" d="M30 30 V1418"></path>
+      <path class="step-main-soft" d="M12 12 V1436"></path>
+
+      <path class="step-energy" d="M46 416 V46 H534"></path>
+
+      <path class="step-inner" d="M46 292 L70 268 V94 L94 70"></path>
+      <path class="step-inner-fade" d="M94 70 H358"></path>
+    </g>
+
+    <!-- Mittelrauten -->
+    <path class="step-diamond" d="M543 37 l9 9 l-9 9 l-9 -9 z"></path>
+    <path class="step-diamond" d="M543 94 l7 7 l-7 7 l-7 -7 z"></path>
+
+    <!-- Mittelachse oben -->
+    <path class="step-main" d="M543 55 V126"></path>
+    <path class="step-main-soft" d="M543 126 V152"></path>
+    <circle class="step-node" cx="543" cy="78" r="1.8"></circle>
+  </svg>
+</div>
 
       </main>
     </div>
