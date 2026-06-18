@@ -157,21 +157,21 @@
     }
 
     .frame-shell-v45 .frame-corner {
-      stroke: rgba(180,245,255,0.34);
-      stroke-width: 1.15;
-      opacity: 0.72;
+      stroke: rgba(180,245,255,0.42);
+      stroke-width: 1.10;
+      opacity: 0.78;
     }
 
     .frame-shell-v45 .frame-corner.soft {
-      stroke: rgba(155,236,255,0.16);
+      stroke: rgba(155,236,255,0.22);
       stroke-width: 0.78;
-      opacity: 0.52;
+      opacity: 0.60;
     }
 
     .frame-shell-v45 .frame-mark {
-      stroke: rgba(155,236,255,0.20);
-      stroke-width: 0.82;
-      opacity: 0.54;
+      stroke: rgba(155,236,255,0.26);
+      stroke-width: 0.78;
+      opacity: 0.62;
     }
 
     .frame-shell-v45 .frame-rune-gap {
@@ -2506,88 +2506,74 @@
             <path class="frame-rune-gap" d="M28 372 H48 M28 906 H48"></path>
             <path class="frame-rune-gap" d="M1038 372 H1058 M1038 906 H1058"></path>
 
-            <!-- Ecken v50: ein einziges korrektes Eck-Symbol, sauber gespiegelt -->
-            <!-- ===== Corner pass v51: näher am Referenzbild, technischer, leicht variiert ===== -->
+            <!-- ===== Corner Rebuild v52: technischer HUD-Rahmen, ähnlich aber nicht identisch ===== -->
 
-<g class="corner-symbol corner-tl" transform="translate(0 0)">
-  <!-- Hauptform -->
-  <path class="frame-corner" d="M28 206 V30 H210"></path>
-  <path class="frame-corner soft" d="M48 182 V86 L86 48 H188"></path>
-  <path class="frame-corner soft" d="M68 160 V106 L106 68 H166"></path>
+            <!-- oben links: detailreichste Ecke -->
+            <g class="corner-symbol corner-tl" transform="translate(0 0)">
+              <path class="frame-corner" d="M28 216 V28 H216"></path>
+              <path class="frame-corner soft" d="M48 190 V96 L92 52 H194"></path>
+              <path class="frame-corner soft" d="M68 164 V114 L106 76 H170"></path>
+              <path class="frame-mark" d="M42 44 H90 M106 44 H170"></path>
+              <path class="frame-mark" d="M42 58 H74 M88 58 H136"></path>
+              <path class="frame-mark" d="M42 76 H150"></path>
+              <path class="frame-mark" d="M54 94 V136"></path>
+              <path class="frame-mark" d="M70 190 H118 M132 190 H178"></path>
+              <path class="frame-mark" d="M126 156 L158 188"></path>
+              <path class="frame-mark" d="M184 66 V92"></path>
+              <circle class="frame-node" cx="28" cy="28" r="2.2"></circle>
+              <circle class="frame-node" cx="170" cy="44" r="1.35"></circle>
+              <circle class="frame-node" cx="178" cy="190" r="1.15"></circle>
+            </g>
 
-  <!-- technische Details -->
-  <path class="frame-mark" d="M40 44 H94"></path>
-  <path class="frame-mark" d="M112 44 H164"></path>
-  <path class="frame-mark" d="M40 56 H72"></path>
-  <path class="frame-mark" d="M40 72 H126"></path>
-  <path class="frame-mark" d="M54 94 V134"></path>
-  <path class="frame-mark" d="M148 150 H176"></path>
-  <path class="frame-mark" d="M134 160 L154 180"></path>
+            <!-- oben rechts: gleiche Sprache, andere Segmentierung -->
+            <g class="corner-symbol corner-tr" transform="translate(1086 0) scale(-1 1)">
+              <path class="frame-corner" d="M28 206 V28 H210"></path>
+              <path class="frame-corner soft" d="M50 184 V92 L88 52 H190"></path>
+              <path class="frame-corner soft" d="M70 156 V110 L106 74 H162"></path>
+              <path class="frame-mark" d="M44 44 H82 M98 44 H158"></path>
+              <path class="frame-mark" d="M44 60 H124"></path>
+              <path class="frame-mark" d="M138 60 H184"></path>
+              <path class="frame-mark" d="M56 86 V126"></path>
+              <path class="frame-mark" d="M120 146 H174"></path>
+              <path class="frame-mark" d="M140 156 L166 182"></path>
+              <path class="frame-mark" d="M180 74 V106"></path>
+              <circle class="frame-node" cx="28" cy="28" r="2.2"></circle>
+              <circle class="frame-node" cx="82" cy="44" r="1.2"></circle>
+              <circle class="frame-node" cx="166" cy="182" r="1.15"></circle>
+            </g>
 
-  <circle class="frame-node" cx="28" cy="30" r="2.1"></circle>
-  <circle class="frame-node" cx="166" cy="44" r="1.5"></circle>
-  <circle class="frame-node" cx="176" cy="180" r="1.3"></circle>
-</g>
+            <!-- unten links: etwas schwerer, ruhiger -->
+            <g class="corner-symbol corner-bl" transform="translate(0 1448) scale(1 -1)">
+              <path class="frame-corner" d="M28 208 V28 H208"></path>
+              <path class="frame-corner soft" d="M50 186 V96 L92 54 H186"></path>
+              <path class="frame-corner soft" d="M72 160 V114 L108 78 H162"></path>
+              <path class="frame-mark" d="M44 44 H96 M112 44 H168"></path>
+              <path class="frame-mark" d="M44 60 H76"></path>
+              <path class="frame-mark" d="M44 76 H118"></path>
+              <path class="frame-mark" d="M56 98 V146"></path>
+              <path class="frame-mark" d="M92 186 H142 M154 186 H184"></path>
+              <path class="frame-mark" d="M130 148 L158 176"></path>
+              <circle class="frame-node" cx="28" cy="28" r="2.2"></circle>
+              <circle class="frame-node" cx="168" cy="44" r="1.3"></circle>
+              <circle class="frame-node" cx="184" cy="186" r="1.15"></circle>
+            </g>
 
-<g class="corner-symbol corner-tr" transform="translate(1086 0) scale(-1 1)">
-  <!-- Hauptform -->
-  <path class="frame-corner" d="M28 206 V30 H210"></path>
-  <path class="frame-corner soft" d="M48 182 V84 L84 48 H188"></path>
-  <path class="frame-corner soft" d="M66 160 V104 L102 68 H166"></path>
-
-  <!-- technische Details -->
-  <path class="frame-mark" d="M42 44 H84"></path>
-  <path class="frame-mark" d="M100 44 H162"></path>
-  <path class="frame-mark" d="M42 58 H118"></path>
-  <path class="frame-mark" d="M56 82 V122"></path>
-  <path class="frame-mark" d="M126 62 H176"></path>
-  <path class="frame-mark" d="M136 144 H174"></path>
-  <path class="frame-mark" d="M146 156 L170 180"></path>
-
-  <circle class="frame-node" cx="28" cy="30" r="2.1"></circle>
-  <circle class="frame-node" cx="84" cy="44" r="1.4"></circle>
-  <circle class="frame-node" cx="170" cy="180" r="1.3"></circle>
-</g>
-
-<g class="corner-symbol corner-bl" transform="translate(0 1448) scale(1 -1)">
-  <!-- Hauptform -->
-  <path class="frame-corner" d="M28 206 V30 H210"></path>
-  <path class="frame-corner soft" d="M50 184 V88 L88 50 H186"></path>
-  <path class="frame-corner soft" d="M70 162 V110 L106 72 H164"></path>
-
-  <!-- technische Details -->
-  <path class="frame-mark" d="M42 44 H96"></path>
-  <path class="frame-mark" d="M116 44 H170"></path>
-  <path class="frame-mark" d="M42 58 H74"></path>
-  <path class="frame-mark" d="M42 72 H110"></path>
-  <path class="frame-mark" d="M56 96 V142"></path>
-  <path class="frame-mark" d="M126 160 H176"></path>
-  <path class="frame-mark" d="M136 146 L158 168"></path>
-
-  <circle class="frame-node" cx="28" cy="30" r="2.1"></circle>
-  <circle class="frame-node" cx="170" cy="44" r="1.5"></circle>
-  <circle class="frame-node" cx="158" cy="168" r="1.2"></circle>
-</g>
-
-<g class="corner-symbol corner-br" transform="translate(1086 1448) scale(-1 -1)">
-  <!-- Hauptform -->
-  <path class="frame-corner" d="M28 206 V30 H210"></path>
-  <path class="frame-corner soft" d="M48 182 V88 L86 50 H188"></path>
-  <path class="frame-corner soft" d="M68 160 V108 L104 70 H166"></path>
-
-  <!-- technische Details -->
-  <path class="frame-mark" d="M42 44 H88"></path>
-  <path class="frame-mark" d="M104 44 H162"></path>
-  <path class="frame-mark" d="M42 58 H120"></path>
-  <path class="frame-mark" d="M56 88 V128"></path>
-  <path class="frame-mark" d="M122 72 H176"></path>
-  <path class="frame-mark" d="M142 150 H176"></path>
-  <path class="frame-mark" d="M130 156 L154 180"></path>
-
-  <circle class="frame-node" cx="28" cy="30" r="2.1"></circle>
-  <circle class="frame-node" cx="162" cy="44" r="1.5"></circle>
-  <circle class="frame-node" cx="154" cy="180" r="1.3"></circle>
-</g>
+            <!-- unten rechts: filigraner Gegenpol -->
+            <g class="corner-symbol corner-br" transform="translate(1086 1448) scale(-1 -1)">
+              <path class="frame-corner" d="M28 210 V28 H212"></path>
+              <path class="frame-corner soft" d="M48 184 V94 L86 54 H190"></path>
+              <path class="frame-corner soft" d="M68 158 V112 L104 76 H166"></path>
+              <path class="frame-mark" d="M44 44 H88 M104 44 H164"></path>
+              <path class="frame-mark" d="M44 58 H122"></path>
+              <path class="frame-mark" d="M136 58 H182"></path>
+              <path class="frame-mark" d="M54 88 V130"></path>
+              <path class="frame-mark" d="M124 150 H178"></path>
+              <path class="frame-mark" d="M132 160 L154 182"></path>
+              <path class="frame-mark" d="M184 78 V102"></path>
+              <circle class="frame-node" cx="28" cy="28" r="2.2"></circle>
+              <circle class="frame-node" cx="164" cy="44" r="1.35"></circle>
+              <circle class="frame-node" cx="154" cy="182" r="1.15"></circle>
+            </g>
 
             <!-- kleine Artefaktmarker oben/unten -->
             <path class="frame-mark" d="M255 20 H414 M672 20 H831"></path>
