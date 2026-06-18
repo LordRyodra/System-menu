@@ -156,7 +156,7 @@
       opacity: 0.43;
     }
 
-    
+   
 
     .frame-shell-v45 .frame-mark {
       stroke: rgba(155,236,255,0.20);
@@ -1433,7 +1433,16 @@
       }
     }
 
-  
+    @keyframes cornerPulse {
+      0%, 100% {
+        opacity: 0.72;
+        filter: drop-shadow(0 0 6px rgba(142,232,255,0.14));
+      }
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 12px rgba(142,232,255,0.28));
+      }
+    }
 
     @keyframes arcfieldBreath {
       0%, 100% { opacity: 0.88; filter: drop-shadow(0 0 0 rgba(142,232,255,0)); }
@@ -2013,11 +2022,331 @@
       0%,100% { filter: brightness(0.90); }
       50% { filter: brightness(1.22); }
     }
+    /* ===== FRAME v45 safety overrides ===== */
+    .frame-shell-v45 { z-index: 21 !important; }
+    .runes { z-index: 24 !important; }
 
 
   
 
+    /* ===== FRAME REBUILD v62: feste technische Top-Rails ===== */
+    .frame-shell-v45 .tech-rail * {
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: url(#frameGlowV45);
+    }
+
+    .frame-shell-v45 .tech-main {
+      fill: none;
+      stroke: rgba(188,246,255,0.50);
+      stroke-width: 1.08;
+      opacity: 0.80;
+    }
+
+    .frame-shell-v45 .tech-soft {
+      fill: none;
+      stroke: rgba(154,233,255,0.22);
+      stroke-width: 0.76;
+      opacity: 0.60;
+    }
+
+    .frame-shell-v45 .tech-detail {
+      fill: none;
+      stroke: rgba(205,248,255,0.28);
+      stroke-width: 0.70;
+      opacity: 0.50;
+      animation: techDetailFadeV62 10s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .tech-detail.delay-1 { animation-delay: -2.1s; }
+    .frame-shell-v45 .tech-detail.delay-2 { animation-delay: -4.8s; }
+    .frame-shell-v45 .tech-detail.delay-3 { animation-delay: -7.3s; }
+
+    .frame-shell-v45 .tech-chip {
+      fill: rgba(92,231,255,0.055);
+      stroke: rgba(168,244,255,0.26);
+      stroke-width: 0.65;
+      opacity: 0.24;
+      animation: techChipBlinkV62 13s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .tech-chip.c2 { animation-delay: -3.5s; }
+    .frame-shell-v45 .tech-chip.c3 { animation-delay: -7.0s; }
+
+    .frame-shell-v45 .tech-node {
+      fill: rgba(210,250,255,0.68);
+      stroke: rgba(140,233,255,0.30);
+      stroke-width: 0.72;
+      opacity: 0.68;
+      animation: techNodePulseV62 5.5s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .tech-node.hollow {
+      fill: rgba(2,8,11,0.55);
+      stroke: rgba(210,250,255,0.52);
+    }
+
+    .frame-shell-v45 .tech-energy {
+      fill: none;
+      stroke: rgba(224,252,255,0.56);
+      stroke-width: 0.84;
+      stroke-dasharray: 28 360;
+      opacity: 0;
+      animation: techFlowV62 12s linear infinite;
+    }
+
+    .frame-shell-v45 .tech-energy.alt {
+      stroke: rgba(114,239,255,0.34);
+      stroke-width: 0.66;
+      stroke-dasharray: 16 300;
+      animation-duration: 15.5s;
+      animation-delay: -5.5s;
+    }
+
+    .frame-shell-v45 .tech-rail.right .tech-energy {
+      animation-delay: -2.7s;
+    }
+    .frame-shell-v45 .tech-rail.right .tech-energy.alt {
+      animation-delay: -8.2s;
+    }
+
+    .frame-shell-v45 .center-rail-v62 * {
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: url(#frameGlowV45);
+    }
+
+    .frame-shell-v45 .center-rail-v62 .center-line {
+      fill: none;
+      stroke: rgba(190,246,255,0.46);
+      stroke-width: 1.0;
+      opacity: 0.76;
+    }
+
+    .frame-shell-v45 .center-rail-v62 .center-line.soft {
+      stroke: rgba(156,234,255,0.24);
+      stroke-width: 0.76;
+      opacity: 0.54;
+    }
+
+    .frame-shell-v45 .center-rail-v62 .center-diamond {
+      fill: rgba(10,23,28,0.18);
+      stroke: rgba(208,248,255,0.62);
+      stroke-width: 0.92;
+      opacity: 0.80;
+      animation: techNodePulseV62 6.2s ease-in-out infinite;
+    }
+
+    @keyframes techFlowV62 {
+      0%   { opacity: 0; stroke-dashoffset: 0; }
+      10%  { opacity: 0.14; }
+      28%  { opacity: 0.56; }
+      46%  { opacity: 0.24; }
+      72%  { opacity: 0.58; }
+      88%  { opacity: 0.16; }
+      100% { opacity: 0; stroke-dashoffset: -388; }
+    }
+
+    @keyframes techDetailFadeV62 {
+      0%,100% { opacity: 0.22; }
+      48% { opacity: 0.56; }
+      56% { opacity: 0.24; }
+      70% { opacity: 0.44; }
+    }
+
+    @keyframes techChipBlinkV62 {
+      0%,100% { opacity: 0.14; fill: rgba(92,231,255,0.035); }
+      46% { opacity: 0.22; }
+      52% { opacity: 0.78; fill: rgba(120,242,255,0.14); }
+      60% { opacity: 0.18; fill: rgba(92,231,255,0.04); }
+    }
+
+    @keyframes techNodePulseV62 {
+      0%,100% { opacity: 0.38; }
+      50% { opacity: 0.84; }
+    }
+
   
+
+    /* ===== FRAME REBUILD v63: technische Rails nach Nutzerskizze ===== */
+    .frame-shell-v45 {
+      z-index: 21 !important;
+      opacity: 0.92;
+    }
+
+    .frame-shell-v45 .frame-svg {
+      overflow: visible;
+    }
+
+    .frame-shell-v45 .hud-edge,
+    .frame-shell-v45 .hud-main,
+    .frame-shell-v45 .hud-par1,
+    .frame-shell-v45 .hud-par2,
+    .frame-shell-v45 .hud-free,
+    .frame-shell-v45 .hud-bottom,
+    .frame-shell-v45 .hud-diamond,
+    .frame-shell-v45 .hud-energy,
+    .frame-shell-v45 .hud-energy-soft,
+    .frame-shell-v45 .hud-node,
+    .frame-shell-v45 .hud-node-ring,
+    .frame-shell-v45 .hud-tick {
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: url(#frameGlowV63);
+    }
+
+    .frame-shell-v45 .hud-edge {
+      fill: none;
+      stroke: rgba(160,235,255,0.16);
+      stroke-width: 0.92;
+      opacity: 0.48;
+      animation: hudFrameBreatheV63 11s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .hud-main {
+      fill: none;
+      stroke: rgba(205,248,255,0.56);
+      stroke-width: 1.12;
+      opacity: 0.78;
+      animation: hudFrameBreatheV63 8.2s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .hud-par1 {
+      fill: none;
+      stroke: rgba(176,241,255,0.28);
+      stroke-width: 0.86;
+      opacity: 0.62;
+      animation: hudFrameBreatheV63 10.5s ease-in-out infinite -1.4s;
+    }
+
+    .frame-shell-v45 .hud-par2 {
+      fill: none;
+      stroke: rgba(168,238,255,0.23);
+      stroke-width: 0.78;
+      opacity: 0.56;
+      animation: hudFrameBreatheV63 12.8s ease-in-out infinite -3.2s;
+    }
+
+    .frame-shell-v45 .hud-free {
+      fill: none;
+      stroke: rgba(192,246,255,0.22);
+      stroke-width: 0.72;
+      opacity: 0.46;
+      animation: hudFreeFadeV63 9s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .hud-bottom {
+      fill: none;
+      stroke: rgba(162,236,255,0.20);
+      stroke-width: 0.82;
+      opacity: 0.50;
+      animation: hudFrameBreatheV63 12s ease-in-out infinite -2s;
+    }
+
+    .frame-shell-v45 .hud-node {
+      fill: rgba(216,250,255,0.78);
+      stroke: rgba(154,235,255,0.42);
+      stroke-width: 0.88;
+      opacity: 0.76;
+      animation: hudNodePulseV63 5.4s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .hud-node-ring {
+      fill: rgba(3,11,14,0.50);
+      stroke: rgba(205,248,255,0.44);
+      stroke-width: 0.92;
+      opacity: 0.72;
+      animation: hudNodePulseV63 7.2s ease-in-out infinite -1.8s;
+    }
+
+    .frame-shell-v45 .hud-diamond {
+      fill: rgba(8,18,24,0.34);
+      stroke: rgba(214,250,255,0.66);
+      stroke-width: 0.94;
+      opacity: 0.82;
+      animation: hudNodePulseV63 6.8s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .hud-tick {
+      fill: none;
+      stroke: rgba(188,246,255,0.23);
+      stroke-width: 0.72;
+      opacity: 0.44;
+      animation: hudFreeFadeV63 10.5s ease-in-out infinite -2.4s;
+    }
+
+    .frame-shell-v45 .hud-energy {
+      fill: none;
+      stroke: rgba(232,253,255,0.74);
+      stroke-width: 1.02;
+      stroke-dasharray: 36 360;
+      stroke-dashoffset: 0;
+      opacity: 0;
+      animation: hudEnergyFlowV63 8.6s linear infinite;
+    }
+
+    .frame-shell-v45 .hud-energy-soft {
+      fill: none;
+      stroke: rgba(120,241,255,0.44);
+      stroke-width: 0.76;
+      stroke-dasharray: 18 260;
+      stroke-dashoffset: 0;
+      opacity: 0;
+      animation: hudEnergyFlowV63 11.4s linear infinite -3.4s;
+    }
+
+    .frame-shell-v45 .hud-rail.right .hud-energy,
+    .frame-shell-v45 .hud-rail.right .hud-energy-soft {
+      animation-direction: reverse;
+    }
+
+    .frame-shell-v45 .hud-vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 4% 4%, rgba(142,232,255,0.03), transparent 16%),
+        radial-gradient(circle at 96% 4%, rgba(142,232,255,0.03), transparent 16%),
+        radial-gradient(circle at 4% 96%, rgba(142,232,255,0.02), transparent 18%),
+        radial-gradient(circle at 96% 96%, rgba(142,232,255,0.02), transparent 18%);
+      opacity: 0.42;
+      pointer-events: none;
+    }
+
+    @keyframes hudFrameBreatheV63 {
+      0%,100% { opacity: 0.42; }
+      35% { opacity: 0.62; }
+      58% { opacity: 0.52; }
+      78% { opacity: 0.72; }
+    }
+
+    @keyframes hudFreeFadeV63 {
+      0%,100% { opacity: 0.16; }
+      42% { opacity: 0.46; }
+      55% { opacity: 0.22; }
+      76% { opacity: 0.36; }
+    }
+
+    @keyframes hudNodePulseV63 {
+      0%,100% { opacity: 0.44; }
+      50% { opacity: 0.88; }
+    }
+
+    @keyframes hudEnergyFlowV63 {
+      0%   { opacity: 0; stroke-dashoffset: 0; }
+      8%   { opacity: 0.12; }
+      22%  { opacity: 0.58; }
+      46%  { opacity: 0.26; }
+      68%  { opacity: 0.70; }
+      88%  { opacity: 0.18; }
+      100% { opacity: 0; stroke-dashoffset: -420; }
+    }
+
+  </style>
+</head>
+
 <body>
   <div class="stage">
     <div class="fit" id="fit">
@@ -2449,7 +2778,110 @@
         </div>
 <div class="debris" aria-hidden="true"></div>
 
-       
+        <div class="frame-shell frame-shell-v45" aria-hidden="true">
+          <div class="hud-vignette"></div>
+          <svg class="frame-svg" viewBox="0 0 1086 1448" preserveAspectRatio="none" role="presentation">
+            <defs>
+              <filter id="frameGlowV63" x="-35%" y="-35%" width="170%" height="170%">
+                <feGaussianBlur stdDeviation="0.95" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Seiten-/Außenrahmen: zurückhaltend und nah am Rand -->
+            <path class="hud-edge" d="M12 12 H1074"></path>
+            <path class="hud-edge" d="M12 1436 H1074"></path>
+            <path class="hud-edge" d="M12 12 V1436"></path>
+            <path class="hud-edge" d="M1074 12 V1436"></path>
+            <path class="hud-edge" d="M30 30 H1056"></path>
+            <path class="hud-edge" d="M30 1418 H1056"></path>
+            <path class="hud-edge" d="M30 30 V1418"></path>
+            <path class="hud-edge" d="M1056 30 V1418"></path>
+
+            <!-- obere technische Rails: starten am Kreis über den Runen und laufen zur Mittelraute -->
+            <g class="hud-rail left">
+              <circle class="hud-node-ring" cx="56" cy="486" r="4.8"></circle>
+              <circle class="hud-node" cx="56" cy="486" r="1.45"></circle>
+
+              <path class="hud-main" d="M56 486 V46 H534"></path>
+              <path class="hud-par1" d="M56 334 V116 L92 80 H228"></path>
+              <path class="hud-par2" d="M82 302 V146 L130 98 H332 L354 76 H392"></path>
+
+              <path class="hud-free" d="M114 176 V244"></path>
+              <path class="hud-free" d="M134 152 V208"></path>
+              <path class="hud-free" d="M152 66 H222"></path>
+              <path class="hud-free" d="M168 82 H246"></path>
+              <path class="hud-free" d="M184 54 H254"></path>
+              <path class="hud-tick" d="M100 86 H126"></path>
+              <path class="hud-tick" d="M106 94 H142"></path>
+              <path class="hud-tick" d="M120 110 V136"></path>
+              <path class="hud-tick" d="M76 66 H96"></path>
+
+              <path class="hud-energy" d="M56 486 V46 H534"></path>
+              <path class="hud-energy-soft" d="M56 334 V116 L92 80 H228"></path>
+              <path class="hud-energy-soft" d="M82 302 V146 L130 98 H332 L354 76 H392"></path>
+            </g>
+
+            <g class="hud-rail right" transform="translate(1086 0) scale(-1 1)">
+              <circle class="hud-node-ring" cx="56" cy="486" r="4.8"></circle>
+              <circle class="hud-node" cx="56" cy="486" r="1.45"></circle>
+
+              <path class="hud-main" d="M56 486 V46 H534"></path>
+              <path class="hud-par1" d="M56 334 V116 L92 80 H228"></path>
+              <path class="hud-par2" d="M82 302 V146 L130 98 H332 L354 76 H392"></path>
+
+              <path class="hud-free" d="M114 188 V248"></path>
+              <path class="hud-free" d="M136 160 V220"></path>
+              <path class="hud-free" d="M150 66 H236"></path>
+              <path class="hud-free" d="M170 82 H250"></path>
+              <path class="hud-free" d="M186 54 H264"></path>
+              <path class="hud-tick" d="M98 84 H124"></path>
+              <path class="hud-tick" d="M112 100 H146"></path>
+              <path class="hud-tick" d="M118 116 V142"></path>
+              <path class="hud-tick" d="M74 66 H94"></path>
+
+              <path class="hud-energy" d="M56 486 V46 H534"></path>
+              <path class="hud-energy-soft" d="M56 334 V116 L92 80 H228"></path>
+              <path class="hud-energy-soft" d="M82 302 V146 L130 98 H332 L354 76 H392"></path>
+            </g>
+
+            <!-- obere Mittellinie: der horizontale Rahmen läuft in die Raute hinein und auf der anderen Seite wieder heraus -->
+            <path class="hud-main" d="M534 46 H543"></path>
+            <path class="hud-main" d="M543 46 H552"></path>
+            <path class="hud-main" d="M543 64 V126"></path>
+            <path class="hud-par1" d="M543 126 V152"></path>
+            <path class="hud-diamond" d="M543 46 l9 9 l-9 9 l-9 -9 z"></path>
+            <path class="hud-diamond" d="M543 94 l7 7 l-7 7 l-7 -7 z"></path>
+            <circle class="hud-node" cx="543" cy="78" r="1.8"></circle>
+
+            <!-- untere Ecken bewusst schlicht -->
+            <g transform="translate(0 1448) scale(1 -1)">
+              <path class="hud-bottom" d="M30 164 V30 H164"></path>
+              <path class="hud-bottom" d="M52 138 V82 L86 48 H152"></path>
+              <path class="hud-free" d="M46 48 H92"></path>
+              <path class="hud-free" d="M58 116 V148"></path>
+              <circle class="hud-node" cx="30" cy="30" r="1.8"></circle>
+            </g>
+            <g transform="translate(1086 1448) scale(-1 -1)">
+              <path class="hud-bottom" d="M30 164 V30 H164"></path>
+              <path class="hud-bottom" d="M52 138 V82 L86 48 H152"></path>
+              <path class="hud-free" d="M46 48 H92"></path>
+              <path class="hud-free" d="M58 116 V148"></path>
+              <circle class="hud-node" cx="30" cy="30" r="1.8"></circle>
+            </g>
+
+            <path class="hud-bottom" d="M280 1420 H422 M664 1420 H806"></path>
+            <path class="hud-bottom" d="M543 1384 V1420"></path>
+            <path class="hud-diamond" d="M543 1402 l6 6 l-6 6 l-6 -6 z"></path>
+            <circle class="hud-node" cx="543" cy="1384" r="2.1"></circle>
+          </svg>
+        </div>        </div>
+      </main>
+    </div>
+  </div>
 
   <script>
     function fitToViewport() {
