@@ -114,46 +114,194 @@
         repeating-linear-gradient(0deg, transparent 0 51px, rgba(142,232,255,0.08) 52px, transparent 53px);
       mix-blend-mode: screen;
     }
-
-    .frame {
+    /* ===== FRAME v43: mystischer Artefakt-Rahmen mit Runen-Aussparungen ===== */
+    .frame-shell-v43 {
       position: absolute;
-      inset: 18px;
-      z-index: 20;
-      pointer-events: none;
-      border: 1px solid rgba(142,232,255,0.20);
-      box-shadow: inset 0 0 34px rgba(142,232,255,0.028);
-    }
-
-    .frame::before,
-    .frame::after {
-      content: "";
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      border-color: rgba(142,232,255,0.45);
-      border-style: solid;
-      filter: drop-shadow(0 0 8px rgba(142,232,255,0.18));
-    }
-    .frame::before { left: 14px; top: 14px; border-width: 2px 0 0 2px; }
-    .frame::after { right: 14px; bottom: 14px; border-width: 0 2px 2px 0; }
-
-    .frame-extra {
-      position: absolute;
-      inset: 28px;
+      inset: 0;
       z-index: 21;
       pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.96;
+      animation: frameShellPulse 8.5s ease-in-out infinite;
     }
-    .frame-extra::before,
-    .frame-extra::after {
-      content: "";
+
+    .frame-shell-v43 .frame-edge-vignette {
       position: absolute;
-      width: 110px;
-      height: 82px;
-      border-color: rgba(142,232,255,0.42);
-      border-style: solid;
+      inset: 0;
+      background:
+        linear-gradient(90deg,
+          rgba(142,232,255,0.055) 0%,
+          rgba(142,232,255,0.020) 3.8%,
+          transparent 11%,
+          transparent 89%,
+          rgba(142,232,255,0.020) 96.2%,
+          rgba(142,232,255,0.055) 100%),
+        linear-gradient(180deg,
+          rgba(142,232,255,0.050) 0%,
+          rgba(142,232,255,0.014) 5%,
+          transparent 13%,
+          transparent 87%,
+          rgba(142,232,255,0.016) 95%,
+          rgba(142,232,255,0.052) 100%),
+        radial-gradient(circle at 6% 5%, rgba(142,232,255,0.10), transparent 13%),
+        radial-gradient(circle at 94% 5%, rgba(142,232,255,0.10), transparent 13%),
+        radial-gradient(circle at 6% 95%, rgba(142,232,255,0.08), transparent 15%),
+        radial-gradient(circle at 94% 95%, rgba(142,232,255,0.08), transparent 15%);
+      opacity: 0.52;
     }
-    .frame-extra::before { right: 0; top: 0; border-width: 2px 2px 0 0; }
-    .frame-extra::after { left: 0; bottom: 0; border-width: 0 0 2px 2px; }
+
+    .frame-shell-v43 .frame-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .frame-shell-v43 .frame-line,
+    .frame-shell-v43 .frame-corner,
+    .frame-shell-v43 .frame-rail,
+    .frame-shell-v43 .frame-window,
+    .frame-shell-v43 .frame-node,
+    .frame-shell-v43 .frame-inner-contour,
+    .frame-shell-v43 .frame-outer-contour,
+    .frame-shell-v43 .frame-panel-line {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+      filter: url(#frameGlowV43);
+    }
+
+    .frame-shell-v43 .frame-outer-contour {
+      stroke: rgba(150,236,255,0.24);
+      stroke-width: 1.05;
+      opacity: 0.78;
+    }
+
+    .frame-shell-v43 .frame-inner-contour {
+      stroke: rgba(150,236,255,0.22);
+      stroke-width: 1.05;
+      opacity: 0.66;
+      stroke-dasharray: 520 18 95 16;
+      animation: frameDashBreath 18s linear infinite;
+    }
+
+    .frame-shell-v43 .frame-corner {
+      stroke: rgba(182,246,255,0.42);
+      stroke-width: 1.35;
+      opacity: 0.86;
+    }
+
+    .frame-shell-v43 .frame-corner.faint {
+      stroke: rgba(150,236,255,0.22);
+      stroke-width: 0.9;
+      opacity: 0.66;
+    }
+
+    .frame-shell-v43 .frame-line {
+      stroke: rgba(150,236,255,0.26);
+      stroke-width: 0.95;
+      opacity: 0.72;
+    }
+
+    .frame-shell-v43 .frame-line.gold {
+      stroke: rgba(230,216,178,0.24);
+      opacity: 0.70;
+    }
+
+    .frame-shell-v43 .frame-panel-line {
+      stroke: rgba(150,236,255,0.13);
+      stroke-width: 0.8;
+      opacity: 0.58;
+    }
+
+    .frame-shell-v43 .frame-rail {
+      stroke: rgba(150,236,255,0.20);
+      stroke-width: 1.0;
+      opacity: 0.64;
+    }
+
+    .frame-shell-v43 .frame-window {
+      stroke: rgba(190,247,255,0.30);
+      stroke-width: 1.0;
+      opacity: 0.72;
+      stroke-dasharray: 26 12;
+      animation: runeWindowPulse 7s ease-in-out infinite;
+    }
+
+    .frame-shell-v43 .frame-node {
+      fill: rgba(203,250,255,0.70);
+      stroke: rgba(150,236,255,0.30);
+      stroke-width: 0.8;
+      opacity: 0.78;
+      animation: frameNodePulse 4.8s ease-in-out infinite;
+    }
+
+    .frame-shell-v43 .frame-node.gold {
+      fill: rgba(230,216,178,0.50);
+      stroke: rgba(230,216,178,0.30);
+    }
+
+    .frame-shell-v43 .frame-sweep {
+      fill: none;
+      stroke: rgba(210,252,255,0.22);
+      stroke-width: 1;
+      stroke-dasharray: 110 850;
+      opacity: 0.42;
+      filter: url(#frameGlowV43);
+      animation: frameSweepV43 10.5s linear infinite;
+    }
+
+    .frame-shell-v43 .frame-rune-notch {
+      fill: rgba(2, 8, 11, 0.30);
+      stroke: rgba(150,236,255,0.10);
+      stroke-width: 0.8;
+      opacity: 0.42;
+    }
+
+    /* Die vorhandenen Runen liegen bewusst über den Rahmen-Aussparungen. */
+    .runes {
+      z-index: 24 !important;
+    }
+
+    @keyframes frameShellPulse {
+      0%, 100% {
+        opacity: 0.88;
+        filter: drop-shadow(0 0 0 rgba(142,232,255,0));
+      }
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 9px rgba(142,232,255,0.075));
+      }
+    }
+
+    @keyframes frameDashBreath {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -220; }
+    }
+
+    @keyframes frameSweepV43 {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -960; }
+    }
+
+    @keyframes runeWindowPulse {
+      0%, 100% { opacity: 0.46; }
+      50% { opacity: 0.82; }
+    }
+
+    @keyframes frameNodePulse {
+      0%, 100% {
+        opacity: 0.42;
+        transform: scale(0.94);
+      }
+      50% {
+        opacity: 0.86;
+        transform: scale(1.13);
+      }
+    }
+
 
     .arcfield {
       position: absolute;
@@ -793,34 +941,7 @@
       height: 18px;
       background: linear-gradient(180deg, transparent, rgba(226,252,255,0.55), transparent);
     }
-
-    /* Rahmen */
-    .frame {
-      inset: 0 !important;
-      border-color: rgba(142,232,255,0.22) !important;
-      animation: frameBreath 8.5s ease-in-out infinite;
-    }
-
-    .frame::before {
-      left: 26px !important;
-      top: 26px !important;
-    }
-
-    .frame::after {
-      right: 26px !important;
-      bottom: 26px !important;
-    }
-
-    .frame-extra {
-      inset: 34px !important;
-    }
-
-    .frame::before,
-    .frame::after,
-    .frame-extra::before,
-    .frame-extra::after {
-      animation: cornerPulse 6.4s ease-in-out infinite;
-    }
+    /* Rahmen v43 ersetzt den alten .frame/.frame-extra Block. */
 
     .arcfield {
       animation: arcfieldBreath 10s ease-in-out infinite;
@@ -2006,7 +2127,17 @@
       50% { filter: brightness(1.22); }
     }
 
-</style>
+
+    /* ===== FRAME v43 safety overrides ===== */
+    .frame-shell-v43 {
+      z-index: 21 !important;
+    }
+
+    .runes {
+      z-index: 24 !important;
+    }
+
+  </style>
 </head>
 
 <body>
@@ -2022,7 +2153,6 @@
         <div class="scan-veil" aria-hidden="true"></div>
         <div class="constellation-glints" aria-hidden="true">
           <span style="--x:18%;--y:18%;--d:0.2s"></span>
-         
           <span style="--x:76%;--y:20%;--d:0.9s"></span>
           <span style="--x:83%;--y:43%;--d:2.4s"></span>
           <span style="--x:23%;--y:58%;--d:1.2s"></span>
@@ -2441,8 +2571,111 @@
         </div>
 <div class="debris" aria-hidden="true"></div>
 
-        <div class="frame" aria-hidden="true"></div>
-        <div class="frame-extra" aria-hidden="true"></div>
+        <div class="frame-shell frame-shell-v43" aria-hidden="true">
+          <div class="frame-edge-vignette"></div>
+          <svg class="frame-svg" viewBox="0 0 1086 1448" preserveAspectRatio="none" role="presentation">
+            <defs>
+              <filter id="frameGlowV43" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="1.55" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- äußerste Einfassung -->
+            <rect class="frame-outer-contour" x="22" y="20" width="1042" height="1408" rx="10"></rect>
+            <rect class="frame-outer-contour" x="44" y="46" width="998" height="1354" rx="4" opacity="0.42"></rect>
+
+            <!-- innere, bewusst nicht ganz rechteckige Kontur um den Hauptinhalt -->
+            <path class="frame-inner-contour"
+              d="M72 72
+                 H414
+                 C465 72 482 125 498 172
+                 C508 201 523 224 543 224
+                 C563 224 578 201 588 172
+                 C604 125 621 72 672 72
+                 H1014
+                 V1292
+                 C973 1342 905 1372 784 1360
+                 C690 1351 625 1320 579 1306
+                 C556 1299 530 1299 507 1306
+                 C461 1320 396 1351 302 1360
+                 C181 1372 113 1342 72 1292
+                 Z" />
+
+            <!-- subtiler Sweep auf der inneren Kontur -->
+            <path class="frame-sweep"
+              d="M72 72
+                 H414
+                 C465 72 482 125 498 172
+                 C508 201 523 224 543 224
+                 C563 224 578 201 588 172
+                 C604 125 621 72 672 72
+                 H1014
+                 V1292
+                 C973 1342 905 1372 784 1360
+                 C690 1351 625 1320 579 1306
+                 C556 1299 530 1299 507 1306
+                 C461 1320 396 1351 302 1360
+                 C181 1372 113 1342 72 1292
+                 Z" />
+
+            <!-- Ecken: obere Seite -->
+            <path class="frame-corner" d="M58 88 H196 M58 88 V236"></path>
+            <path class="frame-corner faint" d="M76 106 H178 M76 106 V210 M92 70 H238 M70 92 L96 62 H224"></path>
+            <path class="frame-corner" d="M1028 88 H890 M1028 88 V236"></path>
+            <path class="frame-corner faint" d="M1010 106 H908 M1010 106 V210 M994 70 H848 M1016 92 L990 62 H862"></path>
+
+            <!-- Ecken: untere Seite -->
+            <path class="frame-corner" d="M58 1360 H208 M58 1360 V1212"></path>
+            <path class="frame-corner faint" d="M78 1342 H188 M78 1342 V1242 M92 1378 H250 M70 1356 L100 1388 H238"></path>
+            <path class="frame-corner" d="M1028 1360 H878 M1028 1360 V1212"></path>
+            <path class="frame-corner faint" d="M1008 1342 H898 M1008 1342 V1242 M994 1378 H836 M1016 1356 L986 1388 H848"></path>
+
+            <!-- obere Ornamentik / Achse -->
+            <path class="frame-line gold" d="M248 78 H396 M690 78 H838"></path>
+            <path class="frame-line" d="M448 74 H504 M582 74 H638"></path>
+            <path class="frame-line" d="M543 36 V96"></path>
+            <path class="frame-line gold" d="M543 112 V151"></path>
+            <path class="frame-corner faint" d="M543 50 l12 14 l-12 14 l-12 -14 z"></path>
+            <path class="frame-corner faint" d="M543 103 l8 10 l-8 10 l-8 -10 z"></path>
+            <circle class="frame-node gold" cx="543" cy="151" r="3"></circle>
+
+            <!-- seitliche Randzonen mit Runen-Aussparungen -->
+            <path class="frame-rail" d="M60 118 V326 M60 884 V1240"></path>
+            <path class="frame-rail" d="M1026 118 V326 M1026 884 V1240"></path>
+            <path class="frame-rail" d="M86 146 V344 M86 866 V1212"></path>
+            <path class="frame-rail" d="M1000 146 V344 M1000 866 V1212"></path>
+
+            <!-- Aussparungs-Klammern für die bestehenden Runen-Spalten -->
+            <path class="frame-window" d="M36 372 H88 M36 372 V404 M36 858 V890 H88 M88 372 V404 M88 858 V890"></path>
+            <path class="frame-window" d="M998 372 H1050 M1050 372 V404 M1050 858 V890 H998 M998 372 V404 M998 858 V890"></path>
+
+            <!-- kleine Paneel-Linien im Randbereich -->
+            <path class="frame-panel-line" d="M112 118 H242 M112 146 H198 M112 206 H164"></path>
+            <path class="frame-panel-line" d="M974 118 H844 M974 146 H888 M974 206 H922"></path>
+            <path class="frame-panel-line" d="M108 1118 H224 M108 1156 H182 M108 1194 H256"></path>
+            <path class="frame-panel-line" d="M978 1118 H862 M978 1156 H904 M978 1194 H830"></path>
+
+            <!-- untere Einfassung, bewusst offen um den Ritualbereich -->
+            <path class="frame-line gold" d="M234 1376 H426 M660 1376 H852"></path>
+            <path class="frame-line" d="M456 1380 H514 M572 1380 H630"></path>
+            <path class="frame-corner faint" d="M543 1358 l10 10 l-10 10 l-10 -10 z"></path>
+            <path class="frame-line" d="M543 1320 V1358"></path>
+
+            <!-- Knotenpunkte -->
+            <circle class="frame-node" cx="72" cy="72" r="3"></circle>
+            <circle class="frame-node" cx="1014" cy="72" r="3"></circle>
+            <circle class="frame-node" cx="72" cy="1292" r="3"></circle>
+            <circle class="frame-node" cx="1014" cy="1292" r="3"></circle>
+            <circle class="frame-node" cx="60" cy="326" r="2.5"></circle>
+            <circle class="frame-node" cx="60" cy="884" r="2.5"></circle>
+            <circle class="frame-node" cx="1026" cy="326" r="2.5"></circle>
+            <circle class="frame-node" cx="1026" cy="884" r="2.5"></circle>
+          </svg>
+        </div>
       </main>
     </div>
   </div>
