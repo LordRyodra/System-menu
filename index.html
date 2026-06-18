@@ -114,43 +114,18 @@
         repeating-linear-gradient(0deg, transparent 0 51px, rgba(142,232,255,0.08) 52px, transparent 53px);
       mix-blend-mode: screen;
     }
-    /* ===== FRAME v43: mystischer Artefakt-Rahmen mit Runen-Aussparungen ===== */
-    .frame-shell-v43 {
+    
+    /* ===== FRAME v44: ruhiger, luftiger Artefakt-Rahmen ===== */
+    .frame-shell-v44 {
       position: absolute;
       inset: 0;
       z-index: 21;
       pointer-events: none;
       mix-blend-mode: screen;
-      opacity: 0.96;
-      animation: frameShellPulse 8.5s ease-in-out infinite;
+      opacity: 0.74;
     }
 
-    .frame-shell-v43 .frame-edge-vignette {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg,
-          rgba(142,232,255,0.055) 0%,
-          rgba(142,232,255,0.020) 3.8%,
-          transparent 11%,
-          transparent 89%,
-          rgba(142,232,255,0.020) 96.2%,
-          rgba(142,232,255,0.055) 100%),
-        linear-gradient(180deg,
-          rgba(142,232,255,0.050) 0%,
-          rgba(142,232,255,0.014) 5%,
-          transparent 13%,
-          transparent 87%,
-          rgba(142,232,255,0.016) 95%,
-          rgba(142,232,255,0.052) 100%),
-        radial-gradient(circle at 6% 5%, rgba(142,232,255,0.10), transparent 13%),
-        radial-gradient(circle at 94% 5%, rgba(142,232,255,0.10), transparent 13%),
-        radial-gradient(circle at 6% 95%, rgba(142,232,255,0.08), transparent 15%),
-        radial-gradient(circle at 94% 95%, rgba(142,232,255,0.08), transparent 15%);
-      opacity: 0.52;
-    }
-
-    .frame-shell-v43 .frame-svg {
+    .frame-shell-v44 .frame-svg {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -158,148 +133,104 @@
       overflow: visible;
     }
 
-    .frame-shell-v43 .frame-line,
-    .frame-shell-v43 .frame-corner,
-    .frame-shell-v43 .frame-rail,
-    .frame-shell-v43 .frame-window,
-    .frame-shell-v43 .frame-node,
-    .frame-shell-v43 .frame-inner-contour,
-    .frame-shell-v43 .frame-outer-contour,
-    .frame-shell-v43 .frame-panel-line {
+    .frame-shell-v44 .frame-outer,
+    .frame-shell-v44 .frame-inner,
+    .frame-shell-v44 .frame-corner,
+    .frame-shell-v44 .frame-mark,
+    .frame-shell-v44 .frame-side-guide,
+    .frame-shell-v44 .frame-top-line,
+    .frame-shell-v44 .frame-bottom-line {
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
       vector-effect: non-scaling-stroke;
-      filter: url(#frameGlowV43);
+      filter: url(#frameGlowV44);
     }
 
-    .frame-shell-v43 .frame-outer-contour {
-      stroke: rgba(150,236,255,0.24);
-      stroke-width: 1.05;
-      opacity: 0.78;
-    }
-
-    .frame-shell-v43 .frame-inner-contour {
-      stroke: rgba(150,236,255,0.22);
-      stroke-width: 1.05;
-      opacity: 0.66;
-      stroke-dasharray: 520 18 95 16;
-      animation: frameDashBreath 18s linear infinite;
-    }
-
-    .frame-shell-v43 .frame-corner {
-      stroke: rgba(182,246,255,0.42);
-      stroke-width: 1.35;
-      opacity: 0.86;
-    }
-
-    .frame-shell-v43 .frame-corner.faint {
-      stroke: rgba(150,236,255,0.22);
+    .frame-shell-v44 .frame-outer {
+      stroke: rgba(150,236,255,0.15);
       stroke-width: 0.9;
+      opacity: 0.52;
+    }
+
+    .frame-shell-v44 .frame-inner {
+      stroke: rgba(150,236,255,0.11);
+      stroke-width: 0.85;
+      opacity: 0.42;
+    }
+
+    .frame-shell-v44 .frame-corner {
+      stroke: rgba(178,244,255,0.31);
+      stroke-width: 1.15;
       opacity: 0.66;
     }
 
-    .frame-shell-v43 .frame-line {
-      stroke: rgba(150,236,255,0.26);
-      stroke-width: 0.95;
-      opacity: 0.72;
+    .frame-shell-v44 .frame-corner.soft {
+      stroke: rgba(150,236,255,0.15);
+      stroke-width: 0.75;
+      opacity: 0.45;
     }
 
-    .frame-shell-v43 .frame-line.gold {
-      stroke: rgba(230,216,178,0.24);
-      opacity: 0.70;
+    .frame-shell-v44 .frame-side-guide {
+      stroke: rgba(150,236,255,0.09);
+      stroke-width: 0.75;
+      opacity: 0.40;
+      stroke-dasharray: 52 38;
     }
 
-    .frame-shell-v43 .frame-panel-line {
-      stroke: rgba(150,236,255,0.13);
+    .frame-shell-v44 .frame-top-line,
+    .frame-shell-v44 .frame-bottom-line {
+      stroke: rgba(230,216,178,0.14);
       stroke-width: 0.8;
-      opacity: 0.58;
+      opacity: 0.40;
     }
 
-    .frame-shell-v43 .frame-rail {
-      stroke: rgba(150,236,255,0.20);
-      stroke-width: 1.0;
-      opacity: 0.64;
-    }
-
-    .frame-shell-v43 .frame-window {
-      stroke: rgba(190,247,255,0.30);
-      stroke-width: 1.0;
-      opacity: 0.72;
-      stroke-dasharray: 26 12;
-      animation: runeWindowPulse 7s ease-in-out infinite;
-    }
-
-    .frame-shell-v43 .frame-node {
-      fill: rgba(203,250,255,0.70);
-      stroke: rgba(150,236,255,0.30);
+    .frame-shell-v44 .frame-mark {
+      stroke: rgba(150,236,255,0.19);
       stroke-width: 0.8;
-      opacity: 0.78;
-      animation: frameNodePulse 4.8s ease-in-out infinite;
+      opacity: 0.50;
     }
 
-    .frame-shell-v43 .frame-node.gold {
-      fill: rgba(230,216,178,0.50);
-      stroke: rgba(230,216,178,0.30);
+    .frame-shell-v44 .frame-node {
+      fill: rgba(203,250,255,0.38);
+      opacity: 0.50;
+      filter: url(#frameGlowV44);
+      animation: frameNodeSoftPulse 6.5s ease-in-out infinite;
     }
 
-    .frame-shell-v43 .frame-sweep {
+    .frame-shell-v44 .frame-vignette-soft {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 4% 5%, rgba(142,232,255,0.032), transparent 15%),
+        radial-gradient(circle at 96% 5%, rgba(142,232,255,0.032), transparent 15%),
+        radial-gradient(circle at 4% 95%, rgba(142,232,255,0.025), transparent 16%),
+        radial-gradient(circle at 96% 95%, rgba(142,232,255,0.025), transparent 16%),
+        linear-gradient(90deg,
+          rgba(142,232,255,0.014),
+          transparent 8%,
+          transparent 92%,
+          rgba(142,232,255,0.014));
+      opacity: 0.48;
+    }
+
+    .frame-shell-v44 .rune-gap-hint {
       fill: none;
-      stroke: rgba(210,252,255,0.22);
-      stroke-width: 1;
-      stroke-dasharray: 110 850;
-      opacity: 0.42;
-      filter: url(#frameGlowV43);
-      animation: frameSweepV43 10.5s linear infinite;
+      stroke: rgba(150,236,255,0.075);
+      stroke-width: 0.7;
+      opacity: 0.28;
+      stroke-dasharray: 18 16;
+      vector-effect: non-scaling-stroke;
+      filter: url(#frameGlowV44);
     }
 
-    .frame-shell-v43 .frame-rune-notch {
-      fill: rgba(2, 8, 11, 0.30);
-      stroke: rgba(150,236,255,0.10);
-      stroke-width: 0.8;
-      opacity: 0.42;
-    }
-
-    /* Die vorhandenen Runen liegen bewusst über den Rahmen-Aussparungen. */
     .runes {
       z-index: 24 !important;
     }
 
-    @keyframes frameShellPulse {
-      0%, 100% {
-        opacity: 0.88;
-        filter: drop-shadow(0 0 0 rgba(142,232,255,0));
-      }
-      50% {
-        opacity: 1;
-        filter: drop-shadow(0 0 9px rgba(142,232,255,0.075));
-      }
-    }
-
-    @keyframes frameDashBreath {
-      from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -220; }
-    }
-
-    @keyframes frameSweepV43 {
-      from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -960; }
-    }
-
-    @keyframes runeWindowPulse {
-      0%, 100% { opacity: 0.46; }
-      50% { opacity: 0.82; }
-    }
-
-    @keyframes frameNodePulse {
-      0%, 100% {
-        opacity: 0.42;
-        transform: scale(0.94);
-      }
-      50% {
-        opacity: 0.86;
-        transform: scale(1.13);
-      }
+    @keyframes frameNodeSoftPulse {
+      0%, 100% { opacity: 0.28; transform: scale(0.96); }
+      50% { opacity: 0.64; transform: scale(1.08); }
     }
 
 
@@ -2126,16 +2057,10 @@
       0%,100% { filter: brightness(0.90); }
       50% { filter: brightness(1.22); }
     }
+    /* ===== FRAME v44 safety overrides ===== */
+    .frame-shell-v44 { z-index: 21 !important; }
+    .runes { z-index: 24 !important; }
 
-
-    /* ===== FRAME v43 safety overrides ===== */
-    .frame-shell-v43 {
-      z-index: 21 !important;
-    }
-
-    .runes {
-      z-index: 24 !important;
-    }
 
   </style>
 </head>
@@ -2571,12 +2496,12 @@
         </div>
 <div class="debris" aria-hidden="true"></div>
 
-        <div class="frame-shell frame-shell-v43" aria-hidden="true">
-          <div class="frame-edge-vignette"></div>
+        <div class="frame-shell frame-shell-v44" aria-hidden="true">
+          <div class="frame-vignette-soft"></div>
           <svg class="frame-svg" viewBox="0 0 1086 1448" preserveAspectRatio="none" role="presentation">
             <defs>
-              <filter id="frameGlowV43" x="-40%" y="-40%" width="180%" height="180%">
-                <feGaussianBlur stdDeviation="1.55" result="blur"/>
+              <filter id="frameGlowV44" x="-35%" y="-35%" width="170%" height="170%">
+                <feGaussianBlur stdDeviation="1.05" result="blur"/>
                 <feMerge>
                   <feMergeNode in="blur"/>
                   <feMergeNode in="SourceGraphic"/>
@@ -2584,96 +2509,44 @@
               </filter>
             </defs>
 
-            <!-- äußerste Einfassung -->
-            <rect class="frame-outer-contour" x="22" y="20" width="1042" height="1408" rx="10"></rect>
-            <rect class="frame-outer-contour" x="44" y="46" width="998" height="1354" rx="4" opacity="0.42"></rect>
+            <rect class="frame-outer" x="28" y="28" width="1030" height="1392" rx="8"></rect>
+            <rect class="frame-inner" x="56" y="64" width="974" height="1320" rx="4"></rect>
 
-            <!-- innere, bewusst nicht ganz rechteckige Kontur um den Hauptinhalt -->
-            <path class="frame-inner-contour"
-              d="M72 72
-                 H414
-                 C465 72 482 125 498 172
-                 C508 201 523 224 543 224
-                 C563 224 578 201 588 172
-                 C604 125 621 72 672 72
-                 H1014
-                 V1292
-                 C973 1342 905 1372 784 1360
-                 C690 1351 625 1320 579 1306
-                 C556 1299 530 1299 507 1306
-                 C461 1320 396 1351 302 1360
-                 C181 1372 113 1342 72 1292
-                 Z" />
+            <!-- reduzierte Ecken -->
+            <path class="frame-corner" d="M64 96 H184 M64 96 V224"></path>
+            <path class="frame-corner soft" d="M84 116 H158 M84 116 V192"></path>
 
-            <!-- subtiler Sweep auf der inneren Kontur -->
-            <path class="frame-sweep"
-              d="M72 72
-                 H414
-                 C465 72 482 125 498 172
-                 C508 201 523 224 543 224
-                 C563 224 578 201 588 172
-                 C604 125 621 72 672 72
-                 H1014
-                 V1292
-                 C973 1342 905 1372 784 1360
-                 C690 1351 625 1320 579 1306
-                 C556 1299 530 1299 507 1306
-                 C461 1320 396 1351 302 1360
-                 C181 1372 113 1342 72 1292
-                 Z" />
+            <path class="frame-corner" d="M1022 96 H902 M1022 96 V224"></path>
+            <path class="frame-corner soft" d="M1002 116 H928 M1002 116 V192"></path>
 
-            <!-- Ecken: obere Seite -->
-            <path class="frame-corner" d="M58 88 H196 M58 88 V236"></path>
-            <path class="frame-corner faint" d="M76 106 H178 M76 106 V210 M92 70 H238 M70 92 L96 62 H224"></path>
-            <path class="frame-corner" d="M1028 88 H890 M1028 88 V236"></path>
-            <path class="frame-corner faint" d="M1010 106 H908 M1010 106 V210 M994 70 H848 M1016 92 L990 62 H862"></path>
+            <path class="frame-corner" d="M64 1352 H192 M64 1352 V1224"></path>
+            <path class="frame-corner soft" d="M84 1332 H166 M84 1332 V1252"></path>
 
-            <!-- Ecken: untere Seite -->
-            <path class="frame-corner" d="M58 1360 H208 M58 1360 V1212"></path>
-            <path class="frame-corner faint" d="M78 1342 H188 M78 1342 V1242 M92 1378 H250 M70 1356 L100 1388 H238"></path>
-            <path class="frame-corner" d="M1028 1360 H878 M1028 1360 V1212"></path>
-            <path class="frame-corner faint" d="M1008 1342 H898 M1008 1342 V1242 M994 1378 H836 M1016 1356 L986 1388 H848"></path>
+            <path class="frame-corner" d="M1022 1352 H894 M1022 1352 V1224"></path>
+            <path class="frame-corner soft" d="M1002 1332 H920 M1002 1332 V1252"></path>
 
-            <!-- obere Ornamentik / Achse -->
-            <path class="frame-line gold" d="M248 78 H396 M690 78 H838"></path>
-            <path class="frame-line" d="M448 74 H504 M582 74 H638"></path>
-            <path class="frame-line" d="M543 36 V96"></path>
-            <path class="frame-line gold" d="M543 112 V151"></path>
-            <path class="frame-corner faint" d="M543 50 l12 14 l-12 14 l-12 -14 z"></path>
-            <path class="frame-corner faint" d="M543 103 l8 10 l-8 10 l-8 -10 z"></path>
-            <circle class="frame-node gold" cx="543" cy="151" r="3"></circle>
+            <!-- kleine zentrale Artefaktmarker, sehr ruhig -->
+            <path class="frame-top-line" d="M262 78 H404 M682 78 H824"></path>
+            <path class="frame-mark" d="M543 50 V98"></path>
+            <path class="frame-mark" d="M543 58 l8 9 l-8 9 l-8 -9 z"></path>
 
-            <!-- seitliche Randzonen mit Runen-Aussparungen -->
-            <path class="frame-rail" d="M60 118 V326 M60 884 V1240"></path>
-            <path class="frame-rail" d="M1026 118 V326 M1026 884 V1240"></path>
-            <path class="frame-rail" d="M86 146 V344 M86 866 V1212"></path>
-            <path class="frame-rail" d="M1000 146 V344 M1000 866 V1212"></path>
+            <path class="frame-bottom-line" d="M270 1370 H420 M666 1370 H816"></path>
+            <path class="frame-mark" d="M543 1336 V1370"></path>
+            <path class="frame-mark" d="M543 1352 l7 7 l-7 7 l-7 -7 z"></path>
 
-            <!-- Aussparungs-Klammern für die bestehenden Runen-Spalten -->
-            <path class="frame-window" d="M36 372 H88 M36 372 V404 M36 858 V890 H88 M88 372 V404 M88 858 V890"></path>
-            <path class="frame-window" d="M998 372 H1050 M1050 372 V404 M1050 858 V890 H998 M998 372 V404 M998 858 V890"></path>
+            <!-- Seitenschienen nur als Andeutung, mit Platz für Runen -->
+            <path class="frame-side-guide" d="M74 152 V322 M74 906 V1200"></path>
+            <path class="frame-side-guide" d="M1012 152 V322 M1012 906 V1200"></path>
 
-            <!-- kleine Paneel-Linien im Randbereich -->
-            <path class="frame-panel-line" d="M112 118 H242 M112 146 H198 M112 206 H164"></path>
-            <path class="frame-panel-line" d="M974 118 H844 M974 146 H888 M974 206 H922"></path>
-            <path class="frame-panel-line" d="M108 1118 H224 M108 1156 H182 M108 1194 H256"></path>
-            <path class="frame-panel-line" d="M978 1118 H862 M978 1156 H904 M978 1194 H830"></path>
+            <path class="rune-gap-hint" d="M46 388 H84 M46 858 H84"></path>
+            <path class="rune-gap-hint" d="M1002 388 H1040 M1002 858 H1040"></path>
 
-            <!-- untere Einfassung, bewusst offen um den Ritualbereich -->
-            <path class="frame-line gold" d="M234 1376 H426 M660 1376 H852"></path>
-            <path class="frame-line" d="M456 1380 H514 M572 1380 H630"></path>
-            <path class="frame-corner faint" d="M543 1358 l10 10 l-10 10 l-10 -10 z"></path>
-            <path class="frame-line" d="M543 1320 V1358"></path>
-
-            <!-- Knotenpunkte -->
-            <circle class="frame-node" cx="72" cy="72" r="3"></circle>
-            <circle class="frame-node" cx="1014" cy="72" r="3"></circle>
-            <circle class="frame-node" cx="72" cy="1292" r="3"></circle>
-            <circle class="frame-node" cx="1014" cy="1292" r="3"></circle>
-            <circle class="frame-node" cx="60" cy="326" r="2.5"></circle>
-            <circle class="frame-node" cx="60" cy="884" r="2.5"></circle>
-            <circle class="frame-node" cx="1026" cy="326" r="2.5"></circle>
-            <circle class="frame-node" cx="1026" cy="884" r="2.5"></circle>
+            <circle class="frame-node" cx="64" cy="96" r="2.1"></circle>
+            <circle class="frame-node" cx="1022" cy="96" r="2.1"></circle>
+            <circle class="frame-node" cx="64" cy="1352" r="2.1"></circle>
+            <circle class="frame-node" cx="1022" cy="1352" r="2.1"></circle>
+            <circle class="frame-node" cx="543" cy="98" r="2.2"></circle>
+            <circle class="frame-node" cx="543" cy="1336" r="2.2"></circle>
           </svg>
         </div>
       </main>
