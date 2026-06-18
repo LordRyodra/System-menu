@@ -2178,6 +2178,182 @@
       50% { opacity: 0.84; }
     }
 
+  
+
+    /* ===== FRAME REBUILD v63: technische Rails nach Nutzerskizze ===== */
+    .frame-shell-v45 {
+      z-index: 21 !important;
+      opacity: 0.92;
+    }
+
+    .frame-shell-v45 .frame-svg {
+      overflow: visible;
+    }
+
+    .frame-shell-v45 .hud-edge,
+    .frame-shell-v45 .hud-main,
+    .frame-shell-v45 .hud-par1,
+    .frame-shell-v45 .hud-par2,
+    .frame-shell-v45 .hud-free,
+    .frame-shell-v45 .hud-bottom,
+    .frame-shell-v45 .hud-diamond,
+    .frame-shell-v45 .hud-energy,
+    .frame-shell-v45 .hud-energy-soft,
+    .frame-shell-v45 .hud-node,
+    .frame-shell-v45 .hud-node-ring,
+    .frame-shell-v45 .hud-tick {
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: url(#frameGlowV63);
+    }
+
+    .frame-shell-v45 .hud-edge {
+      fill: none;
+      stroke: rgba(160,235,255,0.16);
+      stroke-width: 0.92;
+      opacity: 0.48;
+      animation: hudFrameBreatheV63 11s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .hud-main {
+      fill: none;
+      stroke: rgba(205,248,255,0.56);
+      stroke-width: 1.12;
+      opacity: 0.78;
+      animation: hudFrameBreatheV63 8.2s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .hud-par1 {
+      fill: none;
+      stroke: rgba(176,241,255,0.28);
+      stroke-width: 0.86;
+      opacity: 0.62;
+      animation: hudFrameBreatheV63 10.5s ease-in-out infinite -1.4s;
+    }
+
+    .frame-shell-v45 .hud-par2 {
+      fill: none;
+      stroke: rgba(168,238,255,0.23);
+      stroke-width: 0.78;
+      opacity: 0.56;
+      animation: hudFrameBreatheV63 12.8s ease-in-out infinite -3.2s;
+    }
+
+    .frame-shell-v45 .hud-free {
+      fill: none;
+      stroke: rgba(192,246,255,0.22);
+      stroke-width: 0.72;
+      opacity: 0.46;
+      animation: hudFreeFadeV63 9s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .hud-bottom {
+      fill: none;
+      stroke: rgba(162,236,255,0.20);
+      stroke-width: 0.82;
+      opacity: 0.50;
+      animation: hudFrameBreatheV63 12s ease-in-out infinite -2s;
+    }
+
+    .frame-shell-v45 .hud-node {
+      fill: rgba(216,250,255,0.78);
+      stroke: rgba(154,235,255,0.42);
+      stroke-width: 0.88;
+      opacity: 0.76;
+      animation: hudNodePulseV63 5.4s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .hud-node-ring {
+      fill: rgba(3,11,14,0.50);
+      stroke: rgba(205,248,255,0.44);
+      stroke-width: 0.92;
+      opacity: 0.72;
+      animation: hudNodePulseV63 7.2s ease-in-out infinite -1.8s;
+    }
+
+    .frame-shell-v45 .hud-diamond {
+      fill: rgba(8,18,24,0.34);
+      stroke: rgba(214,250,255,0.66);
+      stroke-width: 0.94;
+      opacity: 0.82;
+      animation: hudNodePulseV63 6.8s ease-in-out infinite;
+    }
+
+    .frame-shell-v45 .hud-tick {
+      fill: none;
+      stroke: rgba(188,246,255,0.23);
+      stroke-width: 0.72;
+      opacity: 0.44;
+      animation: hudFreeFadeV63 10.5s ease-in-out infinite -2.4s;
+    }
+
+    .frame-shell-v45 .hud-energy {
+      fill: none;
+      stroke: rgba(232,253,255,0.74);
+      stroke-width: 1.02;
+      stroke-dasharray: 36 360;
+      stroke-dashoffset: 0;
+      opacity: 0;
+      animation: hudEnergyFlowV63 8.6s linear infinite;
+    }
+
+    .frame-shell-v45 .hud-energy-soft {
+      fill: none;
+      stroke: rgba(120,241,255,0.44);
+      stroke-width: 0.76;
+      stroke-dasharray: 18 260;
+      stroke-dashoffset: 0;
+      opacity: 0;
+      animation: hudEnergyFlowV63 11.4s linear infinite -3.4s;
+    }
+
+    .frame-shell-v45 .hud-rail.right .hud-energy,
+    .frame-shell-v45 .hud-rail.right .hud-energy-soft {
+      animation-direction: reverse;
+    }
+
+    .frame-shell-v45 .hud-vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 4% 4%, rgba(142,232,255,0.03), transparent 16%),
+        radial-gradient(circle at 96% 4%, rgba(142,232,255,0.03), transparent 16%),
+        radial-gradient(circle at 4% 96%, rgba(142,232,255,0.02), transparent 18%),
+        radial-gradient(circle at 96% 96%, rgba(142,232,255,0.02), transparent 18%);
+      opacity: 0.42;
+      pointer-events: none;
+    }
+
+    @keyframes hudFrameBreatheV63 {
+      0%,100% { opacity: 0.42; }
+      35% { opacity: 0.62; }
+      58% { opacity: 0.52; }
+      78% { opacity: 0.72; }
+    }
+
+    @keyframes hudFreeFadeV63 {
+      0%,100% { opacity: 0.16; }
+      42% { opacity: 0.46; }
+      55% { opacity: 0.22; }
+      76% { opacity: 0.36; }
+    }
+
+    @keyframes hudNodePulseV63 {
+      0%,100% { opacity: 0.44; }
+      50% { opacity: 0.88; }
+    }
+
+    @keyframes hudEnergyFlowV63 {
+      0%   { opacity: 0; stroke-dashoffset: 0; }
+      8%   { opacity: 0.12; }
+      22%  { opacity: 0.58; }
+      46%  { opacity: 0.26; }
+      68%  { opacity: 0.70; }
+      88%  { opacity: 0.18; }
+      100% { opacity: 0; stroke-dashoffset: -420; }
+    }
+
   </style>
 </head>
 
@@ -2613,129 +2789,106 @@
 <div class="debris" aria-hidden="true"></div>
 
         <div class="frame-shell frame-shell-v45" aria-hidden="true">
-          <div class="frame-vignette-soft"></div>
+          <div class="hud-vignette"></div>
           <svg class="frame-svg" viewBox="0 0 1086 1448" preserveAspectRatio="none" role="presentation">
             <defs>
-              <filter id="frameGlowV45" x="-35%" y="-35%" width="170%" height="170%">
-                <feGaussianBlur stdDeviation="1.0" result="blur"/>
+              <filter id="frameGlowV63" x="-35%" y="-35%" width="170%" height="170%">
+                <feGaussianBlur stdDeviation="0.95" result="blur"/>
                 <feMerge>
                   <feMergeNode in="blur"/>
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
               </filter>
             </defs>
-            <!-- äußerer Rahmen: nah am Rand, mit freien Runenfenstern -->
-            <path class="frame-line outer" d="M10 10 H1076"></path>
-            <path class="frame-line outer" d="M10 1438 H1076"></path>
-            <path class="frame-line outer" d="M10 10 V332"></path>
-            <path class="frame-line outer" d="M10 942 V1438"></path>
-            <path class="frame-line outer" d="M1076 10 V332"></path>
-            <path class="frame-line outer" d="M1076 942 V1438"></path>
 
-            <path class="frame-line inner" d="M28 28 H1058"></path>
-            <path class="frame-line inner" d="M28 1420 H1058"></path>
-            <path class="frame-line inner" d="M28 28 V348"></path>
-            <path class="frame-line inner" d="M28 926 V1420"></path>
-            <path class="frame-line inner" d="M1058 28 V348"></path>
-            <path class="frame-line inner" d="M1058 926 V1420"></path>
+            <!-- Seiten-/Außenrahmen: zurückhaltend und nah am Rand -->
+            <path class="hud-edge" d="M12 12 H1074"></path>
+            <path class="hud-edge" d="M12 1436 H1074"></path>
+            <path class="hud-edge" d="M12 12 V1436"></path>
+            <path class="hud-edge" d="M1074 12 V1436"></path>
+            <path class="hud-edge" d="M30 30 H1056"></path>
+            <path class="hud-edge" d="M30 1418 H1056"></path>
+            <path class="hud-edge" d="M30 30 V1418"></path>
+            <path class="hud-edge" d="M1056 30 V1418"></path>
 
-            <!-- dezente Aussparungen an den Runenfenstern -->
-            <path class="frame-rune-gap" d="M10 350 H34 M10 920 H34"></path>
-            <path class="frame-rune-gap" d="M1052 350 H1076 M1052 920 H1076"></path>
-            <path class="frame-rune-gap" d="M28 368 H48 M28 902 H48"></path>
-            <path class="frame-rune-gap" d="M1038 368 H1058 M1038 902 H1058"></path>
+            <!-- obere technische Rails: starten am Kreis über den Runen und laufen zur Mittelraute -->
+            <g class="hud-rail left">
+              <circle class="hud-node-ring" cx="56" cy="486" r="4.8"></circle>
+              <circle class="hud-node" cx="56" cy="486" r="1.45"></circle>
 
-            <!-- obere feste technische Rails: Kreis -> Ecke -> Mittellinie -->
-            <g class="tech-rail left">
-              <circle class="tech-node hollow" cx="24" cy="486" r="4.2"></circle>
-              <circle class="tech-node" cx="24" cy="486" r="1.35"></circle>
+              <path class="hud-main" d="M56 486 V46 H534"></path>
+              <path class="hud-par1" d="M56 334 V116 L92 80 H228"></path>
+              <path class="hud-par2" d="M82 302 V146 L130 98 H332 L354 76 H392"></path>
 
-              <path class="tech-main" d="M24 486 V34 H154 L182 34 H543"></path>
-              <path class="tech-soft" d="M38 452 V92 L84 46 H146"></path>
-              <path class="tech-soft" d="M54 428 V112 L98 68 H132"></path>
-              <path class="tech-soft" d="M68 404 V134 L112 90 H118"></path>
+              <path class="hud-free" d="M114 176 V244"></path>
+              <path class="hud-free" d="M134 152 V208"></path>
+              <path class="hud-free" d="M152 66 H222"></path>
+              <path class="hud-free" d="M168 82 H246"></path>
+              <path class="hud-free" d="M184 54 H254"></path>
+              <path class="hud-tick" d="M100 86 H126"></path>
+              <path class="hud-tick" d="M106 94 H142"></path>
+              <path class="hud-tick" d="M120 110 V136"></path>
+              <path class="hud-tick" d="M76 66 H96"></path>
 
-              <path class="tech-detail" d="M44 46 H102"></path>
-              <path class="tech-detail delay-1" d="M116 46 H168"></path>
-              <path class="tech-detail delay-2" d="M42 62 H88"></path>
-              <path class="tech-detail delay-3" d="M40 80 H128"></path>
-              <path class="tech-detail delay-1" d="M58 132 V182"></path>
-              <path class="tech-detail delay-2" d="M76 160 V206"></path>
-              <path class="tech-detail" d="M84 126 L104 106"></path>
-              <path class="tech-detail delay-3" d="M100 126 L122 104"></path>
-
-              <polygon class="tech-chip c1" points="40,454 56,454 66,464 50,464"></polygon>
-              <polygon class="tech-chip c2" points="84,46 118,46 110,54 76,54"></polygon>
-              <polygon class="tech-chip c3" points="54,148 68,134 82,148 68,162"></polygon>
-
-              <path class="tech-energy" d="M24 486 V34 H543"></path>
-              <path class="tech-energy alt" d="M38 452 V92 L84 46 H543"></path>
+              <path class="hud-energy" d="M56 486 V46 H534"></path>
+              <path class="hud-energy-soft" d="M56 334 V116 L92 80 H228"></path>
+              <path class="hud-energy-soft" d="M82 302 V146 L130 98 H332 L354 76 H392"></path>
             </g>
 
-            <g class="tech-rail right" transform="translate(1086 0) scale(-1 1)">
-              <circle class="tech-node hollow" cx="24" cy="486" r="4.2"></circle>
-              <circle class="tech-node" cx="24" cy="486" r="1.35"></circle>
+            <g class="hud-rail right" transform="translate(1086 0) scale(-1 1)">
+              <circle class="hud-node-ring" cx="56" cy="486" r="4.8"></circle>
+              <circle class="hud-node" cx="56" cy="486" r="1.45"></circle>
 
-              <path class="tech-main" d="M24 486 V34 H154 L182 34 H543"></path>
-              <path class="tech-soft" d="M38 448 V94 L84 46 H146"></path>
-              <path class="tech-soft" d="M54 424 V114 L98 68 H132"></path>
-              <path class="tech-soft" d="M68 400 V136 L112 90 H118"></path>
+              <path class="hud-main" d="M56 486 V46 H534"></path>
+              <path class="hud-par1" d="M56 334 V116 L92 80 H228"></path>
+              <path class="hud-par2" d="M82 302 V146 L130 98 H332 L354 76 H392"></path>
 
-              <path class="tech-detail" d="M42 46 H96"></path>
-              <path class="tech-detail delay-1" d="M108 46 H166"></path>
-              <path class="tech-detail delay-2" d="M44 60 H122"></path>
-              <path class="tech-detail delay-3" d="M46 78 H94"></path>
-              <path class="tech-detail delay-1" d="M60 130 V176"></path>
-              <path class="tech-detail delay-2" d="M78 156 V200"></path>
-              <path class="tech-detail" d="M88 122 L108 102"></path>
-              <path class="tech-detail delay-3" d="M104 122 L126 100"></path>
+              <path class="hud-free" d="M114 188 V248"></path>
+              <path class="hud-free" d="M136 160 V220"></path>
+              <path class="hud-free" d="M150 66 H236"></path>
+              <path class="hud-free" d="M170 82 H250"></path>
+              <path class="hud-free" d="M186 54 H264"></path>
+              <path class="hud-tick" d="M98 84 H124"></path>
+              <path class="hud-tick" d="M112 100 H146"></path>
+              <path class="hud-tick" d="M118 116 V142"></path>
+              <path class="hud-tick" d="M74 66 H94"></path>
 
-              <polygon class="tech-chip c1" points="42,450 58,450 68,460 52,460"></polygon>
-              <polygon class="tech-chip c2" points="84,46 118,46 110,54 76,54"></polygon>
-              <polygon class="tech-chip c3" points="56,146 70,132 84,146 70,160"></polygon>
-
-              <path class="tech-energy" d="M24 486 V34 H543"></path>
-              <path class="tech-energy alt" d="M38 448 V94 L84 46 H543"></path>
+              <path class="hud-energy" d="M56 486 V46 H534"></path>
+              <path class="hud-energy-soft" d="M56 334 V116 L92 80 H228"></path>
+              <path class="hud-energy-soft" d="M82 302 V146 L130 98 H332 L354 76 H392"></path>
             </g>
 
-            <!-- obere Mittellinie mit zwei Rauten -->
-            <g class="center-rail-v62">
-              <path class="center-line" d="M543 10 V126"></path>
-              <path class="center-line soft" d="M543 126 V152"></path>
-              <path class="center-diamond" d="M543 10 l9 9 l-9 9 l-9 -9 z"></path>
-              <path class="center-diamond" d="M543 58 l7 7 l-7 7 l-7 -7 z"></path>
-              <circle class="frame-node" cx="543" cy="90" r="2.0"></circle>
+            <!-- obere Mittellinie: der horizontale Rahmen läuft in die Raute hinein und auf der anderen Seite wieder heraus -->
+            <path class="hud-main" d="M534 46 H543"></path>
+            <path class="hud-main" d="M543 46 H552"></path>
+            <path class="hud-main" d="M543 64 V126"></path>
+            <path class="hud-par1" d="M543 126 V152"></path>
+            <path class="hud-diamond" d="M543 46 l9 9 l-9 9 l-9 -9 z"></path>
+            <path class="hud-diamond" d="M543 94 l7 7 l-7 7 l-7 -7 z"></path>
+            <circle class="hud-node" cx="543" cy="78" r="1.8"></circle>
+
+            <!-- untere Ecken bewusst schlicht -->
+            <g transform="translate(0 1448) scale(1 -1)">
+              <path class="hud-bottom" d="M30 164 V30 H164"></path>
+              <path class="hud-bottom" d="M52 138 V82 L86 48 H152"></path>
+              <path class="hud-free" d="M46 48 H92"></path>
+              <path class="hud-free" d="M58 116 V148"></path>
+              <circle class="hud-node" cx="30" cy="30" r="1.8"></circle>
+            </g>
+            <g transform="translate(1086 1448) scale(-1 -1)">
+              <path class="hud-bottom" d="M30 164 V30 H164"></path>
+              <path class="hud-bottom" d="M52 138 V82 L86 48 H152"></path>
+              <path class="hud-free" d="M46 48 H92"></path>
+              <path class="hud-free" d="M58 116 V148"></path>
+              <circle class="hud-node" cx="30" cy="30" r="1.8"></circle>
             </g>
 
-            <!-- kompakte untere Ecken -->
-            <g class="corner-symbol corner-bl" transform="translate(0 1448) scale(1 -1)">
-              <path class="frame-corner" d="M28 206 V30 H174"></path>
-              <path class="frame-corner soft" d="M46 182 V90 L84 52 H152"></path>
-              <path class="frame-corner soft" d="M62 160 V112 L100 74 H132"></path>
-              <path class="frame-mark" d="M40 46 H88"></path>
-              <path class="frame-mark" d="M104 46 H150"></path>
-              <path class="frame-mark" d="M54 134 V178"></path>
-              <circle class="frame-node" cx="28" cy="30" r="2.0"></circle>
-            </g>
-
-            <g class="corner-symbol corner-br" transform="translate(1086 1448) scale(-1 -1)">
-              <path class="frame-corner" d="M28 206 V30 H174"></path>
-              <path class="frame-corner soft" d="M46 182 V90 L84 52 H152"></path>
-              <path class="frame-corner soft" d="M62 160 V112 L100 74 H132"></path>
-              <path class="frame-mark" d="M40 46 H88"></path>
-              <path class="frame-mark" d="M104 46 H150"></path>
-              <path class="frame-mark" d="M54 134 V178"></path>
-              <circle class="frame-node" cx="28" cy="30" r="2.0"></circle>
-            </g>
-
-            <!-- untere Mittellinie bleibt schlicht -->
-            <path class="frame-mark" d="M270 1428 H420 M666 1428 H816"></path>
-            <path class="frame-mark" d="M543 1390 V1428"></path>
-            <path class="frame-mark" d="M543 1406 l7 7 l-7 7 l-7 -7 z"></path>
-            <circle class="frame-node" cx="543" cy="1390" r="2.2"></circle>
-
+            <path class="hud-bottom" d="M280 1420 H422 M664 1420 H806"></path>
+            <path class="hud-bottom" d="M543 1384 V1420"></path>
+            <path class="hud-diamond" d="M543 1402 l6 6 l-6 6 l-6 -6 z"></path>
+            <circle class="hud-node" cx="543" cy="1384" r="2.1"></circle>
           </svg>
-        </div>
+        </div>        </div>
       </main>
     </div>
   </div>
