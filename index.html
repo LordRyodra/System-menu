@@ -2506,18 +2506,46 @@
             <path class="frame-rune-gap" d="M28 372 H48 M28 906 H48"></path>
             <path class="frame-rune-gap" d="M1038 372 H1058 M1038 906 H1058"></path>
 
-            <!-- Ecken weiter an den Rand -->
-            <path class="frame-corner" d="M34 42 H162 M34 42 V186"></path>
-            <path class="frame-corner soft" d="M52 58 H132 M52 58 V156"></path>
+            <!-- Ecken v50: ein einziges korrektes Eck-Symbol, sauber gespiegelt -->
+            <g class="corner-symbol corner-tl" transform="translate(0 0)">
+              <path class="frame-corner" d="M28 198 V30 H198"></path>
+              <path class="frame-corner soft" d="M48 178 V78 L82 48 H172"></path>
+              <path class="frame-corner soft" d="M66 154 V96 L98 66 H150"></path>
+              <path class="frame-mark" d="M62 62 H108 M120 62 H158"></path>
+              <path class="frame-mark" d="M62 84 H132"></path>
+              <path class="frame-mark" d="M50 92 V134"></path>
+              <circle class="frame-node" cx="28" cy="30" r="2.1"></circle>
+            </g>
 
-            <path class="frame-corner" d="M1052 42 H924 M1052 42 V186"></path>
-            <path class="frame-corner soft" d="M1034 58 H954 M1034 58 V156"></path>
+            <g class="corner-symbol corner-tr" transform="translate(1086 0) scale(-1 1)">
+              <path class="frame-corner" d="M28 198 V30 H198"></path>
+              <path class="frame-corner soft" d="M48 178 V78 L82 48 H172"></path>
+              <path class="frame-corner soft" d="M66 154 V96 L98 66 H150"></path>
+              <path class="frame-mark" d="M62 62 H108 M120 62 H158"></path>
+              <path class="frame-mark" d="M62 84 H132"></path>
+              <path class="frame-mark" d="M50 92 V134"></path>
+              <circle class="frame-node" cx="28" cy="30" r="2.1"></circle>
+            </g>
 
-            <path class="frame-corner" d="M34 1406 H164 M34 1406 V1276"></path>
-            <path class="frame-corner soft" d="M52 1388 H136 M52 1388 V1308"></path>
+            <g class="corner-symbol corner-bl" transform="translate(0 1448) scale(1 -1)">
+              <path class="frame-corner" d="M28 198 V30 H198"></path>
+              <path class="frame-corner soft" d="M48 178 V78 L82 48 H172"></path>
+              <path class="frame-corner soft" d="M66 154 V96 L98 66 H150"></path>
+              <path class="frame-mark" d="M62 62 H108 M120 62 H158"></path>
+              <path class="frame-mark" d="M62 84 H132"></path>
+              <path class="frame-mark" d="M50 92 V134"></path>
+              <circle class="frame-node" cx="28" cy="30" r="2.1"></circle>
+            </g>
 
-            <path class="frame-corner" d="M1052 1406 H922 M1052 1406 V1276"></path>
-            <path class="frame-corner soft" d="M1034 1388 H950 M1034 1388 V1308"></path>
+            <g class="corner-symbol corner-br" transform="translate(1086 1448) scale(-1 -1)">
+              <path class="frame-corner" d="M28 198 V30 H198"></path>
+              <path class="frame-corner soft" d="M48 178 V78 L82 48 H172"></path>
+              <path class="frame-corner soft" d="M66 154 V96 L98 66 H150"></path>
+              <path class="frame-mark" d="M62 62 H108 M120 62 H158"></path>
+              <path class="frame-mark" d="M62 84 H132"></path>
+              <path class="frame-mark" d="M50 92 V134"></path>
+              <circle class="frame-node" cx="28" cy="30" r="2.1"></circle>
+            </g>
 
             <!-- kleine Artefaktmarker oben/unten -->
             <path class="frame-mark" d="M255 20 H414 M672 20 H831"></path>
@@ -2530,10 +2558,6 @@
             <path class="frame-mark" d="M543 1406 l7 7 l-7 7 l-7 -7 z"></path>
             <circle class="frame-node" cx="543" cy="1390" r="2.2"></circle>
 
-            <circle class="frame-node" cx="34" cy="42" r="2.0"></circle>
-            <circle class="frame-node" cx="1052" cy="42" r="2.0"></circle>
-            <circle class="frame-node" cx="34" cy="1406" r="2.0"></circle>
-            <circle class="frame-node" cx="1052" cy="1406" r="2.0"></circle>
           </svg>
         </div>
       </main>
