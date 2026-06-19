@@ -2628,6 +2628,132 @@
       opacity: 0.74 !important;
     }
 
+  
+    /* ===== FRAME STEP 3 v79 ANIMATION PASS =====
+       Animationen nur lokal auf den freien Zusatzlinien.
+       Keine quer durchs Bild fliegenden Energielinien.
+    */
+    .frame-step3-v79 frame-step3-v80 .step-free-line {
+      stroke: rgba(198, 244, 255, 0.46) !important;
+      stroke-width: 0.88 !important;
+      opacity: 0.62 !important;
+      animation: stepFreeBaseBreatheV79 7.8s ease-in-out infinite !important;
+      filter:
+        drop-shadow(0 0 2px rgba(190, 245, 255, 0.26))
+        drop-shadow(0 0 6px rgba(100, 220, 255, 0.12)) !important;
+    }
+
+    .frame-step3-v79 .step-free-line.side-short,
+    .frame-step3-v79 .step-free-line.top-short,
+    .frame-step3-v79 .step-free-line.top-spark {
+      stroke: rgba(202, 248, 255, 0.36) !important;
+      stroke-width: 0.78 !important;
+      opacity: 0.50 !important;
+    }
+
+    .frame-step3-v79 .step-free-energy {
+      fill: none;
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke: rgba(234, 254, 255, 0.92);
+      stroke-width: 1.28;
+      opacity: 0.0;
+      stroke-dasharray: 18 84;
+      stroke-dashoffset: 102;
+      animation:
+        stepFreeEnergyRunV79 4.2s linear infinite,
+        stepFreeEnergyFadeV79 4.2s ease-in-out infinite;
+      animation-delay: var(--delay);
+      filter:
+        drop-shadow(0 0 3px rgba(220, 252, 255, 0.62))
+        drop-shadow(0 0 9px rgba(120, 230, 255, 0.28));
+    }
+
+    .frame-step3-v79 .step-free-energy.side-short,
+    .frame-step3-v79 .step-free-energy.top-short,
+    .frame-step3-v79 .step-free-energy.top-spark {
+      stroke-width: 1.05;
+      stroke-dasharray: 12 68;
+      animation-duration: 5.1s, 5.1s;
+    }
+
+
+    @keyframes stepFreeBaseBreatheV79 {
+      0%, 100% { opacity: 0.34; }
+      32% { opacity: 0.66; }
+      58% { opacity: 0.48; }
+      82% { opacity: 0.72; }
+    }
+
+    @keyframes stepFreeEnergyRunV79 {
+      from { stroke-dashoffset: 104; }
+      to   { stroke-dashoffset: -104; }
+    }
+
+    @keyframes stepFreeEnergyFadeV79 {
+      0%, 18%, 100% { opacity: 0.0; }
+      34% { opacity: 0.56; }
+      48% { opacity: 0.95; }
+      66% { opacity: 0.30; }
+    }
+
+  
+    /* ===== FRAME STEP 3 v80 =====
+       - rechte Seite: Energiefluss zur Mitte
+       - ähnliche untere Ecken links/rechts ergänzt
+    */
+    .frame-step3-v80 .bottom .step-main,
+    .frame-step3-v80 .bottom .step-main-soft,
+    .frame-step3-v80 .bottom .step-inner-one,
+    .frame-step3-v80 .bottom .step-inner-two,
+    .frame-step3-v80 .bottom .step-node-ring,
+    .frame-step3-v80 .bottom .step-node {
+      animation: stepFreeBaseBreatheV79 8.4s ease-in-out infinite;
+    }
+
+    .frame-step3-v80 .bottom .step-free-line {
+      stroke: rgba(198, 244, 255, 0.42) !important;
+      stroke-width: 0.86 !important;
+      opacity: 0.56 !important;
+      animation: stepFreeBaseBreatheV79 8.2s ease-in-out infinite !important;
+    }
+
+    .frame-step3-v80 .bottom .step-free-line.side-short,
+    .frame-step3-v80 .bottom .step-free-line.top-short,
+    .frame-step3-v80 .bottom .step-free-line.top-spark {
+      stroke: rgba(202, 248, 255, 0.34) !important;
+      stroke-width: 0.76 !important;
+      opacity: 0.48 !important;
+    }
+
+    .frame-step3-v80 .bottom .step-free-energy {
+      fill: none;
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke: rgba(234, 254, 255, 0.9);
+      stroke-width: 1.22;
+      opacity: 0;
+      stroke-dasharray: 16 78;
+      stroke-dashoffset: 100;
+      animation:
+        stepFreeEnergyRunV79 4.6s linear infinite,
+        stepFreeEnergyFadeV79 4.6s ease-in-out infinite;
+      animation-delay: var(--delay);
+      filter:
+        drop-shadow(0 0 3px rgba(220, 252, 255, 0.58))
+        drop-shadow(0 0 8px rgba(120, 230, 255, 0.24));
+    }
+
+    .frame-step3-v80 .bottom .step-free-energy.side-short,
+    .frame-step3-v80 .bottom .step-free-energy.top-short,
+    .frame-step3-v80 .bottom .step-free-energy.top-spark {
+      stroke-width: 1.0;
+      stroke-dasharray: 11 64;
+      animation-duration: 5.4s, 5.4s;
+    }
+
   </style>
 </head>
 
@@ -3070,8 +3196,8 @@
         <!-- FRAME STEP 2 v69 CLEAN: Geometrie prüfen, keine Energie-Läufe -->
         
         
-        <!-- FRAME STEP 3 v78: freie Zusatzlinien sichtbar gemacht -->
-        <div class="frame-step1-v64 frame-step2-v72 frame-step2-v73 frame-step2-v77 frame-step3-v78" aria-hidden="true">
+        <!-- FRAME STEP 3 v79: freie Zusatzlinien mit lokaler Energieanimation -->
+        <div class="frame-step1-v64 frame-step2-v72 frame-step2-v73 frame-step2-v77 frame-step3-v78 frame-step3-v79" aria-hidden="true">
           <svg viewBox="0 0 1086 1448" preserveAspectRatio="none" role="presentation">
             <defs>
               <filter id="stepFrameGlowV72" x="-35%" y="-35%" width="170%" height="170%">
@@ -3103,12 +3229,17 @@
 
               <!-- freie Zusatzlinien innerhalb von Parallele 2: nicht verbunden, leicht unterschiedlich -->
               <path class="step-free-line side-long" d="M104 196 V132"></path>
+              <path class="step-free-energy side-long" d="M104 196 V132" style="--delay:-0.45s"></path>
               <path class="step-free-line side-short" d="M118 168 V118"></path>
+              <path class="step-free-energy side-short" d="M118 168 V118" style="--delay:-0.90s"></path>
 
               <path class="step-free-line top-long" d="M132 94 H286"></path>
+              <path class="step-free-energy top-long" d="M132 94 H286" style="--delay:-1.35s"></path>
               <path class="step-free-line top-short" d="M172 108 H252"></path>
+              <path class="step-free-energy top-short" d="M172 108 H252" style="--delay:-1.80s"></path>
 
               <path class="step-free-line top-spark" d="M308 94 H344"></path>
+              <path class="step-free-energy top-spark" d="M308 94 H344" style="--delay:-2.25s"></path>
             </g>
 
             <!-- RECHTS gespiegelt -->
@@ -3126,12 +3257,70 @@
               <path class="step-inner-two" d="M58 242 L76 224 V94 L94 76 H406 L436 46"></path>
 
               <path class="step-free-line side-long" d="M102 202 V138"></path>
+              <path class="step-free-energy side-long" d="M102 202 V138" style="--delay:-2.70s"></path>
               <path class="step-free-line side-short" d="M116 164 V124"></path>
+              <path class="step-free-energy side-short" d="M116 164 V124" style="--delay:-3.15s"></path>
 
               <path class="step-free-line top-long" d="M140 94 H302"></path>
+              <path class="step-free-energy top-long" d="M140 94 H302" style="--delay:-3.60s"></path>
               <path class="step-free-line top-short" d="M182 108 H262"></path>
+              <path class="step-free-energy top-short" d="M182 108 H262" style="--delay:-4.05s"></path>
 
               <path class="step-free-line top-spark" d="M318 94 H356"></path>
+              <path class="step-free-energy top-spark" d="M318 94 H356" style="--delay:-4.50s"></path>
+            </g>
+
+
+            <!-- UNTEN LINKS -->
+            <g class="bottom left-bottom" transform="translate(0 1508) scale(1 -1)">
+              <circle class="step-node-ring" cx="46" cy="690" r="4.8"></circle>
+              <circle class="step-node" cx="46" cy="690" r="1.45"></circle>
+
+              <path class="step-main" d="M46 690 V46 H404"></path>
+              <path class="step-main-soft" d="M30 30 V694"></path>
+              <path class="step-main-soft" d="M12 12 V712"></path>
+
+              <path class="step-inner-one" d="M46 292 L58 280 V76 L76 58 H252"></path>
+              <path class="step-inner-two" d="M58 242 L76 224 V94 L94 76 H304 L334 46"></path>
+
+              <path class="step-free-line side-long" d="M104 196 V132"></path>
+              <path class="step-free-energy side-long" d="M104 196 V132" style="--delay:-0.30s"></path>
+              <path class="step-free-line side-short" d="M118 168 V118"></path>
+              <path class="step-free-energy side-short" d="M118 168 V118" style="--delay:-0.75s"></path>
+
+              <path class="step-free-line top-long" d="M132 94 H236"></path>
+              <path class="step-free-energy top-long" d="M132 94 H236" style="--delay:-1.20s"></path>
+              <path class="step-free-line top-short" d="M166 108 H214"></path>
+              <path class="step-free-energy top-short" d="M166 108 H214" style="--delay:-1.65s"></path>
+
+              <path class="step-free-line top-spark" d="M248 94 H286"></path>
+              <path class="step-free-energy top-spark" d="M248 94 H286" style="--delay:-2.10s"></path>
+            </g>
+
+            <!-- UNTEN RECHTS -->
+            <g class="bottom right-bottom" transform="translate(1086 1508) scale(-1 -1)">
+              <circle class="step-node-ring" cx="46" cy="630" r="4.8"></circle>
+              <circle class="step-node" cx="46" cy="630" r="1.45"></circle>
+
+              <path class="step-main" d="M46 630 V46 H404"></path>
+              <path class="step-main-soft" d="M30 30 V634"></path>
+              <path class="step-main-soft" d="M12 12 V652"></path>
+
+              <path class="step-inner-one" d="M46 292 L58 280 V76 L76 58 H252"></path>
+              <path class="step-inner-two" d="M58 242 L76 224 V94 L94 76 H304 L334 46"></path>
+
+              <path class="step-free-line side-long" d="M102 202 V138"></path>
+              <path class="step-free-energy side-long" d="M102 202 V138" style="--delay:-2.55s"></path>
+              <path class="step-free-line side-short" d="M116 164 V124"></path>
+              <path class="step-free-energy side-short" d="M116 164 V124" style="--delay:-3.00s"></path>
+
+              <path class="step-free-line top-long" d="M140 94 H244"></path>
+              <path class="step-free-energy top-long" d="M140 94 H244" style="--delay:-3.45s"></path>
+              <path class="step-free-line top-short" d="M174 108 H222"></path>
+              <path class="step-free-energy top-short" d="M174 108 H222" style="--delay:-3.90s"></path>
+
+              <path class="step-free-line top-spark" d="M256 94 H294"></path>
+              <path class="step-free-energy top-spark" d="M256 94 H294" style="--delay:-4.35s"></path>
             </g>
 
             <!-- Mittelrauten -->
