@@ -337,56 +337,217 @@
 
     .title-block {
       position: absolute;
-      left: 0;
-      right: 0;
-      top: 520px;
+      left: 50%;
+      top: 432px;
+      width: 760px;
+      transform: translateX(-50%);
       z-index: 11;
       text-align: center;
       pointer-events: none;
+      isolation: isolate;
     }
-    .title {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 98px;
-      font-weight: 400;
-      line-height: 0.92;
-      letter-spacing: 0.22em;
-      color: rgba(245,252,255,0.97);
-      text-shadow: 0 0 7px rgba(255,255,255,0.58), 0 0 22px rgba(142,232,255,0.35), 0 0 48px rgba(142,232,255,0.16);
-    }
-    .subtitle {
-      margin-top: 20px;
-      color: rgba(142,232,255,0.86);
-      font-size: 18px;
-      letter-spacing: 0.43em;
-      text-transform: uppercase;
-      text-shadow: 0 0 12px rgba(142,232,255,0.30);
-    }
-    .divider {
-      margin: 25px auto 0;
-      width: 306px;
-      height: 24px;
+    .title-block > * {
       position: relative;
+      z-index: 1;
     }
-    .divider::before, .divider::after {
+    .title-block::before {
       content: "";
       position: absolute;
-      top: 50%;
-      width: 127px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(142,232,255,0.65));
+      left: 50%;
+      top: -48px;
+      width: 860px;
+      height: 300px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center,
+        rgba(3, 12, 20, 0.95) 0%,
+        rgba(3, 12, 20, 0.90) 34%,
+        rgba(3, 12, 20, 0.72) 56%,
+        rgba(3, 12, 20, 0.28) 76%,
+        rgba(3, 12, 20, 0) 100%);
+      filter: blur(5px);
+      z-index: -1;
     }
-    .divider::before { left: 0; }
-    .divider::after { right: 0; transform: scaleX(-1); }
-    .divider span {
+    .title-block::after {
+      content: "";
       position: absolute;
       left: 50%;
-      top: 50%;
-      width: 20px;
-      height: 20px;
-      transform: translate(-50%, -50%) rotate(45deg);
-      border: 1px solid rgba(142,232,255,0.82);
-      box-shadow: 0 0 10px rgba(142,232,255,0.36);
+      top: 82px;
+      width: 14px;
+      height: 194px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg,
+        rgba(3, 12, 20, 0) 0%,
+        rgba(3, 12, 20, 0.92) 10%,
+        rgba(3, 12, 20, 0.985) 24%,
+        rgba(3, 12, 20, 0.985) 82%,
+        rgba(3, 12, 20, 0.82) 94%,
+        rgba(3, 12, 20, 0) 100%);
+      filter: blur(1.2px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .title-top-ornament {
+      position: relative;
+      width: 310px;
+      height: 88px;
+      margin: 0 auto 22px;
+    }
+    .title-top-ornament .rail {
+      position: absolute;
+      top: 10px;
+      width: 118px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(130,220,255,0), rgba(220,249,255,0.86) 34%, rgba(130,220,255,0.34) 100%);
+      box-shadow: 0 0 10px rgba(142,232,255,0.22);
+    }
+    .title-top-ornament .rail.left { left: 31px; }
+    .title-top-ornament .rail.right { right: 31px; transform: scaleX(-1); }
+    .title-top-ornament .flare {
+      position: absolute;
+      top: 6px;
+      width: 18px;
+      height: 9px;
+      border-top: 1px solid rgba(220,249,255,0.45);
+      opacity: 0.75;
+    }
+    .title-top-ornament .flare.left { left: 15px; border-left: 1px solid rgba(220,249,255,0.35); transform: skewX(-38deg); }
+    .title-top-ornament .flare.right { right: 15px; border-right: 1px solid rgba(220,249,255,0.35); transform: skewX(38deg); }
+    .title-top-ornament .diamond {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      border: 1px solid rgba(212,248,255,0.88);
+      box-shadow: 0 0 12px rgba(142,232,255,0.34), inset 0 0 8px rgba(142,232,255,0.16);
+      background: rgba(10, 26, 36, 0.42);
+    }
+    .title-top-ornament .diamond.large {
+      top: 0;
+      width: 16px;
+      height: 16px;
+    }
+    .title-top-ornament .diamond.small {
+      top: 34px;
+      width: 10px;
+      height: 10px;
+    }
+    .title-top-ornament .stem {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      background: linear-gradient(180deg, rgba(226,252,255,0.9), rgba(142,232,255,0.42));
+      box-shadow: 0 0 8px rgba(142,232,255,0.24);
+    }
+    .title-top-ornament .stem.one { top: 16px; height: 17px; }
+    .title-top-ornament .stem.two { top: 45px; height: 30px; }
+
+    .title {
+      margin: 0;
+      font-family: Baskerville, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: 104px;
+      font-weight: 400;
+      line-height: 0.92;
+      letter-spacing: 0.19em;
+      text-indent: 0.19em;
+      color: transparent;
+      background: linear-gradient(180deg,
+        rgba(252,254,255,0.995) 0%,
+        rgba(243,251,255,0.985) 36%,
+        rgba(219,244,255,0.96) 68%,
+        rgba(164,225,248,0.92) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow:
+        0 0 1px rgba(255,255,255,0.85),
+        0 0 8px rgba(255,255,255,0.36),
+        0 0 18px rgba(142,232,255,0.16),
+        0 0 36px rgba(142,232,255,0.08);
+    }
+    .subtitle {
+      margin-top: 18px;
+      color: rgba(146,233,255,0.90);
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px rgba(142,232,255,0.22);
+    }
+    .title-divider {
+      position: relative;
+      margin: 26px auto 0;
+      width: 340px;
+      height: 52px;
+    }
+    .title-divider .line {
+      position: absolute;
+      top: 16px;
+      width: 122px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(130,220,255,0), rgba(225,250,255,0.94) 38%, rgba(130,220,255,0.30) 100%);
+      box-shadow: 0 0 10px rgba(142,232,255,0.18);
+    }
+    .title-divider .line.left { left: 0; }
+    .title-divider .line.right { right: 0; transform: scaleX(-1); }
+    .title-divider .dot {
+      position: absolute;
+      top: 13px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(229,251,255,0.95);
+      box-shadow: 0 0 8px rgba(142,232,255,0.45);
+    }
+    .title-divider .dot.left { left: 112px; }
+    .title-divider .dot.right { right: 112px; }
+    .title-divider .diamond {
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      transform: translateX(-50%) rotate(45deg);
+      border: 1px solid rgba(212,248,255,0.88);
+      box-shadow: 0 0 12px rgba(142,232,255,0.34), inset 0 0 8px rgba(142,232,255,0.14);
+      background: rgba(10, 26, 36, 0.42);
+    }
+    .title-divider .inner-diamond {
+      position: absolute;
+      left: 50%;
+      top: 12px;
+      width: 6px;
+      height: 6px;
+      transform: translateX(-50%) rotate(45deg);
+      background: rgba(235,252,255,0.96);
+      box-shadow: 0 0 8px rgba(142,232,255,0.34);
+    }
+    .title-divider .stem {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      background: linear-gradient(180deg, rgba(226,252,255,0.9), rgba(142,232,255,0.36));
+      box-shadow: 0 0 8px rgba(142,232,255,0.22);
+    }
+    .title-divider .stem.up {
+      top: -10px;
+      height: 16px;
+      opacity: 0.86;
+    }
+    .title-divider .stem.down {
+      top: 25px;
+      height: 11px;
+      opacity: 0.72;
+    }
+    .title-divider .glint {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      background: rgba(235,252,255,0.95);
+      box-shadow: 0 0 10px rgba(142,232,255,0.38), 0 0 18px rgba(142,232,255,0.14);
     }
 
     .menu-grid {
@@ -2754,6 +2915,113 @@
       animation-duration: 5.4s, 5.4s;
     }
 
+  
+    /* ===== TITLE v87 MIDLINE CLEANUP =====
+       Entfernt die noch sichtbaren Mittellinien-Stücke im markierten Titelbereich.
+    */
+    .title-block::after {
+      top: -30px !important;
+      height: 315px !important;
+      width: 18px !important;
+    }
+
+    .title-top-ornament .stem,
+    .title-divider .stem {
+      display: none !important;
+    }
+
+    .title-divider .glint {
+      bottom: 2px !important;
+    }
+
+  
+    /* ===== TITLE v88: lower midline fade + diamond light point ===== */
+    .title-block::after {
+      top: -18px !important;
+      height: 352px !important;
+      width: 18px !important;
+      background: linear-gradient(180deg,
+        rgba(3, 12, 20, 0) 0%,
+        rgba(3, 12, 20, 0.92) 8%,
+        rgba(3, 12, 20, 0.985) 18%,
+        rgba(3, 12, 20, 0.99) 70%,
+        rgba(3, 12, 20, 0.95) 80%,
+        rgba(3, 12, 20, 0.55) 90%,
+        rgba(3, 12, 20, 0.12) 96%,
+        rgba(3, 12, 20, 0) 100%) !important;
+      filter: blur(1.35px) !important;
+    }
+
+    .title-divider .diamond {
+      overflow: visible;
+    }
+
+    .title-divider .diamond::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(241, 253, 255, 0.98);
+      box-shadow:
+        0 0 6px rgba(210, 248, 255, 0.95),
+        0 0 12px rgba(142, 232, 255, 0.46),
+        0 0 20px rgba(142, 232, 255, 0.18);
+      pointer-events: none;
+    }
+
+  
+    /* ===== TITLE v89: upper diamond light + more reference-like SYSTEM ===== */
+    .title-top-ornament .diamond.large,
+    .title-top-ornament .diamond.small,
+    .title-divider .diamond {
+      overflow: visible;
+    }
+
+    .title-top-ornament .diamond.large::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      background: rgba(245, 253, 255, 0.98);
+      box-shadow:
+        0 0 6px rgba(224, 249, 255, 0.95),
+        0 0 12px rgba(144, 232, 255, 0.46),
+        0 0 20px rgba(144, 232, 255, 0.16);
+      pointer-events: none;
+    }
+
+    .title {
+      font-family: "Cormorant Garamond", Baskerville, "Iowan Old Style", "Palatino Linotype", Georgia, serif !important;
+      font-size: 102px !important;
+      font-weight: 400 !important;
+      line-height: 0.9 !important;
+      letter-spacing: 0.205em !important;
+      text-indent: 0.205em !important;
+      color: transparent !important;
+      background: linear-gradient(180deg,
+        rgba(254,255,255,0.995) 0%,
+        rgba(246,252,255,0.99) 18%,
+        rgba(231,247,255,0.98) 43%,
+        rgba(203,238,252,0.965) 68%,
+        rgba(154,219,246,0.93) 100%) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      -webkit-text-stroke: 0.45px rgba(226,248,255,0.50);
+      text-shadow:
+        0 0 1px rgba(255,255,255,0.78),
+        0 0 6px rgba(255,255,255,0.22),
+        0 0 14px rgba(142,232,255,0.12),
+        0 0 24px rgba(142,232,255,0.06) !important;
+    }
+
   </style>
 </head>
 
@@ -3015,9 +3283,29 @@
         <div class="runes right" aria-hidden="true"><div class="stream-wrap" id="runesRight"></div></div>
 
         <section class="title-block" aria-label="System Status Interface">
+          <div class="title-top-ornament" aria-hidden="true">
+            <span class="flare left"></span>
+            <span class="rail left"></span>
+            <span class="diamond large"></span>
+            <span class="rail right"></span>
+            <span class="flare right"></span>
+            <span class="stem one"></span>
+            <span class="diamond small"></span>
+            <span class="stem two"></span>
+          </div>
           <h1 class="title">SYSTEM</h1>
-          <div class="subtitle">Status Interface</div>
-          <div class="divider"><span></span></div>
+          <div class="subtitle">STATUS INTERFACE</div>
+          <div class="title-divider" aria-hidden="true">
+            <span class="line left"></span>
+            <span class="dot left"></span>
+            <span class="stem up"></span>
+            <span class="diamond"></span>
+            <span class="inner-diamond"></span>
+            <span class="stem down"></span>
+            <span class="glint"></span>
+            <span class="dot right"></span>
+            <span class="line right"></span>
+          </div>
         </section>
 
         
