@@ -2417,6 +2417,217 @@
       70% { opacity: 0.68; }
     }
 
+  
+    /* ===== FRAME STEP 2 v72 OVERRIDE =====
+       Nächster Schritt:
+       - Parallele 2 ergänzt
+       - erste lose Technik-Linien ergänzt
+       - weiterhin ohne Energielauf im Rahmen
+    */
+    .frame-step2-v72 .step-energy,
+    .frame-step2-v72 .step-inner-energy,
+    .frame-step2-v72 .step-inner-top,
+    .frame-step2-v72 .step-inner-branch,
+    .frame-step2-v72 .step-inner {
+      display: none !important;
+    }
+
+    .frame-step2-v72 .step-main,
+    .frame-step2-v72 .step-main-soft,
+    .frame-step2-v72 .step-inner-one,
+    .frame-step2-v72 .step-inner-two,
+    .frame-step2-v72 .step-accent-side,
+    .frame-step2-v72 .step-accent-top,
+    .frame-step2-v72 .step-accent-corner,
+    .frame-step2-v72 .step-diamond,
+    .frame-step2-v72 .step-node,
+    .frame-step2-v72 .step-node-ring {
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: url(#stepFrameGlowV72);
+    }
+
+    .frame-step2-v72 .step-main {
+      fill: none;
+      stroke: rgba(196, 247, 255, 0.55);
+      stroke-width: 1.12;
+      opacity: 0.78;
+      animation: stepFrameBreatheV72 10s ease-in-out infinite;
+    }
+
+    .frame-step2-v72 .step-main-soft {
+      fill: none;
+      stroke: rgba(150, 232, 255, 0.12);
+      stroke-width: 0.76;
+      opacity: 0.34;
+      animation: stepFrameBreatheSoftV72 13s ease-in-out infinite -3s;
+    }
+
+    .frame-step2-v72 .step-inner-one {
+      fill: none;
+      stroke: rgba(195, 246, 255, 0.48);
+      stroke-width: 0.96;
+      opacity: 0.76;
+      animation: stepInnerOneBreatheV72 9s ease-in-out infinite;
+    }
+
+    .frame-step2-v72 .step-inner-two {
+      fill: none;
+      stroke: rgba(190, 240, 255, 0.40);
+      stroke-width: 0.90;
+      opacity: 0.66;
+      animation: stepInnerTwoBreatheV72 11s ease-in-out infinite -1.5s;
+    }
+
+    .frame-step2-v72 .step-accent-side,
+    .frame-step2-v72 .step-accent-top,
+    .frame-step2-v72 .step-accent-corner {
+      fill: none;
+      stroke: rgba(188, 238, 255, 0.32);
+      stroke-width: 0.82;
+      opacity: 0.54;
+      animation: stepAccentBreatheV72 8s ease-in-out infinite;
+    }
+
+    .frame-step2-v72 .step-node-ring {
+      fill: rgba(2, 9, 12, 0.56);
+      stroke: rgba(204, 249, 255, 0.48);
+      stroke-width: 0.9;
+      opacity: 0.76;
+      animation: stepNodePulseV72 6s ease-in-out infinite;
+    }
+
+    .frame-step2-v72 .step-node {
+      fill: rgba(214, 250, 255, 0.74);
+      stroke: rgba(140, 232, 255, 0.32);
+      stroke-width: 0.7;
+      opacity: 0.70;
+      animation: stepNodePulseV72 5s ease-in-out infinite -1.4s;
+    }
+
+    .frame-step2-v72 .step-diamond {
+      fill: rgba(6, 16, 20, 0.62);
+      stroke: rgba(214, 250, 255, 0.68);
+      stroke-width: 0.95;
+      opacity: 0.84;
+      animation: stepNodePulseV72 6.8s ease-in-out infinite;
+    }
+
+    @keyframes stepFrameBreatheV72 {
+      0%, 100% { opacity: 0.50; }
+      42% { opacity: 0.76; }
+      70% { opacity: 0.58; }
+    }
+
+    @keyframes stepFrameBreatheSoftV72 {
+      0%, 100% { opacity: 0.18; }
+      50% { opacity: 0.36; }
+    }
+
+    @keyframes stepInnerOneBreatheV72 {
+      0%, 100% { opacity: 0.46; }
+      38% { opacity: 0.82; }
+      65% { opacity: 0.58; }
+    }
+
+    @keyframes stepInnerTwoBreatheV72 {
+      0%, 100% { opacity: 0.36; }
+      35% { opacity: 0.70; }
+      68% { opacity: 0.52; }
+    }
+
+    @keyframes stepAccentBreatheV72 {
+      0%, 100% { opacity: 0.28; }
+      40% { opacity: 0.58; }
+      72% { opacity: 0.40; }
+    }
+
+    @keyframes stepNodePulseV72 {
+      0%, 100% { opacity: 0.54; }
+      45% { opacity: 0.90; }
+      70% { opacity: 0.68; }
+    }
+
+  
+    /* ===== FRAME STEP 3 v77 OVERRIDE =====
+       Freie Zusatzlinien in beiden oberen Ecken.
+       Diese Linien sind bewusst NICHT verbunden und liegen innerhalb von Parallele 2.
+    */
+    .frame-step2-v77 .step-free-line {
+      fill: none;
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: url(#stepFrameGlowV72);
+      animation: stepFreeLineBreatheV77 9.5s ease-in-out infinite;
+    }
+
+    .frame-step2-v77 .step-free-line.side-long {
+      stroke: rgba(190, 240, 255, 0.34);
+      stroke-width: 0.78;
+      opacity: 0.50;
+      animation-delay: -1.2s;
+    }
+
+    .frame-step2-v77 .step-free-line.side-short {
+      stroke: rgba(205, 248, 255, 0.30);
+      stroke-width: 0.72;
+      opacity: 0.42;
+      animation-delay: -4.4s;
+    }
+
+    .frame-step2-v77 .step-free-line.top-long {
+      stroke: rgba(190, 240, 255, 0.32);
+      stroke-width: 0.78;
+      opacity: 0.48;
+      animation-delay: -2.7s;
+    }
+
+    .frame-step2-v77 .step-free-line.top-short {
+      stroke: rgba(205, 248, 255, 0.26);
+      stroke-width: 0.70;
+      opacity: 0.38;
+      animation-delay: -6.1s;
+    }
+
+    .frame-step2-v77 .step-free-line.top-spark {
+      stroke: rgba(215, 252, 255, 0.25);
+      stroke-width: 0.68;
+      opacity: 0.34;
+      animation-delay: -7.8s;
+    }
+
+    @keyframes stepFreeLineBreatheV77 {
+      0%, 100% { opacity: 0.24; }
+      38% { opacity: 0.58; }
+      65% { opacity: 0.36; }
+      82% { opacity: 0.50; }
+    }
+
+  
+    /* ===== FRAME STEP 3 v78 VISIBILITY PASS =====
+       Die freien Zusatzlinien waren in v77 zu schwach.
+       Dieser Pass macht sie bewusst klar sichtbar, damit wir die Position prüfen können.
+    */
+    .frame-step3-v78 .step-free-line {
+      stroke: rgba(225, 252, 255, 0.72) !important;
+      stroke-width: 1.05 !important;
+      opacity: 0.86 !important;
+      animation: none !important;
+      filter:
+        drop-shadow(0 0 2px rgba(190, 245, 255, 0.44))
+        drop-shadow(0 0 7px rgba(100, 220, 255, 0.22)) !important;
+    }
+
+    .frame-step3-v78 .step-free-line.side-short,
+    .frame-step3-v78 .step-free-line.top-short,
+    .frame-step3-v78 .step-free-line.top-spark {
+      stroke: rgba(210, 248, 255, 0.58) !important;
+      stroke-width: 0.92 !important;
+      opacity: 0.74 !important;
+    }
+
   </style>
 </head>
 
@@ -2858,11 +3069,12 @@
         
         <!-- FRAME STEP 2 v69 CLEAN: Geometrie prüfen, keine Energie-Läufe -->
         
-        <!-- FRAME STEP 2 v71: Parallele 1 als EIN zusammenhängender Pfad -->
-        <div class="frame-step1-v64 frame-step2-v71" aria-hidden="true">
+        
+        <!-- FRAME STEP 3 v78: freie Zusatzlinien sichtbar gemacht -->
+        <div class="frame-step1-v64 frame-step2-v72 frame-step2-v73 frame-step2-v77 frame-step3-v78" aria-hidden="true">
           <svg viewBox="0 0 1086 1448" preserveAspectRatio="none" role="presentation">
             <defs>
-              <filter id="stepFrameGlowV71" x="-35%" y="-35%" width="170%" height="170%">
+              <filter id="stepFrameGlowV72" x="-35%" y="-35%" width="170%" height="170%">
                 <feGaussianBlur stdDeviation="0.9" result="blur"/>
                 <feMerge>
                   <feMergeNode in="blur"/>
@@ -2873,7 +3085,6 @@
 
             <!-- LINKS -->
             <g class="left">
-              <!-- Startkreis über den Runen -->
               <circle class="step-node-ring" cx="46" cy="416" r="4.8"></circle>
               <circle class="step-node" cx="46" cy="416" r="1.45"></circle>
 
@@ -2884,9 +3095,20 @@
               <path class="step-main-soft" d="M30 30 V1418"></path>
               <path class="step-main-soft" d="M12 12 V1436"></path>
 
-              <!-- Parallele 1: ein einziger zusammenhängender Pfad.
-                   Dadurch kann die obere Linie nicht mehr als separater Pfad verschwinden. -->
-              <path class="step-inner-one" d="M46 292 L70 268 V94 L94 70 H338"></path>
+              <!-- Parallele 1: Abstand etwa halbiert -->
+              <path class="step-inner-one" d="M46 292 L58 280 V76 L76 58 H338"></path>
+
+              <!-- Parallele 2: ebenfalls näher am Rand und oben per letzter 45° Linie direkt auf den Rahmen geführt -->
+              <path class="step-inner-two" d="M58 242 L76 224 V94 L94 76 H406 L436 46"></path>
+
+              <!-- freie Zusatzlinien innerhalb von Parallele 2: nicht verbunden, leicht unterschiedlich -->
+              <path class="step-free-line side-long" d="M104 196 V132"></path>
+              <path class="step-free-line side-short" d="M118 168 V118"></path>
+
+              <path class="step-free-line top-long" d="M132 94 H286"></path>
+              <path class="step-free-line top-short" d="M172 108 H252"></path>
+
+              <path class="step-free-line top-spark" d="M308 94 H344"></path>
             </g>
 
             <!-- RECHTS gespiegelt -->
@@ -2899,7 +3121,17 @@
               <path class="step-main-soft" d="M30 30 V1418"></path>
               <path class="step-main-soft" d="M12 12 V1436"></path>
 
-              <path class="step-inner-one" d="M46 292 L70 268 V94 L94 70 H338"></path>
+              <path class="step-inner-one" d="M46 292 L58 280 V76 L76 58 H338"></path>
+
+              <path class="step-inner-two" d="M58 242 L76 224 V94 L94 76 H406 L436 46"></path>
+
+              <path class="step-free-line side-long" d="M102 202 V138"></path>
+              <path class="step-free-line side-short" d="M116 164 V124"></path>
+
+              <path class="step-free-line top-long" d="M140 94 H302"></path>
+              <path class="step-free-line top-short" d="M182 108 H262"></path>
+
+              <path class="step-free-line top-spark" d="M318 94 H356"></path>
             </g>
 
             <!-- Mittelrauten -->
